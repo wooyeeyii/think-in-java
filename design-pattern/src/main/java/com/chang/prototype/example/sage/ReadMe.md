@@ -1,0 +1,2 @@
+example:    
+&emsp;&emsp;孙大圣的身外身本领如果在Java语言里使用原型模式来实现的话，会怎么样呢？首先，齐天大圣(The Greatest Sage)即TheGreatestSage类扮演客户角色。齐天大圣持有一个猢狲（Monkey）的实例，而猢狲就是大圣本尊。Monkey类具有继承自java.lang.Object的clone()方法，因此，可以通过调用这个克隆方法来复制一个Monkey实例
