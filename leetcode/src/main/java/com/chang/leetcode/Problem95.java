@@ -1,5 +1,7 @@
 package com.chang.leetcode;
 
+import com.chang.common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,11 +90,5 @@ public class Problem95 {
         System.out.println("##################");
         System.out.println(res.size());
     }
-    
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+
 }
