@@ -25,13 +25,12 @@
  */
 package com.chang.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Problem139 {
+
     // Time Limit Exceeded
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreakTooSlow(String s, List<String> wordDict) {
         return wordBreak(s, 0, wordDict);
     }
 
@@ -66,4 +65,26 @@ public class Problem139 {
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new ArrayList<>(Arrays.asList(dict4))));
     }
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> dict = new HashSet<>();
+        wordDict.forEach(str -> dict.add(str));
+        if (s == null || s.length() == 0) return false;
+
+        int n = s.length();
+        // dp[i] represents whether s[0...i] can be formed by dict
+        boolean[] dp = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                String sub = s.substring(j, i + 1);
+
+                if (dict.contains(sub) && (j == 0 || dp[j - 1])) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+
 }
