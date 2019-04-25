@@ -41,15 +41,22 @@ public class Problem162 {
     public int findPeakElementLogarithmic(int[] nums) {
         int high = nums.length - 1;
         int low = 0;
-        int middle = low + (high - low) /2 ;
-
+        while(low < high) {
+            int mid1 = low + (high - low) /2 ;
+            int mid2 = mid1 + 1;
+            if(nums[mid1] < nums[mid2])
+                low = mid2;
+            else
+                high = mid1;
+        }
+        return low;
     }
 
     public static void main(String[] args) {
         Problem162 problem = new Problem162();
         int[] nums1 = new int[] {1,2,3,1};
-        System.out.println(problem.findPeakElement(nums1));
+        System.out.println(problem.findPeakElementLogarithmic(nums1));
         int[] nums2 = new int[] {1,2,1,3,5,6,4};
-        System.out.println(problem.findPeakElement(nums2));
+        System.out.println(problem.findPeakElementLogarithmic(nums2));
     }
 }
