@@ -29,35 +29,43 @@ public class Problem240 {
             return false;
         }
         int rows = matrix.length;
-        int cols = matrix[0].length;
-        if (target < matrix[0][0] || target > matrix[rows - 1][cols - 1]) {
+        int cols = 0;
+        if (rows <= 0 || (cols = matrix[0].length) <= 0) {
+            return false;
+        }
+        if (target > matrix[rows - 1][cols - 1] || target < matrix[0][0]) {
+            return false;
+        }
+        return searchMatrixDiv(matrix, target, 0, rows - 1, 0, cols - 1);
+    }
+
+    private boolean searchMatrixDiv(int[][] matrix, int target,
+                                    int startRow, int endRow, int startCol, int endCol) {
+//        if(startRow < 0 || endRow >= matrix[0].length || startRow > endRow ||
+//                startCol < 0 || endCol >= matrix[0].length || startCol > endCol) {
+        if (startRow > endRow || startCol > endCol) {
             return false;
         }
 
-        int top = 0, bottom = rows - 1;
-        while (top < bottom) {
-            int middle = top + (bottom - top) / 2;
-            if (matrix[middle][0] > target) {
-                bottom = middle - 1;
-            } else {
-                top = middle;
+        int middleRow = startRow + (endRow - startRow) / 2;
+        if (matrix[middleRow][endCol] < target) {
+            return searchMatrixDiv(matrix, target, middleRow + 1, endRow, startCol, endCol);
+        } else if (matrix[middleRow][startCol] > target) {
+            return searchMatrixDiv(matrix, target, startRow, middleRow - 1, startCol, endCol);
+        } else {
+            int j = startCol;
+            for (; j <= endCol; j++) {
+                if (matrix[middleRow][j] == target) {
+                    return true;
+                } else if (matrix[middleRow][j] < target) {
+                    continue;
+                } else {
+                    break;
+                }
             }
+            return searchMatrixDiv(matrix, target, startRow, middleRow - 1, j, endCol) ||
+                    searchMatrixDiv(matrix, target, middleRow + 1, endRow, startCol, j - 1);
         }
-
-        int left = 0, right = cols - 1;
-        while (left < right) {
-            int middle = left + (right - left) / 2;
-            if (target == matrix[top][middle]) {
-                return true;
-            } else if (target > matrix[top][middle]) {
-                left = middle - 1;
-            } else {
-                right = middle + 1;
-            }
-
-        }
-
-        return false;
     }
 
     public static void main(String[] args) {
@@ -72,6 +80,24 @@ public class Problem240 {
         System.out.println(true == problem.searchMatrix(matrix, 5));
         System.out.println(false == problem.searchMatrix(matrix, 20));
 
+    }
+
+    public boolean searchMatrixExample(int[][] matrix, int target) {
+        if (matrix == null || matrix.length < 1 || matrix[0].length < 1) {
+            return false;
+        }
+        int col = matrix[0].length - 1;
+        int row = 0;
+        while (col >= 0 && row <= matrix.length - 1) {
+            if (target == matrix[row][col]) {
+                return true;
+            } else if (target < matrix[row][col]) {
+                col--;
+            } else if (target > matrix[row][col]) {
+                row++;
+            }
+        }
+        return false;
     }
 
 }
