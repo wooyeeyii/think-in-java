@@ -3,7 +3,8 @@ package com.chang.once;
 public class Once {
 
     public static void main(String[] args) {
-        Integer code = 1;
-        System.out.println(code.toString().charAt(0));
+        String a = "01";
+        Object b = null;
+        System.out.println((String)b);
     }
 }
