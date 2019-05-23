@@ -17,24 +17,50 @@ package com.chang.leetcode;
 
 public class Problem309 {
 
+    // buy[i] = max(sell[i-2]-price, buy[i-1])
+    // sell[i] = max(buy[i-1]+price, sell[i-1])
     public int maxProfit(int[] prices) {
-        if(null == prices || prices.length < 2) {
+        if(null == prices || 2 > prices.length) {
             return 0;
         }
-        int[] dp = new int[prices.length + 1];
-        dp[0] = 0;
-        dp[1] = 0;
-        dp[2] = prices[1] > prices[0]? prices[1] - prices[0] : 0;
-        for(int i = 2; i < prices.length; i++) {
-            dp[i + 1] = Math.max(dp[0], dp[1], )
-        }
 
+        int[] buy = new int[prices.length];
+        int[] sell = new int[prices.length];
+        buy[0] = -prices[0];
+        sell[0] = 0;
+        buy[1] = -prices[1] > buy[0]? -prices[1] : buy[0];
+        sell[1] = (prices[1] - prices[0]) > 0 ? (prices[1] - prices[0]) : 0;
+        for(int i = 2; i < prices.length; i++) {
+            buy[i] = Math.max(sell[i - 2] - prices[i], buy[i - 1]);
+            sell[i] = Math.max(buy[i - 1] + prices[i], sell[i - 1]);
+        }
+        return sell[prices.length - 1];
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 2, 3, 0, 2};
+        int[] nums1 = new int[]{1, 2, 3, 0, 2};
         Problem309 problem = new Problem309();
         // [buy, sell, cooldown, buy, sell]
-        System.out.println(3 == problem.maxProfit(nums));
+        System.out.println(3 == problem.maxProfit(nums1));
+
+        int[] nums2 = new int[] {2,1};
+        System.out.println(0 == problem.maxProfit(nums2));
     }
+
+
+    public int maxProfitExample(int[] prices) {
+        if(null == prices || 2 > prices.length) {
+            return 0;
+        }
+
+        int preBuy = 0, preSell = 0, buy = Integer.MIN_VALUE, sell = 0;
+        for(int price : prices) {
+            preBuy = buy;
+            buy = Math.max(preSell - price, preBuy);
+            preSell = sell;
+            sell = Math.max(preBuy + price, preSell);
+        }
+        return sell;
+    }
+
 }
