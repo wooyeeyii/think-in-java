@@ -28,6 +28,7 @@
 package com.chang.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Problem377 {
@@ -39,8 +40,6 @@ public class Problem377 {
         // 对每个list算可能的排序组合
         return 0;
     }
-
-
     private void sumRec(int[] nums, int start, int remain, ArrayList<Integer> list, List<List<Integer>> result) {
         if (0 == remain) {
             result.add(new ArrayList<>(list));
@@ -75,6 +74,7 @@ public class Problem377 {
         System.out.println(8 == problem.combinationSum4(nums2, 4));
     }
 
+
     public int combinationSum4_Rec_Example(int[] nums, int target) {
         if (target == 0) {
             return 1;
@@ -88,11 +88,53 @@ public class Problem377 {
         return res;
     }
 
+    // 上面的递归改进，使用dp保存中间数的结果   up down
+    public int combinationSum4_UP_DOWN(int[] nums, int target) {
+        if (target == 0) {
+            return 1;
+        }
+        int[] dp = new int[target + 1];
+        Arrays.fill(dp, -1);
+        dp[0] = 1;
+        sumHelper(dp, nums, target);
+        return dp[target];
+    }
+    private int sumHelper(int[] dp, int[] nums, int remain) {
+        if (dp[remain] != -1) {
+            return dp[remain];
+        }
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (remain >= nums[i]) {
+                res+= sumHelper(dp, nums, remain - nums[i]);
+            }
+        }
+        dp[remain] = res;
+        return res;
+    }
+
+    // DP      bottom up
+    public int combinationSum4(int[] nums, int target) {
+        if (target == 0) {
+            return 1;
+        }
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for(int i = 1; i <=target; i++) {
+            for(int j = 0; j < nums.length;j++) {
+                if(nums[j] <= i) {
+                    dp[i] += dp[i - nums[j]];
+                }
+            }
+        }
+        return dp[target];
+    }
+
+
     /**
      * Time Limit Exceeded when deal with [2, 1, 3] 35
      */
-    public int combinationSum4(int[] nums, int target) {
-//    public int combinationSum4_Detail(int[] nums, int target) {
+    public int combinationSum4_Detail(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < nums.length && target >= nums[i]; i++) {
             List<Integer> list = new ArrayList<>();
