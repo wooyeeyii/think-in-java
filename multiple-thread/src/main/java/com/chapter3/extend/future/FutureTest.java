@@ -1,7 +1,6 @@
-package com.chapter3.extend;
+package com.chapter3.extend.future;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
