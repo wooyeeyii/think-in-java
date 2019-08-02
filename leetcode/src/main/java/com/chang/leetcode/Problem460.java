@@ -1,111 +1,82 @@
+/**
+ * 460. LFU Cache
+ *
+ * Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
+ *
+ * get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+ * put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity,
+ * it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem,
+ * when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+ *
+ * Follow up:
+ * Could you do both operations in O(1) time complexity?
+ *
+ * Example:
+ * LFUCache cache = new LFUCache( 2 // capacity);
+ * cache.put(1, 1);
+ * cache.put(2, 2);
+ * cache.get(1);       // returns 1
+ * cache.put(3, 3);    // evicts key 2
+ * cache.get(2);       // returns -1 (not found)
+ * cache.get(3);       // returns 3.
+ * cache.put(4, 4);    // evicts key 1.
+ * cache.get(1);       // returns -1 (not found)
+ * cache.get(3);       // returns 3
+ * cache.get(4);       // returns 4
+ *
+ */
 package com.chang.leetcode;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashSet;
 
 public class Problem460 {
-    
-    private Map<Integer, UseRecord> map = new HashMap<Integer, UseRecord>();
-    private Integer capacity = 0;
-    
+
+    HashMap<Integer, Integer> vals;
+    HashMap<Integer, Integer> counts;
+    HashMap<Integer, LinkedHashSet<Integer>> lists;
+    int cap;
+    int min = -1;
     public Problem460(int capacity) {
-        this.capacity = capacity;
+        cap = capacity;
+        vals = new HashMap<>();
+        counts = new HashMap<>();
+        lists = new HashMap<>();
+        lists.put(1, new LinkedHashSet<>());
     }
-    
+
     public int get(int key) {
-        System.out.println("####################  get #########################");
-        for(Integer k : map.keySet()) {
-            System.out.printf("key: %d, content: ", k);
-            (map.get(k)).printContent();
-            System.out.println("");
-        }
-        
-        UseRecord useRecord = map.get(key);
-        if(null == useRecord) {
+        if(!vals.containsKey(key))
             return -1;
-        }
-        
-        Long timeNow = System.currentTimeMillis();
-        useRecord.addUseRecord(timeNow);
-        return useRecord.getValue();
+        int count = counts.get(key);
+        counts.put(key, count+1);
+        lists.get(count).remove(key);
+        if(count==min && lists.get(count).size()==0)
+            min++;
+        if(!lists.containsKey(count+1))
+            lists.put(count+1, new LinkedHashSet<>());
+        lists.get(count+1).add(key);
+        return vals.get(key);
     }
-    
+
     public void put(int key, int value) {
-        if(capacity == 0) {
+        if(cap<=0)
+            return;
+        if(vals.containsKey(key)) {
+            vals.put(key, value);
+            get(key);
             return;
         }
-        if(map.containsKey(key)) {
-            map.get(key).setValue(value);
-            return;
+        if(vals.size() >= cap) {
+            int evit = lists.get(min).iterator().next();
+            lists.get(min).remove(evit);
+            vals.remove(evit);
         }
-        
-        if(map.size() >= capacity) {
-            Integer minKey = null;
-            int minCount = Integer.MAX_VALUE;
-            long latestTime = System.currentTimeMillis();
-            for(Integer k : map.keySet()) {
-                UseRecord record = map.get(k);
-                if(record.getUseCount() < minCount) {
-                    minCount = record.getUseCount();
-                    latestTime = record.getLatestUseTime();
-                    minKey = k;
-                } else if(record.getUseCount() == minCount && record.getLatestUseTime() < latestTime) {
-                    latestTime = record.getLatestUseTime();
-                    minKey = k;
-                } 
-            }
-            map.remove(minKey);
-        }
-        
-        UseRecord useRecord = new UseRecord(value);
-        map.put(key, useRecord);
-        
-        System.out.println("####################  put #########################");
-        for(Integer k : map.keySet()) {
-            System.out.printf("key: %d, content: ", k);
-            (map.get(k)).printContent();
-            System.out.println("");
-        }
+        vals.put(key, value);
+        counts.put(key, 1);
+        min = 1;
+        lists.get(1).add(key);
     }
-    
-    class UseRecord {
-        private Integer useCount = 0;
-        private Long latestUseTime = 0L;
-        private Integer value;
-        
-        public UseRecord(int value) {
-            this.value = value;
-            latestUseTime = System.currentTimeMillis();
-        }
-        
-        public void setValue(int value) {
-            this.value = value;
-            latestUseTime = System.currentTimeMillis();
-        }
-        
-        public int getUseCount() {
-            return useCount;
-        }
-        
-        public int getValue() {
-            return value;
-        }
-        
-        public long getLatestUseTime() {
-            return latestUseTime;
-        }
-        
-        public void addUseRecord(long timeNow) {
-            useCount++;
-            latestUseTime = timeNow;
-        }
-        
-        public void printContent() {
-            System.out.printf("value: %d, useCount: %d, latestUseTime: %d", value, useCount, latestUseTime);
-        }
-    }
-    
-    
     
     public static void main(String[] args) {
 //        Problem460 problem = new Problem460(2);
