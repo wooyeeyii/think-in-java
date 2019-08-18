@@ -23,7 +23,7 @@
  * Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
  * Output: false
  */
-package com.chang.leetcode;
+package com.chang.leetcode.dp.wordbreak;
 
 import java.util.*;
 

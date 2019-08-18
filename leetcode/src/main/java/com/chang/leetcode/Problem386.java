@@ -8,7 +8,7 @@
  * Please optimize your algorithm to use less time and space.
  * The input size may be as large as 5,000,000.
  */
-package com.chang;
+package com.chang.leetcode;
 
 import com.chang.common.ArrayToStringUtil;
 
