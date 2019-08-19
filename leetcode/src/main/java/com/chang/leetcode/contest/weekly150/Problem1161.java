@@ -5,10 +5,10 @@ import com.chang.common.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Problem5052 {
+public class Problem1161 {
 
     public int maxLevelSum(TreeNode root) {
-        if(null == root) {
+        if (null == root) {
             return 0;
         }
         int max = root.val;
@@ -17,22 +17,22 @@ public class Problem5052 {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         int level = 2;
-        while(queue.size() > 0) {
+        while (queue.size() > 0) {
             Queue<TreeNode> next = new LinkedList<>();
             int sum = 0;
-            while(queue.size() > 0) {
+            while (queue.size() > 0) {
                 TreeNode node = queue.poll();
-                if(null != node.left) {
+                if (null != node.left) {
                     sum += node.left.val;
                     next.add(node.left);
                 }
-                if(null != node.right) {
+                if (null != node.right) {
                     sum += node.right.val;
                     next.add(node.right);
                 }
             }
 
-            if(sum > max) {
+            if (sum > max) {
                 max = sum;
                 pos = level;
             }
