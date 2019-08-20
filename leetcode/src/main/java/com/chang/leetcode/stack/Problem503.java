@@ -14,7 +14,7 @@
  * The second 1's next greater number needs to search circularly, which is also 2.
  * Note: The length of given array won't exceed 10000.
  */
-package com.chang.leetcode;
+package com.chang.leetcode.stack;
 
 import java.util.Arrays;
 import java.util.Stack;
@@ -46,19 +46,28 @@ public class Problem503 {
     public static void main(String[] args) {
         Problem503 problem = new Problem503();
         int[] nums1 = new int[]{1, 2, 1};
-        int[] res = problem.nextGreaterElements(nums1);
+        int[] res = problem.nextGreaterElementsExample(nums1);
     }
 
     public int[] nextGreaterElementsExample(int[] nums) {
-        int n = nums.length, next[] = new int[n];
-        Arrays.fill(next, -1);
-        Stack<Integer> stack = new Stack<>(); // index stack
-        for (int i = 0; i < n * 2; i++) {
-            int num = nums[i % n];
-            while (!stack.isEmpty() && nums[stack.peek()] < num)
-                next[stack.pop()] = num;
-            if (i < n) stack.push(i);
+        if(null == nums) {
+            return null;
         }
-        return next;
+
+        int len = nums.length;
+        int[] result = new int[len];
+        Arrays.fill(result, -1);
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0; i < 2 * len; i++) {
+            while(!stack.isEmpty() && nums[i % len] > nums[stack.peek()]) {
+                result[stack.pop()] = nums[i % len];
+            }
+
+            if(i < len) {
+                stack.push(i);
+            }
+        }
+        return result;
     }
+
 }
