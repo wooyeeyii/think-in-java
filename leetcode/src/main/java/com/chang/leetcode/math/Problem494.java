@@ -23,7 +23,7 @@
  * The sum of elements in the given array will not exceed 1000.
  * Your output answer is guaranteed to be fitted in a 32-bit integer.
  */
-package com.chang;
+package com.chang.leetcode.math;
 
 public class Problem494 {
 
