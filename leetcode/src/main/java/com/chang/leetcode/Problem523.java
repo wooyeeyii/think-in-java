@@ -20,43 +20,11 @@
  */
 package com.chang.leetcode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Problem523 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public boolean checkSubarraySum(int[] nums, int k) {
         List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
@@ -75,6 +43,7 @@ public class Problem523 {
     }
 
     private boolean subArraySum(List<Integer> list, int i) {
+        return true;
     }
 
 
