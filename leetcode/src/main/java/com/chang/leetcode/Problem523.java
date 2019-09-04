@@ -20,36 +20,37 @@
  */
 package com.chang.leetcode;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Problem523 {
 
-    public boolean checkSubarraySum(int[] nums, int k) {
-        List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
-        for(int i = 0; i < list.size(); i++) {
-            list.remove(i);
-            int number = list.get(i);
-            if(k > number) {
-                if(subArraySum(list, k - number)) {
-
-                }
-            }
-            list.add(i, number);
-        }
-
-        return false;
-    }
-
-    private boolean subArraySum(List<Integer> list, int i) {
-        return true;
-    }
-
-
     public static void main(String[] args) {
         Problem523 problem = new Problem523();
-        System.out.println(problem.checkSubarraySum(new int[] {23, 2, 4, 6, 7}, 6));
-        System.out.println(problem.checkSubarraySum(new int[] {23, 2, 4, 6, 7}, 6));
+        System.out.println(problem.checkSubarraySumExample(new int[]{23, 2, 4, 6, 7}, 6));
+        System.out.println(problem.checkSubarraySumExample(new int[]{23, 2, 4, 6, 7}, 6));
+    }
+
+    // We iterate through the input array exactly once, keeping track of the running sum mod k of the elements in the process.
+    // If we find that a running sum value at index j has been previously seen before in some earlier index i in the array,
+    // then we know that the sub-array (i,j] contains a desired sum.
+    public boolean checkSubarraySumExample(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int left = 0;
+        for (int i = 0; i < nums.length; i++) {
+            left += nums[i];
+            if(0 != k) {
+                left = left % k;
+            }
+            if(map.containsKey(left)) {
+                if( i - map.get(left) > 1) {
+                    return true;
+                }
+            } else {
+                map.put(left, i);
+            }
+        }
+        return false;
     }
 }
