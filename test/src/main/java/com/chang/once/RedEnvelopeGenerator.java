@@ -80,7 +80,7 @@ public class RedEnvelopeGenerator {
                 result.add(valB);
                 used = used.add(valB);
             }
-            if(used.add(minMoneyPerRedEnvelope).compareTo(money) < 0) {
+            if(used.add(minMoneyPerRedEnvelope).compareTo(money) <= 0) {
                 result.add(money.subtract(used));
             }
         }
@@ -105,11 +105,11 @@ public class RedEnvelopeGenerator {
 
     public static void main(String[] args) {
         RedEnvelopeGenerator gen = new RedEnvelopeGenerator();
-        BigDecimal total = new BigDecimal("0.01");
+        BigDecimal total = new BigDecimal("1");
 
-        gen.form = UNIFORM_DISDTIBUTION;
-//        gen.form = GAUSSIAN_DISDTIBUTION;
-        List<BigDecimal> result = gen.genRedEnvelopes(total, 200, new BigDecimal("0.000001"), 6);
+//        gen.form = UNIFORM_DISDTIBUTION;
+        gen.form = GAUSSIAN_DISDTIBUTION;
+        List<BigDecimal> result = gen.genRedEnvelopes(total, 1, new BigDecimal("1"), 6);
 
         BigDecimal to = BigDecimal.ZERO;
         for (BigDecimal b : result) {
