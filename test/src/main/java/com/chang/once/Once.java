@@ -1,15 +1,12 @@
 package com.chang.once;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 public class Once {
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        list.forEach(x -> {
-            System.out.println(x);
-        });
+        BigDecimal b = new BigDecimal("213.234");
+        System.out.println(b.setScale(-10, BigDecimal.ROUND_HALF_DOWN));
     }
 
 }

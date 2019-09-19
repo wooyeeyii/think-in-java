@@ -43,6 +43,7 @@ public class Problem300 {
         return max;
     }
 
+    // Example rewrite
     public int lengthOfLIS2(int[] nums) {
         if (null == nums || 0 >= nums.length) {
             return 0;
@@ -75,7 +76,21 @@ public class Problem300 {
         System.out.println(3 == problem.lengthOfLIS2(nums3));
     }
 
-
+    /**
+     * tails is an array storing the smallest tail of all increasing subsequences with length i+1 in tails[i].
+     * For example, say we have nums = [4,5,6,3], then all the available increasing subsequences are:
+     * [4] => tails[0] = 4  size = 1
+     * [4, 5] => tails[1] = 5   size = 2
+     * [4, 5, 6] => tails[2] = 6    size = 3
+     * [4, 5, 6, 3] => tails[0] = 3 size = 3
+     * We can easily prove that tails is a increasing array. Therefore it is possible to do a binary search in tails array to find the one needs update.
+     *
+     * Each time we only do one of the two:
+     *
+     * (1) if x is larger than all tails, append it, increase the size by 1
+     * (2) if tails[i-1] < x <= tails[i], update tails[i]
+     * Doing so will maintain the tails invariant. The the final answer is just the size.
+     */
     public int lengthOfLISExample(int[] nums) {
         int[] tails = new int[nums.length];
         int size = 0;
