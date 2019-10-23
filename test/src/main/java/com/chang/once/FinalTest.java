@@ -11,7 +11,7 @@ public class FinalTest {
         //c = a;   报错
         //c = b;
         FinalTest test = new FinalTest();
-        A aa = new A();
+        AA aa = new AA();
     }
 }
 class A {
