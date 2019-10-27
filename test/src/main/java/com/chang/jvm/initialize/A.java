@@ -5,16 +5,16 @@ public class A {
     public static int b = 2;
 
     static {
-        System.out.println("A.static block");
+        System.out.println("AA.static block");
         b = 2;
     }
 
     public A() {
-        System.out.println("A constructor");
+        System.out.println("AA constructor");
     }
 
     private static int mentod() {
-        System.out.println("A.static value");
+        System.out.println("AA.static value");
         return 1;
     }
 }
