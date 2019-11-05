@@ -1,7 +1,7 @@
 1.
 1160. Find Words That Can Be Formed by Characters
 Difficulty: Easy
-You are given an array of strings words and a string chars.
+You are given an array of strings words and BA string chars.
 
 A string is good if it can be formed by characters from chars (each character can only be used once).
 
@@ -22,9 +22,9 @@ The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 
 ---
 
 2.
-1161. Maximum Level Sum of a Binary Tree
+1161. Maximum Level Sum of BA Binary Tree
 Difficulty: Medium
-Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
+Given the root of BA binary tree, the level of its root is 1, the level of its children is 2, and so on.
 
 Return the smallest level X such that the sum of all the values of nodes at level X is maximal.
 
@@ -47,7 +47,7 @@ The number of nodes in the given tree is between 1 and 10^4.
 1162. As Far from Land as Possible
 Difficulty: Medium
 Given an N x N grid containing only values 0 and 1, where 0 represents water and 1 represents land,
-find a water cell such that its distance to the nearest land cell is maximized and return the distance.
+find BA water cell such that its distance to the nearest land cell is maximized and return the distance.
 
 The distance used in this problem is the Manhattan distance:
 the distance between two cells (x0, y0) and (x1, y1) is |x0 - x1| + |y0 - y1|.
@@ -75,12 +75,12 @@ grid[i][j] is 0 or 1
 4.
 1163. Last Substring in Lexicographical Order
 Difficulty: Hard
-Given a string s, return the last substring of s in lexicographical order.
+Given BA string s, return the last substring of s in lexicographical order.
 
 Example 1:
 Input: "abab"
 Output: "bab"
-Explanation: The substrings are ["a", "ab", "aba", "abab", "b", "ba", "bab"]. The lexicographically maximum substring is "bab".
+Explanation: The substrings are ["BA", "ab", "aba", "abab", "b", "ba", "bab"]. The lexicographically maximum substring is "bab".
 
 Example 2:
 Input: "leetcode"

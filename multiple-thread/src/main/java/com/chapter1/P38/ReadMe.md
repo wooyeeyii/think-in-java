@@ -6,7 +6,7 @@ example in this package: 线程的暂停与继续
 RunTest1.java执行结果：
 ```
 begin: 
-thread a has been suspend forever. 
+thread BA has been suspend forever. 
 thread2 start. but can not enter function printString().
 because function printString has been locked by thread. And suspend forever. 
 ```
@@ -47,8 +47,8 @@ i = 119774
 suspend与resume方法不同步
 RunTest3.java执行结果：
 ```
-thread a has been suspend forever. 
-username: a, password: 11
+thread BA has been suspend forever. 
+username: BA, password: 11
 ```
 **分析**    
 &emsp;&emsp;赋值操作进行到一半线程暂停，而其他地方使用这些变量就会出错

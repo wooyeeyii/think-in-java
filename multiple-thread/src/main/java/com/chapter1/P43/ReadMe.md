@@ -7,7 +7,7 @@ example in this package: 线程的优先级
      * Changes the priority of this thread.
      * <p>
      * First the <code>checkAccess</code> method of this thread is called
-     * with no arguments. This may result in throwing a
+     * with no arguments. This may result in throwing BA
      * <code>SecurityException</code>.
      * <p>
      * Otherwise, the priority of this thread is set to the smaller of
@@ -44,17 +44,17 @@ public final void setPriority(int newPriority) {
 &emsp;&emsp;线程的优先级分为1-10这10个等级。JDK使用3个常量来预置定义优先级的值。
 ```
     /**
-     * The minimum priority that a thread can have.
+     * The minimum priority that BA thread can have.
      */
     public final static int MIN_PRIORITY = 1;
 
    /**
-     * The default priority that is assigned to a thread.
+     * The default priority that is assigned to BA thread.
      */
     public final static int NORM_PRIORITY = 5;
 
     /**
-     * The maximum priority that a thread can have.
+     * The maximum priority that BA thread can have.
      */
     public final static int MAX_PRIORITY = 10;
 ```

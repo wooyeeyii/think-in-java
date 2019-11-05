@@ -14,7 +14,7 @@
 
   <mbean         name="AccessLogValve"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Valve that generates a web server access log"
+          description="Valve that generates BA web server access log"
                domain="Catalina"
                 group="Valve"
                  type="org.apache.catalina.valves.AccessLogValve">
@@ -108,7 +108,7 @@
 
   <mbean         name="ContextConfig"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Startup event listener for a Context that configures the
+          description="Startup event listener for BA Context that configures the
                         properties of that Context, and the associated defined
                         servlets"
                domain="Catalina"
@@ -165,7 +165,7 @@
 
   <mbean         name="ContextResource"
             className="org.apache.catalina.mbeans.ContextResourceMBean"
-          description="Representation of a resource reference for a web application"
+          description="Representation of BA resource reference for BA web application"
                domain="Catalina"
                 group="Resources"
                  type="org.apache.catalina.deploy.ContextResource">
@@ -195,7 +195,7 @@
 
    <mbean         name="ContextResourceLink"
             className="org.apache.catalina.mbeans.ContextResourceLinkMBean"
-          description="Representation of a resource link for a web application"
+          description="Representation of BA resource link for BA web application"
                domain="Catalina"
                 group="Resources"
                  type="org.apache.catalina.deploy.ContextResourceLink">
@@ -217,7 +217,7 @@
 
   <mbean         name="CoyoteConnector"
             className="org.apache.catalina.mbeans.ConnectorMBean"
-          description="Implementation of a Coyote connector"
+          description="Implementation of BA Coyote connector"
                domain="Catalina"
                 group="Connector"
                  type="org.apache.coyote.tomcat4.CoyoteConnector">
@@ -307,7 +307,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="secure"
-          description="Is this a secure (SSL) Connector?"
+          description="Is this BA secure (SSL) Connector?"
                  type="boolean"/>
 
     <attribute    name="tomcatAuthentication"
@@ -319,8 +319,8 @@
 
   <mbean         name="DefaultContext"
               className="org.apache.catalina.mbeans.DefaultContextMBean"
-          description="Used to store the default configuration a Host will use
-                        when creating a Context"
+          description="Used to store the default configuration BA Host will use
+                        when creating BA Context"
                domain="Catalina"
                 group="Default-Context"
                  type="org.apache.catalina.core.StandardDefaultContext">
@@ -342,7 +342,7 @@
 
     <attribute   name="swallowOutput"
           description="Flag to set to cause the system.out and system.err 
-	  to be redirected to the logger when executing a servlet"
+	  to be redirected to the logger when executing BA servlet"
                  type="boolean"/>
 
     <attribute   name="useNaming"
@@ -360,7 +360,7 @@
     </operation>
 
     <operation   name="addResource"
-          description="Add a resource reference for this web application"
+          description="Add BA resource reference for this web application"
                impact="ACTION"
            returnType="void">
       <parameter name="resourceName"
@@ -425,7 +425,7 @@
 
   <mbean         name="EngineConfig"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Startup event listener for a Engine that configures the
+          description="Startup event listener for BA Engine that configures the
                         properties of that Engine, and the associated defined
                         contexts"
                domain="Catalina"
@@ -446,7 +446,7 @@
 
   <mbean         name="ErrorReportValve"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Implementation of a Valve that outputs HTML error pages"
+          description="Implementation of BA Valve that outputs HTML error pages"
                domain="Catalina"
                 group="Valve"
                  type="org.apache.catalina.valves.ErrorReportValve">
@@ -465,7 +465,7 @@
 
   <mbean         name="ErrorDispatcherValve"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Implementation of a Valve that handles the error
+          description="Implementation of BA Valve that handles the error
                         dispatch"
                domain="Catalina"
                 group="Valve"
@@ -485,7 +485,7 @@
 
   <mbean         name="FileLogger"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Implementation of Logger that appends log messages to a
+          description="Implementation of Logger that appends log messages to BA
                         file"
                domain="Catalina"
                 group="Logger"
@@ -560,7 +560,7 @@
 
   <mbean         name="Group"
             className="org.apache.catalina.mbeans.GroupMBean"
-          description="Group from a user database"
+          description="Group from BA user database"
                domain="Users"
                 group="Group"
                  type="org.apache.catalina.Group">
@@ -584,7 +584,7 @@
             writeable="false"/>
 
     <operation   name="addRole"
-          description="Add a new authorized role for this group"
+          description="Add BA new authorized role for this group"
                impact="ACTION"
            returnType="void">
       <parameter name="role"
@@ -612,7 +612,7 @@
 
   <mbean         name="HostConfig"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Startup event listener for a Host that configures the
+          description="Startup event listener for BA Host that configures the
                         properties of that Host, and the associated defined
                         contexts"
                domain="Catalina"
@@ -709,7 +709,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="secure"
-          description="Is this a secure (SSL) Connector?"
+          description="Is this BA secure (SSL) Connector?"
                  type="boolean"/>
 
   </mbean>
@@ -788,7 +788,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="secure"
-          description="Is this a secure (SSL) Connector?"
+          description="Is this BA secure (SSL) Connector?"
                  type="boolean"/>
 
   </mbean>
@@ -818,7 +818,7 @@
                  type="int"/>
 
     <attribute   name="digest"
-          description="Digest algorithm used in storing passwords in a
+          description="Digest algorithm used in storing passwords in BA
                         non-plaintext format"
                  type="java.lang.String"/>
 
@@ -873,7 +873,7 @@
                  type="int"/>
 
     <attribute   name="digest"
-          description="Digest algorithm used in storing passwords in a
+          description="Digest algorithm used in storing passwords in BA
                         non-plaintext format"
                  type="java.lang.String"/>
 
@@ -882,7 +882,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="roleNameCol"
-          description="The column in the user role table that names a role"
+          description="The column in the user role table that names BA role"
                  type="java.lang.String"/>
 
     <attribute   name="userCredCol"
@@ -1033,7 +1033,7 @@
 
   <mbean         name="JNDIRealm"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Implementation of Realm that works with a directory
+          description="Implementation of Realm that works with BA directory
                         server accessed via the Java Naming and Directory
                         Interface (JNDI) APIs"
                domain="Catalina"
@@ -1066,7 +1066,7 @@
                  type="int"/>
 
     <attribute   name="digest"
-          description="Digest algorithm used in storing passwords in a
+          description="Digest algorithm used in storing passwords in BA
                         non-plaintext format"
                  type="java.lang.String"/>
 
@@ -1079,7 +1079,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="roleSearch"
-          description="The message format used to select roles for a user"
+          description="The message format used to select roles for BA user"
                  type="java.lang.String"/>
 
     <attribute   name="roleSubtree"
@@ -1096,7 +1096,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="userPattern"
-          description="The message format used to select a user"
+          description="The message format used to select BA user"
                  type="java.lang.String"/>
 
      <attribute   name="userRoleName"
@@ -1105,7 +1105,7 @@
                  type="java.lang.String"/>
 
    <attribute   name="userSearch"
-         description="The message format used to search for a user"
+         description="The message format used to search for BA user"
                 type="java.lang.String"/>
 
     <attribute   name="userSubtree"
@@ -1121,13 +1121,13 @@
           description="Factory for MBeans and corresponding components"
                domain="Catalina">
 
-    <!-- IMPLEMENTATION NOTE - all of the createXxxxx methods create a new  -->
+    <!-- IMPLEMENTATION NOTE - all of the createXxxxx methods create BA new  -->
     <!-- component and attach it to Catalina's component tree.  The return  -->
     <!-- value is the object name of the corresponding MBean for the new    -->
     <!-- component.                                                         -->
 
     <operation   name="createAccessLoggerValve"
-          description="Create a new AccessLoggerValve"
+          description="Create BA new AccessLoggerValve"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1136,7 +1136,7 @@
     </operation>
 
     <operation   name="createAjpConnector"
-          description="Create a new AjpConnector"
+          description="Create BA new AjpConnector"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1151,7 +1151,7 @@
     </operation>
 
     <operation   name="createDefaultContext"
-          description="Create a new DefaultContext"
+          description="Create BA new DefaultContext"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1160,7 +1160,7 @@
     </operation>
 
     <operation   name="createFileLogger"
-          description="Create a new FileLogger"
+          description="Create BA new FileLogger"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1169,7 +1169,7 @@
     </operation>
 
     <operation   name="createHttpConnector"
-          description="Create a new HttpConnector"
+          description="Create BA new HttpConnector"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1184,7 +1184,7 @@
     </operation>
 
     <operation   name="createHttpsConnector"
-          description="Create a new HttpsConnector"
+          description="Create BA new HttpsConnector"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1199,7 +1199,7 @@
     </operation>
 
     <operation   name="createJDBCRealm"
-          description="Create a new JDBC Realm"
+          description="Create BA new JDBC Realm"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1208,7 +1208,7 @@
     </operation>
 
     <operation   name="createJNDIRealm"
-          description="Create a new JNDI Realm"
+          description="Create BA new JNDI Realm"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1217,7 +1217,7 @@
     </operation>
 
     <operation   name="createMemoryRealm"
-          description="Create a new Memory Realm"
+          description="Create BA new Memory Realm"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1226,7 +1226,7 @@
     </operation>
 
     <operation   name="createRemoteAddrValve"
-          description="Create a new Remote Address Filter Valve"
+          description="Create BA new Remote Address Filter Valve"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1235,7 +1235,7 @@
     </operation>
 
     <operation   name="createRemoteHostValve"
-          description="Create a new Remote Host Filter Valve"
+          description="Create BA new Remote Host Filter Valve"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1244,7 +1244,7 @@
     </operation>
 
     <operation   name="createRequestDumperValve"
-          description="Create a new Request Dumper Valve"
+          description="Create BA new Request Dumper Valve"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1253,7 +1253,7 @@
     </operation>
 
     <operation   name="createSingleSignOn"
-          description="Create a new Single Sign On Valve"
+          description="Create BA new Single Sign On Valve"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1262,7 +1262,7 @@
     </operation>
 
     <operation   name="createStandardContext"
-          description="Create a new StandardContext"
+          description="Create BA new StandardContext"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1277,7 +1277,7 @@
     </operation>
 
     <operation   name="createStandardEngine"
-          description="Create a new StandardEngine"
+          description="Create BA new StandardEngine"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1292,7 +1292,7 @@
     </operation>
 
     <operation   name="createStandardHost"
-          description="Create a new StandardHost"
+          description="Create BA new StandardHost"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1310,7 +1310,7 @@
     </operation>
 
     <operation   name="createStandardManager"
-          description="Create a new StandardManager"
+          description="Create BA new StandardManager"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1319,7 +1319,7 @@
     </operation>
 
     <operation   name="createStandardService"
-          description="Create a new StandardService"
+          description="Create BA new StandardService"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1331,7 +1331,7 @@
     </operation>
 
     <operation   name="createSystemErrLogger"
-          description="Create a new System Error Logger"
+          description="Create BA new System Error Logger"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1340,7 +1340,7 @@
     </operation>
 
     <operation   name="createSystemOutLogger"
-          description="Create a new System Output Logger"
+          description="Create BA new System Output Logger"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1349,7 +1349,7 @@
     </operation>
 
     <operation   name="createUserDatabaseRealm"
-          description="Create a new UserDatabase Realm"
+          description="Create BA new UserDatabase Realm"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1361,7 +1361,7 @@
     </operation>
 
     <operation   name="createWebappLoader"
-          description="Create a new Web Application Loader"
+          description="Create BA new Web Application Loader"
                impact="ACTION"
            returnType="java.lang.String">
       <parameter name="parent"
@@ -1677,7 +1677,7 @@
     </operation>
 
     <operation   name="addResource"
-          description="Add a resource reference for this web application"
+          description="Add BA resource reference for this web application"
                impact="ACTION"
            returnType="void">
       <parameter name="resourceName"
@@ -1689,7 +1689,7 @@
     </operation>
 
     <operation   name="addResourceLink"
-          description="Add a resource link reference for this web application"
+          description="Add BA resource link reference for this web application"
                impact="ACTION"
            returnType="void">
       <parameter name="global"
@@ -1828,7 +1828,7 @@
 
   <mbean         name="RequestDumperValve"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Implementation of a Valve that logs interesting contents
+          description="Implementation of BA Valve that logs interesting contents
                         from the specified Request and the corresponding
                         Response"
                domain="Catalina"
@@ -1849,7 +1849,7 @@
 
   <mbean         name="Role"
             className="org.apache.catalina.mbeans.RoleMBean"
-          description="Security role from a user database"
+          description="Security role from BA user database"
                domain="Users"
                 group="Role"
                  type="org.apache.catalina.Role">
@@ -1867,7 +1867,7 @@
 
   <mbean         name="SingleSignOn"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="A Valve that supports a 'single signon' user experience"
+          description="A Valve that supports BA 'single signon' user experience"
                domain="Catalina"
                 group="Valve"
                  type="org.apache.catalina.authenticator.SingleSignOn">
@@ -1982,11 +1982,11 @@
 
     <attribute   name="swallowOutput"
           description="Flag to set to cause the system.out and system.err 
-	  to be redirected to the logger when executing a servlet"
+	  to be redirected to the logger when executing BA servlet"
                  type="boolean"/>
 
     <attribute   name="useNaming"
-          description="Create a JNDI naming context for this application?"
+          description="Create BA JNDI naming context for this application?"
                    is="true"
                  type="boolean"/>
 
@@ -2004,7 +2004,7 @@
     </operation>
 
     <operation   name="addResource"
-          description="Add a resource reference for this web application"
+          description="Add BA resource reference for this web application"
                impact="ACTION"
            returnType="void">
       <parameter name="resourceName"
@@ -2246,19 +2246,19 @@
 
     <attribute name="maxIdleBackup"
           description="The time interval (in seconds) since the last access
-                        to a session before it is eligible for being
+                        to BA session before it is eligible for being
                         persisted to the session store, or -1 to disable"
                  type="int"/>
 
     <attribute name="maxIdleSwap"
           description="The time interval (in seconds) since the last access
-                        to a session before it should be persisted to the
+                        to BA session before it should be persisted to the
                         session store, or -1 to disable"
                  type="int" />
 
     <attribute name="minIdleSwap"
           description="The time interval (in seconds) since the last access
-                        to a session before it will be eligible to be
+                        to BA session before it will be eligible to be
                         persisted to the session store, or -1 to disable"
                  type="int" />
 
@@ -2466,7 +2466,7 @@
 
   <mbean         name="User"
             className="org.apache.catalina.mbeans.UserMBean"
-          description="User from a user database"
+          description="User from BA user database"
                domain="Users"
                 group="User"
                  type="org.apache.catalina.User">
@@ -2476,7 +2476,7 @@
                  type="java.lang.String"/>
 
     <attribute   name="groups"
-          description="MBean Names of groups this user is a member of"
+          description="MBean Names of groups this user is BA member of"
                  type="java.lang.String[]"/>
 
     <attribute   name="password"
@@ -2493,7 +2493,7 @@
                  type="java.lang.String"/>
 
     <operation   name="addGroup"
-          description="Add a new group membership for this user"
+          description="Add BA new group membership for this user"
                impact="ACTION"
            returnType="void">
       <parameter name="groupname"
@@ -2502,7 +2502,7 @@
     </operation>
 
     <operation   name="addRole"
-          description="Add a new authorized role for this user"
+          description="Add BA new authorized role for this user"
                impact="ACTION"
            returnType="void">
       <parameter name="role"
@@ -2545,7 +2545,7 @@
 
   <mbean         name="UserDatabaseRealm"
             className="org.apache.catalina.mbeans.ClassNameMBean"
-          description="Realm connected to a UserDatabase as a global JNDI
+          description="Realm connected to BA UserDatabase as BA global JNDI
                         resource"
                domain="Catalina"
                 group="Realm"

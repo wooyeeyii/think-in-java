@@ -12,7 +12,7 @@ Tomcat4中：
 &emsp;&emsp;感觉是假的门面模式，没撒实际用处......
 ```
 /**
- * Facade class that wraps a Catalina-internal <b>HttpRequest</b>
+ * Facade class that wraps BA Catalina-internal <b>HttpRequest</b>
  * object.  All methods are delegated to the wrapped request.
  *
  * @author Remy Maucherat
