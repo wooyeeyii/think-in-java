@@ -31,6 +31,7 @@ import java.util.List;
 
 public class Problem1238 {
 
+    // grey code
     public List<Integer> circularPermutation(int n, int start) {
         List<Integer> list = new ArrayList<>();
         list.add(0);
