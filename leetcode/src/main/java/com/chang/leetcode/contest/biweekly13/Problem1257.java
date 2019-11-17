@@ -1,8 +1,35 @@
+/**
+ * 1257. Smallest Common Region
+ *
+ * You are given some lists of regions where the first region of each list includes all other regions in that list.
+ * Naturally, if a region X contains another region Y then X is bigger than Y.
+ * Given two regions region1, region2, find out the smallest region that contains both of them.
+ * If you are given regions r1, r2 and r3 such that r1 includes r3, it is guaranteed there is no r2 such that r2 includes r3.
+ * It's guaranteed the smallest region exists.
+ *
+ * Example 1:
+ * Input:
+ * regions = [["Earth","North America","South America"],
+ * ["North America","United States","Canada"],
+ * ["United States","New York","Boston"],
+ * ["Canada","Ontario","Quebec"],
+ * ["South America","Brazil"]],
+ * region1 = "Quebec",
+ * region2 = "New York"
+ * Output: "North America"
+ *
+ * Constraints:
+ *
+ * 2 <= regions.length <= 10^4
+ * region1 != region2
+ * All strings consist of English letters and spaces with at most 20 letters.
+ *
+ */
 package com.chang.leetcode.contest.biweekly13;
 
 import java.util.*;
 
-public class Problem5109 {
+public class Problem1257 {
 
     public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {
         Map<String, String> map = new HashMap<>();
@@ -49,7 +76,7 @@ public class Problem5109 {
     }
 
     public static void main(String[] args) {
-        Problem5109 problem = new Problem5109();
+        Problem1257 problem = new Problem1257();
         List<List<String>> regions1 = new ArrayList<>();
         regions1.add(new ArrayList<>(Arrays.asList(new String[]{"Earth", "North America", "South America"})));
         regions1.add(new ArrayList<>(Arrays.asList(new String[]{"North America", "United States", "Canada"})));
