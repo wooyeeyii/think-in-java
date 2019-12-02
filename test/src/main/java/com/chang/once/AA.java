@@ -9,6 +9,8 @@ public class AA {
 
     private Integer cc;
 
+    private AA self;
+
     public Long getAa() {
         return aa;
     }
@@ -33,12 +35,12 @@ public class AA {
         this.cc = cc;
     }
 
-    @Override
-    public String toString() {
-        return "AA{" +
-                "aa=" + aa +
-                ", bb='" + bb + '\'' +
-                ", cc=" + cc +
-                '}';
+    public AA getSelf() {
+        return self;
     }
+
+    public void setSelf(AA self) {
+        this.self = self;
+    }
+
 }
