@@ -43,6 +43,7 @@ public class StreamTest {
                 //使用Comparator中的comparing方法
                 .sorted(Comparator.comparing(Student :: getScore).reversed())
                 .collect(Collectors.toList());
+        System.out.println("####################");
         System.out.println(result1);
 
         //使用map方法获取list数据中的name的长度
