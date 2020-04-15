@@ -22,16 +22,16 @@ public class Problem47 {
 
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(nums == null || nums.length <= 0) {
+        if (nums == null || nums.length <= 0) {
             return result;
         }
         Arrays.sort(nums);
         int pos = nums.length - 1;
-        while(pos > 0 && nums[pos - 1] == nums[pos]) {
+        while (pos > 0 && nums[pos - 1] == nums[pos]) {
             pos--;
         }
         List<Integer> ori = new ArrayList<Integer>();
-        for(int i = 0; i < pos; i++) {
+        for (int i = 0; i < pos; i++) {
             ori.add(nums[i]);
         }
         return permuteUniqueSub(ori, nums[pos], nums.length - pos);
@@ -39,7 +39,7 @@ public class Problem47 {
 
     private List<List<Integer>> permuteUniqueSub(List<Integer> nums, int newNum, int count) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(nums.size() == 0) {
+        if (nums.size() == 0) {
             List<Integer> oneNumList = new ArrayList<Integer>();
             for (int j = 0; j < count; j++) {
                 oneNumList.add(newNum);
@@ -48,7 +48,7 @@ public class Problem47 {
             return result;
         }
         int end = nums.size() - 1;
-        while(end > 0 && nums.get(end - 1) == nums.get(end)) {
+        while (end > 0 && nums.get(end - 1) == nums.get(end)) {
             end--;
         }
         List<List<Integer>> resultPre = permuteUniqueSub(nums.subList(0, end), nums.get(end), nums.size() - end);
@@ -70,9 +70,9 @@ public class Problem47 {
             return result;
         }
 
-        for(int i = 0; i <= count; i++) {
+        for (int i = 0; i <= count; i++) {
             List<Integer> front = new ArrayList<Integer>();
-            for(int m = 0; m < i; m++) {
+            for (int m = 0; m < i; m++) {
                 front.add(newNum);
             }
             front.add(subNum.get(0));
@@ -100,6 +100,7 @@ public class Problem47 {
         dfs(nums, used, list, res);
         return res;
     }
+
     private void dfs(int[] nums, boolean[] used, List<Integer> list, List<List<Integer>> res) {
         if (list.size() == nums.length) {
             res.add(new ArrayList<Integer>(list));

@@ -4,7 +4,7 @@ public class GCTest {
 
     /*public static void main(String[] args) {
 
-        *//* -XX:+UseParallelOldGC和-XX:+UseParallelGC结果一样，因为MXBean名字一样，但是实际使用的不一样 *//*
+     *//* -XX:+UseParallelOldGC和-XX:+UseParallelGC结果一样，因为MXBean名字一样，但是实际使用的不一样 *//*
         List<GarbageCollectorMXBean> beans = ManagementFactory.getGarbageCollectorMXBeans();
         for (GarbageCollectorMXBean bean : beans) {
             System.out.println(bean.getName());

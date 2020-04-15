@@ -114,7 +114,7 @@ public final class ResourceSet extends HashSet {
      * load factor.
      *
      * @param initialCapacity The initial capacity of this set
-     * @param loadFactor The load factor of this set
+     * @param loadFactor      The load factor of this set
      */
     public ResourceSet(int initialCapacity, float loadFactor) {
 
@@ -170,7 +170,7 @@ public final class ResourceSet extends HashSet {
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager("org.apache.catalina.util");
+            StringManager.getManager("org.apache.catalina.util");
 
 
     // --------------------------------------------------------- Public Methods
@@ -181,14 +181,13 @@ public final class ResourceSet extends HashSet {
      * Return <code>true</code> if the element was added.
      *
      * @param o The object to be added
-     *
-     * @exception IllegalStateException if this ResourceSet is locked
+     * @throws IllegalStateException if this ResourceSet is locked
      */
     public boolean add(Object o) {
 
         if (locked)
             throw new IllegalStateException
-              (sm.getString("resourceSet.locked"));
+                    (sm.getString("resourceSet.locked"));
         return (super.add(o));
 
     }
@@ -197,13 +196,13 @@ public final class ResourceSet extends HashSet {
     /**
      * Remove all of the elements from this set.
      *
-     * @exception IllegalStateException if this ResourceSet is locked
+     * @throws IllegalStateException if this ResourceSet is locked
      */
     public void clear() {
 
         if (locked)
             throw new IllegalStateException
-              (sm.getString("resourceSet.locked"));
+                    (sm.getString("resourceSet.locked"));
         super.clear();
 
     }
@@ -214,14 +213,13 @@ public final class ResourceSet extends HashSet {
      * Return <code>true</code> if the element was removed.
      *
      * @param o The object to be removed
-     *
-     * @exception IllegalStateException if this ResourceSet is locked
+     * @throws IllegalStateException if this ResourceSet is locked
      */
     public boolean remove(Object o) {
 
         if (locked)
             throw new IllegalStateException
-              (sm.getString("resourceSet.locked"));
+                    (sm.getString("resourceSet.locked"));
         return (super.remove(o));
 
     }

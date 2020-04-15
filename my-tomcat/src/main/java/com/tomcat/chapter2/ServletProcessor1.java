@@ -11,7 +11,7 @@ import java.net.URLStreamHandler;
 public class ServletProcessor1 {
 
     private static final String SERVLET_CLASSPATH = System.getProperty("user.dir") + File.separator + "my-tomcat" +
-            File.separator+ "webroot";
+            File.separator + "webroot";
 
     public void process(Request request, Response response) {
         String uri = request.getUri();
@@ -30,14 +30,14 @@ public class ServletProcessor1 {
             // org.apache.catalina.loader.StandardClassLoader
             urls[0] = new URL(null, repository, streamHandler);
             loader = new URLClassLoader(urls);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         Class myClass = null;
         try {
             myClass = loader.loadClass(servletName);
-        } catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -45,8 +45,8 @@ public class ServletProcessor1 {
 
         try {
             servlet = (Servlet) myClass.newInstance();
-            servlet.service((ServletRequest)request, (ServletResponse)response);
-        } catch(Exception e) {
+            servlet.service((ServletRequest) request, (ServletResponse) response);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

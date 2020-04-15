@@ -70,6 +70,7 @@ import java.util.Locale;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
+
 import org.apache.catalina.util.StringManager;
 
 
@@ -112,7 +113,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
      *
      * @param response The servlet response being wrapped
      * @param included <code>true</code> if this response is being processed
-     *  by a <code>RequestDispatcher.include()</code> call
+     *                 by a <code>RequestDispatcher.include()</code> call
      */
     public ApplicationHttpResponse(HttpServletResponse response,
                                    boolean included) {
@@ -137,14 +138,14 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.core.ApplicationHttpResponse/1.0";
+            "org.apache.catalina.core.ApplicationHttpResponse/1.0";
 
 
     /**
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------ ServletResponse Methods
@@ -153,8 +154,8 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>reset()</code> calls on a included response.
      *
-     * @exception IllegalStateException if the response has already
-     *  been committed
+     * @throws IllegalStateException if the response has already
+     *                               been committed
      */
     public void reset() {
 
@@ -223,7 +224,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>addDateHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void addDateHeader(String name, long value) {
@@ -237,7 +238,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>addHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void addHeader(String name, String value) {
@@ -251,7 +252,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>addIntHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void addIntHeader(String name, int value) {
@@ -266,8 +267,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
      * Disallow <code>sendError()</code> calls on an included response.
      *
      * @param sc The new status code
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void sendError(int sc) throws IOException {
 
@@ -280,10 +280,9 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>sendError()</code> calls on an included response.
      *
-     * @param sc The new status code
+     * @param sc  The new status code
      * @param msg The new message
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void sendError(int sc, String msg) throws IOException {
 
@@ -297,8 +296,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
      * Disallow <code>sendRedirect()</code> calls on an included response.
      *
      * @param location The new location
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void sendRedirect(String location) throws IOException {
 
@@ -311,7 +309,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>setDateHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void setDateHeader(String name, long value) {
@@ -325,7 +323,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>setHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void setHeader(String name, String value) {
@@ -339,7 +337,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>setIntHeader()</code> calls on an included response.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void setIntHeader(String name, int value) {
@@ -366,7 +364,7 @@ class ApplicationHttpResponse extends HttpServletResponseWrapper {
     /**
      * Disallow <code>setStatus()</code> calls on an included response.
      *
-     * @param sc The new status code
+     * @param sc  The new status code
      * @param msg The new message
      */
     public void setStatus(int sc, String msg) {

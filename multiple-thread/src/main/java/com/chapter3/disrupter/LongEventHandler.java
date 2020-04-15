@@ -11,7 +11,7 @@ public class LongEventHandler implements EventHandler<LongEvent> {
 
     public void onEvent(LongEvent event, long sequence, boolean endOfBatch) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

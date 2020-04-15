@@ -24,7 +24,7 @@ public class HttpConnector implements Runnable {
         }
 
         //loop waiting for a request
-        while(!stopped) {
+        while (!stopped) {
             Socket socket = null;
             InputStream inputStream = null;
             OutputStream outputStream = null;

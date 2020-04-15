@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.Locale;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Request;
@@ -29,7 +30,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public abstract class ResponseBase
-    implements Response, ServletResponse {
+        implements Response, ServletResponse {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -111,7 +112,7 @@ public abstract class ResponseBase
      * Descriptive information about this Response implementation.
      */
     protected static final String info =
-        "org.apache.catalina.connector.ResponseBase/1.0";
+            "org.apache.catalina.connector.ResponseBase/1.0";
 
 
     /**
@@ -136,7 +137,7 @@ public abstract class ResponseBase
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -257,7 +258,7 @@ public abstract class ResponseBase
      * Set the "processing inside an include" flag.
      *
      * @param included <code>true</code> if we are currently inside a
-     *  RequestDispatcher.include(), else <code>false</code>
+     *                 RequestDispatcher.include(), else <code>false</code>
      */
     public void setIncluded(boolean included) {
 
@@ -382,7 +383,7 @@ public abstract class ResponseBase
      * Create and return a ServletOutputStream to write the content
      * associated with this Response.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletOutputStream createOutputStream() throws IOException {
 
@@ -395,7 +396,7 @@ public abstract class ResponseBase
      * Perform whatever actions are required to flush and close the output
      * stream or writer, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishResponse() throws IOException {
 
@@ -409,7 +410,7 @@ public abstract class ResponseBase
         }
 
         // If our stream is closed, no action is necessary
-        if ( ((ResponseStream) stream).closed() )
+        if (((ResponseStream) stream).closed())
             return;
 
         // Flush and close the appropriate output mechanism
@@ -516,14 +517,13 @@ public abstract class ResponseBase
      * Write the specified byte to our output stream, flushing if necessary.
      *
      * @param b The byte to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(int b) throws IOException {
 
         if (suspended)
             throw new IOException
-                (sm.getString("responseBase.write.suspended"));
+                    (sm.getString("responseBase.write.suspended"));
 
         if (bufferCount >= buffer.length)
             flushBuffer();
@@ -538,14 +538,13 @@ public abstract class ResponseBase
      * to our output stream.  Flush the output stream as necessary.
      *
      * @param b The byte array to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(byte b[]) throws IOException {
 
         if (suspended)
             throw new IOException
-                (sm.getString("responseBase.write.suspended"));
+                    (sm.getString("responseBase.write.suspended"));
 
         write(b, 0, b.length);
 
@@ -557,17 +556,16 @@ public abstract class ResponseBase
      * at the specified offset, to our output stream.  Flush the output
      * stream as necessary.
      *
-     * @param b The byte array containing the bytes to be written
+     * @param b   The byte array containing the bytes to be written
      * @param off Zero-relative starting offset of the bytes to be written
      * @param len The number of bytes to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(byte b[], int off, int len) throws IOException {
 
         if (suspended)
             throw new IOException
-                (sm.getString("responseBase.write.suspended"));
+                    (sm.getString("responseBase.write.suspended"));
 
         // If the whole thing fits in the buffer, just put it there
         if (len == 0)
@@ -600,7 +598,7 @@ public abstract class ResponseBase
     /**
      * Flush the buffer and commit this response.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void flushBuffer() throws IOException {
 
@@ -642,15 +640,15 @@ public abstract class ResponseBase
     /**
      * Return the servlet output stream associated with this Response.
      *
-     * @exception IllegalStateException if <code>getWriter</code> has
-     *  already been called for this response
-     * @exception IOException if an input/output error occurs
+     * @throws IllegalStateException if <code>getWriter</code> has
+     *                               already been called for this response
+     * @throws IOException           if an input/output error occurs
      */
     public ServletOutputStream getOutputStream() throws IOException {
 
         if (writer != null)
             throw new IllegalStateException
-                (sm.getString("responseBase.getOutputStream.ise"));
+                    (sm.getString("responseBase.getOutputStream.ise"));
 
         if (stream == null)
             stream = createOutputStream();
@@ -673,9 +671,9 @@ public abstract class ResponseBase
     /**
      * Return the writer associated with this Response.
      *
-     * @exception IllegalStateException if <code>getOutputStream</code> has
-     *  already been called for this response
-     * @exception IOException if an input/output error occurs
+     * @throws IllegalStateException if <code>getOutputStream</code> has
+     *                               already been called for this response
+     * @throws IOException           if an input/output error occurs
      */
     public PrintWriter getWriter() throws IOException {
 
@@ -684,12 +682,12 @@ public abstract class ResponseBase
 
         if (stream != null)
             throw new IllegalStateException
-                (sm.getString("responseBase.getWriter.ise"));
+                    (sm.getString("responseBase.getWriter.ise"));
 
         ResponseStream newStream = (ResponseStream) createOutputStream();
         newStream.setCommit(false);
         OutputStreamWriter osr =
-            new OutputStreamWriter(newStream, getCharacterEncoding());
+                new OutputStreamWriter(newStream, getCharacterEncoding());
         writer = new ResponseWriter(osr, newStream);
         stream = newStream;
         return (writer);
@@ -710,14 +708,14 @@ public abstract class ResponseBase
     /**
      * Clear any content written to the buffer.
      *
-     * @exception IllegalStateException if this response has already
-     *  been committed
+     * @throws IllegalStateException if this response has already
+     *                               been committed
      */
     public void reset() {
 
         if (committed)
             throw new IllegalStateException
-                (sm.getString("responseBase.reset.ise"));
+                    (sm.getString("responseBase.reset.ise"));
 
         if (included)
             return;     // Ignore any call from an included servlet
@@ -734,14 +732,14 @@ public abstract class ResponseBase
     /**
      * Reset the data buffer but not any status or header information.
      *
-     * @exception IllegalStateException if the response has already
-     *  been committed
+     * @throws IllegalStateException if the response has already
+     *                               been committed
      */
     public void resetBuffer() {
 
         if (committed)
             throw new IllegalStateException
-                (sm.getString("responseBase.resetBuffer.ise"));
+                    (sm.getString("responseBase.resetBuffer.ise"));
 
         bufferCount = 0;
 
@@ -752,15 +750,14 @@ public abstract class ResponseBase
      * Set the buffer size to be used for this Response.
      *
      * @param size The new buffer size
-     *
-     * @exception IllegalStateException if this method is called after
-     *  output has been committed for this response
+     * @throws IllegalStateException if this method is called after
+     *                               output has been committed for this response
      */
     public void setBufferSize(int size) {
 
         if (committed || (bufferCount > 0))
             throw new IllegalStateException
-                (sm.getString("responseBase.setBufferSize.ise"));
+                    (sm.getString("responseBase.setBufferSize.ise"));
 
         if (buffer.length >= size)
             return;
@@ -838,7 +835,7 @@ public abstract class ResponseBase
                     // Replace the previous charset
                     int i = contentType.indexOf(';');
                     contentType = contentType.substring(0, i)
-                        + ";charset=" + encoding;
+                            + ";charset=" + encoding;
                 }
             }
         }

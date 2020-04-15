@@ -6,7 +6,7 @@ public class MapUtil {
 
     public static <K, V> V getOrDefault(Map<K, V> map, K k, V vDefault) {
         V v = map.get(k);
-        if(v == null) {
+        if (v == null) {
             return vDefault;
         }
         return v;

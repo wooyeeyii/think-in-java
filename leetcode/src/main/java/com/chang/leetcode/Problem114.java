@@ -22,11 +22,11 @@ public class Problem114 {
                 p = p.right;
             }
         }
-        
-        for(TreeNode node : list) {
+
+        for (TreeNode node : list) {
             node.left = null;
             node.right = null;
-            if(node == root) {
+            if (node == root) {
                 p = root;
             } else {
                 p.right = node;
@@ -34,7 +34,7 @@ public class Problem114 {
             }
         }
     }
-    
+
     public static void main(String[] args) {
         Problem114 problem = new Problem114();
         TreeNode root = new TreeNode(1);
@@ -48,9 +48,9 @@ public class Problem114 {
         node2.left = node3;
         node2.right = node4;
         node5.right = node6;
-        
+
         problem.flatten(root);
-        while(root != null) {
+        while (root != null) {
             System.out.printf("%d, ", root.val);
             root = root.right;
         }

@@ -4,16 +4,16 @@
 package com.chang.memento.blackbox;
 
 public class Caretaker {
-	
-	private MementoIF memento;
-	
-	//备忘录的取值方法
-	public MementoIF retriveMemento() {
-		return this.memento;
-	}
-	
-	public void saveMemento(MementoIF memento) {
-		this.memento = memento;
-	}
+
+    private MementoIF memento;
+
+    //备忘录的取值方法
+    public MementoIF retriveMemento() {
+        return this.memento;
+    }
+
+    public void saveMemento(MementoIF memento) {
+        this.memento = memento;
+    }
 
 }

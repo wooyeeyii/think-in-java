@@ -1,16 +1,16 @@
 /**
  * Given a collection of distinct integers, return all possible permutations.
- *
+ * <p>
  * Example:
  * Input: [1,2,3]
  * Output:
  * [
- *   [1,2,3],
- *   [1,3,2],
- *   [2,1,3],
- *   [2,3,1],
- *   [3,1,2],
- *   [3,2,1]
+ * [1,2,3],
+ * [1,3,2],
+ * [2,1,3],
+ * [2,3,1],
+ * [3,1,2],
+ * [3,2,1]
  * ]
  */
 package com.chang.leetcode.backtracking;
@@ -22,11 +22,12 @@ public class Problem46 {
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(nums == null || nums.length <= 0) {
+        if (nums == null || nums.length <= 0) {
             return result;
         }
         return permuteSub(nums, nums.length - 1);
     }
+
     private List<List<Integer>> permuteSub(int[] nums, int pos) {
         if (pos == 0) {
             List<List<Integer>> result1 = new ArrayList<List<Integer>>();
@@ -56,7 +57,7 @@ public class Problem46 {
      */
     public List<List<Integer>> permuteSample(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(nums == null || nums.length <= 0) {
+        if (nums == null || nums.length <= 0) {
             return result;
         }
         boolean[] used = new boolean[nums.length];
@@ -64,14 +65,15 @@ public class Problem46 {
         recursive(nums, used, list, result);
         return result;
     }
+
     private void recursive(int[] nums, boolean[] used, List<Integer> list, List<List<Integer>> result) {
-        if(list.size() == nums.length) {
+        if (list.size() == nums.length) {
             result.add(new ArrayList<Integer>(list));
             return;
         }
 
-        for(int i = 0; i < nums.length; i++) {
-            if(used[i]) continue;
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) continue;
             used[i] = true;
             list.add(nums[i]);
             recursive(nums, used, list, result);

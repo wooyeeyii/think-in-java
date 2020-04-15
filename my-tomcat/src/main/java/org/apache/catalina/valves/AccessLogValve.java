@@ -73,6 +73,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
@@ -109,7 +110,7 @@ import org.apache.catalina.util.StringManager;
  *     an empty string
  * <li><b>%r</b> - First line of the request
  * <li><b>%s</b> - HTTP status code of the response
- * <li><b>%S</b> - User session ID 
+ * <li><b>%S</b> - User session ID
  * <li><b>%t</b> - Date and time, in Common Log Format format
  * <li><b>%u</b> - Remote user that was authenticated
  * <li><b>%U</b> - Requested URL path
@@ -119,7 +120,7 @@ import org.apache.catalina.util.StringManager;
  * commonly utilized patterns:</p>
  * <ul>
  * <li><b>common</b> - <code>%h %l %u %t "%r" %s %b</code>
- * <li><b>combined</b> - 
+ * <li><b>combined</b> -
  *   <code>%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i"</code>
  * </ul>
  *
@@ -132,8 +133,8 @@ import org.apache.catalina.util.StringManager;
  */
 
 public final class AccessLogValve
-    extends ValveBase
-    implements Lifecycle {
+        extends ValveBase
+        implements Lifecycle {
 
 
     // ----------------------------------------------------------- Constructors
@@ -171,7 +172,7 @@ public final class AccessLogValve
      * The descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.valves.AccessLogValve/1.0";
+            "org.apache.catalina.valves.AccessLogValve/1.0";
 
 
     /**
@@ -184,8 +185,8 @@ public final class AccessLogValve
      * The set of month abbreviations for log messages.
      */
     protected static final String months[] =
-    { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 
     /**
@@ -219,7 +220,7 @@ public final class AccessLogValve
      * The string manager for this package.
      */
     private StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -452,17 +453,16 @@ public final class AccessLogValve
      * Log a message summarizing the specified request and response, according
      * to the format specified by the <code>pattern</code> property.
      *
-     * @param request Request being processed
+     * @param request  Request being processed
      * @param response Response being processed
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error has occurred
-     * @exception ServletException if a servlet error has occurred
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error has occurred
+     * @throws ServletException if a servlet error has occurred
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Pass this request on to the next valve in our pipeline
         context.invokeNext(request, response);
@@ -534,7 +534,7 @@ public final class AccessLogValve
                 result.append(space);
                 result.append("\"");
                 String referer = hreq.getHeader("referer");
-                if(referer != null)
+                if (referer != null)
                     result.append(referer);
                 else
                     result.append("-");
@@ -543,7 +543,7 @@ public final class AccessLogValve
                 result.append(space);
                 result.append("\"");
                 String ua = hreq.getHeader("user-agent");
-                if(ua != null)
+                if (ua != null)
                     result.append(ua);
                 else
                     result.append("-");
@@ -593,8 +593,8 @@ public final class AccessLogValve
      * has changed since the previous log call.
      *
      * @param message Message to be logged
-     * @param date the current Date object (so this method doesn't need to
-     *        create a new one)
+     * @param date    the current Date object (so this method doesn't need to
+     *                create a new one)
      */
     public void log(String message, Date date) {
 
@@ -663,7 +663,7 @@ public final class AccessLogValve
         // Open the current log file
         try {
             String pathname = dir.getAbsolutePath() + File.separator +
-                prefix + dateStamp + suffix;
+                    prefix + dateStamp + suffix;
             writer = new PrintWriter(new FileWriter(pathname, true), true);
         } catch (IOException e) {
             writer = null;
@@ -675,10 +675,10 @@ public final class AccessLogValve
     /**
      * Return the replacement text for the specified pattern character.
      *
-     * @param pattern Pattern character identifying the desired text
-     * @param date the current Date so that this method doesn't need to
-     *        create one
-     * @param request Request being processed
+     * @param pattern  Pattern character identifying the desired text
+     * @param date     the current Date so that this method doesn't need to
+     *                 create one
+     * @param request  Request being processed
      * @param response Response being processed
      */
     private String replace(char pattern, Date date, Request request,
@@ -830,7 +830,7 @@ public final class AccessLogValve
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -857,15 +857,15 @@ public final class AccessLogValve
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
 
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("accessLogValve.alreadyStarted"));
+                    (sm.getString("accessLogValve.alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
 
@@ -874,7 +874,7 @@ public final class AccessLogValve
         timeZone = "" + (tz.getRawOffset() / (60 * 60 * 10));
         if (timeZone.length() < 5)
             timeZone = timeZone.substring(0, 1) + "0" +
-                timeZone.substring(1, timeZone.length());
+                    timeZone.substring(1, timeZone.length());
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         dateFormatter.setTimeZone(tz);
         dayFormatter = new SimpleDateFormat("dd");
@@ -898,15 +898,15 @@ public final class AccessLogValve
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
 
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("accessLogValve.notStarted"));
+                    (sm.getString("accessLogValve.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 

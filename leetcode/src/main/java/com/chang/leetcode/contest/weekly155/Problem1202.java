@@ -1,17 +1,17 @@
 /**
  * 1202. Smallest String With Swaps
- *
+ * <p>
  * You are given a string s, and an array of pairs of indices in the string pairs where pairs[i] = [a, b] indicates 2 indices(0-indexed) of the string.
  * You can swap the characters at any pair of indices in the given pairs any number of times.
  * Return the lexicographically smallest string that s can be changed to after using the swaps.
- *
+ * <p>
  * Example 1:
  * Input: s = "dcab", pairs = [[0,3],[1,2]]
  * Output: "bacd"
  * Explaination:
  * Swap s[0] and s[3], s = "bcad"
  * Swap s[1] and s[2], s = "bacd"
- *
+ * <p>
  * Example 2:
  * Input: s = "dcab", pairs = [[0,3],[1,2],[0,2]]
  * Output: "abcd"
@@ -19,7 +19,7 @@
  * Swap s[0] and s[3], s = "bcad"
  * Swap s[0] and s[2], s = "acbd"
  * Swap s[1] and s[2], s = "abcd"
- *
+ * <p>
  * Example 3:
  * Input: s = "cba", pairs = [[0,1],[1,2]]
  * Output: "abc"
@@ -27,7 +27,7 @@
  * Swap s[0] and s[1], s = "bca"
  * Swap s[1] and s[2], s = "bac"
  * Swap s[0] and s[1], s = "abc"
- *
+ * <p>
  * Constraints:
  * 1 <= s.length <= 10^5
  * 0 <= pairs.length <= 10^5
@@ -44,7 +44,7 @@ public class Problem1202 {
     public String smallestStringWithSwaps(String s, List<List<Integer>> pairs) {
         int len = s.length();
         int[] uf = new int[len];
-        for(int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {
             uf[i] = i;
         }
 
@@ -52,21 +52,21 @@ public class Problem1202 {
             int root0 = findRoot(uf, pair.get(0));
             int root1 = findRoot(uf, pair.get(1));
 
-            if(root0 != root1) {
+            if (root0 != root1) {
                 uf[root0] = root1;
             }
         }
 
         List<Integer>[] group = new List[len];
-        for (int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
             int root = findRoot(uf, i);
-            if(group[root] == null)  group[root] = new ArrayList<>();
+            if (group[root] == null) group[root] = new ArrayList<>();
             group[root].add(i);
         }
 
         char[] arr = s.toCharArray();
-        for (int i = 0; i < s.length(); i++){
-            if(group[i] != null && group[i].size() > 0){
+        for (int i = 0; i < s.length(); i++) {
+            if (group[i] != null && group[i].size() > 0) {
                 int size = group[i].size();
                 char[] arr2 = new char[size];
                 for (int j = 0; j < size; j++) arr2[j] = arr[group[i].get(j)];
@@ -182,29 +182,29 @@ public class Problem1202 {
 
     // example2
     public String smallestStringWithSwapsExample2(String s, List<List<Integer>> pairs) {
-        int n= s.length();
+        int n = s.length();
         int[] p = new int[n];
         List<Integer>[] group = new List[n];
         for (int i = 0; i < n; i++) p[i] = i;
 
         // union index group
-        for(List<Integer> pair : pairs){
+        for (List<Integer> pair : pairs) {
             int x = pair.get(0), y = pair.get(1);
             int pX = find(p, x), pY = find(p, y);
-            if (pX != pY)  p[pX] = pY;
+            if (pX != pY) p[pX] = pY;
         }
 
         // add same root to one group
-        for (int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
             int root = find(p, i);
-            if(group[root] == null)  group[root] = new ArrayList<>();
+            if (group[root] == null) group[root] = new ArrayList<>();
             group[root].add(i);
         }
 
         // get connected group and rearrange order in s
         char[] arr = s.toCharArray();
-        for (int i = 0; i < s.length(); i++){
-            if(group[i] != null && group[i].size() > 0){
+        for (int i = 0; i < s.length(); i++) {
+            if (group[i] != null && group[i].size() > 0) {
                 int size = group[i].size();
                 char[] arr2 = new char[size];
                 for (int j = 0; j < size; j++) arr2[j] = arr[group[i].get(j)];
@@ -215,7 +215,7 @@ public class Problem1202 {
         return new String(arr);
     }
 
-    public int find(int[] p, int x){
+    public int find(int[] p, int x) {
         if (p[x] == x) return x;
         p[x] = find(p, p[x]);
         return p[x];

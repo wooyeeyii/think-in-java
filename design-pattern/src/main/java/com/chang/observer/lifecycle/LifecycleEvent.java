@@ -18,12 +18,15 @@ public final class LifecycleEvent {
     private Lifecycle lifecycle = null;
     // The event type this instance represents.(事件类型)
     private String type = null;
+
     public Object getData() {
         return (this.data);
     }
+
     public Lifecycle getLifecycle() {
         return (this.lifecycle);
     }
+
     public String getType() {
         return (this.type);
     }

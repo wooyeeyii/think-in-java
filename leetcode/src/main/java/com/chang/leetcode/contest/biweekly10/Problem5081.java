@@ -8,13 +8,13 @@ public class Problem5081 {
     public List<Integer> countSteppingNumbers(int low, int high) {
         List<Integer> steppingNumbers = new ArrayList<>();
         List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             steppingNumbers.add(i);
-            if(i >= low && i <= high) {
+            if (i >= low && i <= high) {
                 numbers.add(i);
             }
 
-            if(i > high) {
+            if (i > high) {
                 return numbers;
             }
         }
@@ -38,15 +38,15 @@ public class Problem5081 {
                     next2 = steppingNumbers.get(i) * 10 + last + 1;
                     steppingNumbers.add(next2);
                 }
-                if(null != next1 && next1 >= low) {
-                    if(next1 <= high) {
+                if (null != next1 && next1 >= low) {
+                    if (next1 <= high) {
                         numbers.add(next1);
                     } else {
                         return numbers;
                     }
                 }
-                if(null != next2 && next2 >= low) {
-                    if(next2 <= high) {
+                if (null != next2 && next2 >= low) {
+                    if (next2 <= high) {
                         numbers.add(next2);
                     } else {
                         return numbers;

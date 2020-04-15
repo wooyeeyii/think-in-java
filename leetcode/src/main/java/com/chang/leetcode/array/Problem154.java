@@ -79,7 +79,7 @@ public class Problem154 {
         int[] array3 = new int[]{2, 2, 2, 2, 2, 2};
         int[] array4 = new int[]{2};
         int[] array5 = new int[]{3, 3, 1, 3};
-        int[] array6 = new int[]{1, 3,  3};
+        int[] array6 = new int[]{1, 3, 3};
         System.out.println(problem.findMin(array1));
         System.out.println(problem.findMin(array2));
         System.out.println(problem.findMin(array3));

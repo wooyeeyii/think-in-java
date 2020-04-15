@@ -1,18 +1,18 @@
 /**
  * 394. Decode String
- *
+ * <p>
  * Given an encoded string, return its decoded string.
- *
+ * <p>
  * The encoding rule is: k[encoded_string], where the encoded_string inside
  * the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
- *
+ * <p>
  * You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
- *
+ * <p>
  * Furthermore, you may assume that the original data does not contain any digits and that digits are only
  * for those repeat numbers, k. For example, there won't be input like 3a or 2[4].
- *
+ * <p>
  * Examples:
- *
+ * <p>
  * s = "3[a]2[bc]", return "aaabcbc".
  * s = "3[a2[c]]", return "accaccacc".
  * s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
@@ -29,27 +29,27 @@ public class Problem394 {
         int leaves = 0;
         int pos = 0;
         StringBuilder sb = new StringBuilder();
-        while(pos < s.length()) {
-            if(s.charAt(pos) == '[') {
+        while (pos < s.length()) {
+            if (s.charAt(pos) == '[') {
                 stack.push(sb.toString());
                 leaves++;
                 sb = new StringBuilder();
-            } else if(s.charAt(pos) == ']') {
+            } else if (s.charAt(pos) == ']') {
                 StringBuilder tmp = new StringBuilder();
                 String countStr = stack.pop();
                 int digIdx = 0;
                 for (char c : countStr.toCharArray()) {
-                    if(c >= '0' && c <= '9') {
+                    if (c >= '0' && c <= '9') {
                         break;
                     }
                     digIdx++;
                 }
                 int count = Integer.valueOf(countStr.substring(digIdx));
-                for(int i = 0; i < count; i++) {
+                for (int i = 0; i < count; i++) {
                     tmp.append(sb);
                 }
                 leaves--;
-                if(digIdx > 0 || leaves > 0) {
+                if (digIdx > 0 || leaves > 0) {
                     tmp.insert(0, countStr.substring(0, digIdx));
                     sb = tmp;
                 } else {
@@ -63,7 +63,7 @@ public class Problem394 {
         }
 
         res.append(sb.toString());
-        while(stack.size() > 0) {
+        while (stack.size() > 0) {
             res.insert(0, stack.pop());
         }
 

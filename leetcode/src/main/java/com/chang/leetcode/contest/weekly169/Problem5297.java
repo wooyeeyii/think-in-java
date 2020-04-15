@@ -16,7 +16,7 @@ public class Problem5297 {
         while (!queue.isEmpty()) {
             int pos = queue.poll();
             int element = arr[pos];
-            if(0 == element) {
+            if (0 == element) {
                 return true;
             }
             set.add(pos);

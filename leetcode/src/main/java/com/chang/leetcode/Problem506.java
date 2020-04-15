@@ -1,9 +1,9 @@
 /**
  * 506. Relative Ranks
- *
+ * <p>
  * Given scores of N athletes, find their relative ranks and the people with the top three highest scores,
  * who will be awarded medals: "Gold Medal", "Silver Medal" and "Bronze Medal".
- *
+ * <p>
  * Example 1:
  * Input: [5, 4, 3, 2, 1]
  * Output: ["Gold Medal", "Silver Medal", "Bronze Medal", "4", "5"]
@@ -22,24 +22,24 @@ import java.util.Queue;
 public class Problem506 {
 
     public String[] findRelativeRanks(int[] nums) {
-        if(null == nums) {
+        if (null == nums) {
             return null;
         }
 
         String[] result = new String[nums.length];
         Queue<int[]> queue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
-        for(int i = 0; i < nums.length; i++) {
-            queue.add(new int[] {nums[i], i});
+        for (int i = 0; i < nums.length; i++) {
+            queue.add(new int[]{nums[i], i});
         }
 
         int rank = 1;
-        while(queue.size() > 0) {
+        while (queue.size() > 0) {
             int[] tmp = queue.poll();
-            if(1 == rank) {
+            if (1 == rank) {
                 result[tmp[1]] = "Gold Medal";
-            } else if(2 == rank) {
+            } else if (2 == rank) {
                 result[tmp[1]] = "Silver Medal";
-            } else if(3 == rank) {
+            } else if (3 == rank) {
                 result[tmp[1]] = "Bronze Medal";
             } else {
                 result[tmp[1]] = String.valueOf(rank);
@@ -101,14 +101,11 @@ public class Problem506 {
         for (int i = 0; i < nums.length; i++) {
             if (i == 0) {
                 result[index[i]] = "Gold Medal";
-            }
-            else if (i == 1) {
+            } else if (i == 1) {
                 result[index[i]] = "Silver Medal";
-            }
-            else if (i == 2) {
+            } else if (i == 2) {
                 result[index[i]] = "Bronze Medal";
-            }
-            else {
+            } else {
                 result[index[i]] = (i + 1) + "";
             }
         }

@@ -69,6 +69,7 @@ import javax.management.MalformedObjectNameException;
 import javax.management.MBeanException;
 import javax.management.ObjectName;
 import javax.management.RuntimeOperationsException;
+
 import org.apache.catalina.deploy.ContextEnvironment;
 import org.apache.catalina.deploy.ContextResource;
 import org.apache.catalina.deploy.ContextResourceLink;
@@ -96,13 +97,13 @@ public class NamingResourcesMBean extends BaseModelMBean {
      * Construct a <code>ModelMBean</code> with default
      * <code>ModelMBeanInfo</code> information.
      *
-     * @exception MBeanException if the initializer of an object
-     *  throws an exception
-     * @exception RuntimeOperationsException if an IllegalArgumentException
-     *  occurs
+     * @throws MBeanException             if the initializer of an object
+     *                                    throws an exception
+     * @throws RuntimeOperationsException if an IllegalArgumentException
+     *                                    occurs
      */
     public NamingResourcesMBean()
-        throws MBeanException, RuntimeOperationsException {
+            throws MBeanException, RuntimeOperationsException {
 
         super();
 
@@ -110,7 +111,7 @@ public class NamingResourcesMBean extends BaseModelMBean {
 
 
     // ----------------------------------------------------- Instance Variables
-    
+
     /**
      * The configuration information registry for our managed beans.
      */
@@ -121,75 +122,75 @@ public class NamingResourcesMBean extends BaseModelMBean {
      * The <code>ManagedBean</code> information describing this MBean.
      */
     protected ManagedBean managed =
-        registry.findManagedBean("NamingResources");
+            registry.findManagedBean("NamingResources");
 
     // ------------------------------------------------------------- Attributes
-    
+
 
     /**
-     * Return the MBean Names of the set of defined environment entries for  
+     * Return the MBean Names of the set of defined environment entries for
      * this web application
      */
     public String[] getEnvironments() {
-        ContextEnvironment[] envs = 
-                            ((NamingResources)this.resource).findEnvironments();
+        ContextEnvironment[] envs =
+                ((NamingResources) this.resource).findEnvironments();
         ArrayList results = new ArrayList();
         for (int i = 0; i < envs.length; i++) {
             try {
                 ObjectName oname =
-                    MBeanUtils.createObjectName(managed.getDomain(), envs[i]);
+                        MBeanUtils.createObjectName(managed.getDomain(), envs[i]);
                 results.add(oname.toString());
             } catch (MalformedObjectNameException e) {
                 throw new IllegalArgumentException
-                    ("Cannot create object name for environment " + envs[i]);
+                        ("Cannot create object name for environment " + envs[i]);
             }
         }
         return ((String[]) results.toArray(new String[results.size()]));
 
     }
-    
-    
+
+
     /**
      * Return the MBean Names of all the defined resource references for this
      * application.
      */
     public String[] getResources() {
-        
-        ContextResource[] resources = 
-                            ((NamingResources)this.resource).findResources();
+
+        ContextResource[] resources =
+                ((NamingResources) this.resource).findResources();
         ArrayList results = new ArrayList();
         for (int i = 0; i < resources.length; i++) {
             try {
                 ObjectName oname =
-                    MBeanUtils.createObjectName(managed.getDomain(), resources[i]);
+                        MBeanUtils.createObjectName(managed.getDomain(), resources[i]);
                 results.add(oname.toString());
             } catch (MalformedObjectNameException e) {
                 throw new IllegalArgumentException
-                    ("Cannot create object name for resource " + resources[i]);
+                        ("Cannot create object name for resource " + resources[i]);
             }
         }
         return ((String[]) results.toArray(new String[results.size()]));
 
     }
-    
-    
+
+
     /**
-     * Return the MBean Names of all the defined resource link references for 
+     * Return the MBean Names of all the defined resource link references for
      * this application.
      */
     public String[] getResourceLinks() {
-        
-        ContextResourceLink[] resourceLinks = 
-                            ((NamingResources)this.resource).findResourceLinks();
+
+        ContextResourceLink[] resourceLinks =
+                ((NamingResources) this.resource).findResourceLinks();
         ArrayList results = new ArrayList();
         for (int i = 0; i < resourceLinks.length; i++) {
             try {
                 ObjectName oname =
-                    MBeanUtils.createObjectName(managed.getDomain(), resourceLinks[i]);
+                        MBeanUtils.createObjectName(managed.getDomain(), resourceLinks[i]);
                 results.add(oname.toString());
             } catch (MalformedObjectNameException e) {
                 throw new IllegalArgumentException
-                    ("Cannot create object name for resource " + resourceLinks[i]);
+                        ("Cannot create object name for resource " + resourceLinks[i]);
             }
         }
         return ((String[]) results.toArray(new String[results.size()]));
@@ -203,11 +204,11 @@ public class NamingResourcesMBean extends BaseModelMBean {
      * Add an environment entry for this web application.
      *
      * @param envName New environment entry name
-     * @param type The type of the new environment entry
-     * @param value The value of the new environment entry 
+     * @param type    The type of the new environment entry
+     * @param value   The value of the new environment entry
      */
-    public String addEnvironment(String envName, String type, String value) 
-        throws MalformedObjectNameException {
+    public String addEnvironment(String envName, String type, String value)
+            throws MalformedObjectNameException {
 
         NamingResources nresources = (NamingResources) this.resource;
         if (nresources == null) {
@@ -216,32 +217,32 @@ public class NamingResourcesMBean extends BaseModelMBean {
         ContextEnvironment env = nresources.findEnvironment(envName);
         if (env != null) {
             throw new IllegalArgumentException
-                ("Invalid environment name - already exists '" + envName + "'");
+                    ("Invalid environment name - already exists '" + envName + "'");
         }
         env = new ContextEnvironment();
         env.setName(envName);
         env.setType(type);
         env.setValue(value);
         nresources.addEnvironment(env);
-        
+
         // Return the corresponding MBean name
         ManagedBean managed = registry.findManagedBean("ContextEnvironment");
         ObjectName oname =
-            MBeanUtils.createObjectName(managed.getDomain(), env);
+                MBeanUtils.createObjectName(managed.getDomain(), env);
         return (oname.toString());
-        
+
     }
 
-    
+
     /**
      * Add a resource reference for this web application.
      *
      * @param resourceName New resource reference name
-     * @param type New resource reference type
+     * @param type         New resource reference type
      */
-    public String addResource(String resourceName, String type) 
-        throws MalformedObjectNameException {
-        
+    public String addResource(String resourceName, String type)
+            throws MalformedObjectNameException {
+
         NamingResources nresources = (NamingResources) this.resource;
         if (nresources == null) {
             return null;
@@ -249,56 +250,56 @@ public class NamingResourcesMBean extends BaseModelMBean {
         ContextResource resource = nresources.findResource(resourceName);
         if (resource != null) {
             throw new IllegalArgumentException
-                ("Invalid resource name - already exists'" + resourceName + "'");
+                    ("Invalid resource name - already exists'" + resourceName + "'");
         }
         resource = new ContextResource();
         resource.setName(resourceName);
         resource.setType(type);
         nresources.addResource(resource);
-        
+
         // Return the corresponding MBean name
         ManagedBean managed = registry.findManagedBean("ContextResource");
         ObjectName oname =
-            MBeanUtils.createObjectName(managed.getDomain(), resource);
+                MBeanUtils.createObjectName(managed.getDomain(), resource);
         return (oname.toString());
     }
 
-    
+
     /**
      * Add a resource link reference for this web application.
      *
-     * @param global New resource link reference global name
+     * @param global           New resource link reference global name
      * @param resourceLinkName New resource link reference name
-     * @param type New resource link reference type
+     * @param type             New resource link reference type
      */
-    public String addResourceLink(String global, String resourceLinkName, 
-                            String type) throws MalformedObjectNameException {
-        
+    public String addResourceLink(String global, String resourceLinkName,
+                                  String type) throws MalformedObjectNameException {
+
         NamingResources nresources = (NamingResources) this.resource;
         if (nresources == null) {
             return null;
         }
-        ContextResourceLink resourceLink = 
-                            nresources.findResourceLink(resourceLinkName);
+        ContextResourceLink resourceLink =
+                nresources.findResourceLink(resourceLinkName);
         if (resourceLink != null) {
             throw new IllegalArgumentException
-                ("Invalid resource link name - already exists'" + 
-                resourceLinkName + "'");
+                    ("Invalid resource link name - already exists'" +
+                            resourceLinkName + "'");
         }
         resourceLink = new ContextResourceLink();
         resourceLink.setName(resourceLinkName);
         resourceLink.setType(type);
         resourceLink.setGlobal(global);
         nresources.addResourceLink(resourceLink);
-        
+
         // Return the corresponding MBean name
         ManagedBean managed = registry.findManagedBean("ContextResourceLink");
         ObjectName oname =
-            MBeanUtils.createObjectName(managed.getDomain(), resourceLink);
+                MBeanUtils.createObjectName(managed.getDomain(), resourceLink);
         return (oname.toString());
     }
-    
-    
+
+
     /**
      * Remove any environment entry with the specified name.
      *
@@ -313,13 +314,13 @@ public class NamingResourcesMBean extends BaseModelMBean {
         ContextEnvironment env = nresources.findEnvironment(envName);
         if (env == null) {
             throw new IllegalArgumentException
-                ("Invalid environment name '" + envName + "'");
+                    ("Invalid environment name '" + envName + "'");
         }
         nresources.removeEnvironment(envName);
 
     }
-    
-    
+
+
     /**
      * Remove any resource reference with the specified name.
      *
@@ -335,14 +336,14 @@ public class NamingResourcesMBean extends BaseModelMBean {
         ContextResource resource = nresources.findResource(resourceName);
         if (resource == null) {
             throw new IllegalArgumentException
-                ("Invalid resource name '" + resourceName + "'");
+                    ("Invalid resource name '" + resourceName + "'");
         }
         nresources.removeResource(resourceName);
         nresources.removeResourceParams(resourceName);
-    
+
     }
-    
-    
+
+
     /**
      * Remove any resource link reference with the specified name.
      *
@@ -355,11 +356,11 @@ public class NamingResourcesMBean extends BaseModelMBean {
         if (nresources == null) {
             return;
         }
-        ContextResourceLink resourceLink = 
-                            nresources.findResourceLink(resourceLinkName);
+        ContextResourceLink resourceLink =
+                nresources.findResourceLink(resourceLinkName);
         if (resourceLink == null) {
             throw new IllegalArgumentException
-                ("Invalid resource Link name '" + resourceLinkName + "'");
+                    ("Invalid resource Link name '" + resourceLinkName + "'");
         }
         nresources.removeResourceLink(resourceLinkName);
     }

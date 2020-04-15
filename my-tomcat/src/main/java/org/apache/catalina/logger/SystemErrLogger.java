@@ -73,7 +73,7 @@ package org.apache.catalina.logger;
  */
 
 public class SystemErrLogger
-    extends LoggerBase {
+        extends LoggerBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -83,7 +83,7 @@ public class SystemErrLogger
      * The descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.logger.SystemErrLogger/1.0";
+            "org.apache.catalina.logger.SystemErrLogger/1.0";
 
 
     // --------------------------------------------------------- Public Methods
@@ -95,7 +95,7 @@ public class SystemErrLogger
      * servlet container.
      *
      * @param msg A <code>String</code> specifying the message to be written
-     *  to the log file
+     *            to the log file
      */
     public void log(String msg) {
 

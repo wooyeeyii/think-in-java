@@ -40,6 +40,7 @@ public class Problem377 {
         // 对每个list算可能的排序组合
         return 0;
     }
+
     private void sumRec(int[] nums, int start, int remain, ArrayList<Integer> list, List<List<Integer>> result) {
         if (0 == remain) {
             result.add(new ArrayList<>(list));
@@ -99,6 +100,7 @@ public class Problem377 {
         sumHelper(dp, nums, target);
         return dp[target];
     }
+
     private int sumHelper(int[] dp, int[] nums, int remain) {
         if (dp[remain] != -1) {
             return dp[remain];
@@ -106,7 +108,7 @@ public class Problem377 {
         int res = 0;
         for (int i = 0; i < nums.length; i++) {
             if (remain >= nums[i]) {
-                res+= sumHelper(dp, nums, remain - nums[i]);
+                res += sumHelper(dp, nums, remain - nums[i]);
             }
         }
         dp[remain] = res;
@@ -120,9 +122,9 @@ public class Problem377 {
         }
         int[] dp = new int[target + 1];
         dp[0] = 1;
-        for(int i = 1; i <=target; i++) {
-            for(int j = 0; j < nums.length;j++) {
-                if(nums[j] <= i) {
+        for (int i = 1; i <= target; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] <= i) {
                     dp[i] += dp[i - nums[j]];
                 }
             }

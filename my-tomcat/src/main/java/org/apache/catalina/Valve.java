@@ -139,19 +139,18 @@ public interface Valve {
      *     returned.
      * </ul>
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs, or is thrown
-     *  by a subsequently invoked Valve, Filter, or Servlet
-     * @exception ServletException if a servlet error occurs, or is thrown
-     *  by a subsequently invoked Valve, Filter, or Servlet
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs, or is thrown
+     *                          by a subsequently invoked Valve, Filter, or Servlet
+     * @throws ServletException if a servlet error occurs, or is thrown
+     *                          by a subsequently invoked Valve, Filter, or Servlet
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException;
+            throws IOException, ServletException;
 
 
 }

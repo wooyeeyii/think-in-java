@@ -1,5 +1,5 @@
 package com.chang.command;
 
 public interface Command {
-	public void execute();
+    public void execute();
 }

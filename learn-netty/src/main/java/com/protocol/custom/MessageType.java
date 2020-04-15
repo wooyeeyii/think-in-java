@@ -13,10 +13,10 @@ public enum MessageType {
     private byte value;
 
     private MessageType(byte value) {
-	this.value = value;
+        this.value = value;
     }
 
     public byte value() {
-	return this.value;
+        return this.value;
     }
 }

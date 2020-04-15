@@ -3,7 +3,7 @@ package com.chang.memento.multicheck;
 public class RunTest {
 
     public static void main(String[] args) {
-        
+
         Originator o = new Originator();
         Caretaker c = new Caretaker(o);
         //改变状态

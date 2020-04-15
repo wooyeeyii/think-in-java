@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TVMacroCommand implements MacroCommand {
-	
-	private List<Command> commandList = new ArrayList<Command>(); //Ë³ÐòÖ´ÐÐ
 
-	@Override
-	public void add(Command cmd) {
-		// TODO Auto-generated method stub
-		commandList.add(cmd);
-	}
+    private List<Command> commandList = new ArrayList<Command>(); //Ë³ï¿½ï¿½Ö´ï¿½ï¿½
 
-	@Override
-	public void remove(Command cmd) {
-		// TODO Auto-generated method stub
-		commandList.remove(cmd);
-	}
-	
-	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
-		for(Command cmd : commandList) {
-			cmd.execute();
-		}
-	}
+    @Override
+    public void add(Command cmd) {
+        // TODO Auto-generated method stub
+        commandList.add(cmd);
+    }
+
+    @Override
+    public void remove(Command cmd) {
+        // TODO Auto-generated method stub
+        commandList.remove(cmd);
+    }
+
+    @Override
+    public void execute() {
+        // TODO Auto-generated method stub
+        for (Command cmd : commandList) {
+            cmd.execute();
+        }
+    }
 }

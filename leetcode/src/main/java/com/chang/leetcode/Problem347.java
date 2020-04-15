@@ -88,12 +88,12 @@ public class Problem347 {
         List<Integer> result = new ArrayList<Integer>();
         List<Integer>[] bucket = new List[nums.length + 1];
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        if (nums.length <= 0 ) {
+        if (nums.length <= 0) {
             return result;
         }
         for (int i = 0; i < nums.length; i++) {
             Integer tmp = map.get(nums[i]);
-            if(null == tmp) {
+            if (null == tmp) {
                 tmp = 0;
             }
             map.put(nums[i], tmp + 1);
@@ -105,16 +105,16 @@ public class Problem347 {
             }
             bucket[value].add(key);
         });*/
-        for(Integer key:map.keySet()) {
+        for (Integer key : map.keySet()) {
             Integer value = map.get(key);
-            if(bucket[value] == null) {
+            if (bucket[value] == null) {
                 bucket[value] = new ArrayList<Integer>();
             }
             bucket[value].add(key);
         }
 
-        for(int j = bucket.length - 1; j > 0 && result.size() < k; j--) {
-            if(bucket[j] != null) {
+        for (int j = bucket.length - 1; j > 0 && result.size() < k; j--) {
+            if (bucket[j] != null) {
                 result.addAll(bucket[j]);
             }
         }
@@ -125,7 +125,7 @@ public class Problem347 {
     public static void main(String[] args) {
         Problem347 problem = new Problem347();
 //        int[] nums = new int[] {1,1,1,2,2,3};
-        int[] nums = new int[] {3, 0, 1, 0};
+        int[] nums = new int[]{3, 0, 1, 0};
         System.out.println(problem.topKFrequent(nums, 1));
     }
 

@@ -67,6 +67,7 @@ package org.apache.catalina.servlets;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+
 import org.apache.catalina.util.StringManager;
 
 
@@ -109,7 +110,7 @@ class InvokerHttpRequest extends HttpServletRequestWrapper {
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.servlets.InvokerHttpRequest/1.0";
+            "org.apache.catalina.servlets.InvokerHttpRequest/1.0";
 
 
     /**
@@ -140,7 +141,7 @@ class InvokerHttpRequest extends HttpServletRequestWrapper {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // --------------------------------------------- HttpServletRequest Methods
@@ -189,7 +190,6 @@ class InvokerHttpRequest extends HttpServletRequestWrapper {
 
 
     // -------------------------------------------------------- Package Methods
-
 
 
     /**

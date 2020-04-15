@@ -52,10 +52,10 @@ public class Problem287 {
 
     public static void main(String[] args) {
         Problem287 problem = new Problem287();
-        int[] data1 = new int[]{1,3,4,2,2};
+        int[] data1 = new int[]{1, 3, 4, 2, 2};
         System.out.println(2 == problem.findDuplicate(data1));
 
-        int[] data2 = new int[]{3,1,3,4,2};
+        int[] data2 = new int[]{3, 1, 3, 4, 2};
         System.out.println(3 == problem.findDuplicate(data2));
 
     }

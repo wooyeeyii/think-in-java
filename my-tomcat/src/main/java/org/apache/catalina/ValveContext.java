@@ -109,22 +109,21 @@ public interface ValveContext {
      * <code>ValveContext</code> instance.  Exceptions thrown by a subsequently
      * executed Valve (or a Filter or Servlet at the application level) will be
      * passed on to our caller.
-     *
+     * <p>
      * If there are no more Valves to be executed, an appropriate
      * ServletException will be thrown by this ValveContext.
      *
-     * @param request The request currently being processed
+     * @param request  The request currently being processed
      * @param response The response currently being created
-     *
-     * @exception IOException if thrown by a subsequent Valve, Filter, or
-     *  Servlet
-     * @exception ServletException if thrown by a subsequent Valve, Filter,
-     *  or Servlet
-     * @exception ServletException if there are no further Valves configured
-     *  in the Pipeline currently being processed
+     * @throws IOException      if thrown by a subsequent Valve, Filter, or
+     *                          Servlet
+     * @throws ServletException if thrown by a subsequent Valve, Filter,
+     *                          or Servlet
+     * @throws ServletException if there are no further Valves configured
+     *                          in the Pipeline currently being processed
      */
     public void invokeNext(Request request, Response response)
-        throws IOException, ServletException;
+            throws IOException, ServletException;
 
 
 }

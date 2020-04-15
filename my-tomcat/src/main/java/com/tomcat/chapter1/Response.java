@@ -54,7 +54,7 @@ public class Response {
             //throw if cannot instantiate a File object
             e.printStackTrace();
         } finally {
-            if(null != fis) {
+            if (null != fis) {
                 fis.close();
             }
         }

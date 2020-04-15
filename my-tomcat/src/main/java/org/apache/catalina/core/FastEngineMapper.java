@@ -69,6 +69,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.ContainerEvent;
 import org.apache.catalina.ContainerListener;
@@ -96,7 +97,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public final class FastEngineMapper
-    implements ContainerListener, Lifecycle, Mapper, PropertyChangeListener {
+        implements ContainerListener, Lifecycle, Mapper, PropertyChangeListener {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -142,7 +143,7 @@ public final class FastEngineMapper
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -168,15 +169,14 @@ public final class FastEngineMapper
      * Set the Container with which this Mapper is associated.
      *
      * @param container The newly associated Container
-     *
-     * @exception IllegalArgumentException if this Container is not
-     *  acceptable to this Mapper
+     * @throws IllegalArgumentException if this Container is not
+     *                                  acceptable to this Mapper
      */
     public void setContainer(Container container) {
 
         if (!(container instanceof StandardEngine))
             throw new IllegalArgumentException
-                (sm.getString("httpEngineMapper.container"));
+                    (sm.getString("httpEngineMapper.container"));
         engine = (StandardEngine) container;
 
     }
@@ -213,7 +213,7 @@ public final class FastEngineMapper
      * identified, return <code>null</code> instead.
      *
      * @param request Request being processed
-     * @param update Update the Request to reflect the mapping selection?
+     * @param update  Update the Request to reflect the mapping selection?
      */
     public Container map(Request request, boolean update) {
 
@@ -294,7 +294,7 @@ public final class FastEngineMapper
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -319,16 +319,16 @@ public final class FastEngineMapper
     /**
      * Prepare for active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents it from being started
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents it from being started
      */
     public synchronized void start() throws LifecycleException {
 
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("fastEngineMapper.alreadyStarted",
-                              engine.getName()));
+                    (sm.getString("fastEngineMapper.alreadyStarted",
+                            engine.getName()));
         started = true;
 
         // Configure based on our associated Engine properties
@@ -351,16 +351,16 @@ public final class FastEngineMapper
     /**
      * Gracefully shut down active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public synchronized void stop() throws LifecycleException {
 
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("fastEngineMapper.notStarted",
-                              engine.getName()));
+                    (sm.getString("fastEngineMapper.notStarted",
+                            engine.getName()));
 
         // Notify our interested LifecycleListeners
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
@@ -401,13 +401,13 @@ public final class FastEngineMapper
      * Add an alias for the specified host.
      *
      * @param alias New alias name
-     * @param host Host to resolve to
+     * @param host  Host to resolve to
      */
     private void addAlias(String alias, Host host) {
 
         if (debug >= 3)
             engine.log("Adding alias '" + alias + "' for host '" +
-                       host.getName() + "'");
+                    host.getName() + "'");
         cache.put(alias.toLowerCase(), host);
 
     }

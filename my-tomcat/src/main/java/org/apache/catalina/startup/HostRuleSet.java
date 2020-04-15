@@ -106,7 +106,7 @@ public class HostRuleSet extends RuleSetBase {
      * matching pattern prefix.
      *
      * @param prefix Prefix for matching pattern rules (including the
-     *  trailing slash character)
+     *               trailing slash character)
      */
     public HostRuleSet(String prefix) {
 
@@ -127,67 +127,67 @@ public class HostRuleSet extends RuleSetBase {
      * by a Digester instance.</p>
      *
      * @param digester Digester instance to which the new Rule instances
-     *  should be added.
+     *                 should be added.
      */
     public void addRuleInstances(Digester digester) {
 
         digester.addObjectCreate(prefix + "Host",
-                                 "org.apache.catalina.core.StandardHost",
-                                 "className");
+                "org.apache.catalina.core.StandardHost",
+                "className");
         digester.addSetProperties(prefix + "Host");
         digester.addRule(prefix + "Host",
-                         new CopyParentClassLoaderRule(digester));  //设置host的父加载器和Engine一致
+                new CopyParentClassLoaderRule(digester));  //设置host的父加载器和Engine一致
         digester.addRule(prefix + "Host",
-                         new LifecycleListenerRule
-                         (digester,
-                          "org.apache.catalina.startup.HostConfig",
-                          "hostConfigClass"));
+                new LifecycleListenerRule
+                        (digester,
+                                "org.apache.catalina.startup.HostConfig",
+                                "hostConfigClass"));
         digester.addSetNext(prefix + "Host",
-                            "addChild",
-                            "org.apache.catalina.Container");
+                "addChild",
+                "org.apache.catalina.Container");
 
         digester.addCallMethod(prefix + "Host/Alias",
-                               "addAlias", 0);
+                "addAlias", 0);
 
         digester.addObjectCreate(prefix + "Host/Cluster",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Host/Cluster");
         digester.addSetNext(prefix + "Host/Cluster",
-                            "addCluster",
-                            "org.apache.catalina.Cluster");
+                "addCluster",
+                "org.apache.catalina.Cluster");
 
         digester.addObjectCreate(prefix + "Host/Listener",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Host/Listener");
         digester.addSetNext(prefix + "Host/Listener",
-                            "addLifecycleListener",
-                            "org.apache.catalina.LifecycleListener");
+                "addLifecycleListener",
+                "org.apache.catalina.LifecycleListener");
 
         digester.addObjectCreate(prefix + "Host/Logger",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Host/Logger");
         digester.addSetNext(prefix + "Host/Logger",
-                            "setLogger",
-                            "org.apache.catalina.Logger");
+                "setLogger",
+                "org.apache.catalina.Logger");
 
         digester.addObjectCreate(prefix + "Host/Realm",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Host/Realm");
         digester.addSetNext(prefix + "Host/Realm",
-                            "setRealm",
-                            "org.apache.catalina.Realm");
+                "setRealm",
+                "org.apache.catalina.Realm");
 
         digester.addObjectCreate(prefix + "Host/Valve",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Host/Valve");
         digester.addSetNext(prefix + "Host/Valve",
-                            "addValve",
-                            "org.apache.catalina.Valve");
+                "addValve",
+                "org.apache.catalina.Valve");
 
     }
 

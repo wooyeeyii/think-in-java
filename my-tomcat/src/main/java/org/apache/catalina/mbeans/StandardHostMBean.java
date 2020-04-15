@@ -67,6 +67,7 @@ package org.apache.catalina.mbeans;
 import javax.management.MBeanException;
 import javax.management.MBeanServer;
 import javax.management.RuntimeOperationsException;
+
 import org.apache.catalina.Valve;
 import org.apache.catalina.core.StandardHost;
 import org.apache.commons.modeler.BaseModelMBean;
@@ -96,13 +97,13 @@ public class StandardHostMBean extends BaseModelMBean {
      * Construct a <code>ModelMBean</code> with default
      * <code>ModelMBeanInfo</code> information.
      *
-     * @exception MBeanException if the initializer of an object
-     *  throws an exception
-     * @exception RuntimeOperationsException if an IllegalArgumentException
-     *  occurs
+     * @throws MBeanException             if the initializer of an object
+     *                                    throws an exception
+     * @throws RuntimeOperationsException if an IllegalArgumentException
+     *                                    occurs
      */
     public StandardHostMBean()
-        throws MBeanException, RuntimeOperationsException {
+            throws MBeanException, RuntimeOperationsException {
 
         super();
 
@@ -112,19 +113,17 @@ public class StandardHostMBean extends BaseModelMBean {
     // ------------------------------------------------------------- Attributes
 
 
-
     // ------------------------------------------------------------- Operations
 
 
-   /**
+    /**
      * Add an alias name that should be mapped to this Host
      *
      * @param alias The alias to be added
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public void addAlias(String alias)
-        throws Exception {
+            throws Exception {
 
         StandardHost host = (StandardHost) this.resource;
         host.addAlias(alias);
@@ -132,13 +131,13 @@ public class StandardHostMBean extends BaseModelMBean {
     }
 
 
-   /**
+    /**
      * Return the set of alias names for this Host
      *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
-    public String [] findAliases()
-        throws Exception {
+    public String[] findAliases()
+            throws Exception {
 
         StandardHost host = (StandardHost) this.resource;
         return host.findAliases();
@@ -146,13 +145,13 @@ public class StandardHostMBean extends BaseModelMBean {
     }
 
 
-   /**
+    /**
      * Return the MBean Names of the Valves assoicated with this Host
      *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
-    public String [] getValves()
-        throws Exception {
+    public String[] getValves()
+            throws Exception {
 
         Registry registry = MBeanUtils.createRegistry();
         StandardHost host = (StandardHost) this.resource;
@@ -164,11 +163,11 @@ public class StandardHostMBean extends BaseModelMBean {
         }
         if (domain == null)
             domain = mserver.getDefaultDomain();
-        Valve [] valves = host.getValves();
-        String [] mbeanNames = new String[valves.length];
+        Valve[] valves = host.getValves();
+        String[] mbeanNames = new String[valves.length];
         for (int i = 0; i < valves.length; i++) {
             mbeanNames[i] =
-                MBeanUtils.createObjectName(domain, valves[i]).toString();
+                    MBeanUtils.createObjectName(domain, valves[i]).toString();
         }
 
         return mbeanNames;
@@ -176,15 +175,14 @@ public class StandardHostMBean extends BaseModelMBean {
     }
 
 
-   /**
+    /**
      * Return the specified alias name from the aliases for this Host
      *
      * @param alias Alias name to be removed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public void removeAlias(String alias)
-        throws Exception {
+            throws Exception {
 
         StandardHost host = (StandardHost) this.resource;
         host.removeAlias(alias);

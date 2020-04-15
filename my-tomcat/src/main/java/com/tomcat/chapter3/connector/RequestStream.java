@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RequestStream
-    extends ServletInputStream {
+        extends ServletInputStream {
 
     /**
      * Construct a servlet input stream associated with the specified Request.
@@ -49,7 +49,7 @@ public class RequestStream
      * The localized strings for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -85,12 +85,11 @@ public class RequestStream
     }
 
 
-
     /**
      * Read and return a single byte from this input stream, or -1 if end of
      * file has been encountered.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int read() throws IOException {
 
@@ -118,8 +117,7 @@ public class RequestStream
      * available, end of file is detected, or an exception is thrown.
      *
      * @param b The buffer into which the data is read
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int read(byte b[]) throws IOException {
 
@@ -136,12 +134,11 @@ public class RequestStream
      * an integer.  This method blocks until input data is available,
      * end of file is detected, or an exception is thrown.
      *
-     * @param b The buffer into which the data is read
+     * @param b   The buffer into which the data is read
      * @param off The start offset into array <code>b</code> at which
-     *  the data is written
+     *            the data is written
      * @param len The maximum number of bytes to read
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int read(byte b[], int off, int len) throws IOException {
 

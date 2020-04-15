@@ -1,40 +1,40 @@
 /**
  * 99. Recover Binary Search Tree
- *
+ * <p>
  * Two elements of a binary search tree (BST) are swapped by mistake.
  * Recover the tree without changing its structure.
- *
+ * <p>
  * Example 1:
  * Input: [1,3,null,null,2]
- *
- *    1
- *   /
- *  3
- *   \
- *    2
+ * <p>
+ * 1
+ * /
+ * 3
+ * \
+ * 2
  * Output: [3,1,null,null,2]
- *
- *    3
- *   /
- *  1
- *   \
- *    2
- *
+ * <p>
+ * 3
+ * /
+ * 1
+ * \
+ * 2
+ * <p>
  * Example 2:
  * Input: [3,1,4,null,null,2]
- *
- *   3
- *  / \
+ * <p>
+ * 3
+ * / \
  * 1   4
- *    /
- *   2
+ * /
+ * 2
  * Output: [2,1,4,null,null,3]
- *   2
- *  / \
+ * 2
+ * / \
  * 1   4
- *    /
- *   3
- *
+ * /
+ * 3
+ * <p>
  * Follow up:
  * A solution using O(n) space is pretty straight forward.
  * Could you devise a constant space solution?
@@ -43,39 +43,57 @@ package com.chang.leetcode.search.depth.first;
 
 import com.chang.common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Problem99 {
 
     public void recoverTree(TreeNode root) {
-        List<Integer> list = new ArrayList<Integer>();
-        middleSearchTree(root, list);
+        TreeNode pre = null;
+        TreeNode first = null, second = null;
+        // Morris Traversal
+        TreeNode temp = null;
+        while (root != null) {
+            if (root.left != null) {
+                // connect threading for root
+                temp = root.left;
+                while (temp.right != null && temp.right != root)
+                    temp = temp.right;
+                // the threading already exists
+                if (temp.right != null) {
+                    if (pre != null && pre.val > root.val) {
+                        if (first == null) {
+                            first = pre;
+                            second = root;
+                        } else {
+                            second = root;
+                        }
+                    }
+                    pre = root;
 
-        // 找出顺序不正确的两个node
-        Integer a = null, b = null;
-        for(int i = 0; i < list.size() - 1; i++) {
-            if(list.get(i) > list.get(i + 1)) {
-                if(a == null) {
-                    a = list.get(i);
-                    b = list.get(i + 1);
+                    temp.right = null;
+                    root = root.right;
                 } else {
-                    b = list.get(i);
-                    break;
+                    // construct the threading
+                    temp.right = root;
+                    root = root.left;
                 }
+            } else {
+                if (pre != null && pre.val > root.val) {
+                    if (first == null) {
+                        first = pre;
+                        second = root;
+                    } else {
+                        second = root;
+                    }
+                }
+                pre = root;
+                root = root.right;
             }
         }
-        System.out.println("a = " + a + ", b = " + b);
-    }
-
-    private void middleSearchTree(TreeNode root, List<Integer> list) {
-        if (root == null) {
-            return;
+        // swap two node values;
+        if (first != null && second != null) {
+            int t = first.val;
+            first.val = second.val;
+            second.val = t;
         }
-
-        middleSearchTree(root.left, list);
-        list.add(root.val);
-        middleSearchTree(root.right, list);
     }
 
     public static void main(String[] args) {

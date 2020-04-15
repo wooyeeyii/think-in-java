@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.session.StandardSessionFacade;
 
@@ -18,8 +19,8 @@ import org.apache.catalina.session.StandardSessionFacade;
  */
 
 public final class HttpRequestFacade
-    extends RequestFacade
-    implements HttpServletRequest {
+        extends RequestFacade
+        implements HttpServletRequest {
 
 
     // ----------------------------------------------------------- Constructors
@@ -135,7 +136,7 @@ public final class HttpRequestFacade
 
     public HttpSession getSession(boolean create) {
         HttpSession session =
-            ((HttpServletRequest) request).getSession(create);
+                ((HttpServletRequest) request).getSession(create);
         if (session == null)
             return null;
         else

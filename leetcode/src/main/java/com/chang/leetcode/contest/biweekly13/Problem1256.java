@@ -1,8 +1,8 @@
 /**
  * 1256. Encode Number
- *
+ * <p>
  * Given a non-negative integer num, Return its encoding string.
- *
+ * <p>
  * The encoding is done by converting the integer to a string using a secret function that you should deduce from the following table:
  * f(0) = ""
  * f(1) = "0"
@@ -12,17 +12,17 @@
  * f(5) = "10"
  * f(6) = "11"
  * f(7) = "000"
- *
+ * <p>
  * Example 1:
  * Input: num = 23
  * Output: "1000"
- *
+ * <p>
  * Example 2:
  * Input: num = 107
  * Output: "101100"
- *
+ * <p>
  * Constraints:
- *
+ * <p>
  * 0 <= num <= 10^9
  */
 package com.chang.leetcode.contest.biweekly13;
@@ -31,7 +31,7 @@ public class Problem1256 {
 
     // grey code
     public String encode(int num) {
-        if(num == 0) {
+        if (num == 0) {
             return "";
         }
 
@@ -39,10 +39,10 @@ public class Problem1256 {
 
         String s = "";
         int left = num;
-        while(left > 0) {
+        while (left > 0) {
             int half = (1 << count) - 1 + (1 << (count - 1)) - 1;
             int a = left <= half ? 0 : 1;
-            if(a == 0) {
+            if (a == 0) {
                 left = left - (1 << count) + (1 << (count - 1));
             } else {
                 left = left - half + (1 << (count - 1)) - 2;
@@ -58,7 +58,7 @@ public class Problem1256 {
     // 等比数列求和 2^0 + 2^1 + 2^2 + ...      2^(n + 1) - 1;
     private int getBits(int num) {
         int count = 0;
-        while(((1 << count) - 1) <= num) {
+        while (((1 << count) - 1) <= num) {
             count++;
         }
         return count - 1;

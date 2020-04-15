@@ -20,6 +20,7 @@ public class SelfBlockQueueTest {
         public void run() {
             consume();
         }
+
         private void consume() {
             while (true) {
                 synchronized (queue) {
@@ -45,6 +46,7 @@ public class SelfBlockQueueTest {
         public void run() {
             produce();
         }
+
         private void produce() {
             while (true) {
                 synchronized (queue) {

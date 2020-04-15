@@ -13,7 +13,7 @@ public class OOMObjectTest {
 
     public static void fillHeap(int num) throws InterruptedException {
         List<OOMObject> list = new ArrayList<OOMObject>();
-        for(int i = 0; i < num; i++) {
+        for (int i = 0; i < num; i++) {
             //稍作延时，让见识曲线的变化更明显
             Thread.sleep(50);
             list.add(new OOMObject());

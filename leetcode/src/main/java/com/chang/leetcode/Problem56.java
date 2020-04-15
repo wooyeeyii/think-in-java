@@ -1,13 +1,13 @@
 /**
  * 56. Merge Intervals
- *
+ * <p>
  * Given a collection of intervals, merge all overlapping intervals.
- *
+ * <p>
  * Example 1:
  * Input: [[1,3],[2,6],[8,10],[15,18]]
  * Output: [[1,6],[8,10],[15,18]]
  * Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
- *
+ * <p>
  * Example 2:
  * Input: [[1,4],[4,5]]
  * Output: [[1,5]]
@@ -23,7 +23,7 @@ public class Problem56 {
 
     public List<Interval> merge(List<Interval> intervals) {
         List<Interval> list = new ArrayList<Interval>();
-        if(intervals.size() <= 0) {
+        if (intervals.size() <= 0) {
             return list;
         }
         Collections.sort(intervals, new Comparator<Interval>() {
@@ -34,8 +34,8 @@ public class Problem56 {
         });
         int start = intervals.get(0).start;
         int end = intervals.get(0).end;
-        for(int i = 1; i < intervals.size(); i++) {
-            if(intervals.get(i).start > end) {
+        for (int i = 1; i < intervals.size(); i++) {
+            if (intervals.get(i).start > end) {
                 Interval in = new Interval(start, end);
                 list.add(in);
                 start = intervals.get(i).start;
@@ -60,7 +60,7 @@ public class Problem56 {
         list1.add(in4);
         // output: [[1,6],[8,10],[15,18]]
         List<Interval> res1 = problem.merge(list1);
-        for(Interval r : res1) {
+        for (Interval r : res1) {
             System.out.print(r.toString());
         }
         System.out.println("#################");
@@ -71,7 +71,7 @@ public class Problem56 {
         Interval n2 = new Interval(2, 3);
         list2.add(n2);
         List<Interval> res2 = problem.merge(list2);
-        for(Interval r : res2) {
+        for (Interval r : res2) {
             System.out.print(r.toString());
         }
         System.out.println("#################");
@@ -83,7 +83,7 @@ public class Problem56 {
         list3.add(m2);
         // output: [[1, 5]]
         List<Interval> res3 = problem.merge(list3);
-        for(Interval r : res3) {
+        for (Interval r : res3) {
             System.out.print(r.toString());
         }
         System.out.println("#################");
@@ -91,34 +91,33 @@ public class Problem56 {
     }
 
 
-
     // 错误，不能解决[1, 4] [5, 6]
     public List<Interval> mergeWrong(List<Interval> intervals) {
         List<Interval> list = new ArrayList<Interval>();
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        for(Interval in : intervals) {
+        for (Interval in : intervals) {
             min = Math.min(min, in.start);
             max = Math.max(max, in.end);
         }
         int[] flag = new int[max - min + 1];
         Arrays.fill(flag, 0);
-        for(Interval in : intervals) {
-            for(int i = in.start; i <= in.end; i++) {
+        for (Interval in : intervals) {
+            for (int i = in.start; i <= in.end; i++) {
                 flag[i - min] = 1;
             }
         }
         int pos = 0;
-        while(pos < flag.length) {
+        while (pos < flag.length) {
             int begin = pos;
-            while(begin < flag.length && 0 == flag[begin]) {
+            while (begin < flag.length && 0 == flag[begin]) {
                 begin++;
             }
             int end = begin;
-            while(end < flag.length && 0 != flag[end]) {
+            while (end < flag.length && 0 != flag[end]) {
                 end++;
             }
-            if(end > begin) {
+            if (end > begin) {
                 Interval in = new Interval(begin + min, end + min - 1);
                 list.add(in);
             }

@@ -6,7 +6,7 @@ public class Problem7 {
         String s = String.valueOf(x);
         char[] rs = s.toCharArray();
         int start = 0;
-        if(s.charAt(0) == '-') {
+        if (s.charAt(0) == '-') {
             start = 1;
             rs[0] = '-';
         }
@@ -35,10 +35,10 @@ public class Problem7 {
             y += x % 10;
             x = x / 10;
         }
-        if(y > Integer.MAX_VALUE || y < Integer.MIN_VALUE) {
+        if (y > Integer.MAX_VALUE || y < Integer.MIN_VALUE) {
             return 0;
         }
-        return negative? (int) -y : (int) y;
+        return negative ? (int) -y : (int) y;
     }
 
 }

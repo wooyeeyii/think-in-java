@@ -11,17 +11,17 @@ public class Problem39Test {
 
     @Test
     public void combinationSum() {
-        int[] nums = new int[] {};
-        List<List<Integer>> res = problem.combinationSum(nums,8);
+        int[] nums = new int[]{};
+        List<List<Integer>> res = problem.combinationSum(nums, 8);
         System.out.println(ArrayToStringUtil.twoDimension(res));
 
-        nums = new int[] {2,3,6,7};
-        res = problem.combinationSum(nums,7);
+        nums = new int[]{2, 3, 6, 7};
+        res = problem.combinationSum(nums, 7);
         System.out.println(ArrayToStringUtil.twoDimension(res));
         System.out.println();
 
-        nums = new int[] {2,3,5};
-        res = problem.combinationSum(nums,8);
+        nums = new int[]{2, 3, 5};
+        res = problem.combinationSum(nums, 8);
         System.out.println(ArrayToStringUtil.twoDimension(res));
         System.out.println();
     }

@@ -42,35 +42,35 @@ public class Problem373 {
         }
         while (aS < nums1.length && bS < nums2.length) {
             result.add(Arrays.asList(new Integer[]{nums1[aS], nums2[bS]}));
-            if(--k == 0) {
+            if (--k == 0) {
                 break;
             }
             boolean top = true;
-            if(aS + 1 < nums1.length && bS + 1 < nums2.length) {
+            if (aS + 1 < nums1.length && bS + 1 < nums2.length) {
                 if (nums1[aS + 1] - nums1[aS] > nums2[bS + 1] - nums2[bS]) {
                     bS++;
                     top = false;
-                } else if(nums1[aS + 1] - nums1[aS] < nums2[bS + 1] - nums2[bS]) {
+                } else if (nums1[aS + 1] - nums1[aS] < nums2[bS + 1] - nums2[bS]) {
                     aS++;
                 } else {
-                    if(aS > bS) {
+                    if (aS > bS) {
                         bS++;
                     } else {
                         aS++;
                     }
                 }
-            } else if(aS + 1 < nums1.length) {
+            } else if (aS + 1 < nums1.length) {
                 aS++;
             } else {
                 bS++;
                 top = false;
             }
-            if(top) {
-                while(bS > 1 && bS <nums1.length && nums2[bS] == nums2[bS - 1]) {
+            if (top) {
+                while (bS > 1 && bS < nums1.length && nums2[bS] == nums2[bS - 1]) {
                     bS--;
                 }
             } else {
-                while(aS > 1 && aS < nums2.length && nums1[aS] == nums1[aS - 1]) {
+                while (aS > 1 && aS < nums2.length && nums1[aS] == nums1[aS - 1]) {
                     aS--;
                 }
             }

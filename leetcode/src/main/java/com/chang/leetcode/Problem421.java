@@ -23,11 +23,9 @@ public class Problem421 {
 
     public int findMaximumXOR(int[] nums) {
         int max = 0;
-        for(int i=0;i<nums.length-1;i++)
-        {
-            for(int j=i+1;j<nums.length;j++)
-            {
-                max=Math.max(max,nums[i]^nums[j]);
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                max = Math.max(max, nums[i] ^ nums[j]);
             }
         }
 
@@ -75,7 +73,7 @@ public class Problem421 {
                 // and to get b, we need a ^ c, if a ^ c exisited in our set, then we're good to go
                 int anotherNum = leftPartOfNum ^ greedyTry;
                 if (set.contains(anotherNum)) {
-                    maxResult= greedyTry;
+                    maxResult = greedyTry;
                     break;
                 }
             }

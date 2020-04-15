@@ -129,8 +129,8 @@ public interface Host extends Container {
 
 
     /**
-     * Return the value of the auto deploy flag.  If true, it indicates that 
-     * this host's child webapps should be discovred and automatically 
+     * Return the value of the auto deploy flag.  If true, it indicates that
+     * this host's child webapps should be discovred and automatically
      * deployed.
      */
     public boolean getAutoDeploy();
@@ -138,7 +138,7 @@ public interface Host extends Container {
 
     /**
      * Set the auto deploy flag value for this host.
-     * 
+     *
      * @param autoDeploy The new auto deploy flag
      */
     public void setAutoDeploy(boolean autoDeploy);
@@ -171,8 +171,7 @@ public interface Host extends Container {
      * this Container represents.
      *
      * @param name Virtual host name
-     *
-     * @exception IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is null
      */
     public void setName(String name);
 

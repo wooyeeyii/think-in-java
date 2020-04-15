@@ -17,7 +17,7 @@ public class RunTest {
         mediator.setSoundCard(sc);
         //开始看电影，把光盘放入光驱，光驱开始读盘
         cd.readCD();
-        
+
     }
 
 }

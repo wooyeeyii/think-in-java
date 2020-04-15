@@ -12,7 +12,7 @@ import java.io.InputStream;
 public class DrawTest {
 
     private final String preSellBackgroundUrl = "/preSellCircle.png";
-//    String emoji = "\uD83C\uDF40";    // 树叶
+    //    String emoji = "\uD83C\uDF40";    // 树叶
     String emoji = "\uD83D\uDC34";  //🐴
 
     public void generatePreSellImage() {

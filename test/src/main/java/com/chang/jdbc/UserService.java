@@ -18,8 +18,8 @@ public class UserService {
 
     public void save(User user) {
         jdbcTemplate.update("insert into user(id, name, age)values(?,?,?)",
-                new Object[] {user.getId(), user.getName(), user.getAge()},
-                new int[] {Types.INTEGER, Types.VARCHAR, Types.INTEGER});
+                new Object[]{user.getId(), user.getName(), user.getAge()},
+                new int[]{Types.INTEGER, Types.VARCHAR, Types.INTEGER});
     }
 
     public List<User> getUsers() {
@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public List<User> getUsersId1() {
-        List<User> list = jdbcTemplate.query("select * from user where id=?", new Object[] {1}, new int[] {Types.INTEGER}, new UserRowMapper());
+        List<User> list = jdbcTemplate.query("select * from user where id=?", new Object[]{1}, new int[]{Types.INTEGER}, new UserRowMapper());
         return list;
     }
 }

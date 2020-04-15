@@ -54,7 +54,7 @@ public class Problem1239OfMy implements Interface1239 {
         int[] bitmapArr = new int[arr.size()];
         for (int j = 0; j < arr.size(); j++) {
             int a = uniqueCharsToInt(arr.get(j));
-            if(a != 0) {
+            if (a != 0) {
                 bitmapArr[j] = a;
             }
         }

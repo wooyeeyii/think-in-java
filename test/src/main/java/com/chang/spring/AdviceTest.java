@@ -10,7 +10,7 @@ public class AdviceTest {
 //        Test3 test3 = (Test3)bf.getBean("test3");
 //        test3.method();
 
-        Test3Interface test3Interface = (Test3Interface)bf.getBean("test3");
+        Test3Interface test3Interface = (Test3Interface) bf.getBean("test3");
         test3Interface.method();
     }
 }

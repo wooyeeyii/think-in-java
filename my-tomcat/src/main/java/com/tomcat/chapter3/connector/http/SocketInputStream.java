@@ -62,7 +62,7 @@ public class SocketInputStream extends InputStream {
      * Construct a servlet input stream associated with the specified socket
      * input.
      *
-     * @param is socket input stream
+     * @param is         socket input stream
      * @param bufferSize size of the internal buffer
      */
     public SocketInputStream(InputStream is, int bufferSize) {
@@ -83,8 +83,8 @@ public class SocketInputStream extends InputStream {
      *
      * @param requestLine Request line object
      * @throws IOException If an exception occurs during the underlying socket
-     * read operations, or if the given buffer is not big enough to accomodate
-     * the whole line.
+     *                     read operations, or if the given buffer is not big enough to accomodate
+     *                     the whole line.
      */
     public void readRequestLine(HttpRequestLine requestLine)
             throws IOException {

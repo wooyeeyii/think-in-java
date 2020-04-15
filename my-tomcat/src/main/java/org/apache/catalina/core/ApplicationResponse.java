@@ -67,6 +67,7 @@ package org.apache.catalina.core;
 
 import javax.servlet.ServletResponse;
 import javax.servlet.ServletResponseWrapper;
+
 import org.apache.catalina.util.StringManager;
 
 
@@ -109,7 +110,7 @@ class ApplicationResponse extends ServletResponseWrapper {
      *
      * @param response The servlet response being wrapped
      * @param included <code>true</code> if this response is being processed
-     *  by a <code>RequestDispatcher.include()</code> call
+     *                 by a <code>RequestDispatcher.include()</code> call
      */
     public ApplicationResponse(ServletResponse response, boolean included) {
 
@@ -133,7 +134,7 @@ class ApplicationResponse extends ServletResponseWrapper {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------ ServletResponse Methods
@@ -142,8 +143,8 @@ class ApplicationResponse extends ServletResponseWrapper {
     /**
      * Disallow <code>reset()</code> calls on a included response.
      *
-     * @exception IllegalStateException if the response has already
-     *  been committed
+     * @throws IllegalStateException if the response has already
+     *                               been committed
      */
     public void reset() {
 

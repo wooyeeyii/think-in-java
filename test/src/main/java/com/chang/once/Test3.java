@@ -14,12 +14,12 @@ public class Test3 {
 class TestThread implements Runnable {
     StringBuffer sbf;
     StringBuilder sb;
- 
+
     TestThread(StringBuffer sbf, StringBuilder sb) {
         this.sb = sb;
         this.sbf = sbf;
     }
- 
+
     @Override
     public void run() {
         for (int i = 0; i < 100; i++) {

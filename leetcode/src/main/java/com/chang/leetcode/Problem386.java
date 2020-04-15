@@ -1,10 +1,10 @@
 /**
  * 386. Lexicographical Numbers
- *
+ * <p>
  * Given an integer n, return 1 - n in lexicographical order.
- *
+ * <p>
  * For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
- *
+ * <p>
  * Please optimize your algorithm to use less time and space.
  * The input size may be as large as 5,000,000.
  */
@@ -29,21 +29,21 @@ public class Problem386 {
      */
     public List<Integer> lexicalOrder(int n) {
         List<Integer> res = new ArrayList<>();
-        for(int i=1;i<10;++i){
+        for (int i = 1; i < 10; ++i) {
             dfs(i, n, res);
         }
         return res;
     }
 
-    public void dfs(int cur, int n, List<Integer> res){
-        if(cur>n)
+    public void dfs(int cur, int n, List<Integer> res) {
+        if (cur > n)
             return;
-        else{
+        else {
             res.add(cur);
-            for(int i=0;i<10;++i){
-                if(10*cur+i>n)
+            for (int i = 0; i < 10; ++i) {
+                if (10 * cur + i > n)
                     return;
-                dfs(10*cur+i, n, res);
+                dfs(10 * cur + i, n, res);
             }
         }
     }
@@ -56,12 +56,12 @@ public class Problem386 {
         int curr = 1;
         for (int i = 1; i <= n; i++) {
             list.add(curr);
-            if(curr * 10 <= n) {
+            if (curr * 10 <= n) {
                 curr = curr * 10;
-            } else if(curr % 10 != 9 && curr + 1 <= n) {
+            } else if (curr % 10 != 9 && curr + 1 <= n) {
                 curr++;
             } else {
-                while((curr / 10) % 10 == 9) {
+                while ((curr / 10) % 10 == 9) {
                     curr /= 10;
                 }
                 curr = curr / 10 + 1;

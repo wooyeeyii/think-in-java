@@ -1,15 +1,22 @@
 package com.chang.once;
 
-import java.util.*;
+
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializeConfig;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Once {
 
-
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        sb.append((char) 97);
-        sb.append(98);
-        System.out.println(sb.toString());
+        C c = new C();
+        c.set__v(1L);
+        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(c, new SerializeConfig(true));
+        System.out.println(jsonObject.toJSONString());
     }
 
 

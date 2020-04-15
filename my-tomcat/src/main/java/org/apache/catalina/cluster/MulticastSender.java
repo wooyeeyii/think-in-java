@@ -81,7 +81,7 @@ import java.io.ObjectOutputStream;
  */
 
 public class MulticastSender
-    extends ClusterSessionBase implements ClusterSender {
+        extends ClusterSessionBase implements ClusterSender {
 
     // ----------------------------------------------------- Instance Variables
 
@@ -118,10 +118,10 @@ public class MulticastSender
      * Create a new MulticastSender, only receivers with our
      * senderId will receive our data.
      *
-     * @param senderId The senderId
-     * @param multicastSocket the socket to use
+     * @param senderId         The senderId
+     * @param multicastSocket  the socket to use
      * @param multicastAddress the address to use
-     * @param multicastPort the port to use
+     * @param multicastPort    the port to use
      */
     MulticastSender(String senderId, MulticastSocket multicastSocket,
                     InetAddress multicastAddress, int multicastPort) {
@@ -138,7 +138,7 @@ public class MulticastSender
      * @return The name of the implementation
      */
     public String getName() {
-        return(this.senderName);
+        return (this.senderName);
     }
 
     /**
@@ -185,7 +185,7 @@ public class MulticastSender
             byte[] obs = bos.toByteArray();
             int size = obs.length;
             DatagramPacket p = new DatagramPacket(obs, size,
-                                                  multicastAddress, multicastPort);
+                    multicastAddress, multicastPort);
             send(p);
         } catch (IOException e) {
             log(sm.getString("multicastSender.sendException", e.toString()));

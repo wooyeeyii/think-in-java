@@ -67,6 +67,7 @@ package org.apache.catalina.valves;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+
 import org.apache.catalina.Contained;
 import org.apache.catalina.Container;
 import org.apache.catalina.Request;
@@ -88,7 +89,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public abstract class ValveBase
-    implements Contained, Valve {
+        implements Contained, Valve {
 
 
     //------------------------------------------------------ Instance Variables
@@ -111,14 +112,14 @@ public abstract class ValveBase
      * should be overridden by subclasses.
      */
     protected static String info =
-        "org.apache.catalina.core.ValveBase/1.0";
+            "org.apache.catalina.core.ValveBase/1.0";
 
 
     /**
      * The string manager for this package.
      */
     protected final static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     //-------------------------------------------------------------- Properties
@@ -146,7 +147,7 @@ public abstract class ValveBase
     }
 
 
-   /**
+    /**
      * Return the debugging detail level for this component.
      */
     public int getDebug() {
@@ -187,17 +188,16 @@ public abstract class ValveBase
      * <p>
      * This method <strong>MUST</strong> be provided by a subclass.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public abstract void invoke(Request request, Response response,
                                 ValveContext context)
-        throws IOException, ServletException;
+            throws IOException, ServletException;
 
 
 }

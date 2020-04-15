@@ -70,6 +70,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TimeZone;
+
 import org.apache.catalina.util.DateTool;
 import org.apache.catalina.util.URLEncoder;
 import org.apache.catalina.util.Strftime;
@@ -97,11 +98,11 @@ public class SSIMediator {
     protected Strftime strftime;
 
     static {
-	//We try to encode only the same characters that apache does
-	urlEncoder = new URLEncoder();
-	urlEncoder.addSafeCharacter(',');
-	urlEncoder.addSafeCharacter(':');
-	urlEncoder.addSafeCharacter('-');
+        //We try to encode only the same characters that apache does
+        urlEncoder = new URLEncoder();
+        urlEncoder.addSafeCharacter(',');
+        urlEncoder.addSafeCharacter(':');
+        urlEncoder.addSafeCharacter('-');
         urlEncoder.addSafeCharacter('_');
         urlEncoder.addSafeCharacter('.');
         urlEncoder.addSafeCharacter('*');
@@ -113,177 +114,177 @@ public class SSIMediator {
         urlEncoder.addSafeCharacter(')');
     }
 
-    public SSIMediator( SSIExternalResolver ssiExternalResolver, 
-			Date lastModifiedDate,
-			int debug ) {
-	this.ssiExternalResolver = ssiExternalResolver;	
-	this.lastModifiedDate = lastModifiedDate;
-	this.debug = debug;
+    public SSIMediator(SSIExternalResolver ssiExternalResolver,
+                       Date lastModifiedDate,
+                       int debug) {
+        this.ssiExternalResolver = ssiExternalResolver;
+        this.lastModifiedDate = lastModifiedDate;
+        this.debug = debug;
 
-	setConfigTimeFmt( DEFAULT_CONFIG_TIME_FMT, true );
-    }
-    
-    public void setConfigErrMsg( String configErrMsg ) {
-	this.configErrMsg = configErrMsg;
+        setConfigTimeFmt(DEFAULT_CONFIG_TIME_FMT, true);
     }
 
-    public void setConfigTimeFmt( String configTimeFmt ) {
-	setConfigTimeFmt( configTimeFmt, false );
+    public void setConfigErrMsg(String configErrMsg) {
+        this.configErrMsg = configErrMsg;
     }
 
-    public void setConfigTimeFmt( String configTimeFmt, boolean fromConstructor ) {
-	this.configTimeFmt = configTimeFmt;
-
-	//What's the story here with DateTool.LOCALE_US?? Why??
-	this.strftime = new Strftime( configTimeFmt, DateTool.LOCALE_US );
-
-	//Variables like DATE_LOCAL, DATE_GMT, and LAST_MODIFIED need to be updated when
-	//the timefmt changes.  This is what Apache SSI does.
-	setDateVariables( fromConstructor );
+    public void setConfigTimeFmt(String configTimeFmt) {
+        setConfigTimeFmt(configTimeFmt, false);
     }
 
-    public void setConfigSizeFmt( String configSizeFmt ) {
-	this.configSizeFmt = configSizeFmt;
+    public void setConfigTimeFmt(String configTimeFmt, boolean fromConstructor) {
+        this.configTimeFmt = configTimeFmt;
+
+        //What's the story here with DateTool.LOCALE_US?? Why??
+        this.strftime = new Strftime(configTimeFmt, DateTool.LOCALE_US);
+
+        //Variables like DATE_LOCAL, DATE_GMT, and LAST_MODIFIED need to be updated when
+        //the timefmt changes.  This is what Apache SSI does.
+        setDateVariables(fromConstructor);
+    }
+
+    public void setConfigSizeFmt(String configSizeFmt) {
+        this.configSizeFmt = configSizeFmt;
     }
 
     public String getConfigErrMsg() {
-	return configErrMsg;
+        return configErrMsg;
     }
 
     public String getConfigTimeFmt() {
-	return configTimeFmt;
+        return configTimeFmt;
     }
 
     public String getConfigSizeFmt() {
-	return configSizeFmt;
+        return configSizeFmt;
     }
 
     public Collection getVariableNames() {
-	Set variableNames = new HashSet();
-	//These built-in variables are supplied by the mediator ( if not over-written by the user ) and always exist
-	variableNames.add( "DATE_GMT" );
-	variableNames.add( "DATE_LOCAL" );
-	variableNames.add( "LAST_MODIFIED" );
-	ssiExternalResolver.addVariableNames( variableNames );
+        Set variableNames = new HashSet();
+        //These built-in variables are supplied by the mediator ( if not over-written by the user ) and always exist
+        variableNames.add("DATE_GMT");
+        variableNames.add("DATE_LOCAL");
+        variableNames.add("LAST_MODIFIED");
+        ssiExternalResolver.addVariableNames(variableNames);
 
-	//Remove any variables that are reserved by this class
-	Iterator iter = variableNames.iterator();
-	while ( iter.hasNext() ) {
-	    String name = (String) iter.next();
-	    if ( isNameReserved( name ) ) {
-		iter.remove();
-	    }
-	}
-	return variableNames;	   
+        //Remove any variables that are reserved by this class
+        Iterator iter = variableNames.iterator();
+        while (iter.hasNext()) {
+            String name = (String) iter.next();
+            if (isNameReserved(name)) {
+                iter.remove();
+            }
+        }
+        return variableNames;
     }
 
-    public long getFileSize( String path, boolean virtual ) throws IOException {
-	return ssiExternalResolver.getFileSize( path, virtual );
+    public long getFileSize(String path, boolean virtual) throws IOException {
+        return ssiExternalResolver.getFileSize(path, virtual);
     }
 
-    public long getFileLastModified( String path, boolean virtual ) throws IOException {
-	return ssiExternalResolver.getFileLastModified( path, virtual );
-    }
-    
-    public String getFileText( String path, boolean virtual ) throws IOException {
-	return ssiExternalResolver.getFileText( path, virtual );
+    public long getFileLastModified(String path, boolean virtual) throws IOException {
+        return ssiExternalResolver.getFileLastModified(path, virtual);
     }
 
-    protected boolean isNameReserved( String name ) {
-	return name.startsWith( className + "." );
+    public String getFileText(String path, boolean virtual) throws IOException {
+        return ssiExternalResolver.getFileText(path, virtual);
     }
 
-    public String getVariableValue( String variableName ) {
-	return getVariableValue( variableName, "none" );
+    protected boolean isNameReserved(String name) {
+        return name.startsWith(className + ".");
     }
 
-    public void setVariableValue( String variableName, String variableValue ) {
-	if ( !isNameReserved( variableName ) ) {
-	    ssiExternalResolver.setVariableValue( variableName, variableValue );
-	}
+    public String getVariableValue(String variableName) {
+        return getVariableValue(variableName, "none");
     }
 
-    public String getVariableValue( String variableName, String encoding ) {
-	String lowerCaseVariableName = variableName.toLowerCase();
-	String variableValue = null;
-
-	if ( !isNameReserved( lowerCaseVariableName ) ) {
-	    //Try getting it externally first, if it fails, try getting the 'built-in' value
-	    variableValue = ssiExternalResolver.getVariableValue( variableName );
-	    if ( variableValue == null ) {
-		variableName = variableName.toUpperCase();
-		variableValue = (String) ssiExternalResolver.getVariableValue( className + "." + variableName );
-	    }
-	    if ( variableValue != null ) {
-		variableValue = encode( variableValue, encoding );
-	    }
-	}
-	return variableValue;
+    public void setVariableValue(String variableName, String variableValue) {
+        if (!isNameReserved(variableName)) {
+            ssiExternalResolver.setVariableValue(variableName, variableValue);
+        }
     }
 
-    protected String formatDate( Date date, TimeZone timeZone ) {
-	String retVal;
+    public String getVariableValue(String variableName, String encoding) {
+        String lowerCaseVariableName = variableName.toLowerCase();
+        String variableValue = null;
 
-	if ( timeZone != null ) {
-	    //we temporarily change strftime.  Since SSIMediator is inherently single-threaded, this
-	    //isn't a problem
-	    TimeZone oldTimeZone = strftime.getTimeZone();
-	    strftime.setTimeZone( timeZone );
-	    retVal = strftime.format(date);    
-	    strftime.setTimeZone( oldTimeZone );
-	} else {
-	    retVal = strftime.format(date);    
-	}
-	return retVal;
+        if (!isNameReserved(lowerCaseVariableName)) {
+            //Try getting it externally first, if it fails, try getting the 'built-in' value
+            variableValue = ssiExternalResolver.getVariableValue(variableName);
+            if (variableValue == null) {
+                variableName = variableName.toUpperCase();
+                variableValue = (String) ssiExternalResolver.getVariableValue(className + "." + variableName);
+            }
+            if (variableValue != null) {
+                variableValue = encode(variableValue, encoding);
+            }
+        }
+        return variableValue;
     }
 
-    protected String encode( String value, String encoding ) {
-	String retVal = null;
+    protected String formatDate(Date date, TimeZone timeZone) {
+        String retVal;
 
-	if ( encoding.equalsIgnoreCase( "url" ) ) {
-	    retVal = urlEncoder.encode( value );
-	} else if ( encoding.equalsIgnoreCase( "none" ) ) {
-	    retVal = value;
-	} else if ( encoding.equalsIgnoreCase( "entity" ) ) {
-	    //Not sure how this is really different than none
-	    retVal = value;
-	} else {
-	    //This shouldn't be possible
-	    throw new IllegalArgumentException("Unknown encoding: " + encoding);
-	}
- 	return retVal;
+        if (timeZone != null) {
+            //we temporarily change strftime.  Since SSIMediator is inherently single-threaded, this
+            //isn't a problem
+            TimeZone oldTimeZone = strftime.getTimeZone();
+            strftime.setTimeZone(timeZone);
+            retVal = strftime.format(date);
+            strftime.setTimeZone(oldTimeZone);
+        } else {
+            retVal = strftime.format(date);
+        }
+        return retVal;
     }
 
-    public void log( String message ) {
-	ssiExternalResolver.log( message, null );
+    protected String encode(String value, String encoding) {
+        String retVal = null;
+
+        if (encoding.equalsIgnoreCase("url")) {
+            retVal = urlEncoder.encode(value);
+        } else if (encoding.equalsIgnoreCase("none")) {
+            retVal = value;
+        } else if (encoding.equalsIgnoreCase("entity")) {
+            //Not sure how this is really different than none
+            retVal = value;
+        } else {
+            //This shouldn't be possible
+            throw new IllegalArgumentException("Unknown encoding: " + encoding);
+        }
+        return retVal;
     }
 
-    public void log( String message, Throwable throwable ) {
-	ssiExternalResolver.log( message, throwable );
+    public void log(String message) {
+        ssiExternalResolver.log(message, null);
     }
 
-    protected void setDateVariables( boolean fromConstructor ) {
-	boolean alreadySet = ssiExternalResolver.getVariableValue( className + ".alreadyset" ) != null;
-	//skip this if we are being called from the constructor, and this has already been set
-	if ( !( fromConstructor && alreadySet ) ) {
-	    ssiExternalResolver.setVariableValue( className + ".alreadyset", "true" );
+    public void log(String message, Throwable throwable) {
+        ssiExternalResolver.log(message, throwable);
+    }
 
-	    Date date = new Date();
-	    TimeZone timeZone = TimeZone.getTimeZone("GMT");
-	    String retVal =  formatDate( date, timeZone );
-	    
-	    //If we are setting on of the date variables, we want to remove them from the user
-	    //defined list of variables, because this is what Apache does
-	    setVariableValue ( "DATE_GMT", null ); 
-	    ssiExternalResolver.setVariableValue ( className + ".DATE_GMT", retVal ); 
-	    
-	    retVal = formatDate( date, null );
-	    setVariableValue ( "DATE_LOCAL", null );
-	    ssiExternalResolver.setVariableValue ( className + ".DATE_LOCAL", retVal );
-	    
-	    retVal = formatDate( lastModifiedDate, null );
-	    setVariableValue ( "LAST_MODIFIED", null );
-	    ssiExternalResolver.setVariableValue ( className + ".LAST_MODIFIED", retVal );
-	}
+    protected void setDateVariables(boolean fromConstructor) {
+        boolean alreadySet = ssiExternalResolver.getVariableValue(className + ".alreadyset") != null;
+        //skip this if we are being called from the constructor, and this has already been set
+        if (!(fromConstructor && alreadySet)) {
+            ssiExternalResolver.setVariableValue(className + ".alreadyset", "true");
+
+            Date date = new Date();
+            TimeZone timeZone = TimeZone.getTimeZone("GMT");
+            String retVal = formatDate(date, timeZone);
+
+            //If we are setting on of the date variables, we want to remove them from the user
+            //defined list of variables, because this is what Apache does
+            setVariableValue("DATE_GMT", null);
+            ssiExternalResolver.setVariableValue(className + ".DATE_GMT", retVal);
+
+            retVal = formatDate(date, null);
+            setVariableValue("DATE_LOCAL", null);
+            ssiExternalResolver.setVariableValue(className + ".DATE_LOCAL", retVal);
+
+            retVal = formatDate(lastModifiedDate, null);
+            setVariableValue("LAST_MODIFIED", null);
+            ssiExternalResolver.setVariableValue(className + ".LAST_MODIFIED", retVal);
+        }
     }
 }

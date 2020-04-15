@@ -63,6 +63,7 @@
 package org.apache.catalina.startup;
 
 import java.lang.reflect.Constructor;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Loader;
 import org.apache.commons.digester.Digester;
@@ -111,7 +112,7 @@ public class ContextRuleSet extends RuleSetBase {
      * matching pattern prefix.
      *
      * @param prefix Prefix for matching pattern rules (including the
-     *  trailing slash character)
+     *               trailing slash character)
      */
     public ContextRuleSet(String prefix) {
 
@@ -132,125 +133,125 @@ public class ContextRuleSet extends RuleSetBase {
      * by a Digester instance.</p>
      *
      * @param digester Digester instance to which the new Rule instances
-     *  should be added.
+     *                 should be added.
      */
     public void addRuleInstances(Digester digester) {
 
         if (!isDefaultContext()) {
             digester.addObjectCreate(prefix + "Context",
-                                     "org.apache.catalina.core.StandardContext",
-                                     "className");
+                    "org.apache.catalina.core.StandardContext",
+                    "className");
         } else {
             digester.addObjectCreate(prefix + "Context",
-                                     "org.apache.catalina.core.StandardDefaultContext",
-                                     "className");
+                    "org.apache.catalina.core.StandardDefaultContext",
+                    "className");
         }
         digester.addSetProperties(prefix + "Context");
         if (!isDefaultContext()) {
             digester.addRule(prefix + "Context",
-                             new CopyParentClassLoaderRule(digester));
+                    new CopyParentClassLoaderRule(digester));
             digester.addRule(prefix + "Context",
-                             new LifecycleListenerRule
-                                 (digester,
-                                  "org.apache.catalina.startup.ContextConfig",
-                                  "configClass"));
+                    new LifecycleListenerRule
+                            (digester,
+                                    "org.apache.catalina.startup.ContextConfig",
+                                    "configClass"));
             digester.addSetNext(prefix + "Context",
-                                "addChild",
-                                "org.apache.catalina.Container");
+                    "addChild",
+                    "org.apache.catalina.Container");
         } else {
             digester.addSetNext(prefix + "Context",
-                                "addDefaultContext",
-                                "org.apache.catalina.DefaultContext");
+                    "addDefaultContext",
+                    "org.apache.catalina.DefaultContext");
         }
 
         digester.addCallMethod(prefix + "Context/InstanceListener",
-                               "addInstanceListener", 0);
+                "addInstanceListener", 0);
 
         digester.addObjectCreate(prefix + "Context/Listener",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Context/Listener");
         digester.addSetNext(prefix + "Context/Listener",
-                            "addLifecycleListener",
-                            "org.apache.catalina.LifecycleListener");
+                "addLifecycleListener",
+                "org.apache.catalina.LifecycleListener");
 
         digester.addRule(prefix + "Context/Loader",
-                         new CreateLoaderRule
-                             (digester,
-                              "org.apache.catalina.loader.WebappLoader",
-                              "className"));
+                new CreateLoaderRule
+                        (digester,
+                                "org.apache.catalina.loader.WebappLoader",
+                                "className"));
         digester.addSetProperties(prefix + "Context/Loader");
         digester.addSetNext(prefix + "Context/Loader",
-                            "setLoader",
-                            "org.apache.catalina.Loader");
+                "setLoader",
+                "org.apache.catalina.Loader");
 
         digester.addObjectCreate(prefix + "Context/Logger",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Context/Logger");
         digester.addSetNext(prefix + "Context/Logger",
-                            "setLogger",
-                            "org.apache.catalina.Logger");
+                "setLogger",
+                "org.apache.catalina.Logger");
 
         digester.addObjectCreate(prefix + "Context/Manager",
-                                 "org.apache.catalina.session.StandardManager",
-                                 "className");
+                "org.apache.catalina.session.StandardManager",
+                "className");
         digester.addSetProperties(prefix + "Context/Manager");
         digester.addSetNext(prefix + "Context/Manager",
-                            "setManager",
-                            "org.apache.catalina.Manager");
+                "setManager",
+                "org.apache.catalina.Manager");
 
         digester.addObjectCreate(prefix + "Context/Manager/Store",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Context/Manager/Store");
         digester.addSetNext(prefix + "Context/Manager/Store",
-                            "setStore",
-                            "org.apache.catalina.Store");
+                "setStore",
+                "org.apache.catalina.Store");
 
         digester.addObjectCreate(prefix + "Context/Parameter",
-                                 "org.apache.catalina.deploy.ApplicationParameter");
+                "org.apache.catalina.deploy.ApplicationParameter");
         digester.addSetProperties(prefix + "Context/Parameter");
         digester.addSetNext(prefix + "Context/Parameter",
-                            "addApplicationParameter",
-                            "org.apache.catalina.deploy.ApplicationParameter");
+                "addApplicationParameter",
+                "org.apache.catalina.deploy.ApplicationParameter");
 
         digester.addObjectCreate(prefix + "Context/Realm",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Context/Realm");
         digester.addSetNext(prefix + "Context/Realm",
-                            "setRealm",
-                            "org.apache.catalina.Realm");
+                "setRealm",
+                "org.apache.catalina.Realm");
 
         digester.addObjectCreate(prefix + "Context/ResourceLink",
-                                 "org.apache.catalina.deploy.ContextResourceLink");
+                "org.apache.catalina.deploy.ContextResourceLink");
         digester.addSetProperties(prefix + "Context/ResourceLink");
         digester.addSetNext(prefix + "Context/ResourceLink",
-                            "addResourceLink",
-                            "org.apache.catalina.deploy.ContextResourceLink");
+                "addResourceLink",
+                "org.apache.catalina.deploy.ContextResourceLink");
 
         digester.addObjectCreate(prefix + "Context/Resources",
-                                 "org.apache.naming.resources.FileDirContext",
-                                 "className");
+                "org.apache.naming.resources.FileDirContext",
+                "className");
         digester.addSetProperties(prefix + "Context/Resources");
         digester.addSetNext(prefix + "Context/Resources",
-                            "setResources",
-                            "javax.naming.directory.DirContext");
+                "setResources",
+                "javax.naming.directory.DirContext");
 
         digester.addObjectCreate(prefix + "Context/Valve",
-                                 null, // MUST be specified in the element
-                                 "className");
+                null, // MUST be specified in the element
+                "className");
         digester.addSetProperties(prefix + "Context/Valve");
         digester.addSetNext(prefix + "Context/Valve",
-                            "addValve",
-                            "org.apache.catalina.Valve");
+                "addValve",
+                "org.apache.catalina.Valve");
 
         digester.addCallMethod(prefix + "Context/WrapperLifecycle",
-                               "addWrapperLifecycle", 0);
+                "addWrapperLifecycle", 0);
 
         digester.addCallMethod(prefix + "Context/WrapperListener",
-                               "addWrapperListener", 0);
+                "addWrapperListener", 0);
 
     }
 
@@ -309,8 +310,8 @@ final class CreateLoaderRule extends Rule {
                 className = value;
         }
         Class clazz = Class.forName(className);
-        Class types[] = { ClassLoader.class };
-        Object args[] = { parentClassLoader };
+        Class types[] = {ClassLoader.class};
+        Object args[] = {parentClassLoader};
         Constructor constructor = clazz.getDeclaredConstructor(types);
         Loader loader = (Loader) constructor.newInstance(args);
 

@@ -77,7 +77,7 @@ import org.apache.catalina.connector.HttpResponseBase;
  */
 
 final class HttpResponseImpl
-    extends HttpResponseBase {
+        extends HttpResponseBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -87,7 +87,7 @@ final class HttpResponseImpl
      * Descriptive information about this Response implementation.
      */
     protected static final String info =
-        "org.apache.catalina.connector.http10.HttpResponseImpl/1.0";
+            "org.apache.catalina.connector.http10.HttpResponseImpl/1.0";
 
 
     // ------------------------------------------------------------- Properties
@@ -114,7 +114,7 @@ final class HttpResponseImpl
      * @return The &quot;HTTP/1.0&quot; string.
      */
     protected String getProtocol() {
-        return("HTTP/1.0");
+        return ("HTTP/1.0");
     }
 
 

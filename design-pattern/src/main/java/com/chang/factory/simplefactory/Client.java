@@ -1,12 +1,12 @@
 package com.chang.factory.simplefactory;
 
 public class Client {
-    public static void main(String[]args){
-        //´´½¨×°»ú¹¤³ÌÊ¦¶ÔÏó
+    public static void main(String[] args) {
+        //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½
         ComputerEngineer cf = new ComputerEngineer();
-        //¿Í»§Ñ¡Ôñ²¢´´½¨ÐèÒªÊ¹ÓÃµÄ²úÆ·¶ÔÏó
+        //ï¿½Í»ï¿½Ñ¡ï¿½ñ²¢´ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÊ¹ï¿½ÃµÄ²ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
         AbstractFactory af = new IntelFactory();
-        //¸æËß×°»ú¹¤³ÌÊ¦×Ô¼ºÑ¡ÔñµÄ²úÆ·£¬ÈÃ×°»ú¹¤³ÌÊ¦×é×°µçÄÔ
+        //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½Ô¼ï¿½Ñ¡ï¿½ï¿½Ä²ï¿½Æ·ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
         cf.makeComputer(af);
     }
 }

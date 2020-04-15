@@ -51,13 +51,13 @@ public class Problem433 {
         int count = 0;
         List<String> list = new ArrayList<>();
         boolean containEnd = false;
-        for(String b : bank) {
-            if(b.equals(end)) {
+        for (String b : bank) {
+            if (b.equals(end)) {
                 containEnd = true;
             }
             list.add(b);
         }
-        if(!containEnd) {
+        if (!containEnd) {
             return -1;
         }
 
@@ -115,7 +115,7 @@ public class Problem433 {
         String[] bank5 = new String[]{"AAAACCCA", "AAACCCCA", "AACCCCCA", "AACCCCCC", "ACCCCCCC", "CCCCCCCC", "AAACCCCC", "AACCCCCC"};
         System.out.println(problem.minMutation("AAAACCCC", "CCCCCCCC", bank5));
 
-        String[] bank6 = new String[]{"AAAAAAAA","AAAAAAAC","AAAAAACC","AAAAACCC","AAAACCCC","AACACCCC","ACCACCCC","ACCCCCCC","CCCCCCCA"};
+        String[] bank6 = new String[]{"AAAAAAAA", "AAAAAAAC", "AAAAAACC", "AAAAACCC", "AAAACCCC", "AACACCCC", "ACCACCCC", "ACCCCCCC", "CCCCCCCA"};
         System.out.println(-1 == problem.minMutation("AAAAAAAA", "CCCCCCCC", bank6));
 
     }

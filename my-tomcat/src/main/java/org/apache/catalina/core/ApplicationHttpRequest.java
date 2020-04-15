@@ -72,6 +72,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+
 import org.apache.catalina.Globals;
 import org.apache.catalina.util.Enumerator;
 import org.apache.catalina.util.RequestUtil;
@@ -104,9 +105,9 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
      * The set of attribute names that are special for request dispatchers.
      */
     protected static final String specials[] =
-    { Globals.REQUEST_URI_ATTR, Globals.CONTEXT_PATH_ATTR,
-      Globals.SERVLET_PATH_ATTR, Globals.PATH_INFO_ATTR,
-      Globals.QUERY_STRING_ATTR };
+            {Globals.REQUEST_URI_ATTR, Globals.CONTEXT_PATH_ATTR,
+                    Globals.SERVLET_PATH_ATTR, Globals.PATH_INFO_ATTR,
+                    Globals.QUERY_STRING_ATTR};
 
 
     // ----------------------------------------------------------- Constructors
@@ -145,7 +146,7 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.core.ApplicationHttpRequest/1.0";
+            "org.apache.catalina.core.ApplicationHttpRequest/1.0";
 
 
     /**
@@ -183,7 +184,7 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------- ServletRequest Methods
@@ -237,7 +238,7 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
      * Override the <code>setAttribute()</code> method of the
      * wrapped request.
      *
-     * @param name Name of the attribute to set
+     * @param name  Name of the attribute to set
      * @param value Value of the attribute to set
      */
     public void setAttribute(String name, Object value) {
@@ -385,7 +386,6 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
     // -------------------------------------------------------- Package Methods
 
 
-
     /**
      * Return descriptive information about this implementation.
      */
@@ -437,7 +437,7 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
             encoding = "ISO-8859-1";
         try {
             RequestUtil.parseParameters
-                (queryParameters, queryString, encoding);
+                    (queryParameters, queryString, encoding);
         } catch (Exception e) {
             ;
         }
@@ -451,7 +451,7 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
                     continue;
                 }
                 queryParameters.put
-                    (key, mergeValues(value, parameters.get(key)));
+                        (key, mergeValues(value, parameters.get(key)));
             }
             parameters = queryParameters;
         }
@@ -510,8 +510,8 @@ class ApplicationHttpRequest extends HttpServletRequestWrapper {
             Enumeration names = request.getAttributeNames();
             while (names.hasMoreElements()) {
                 String name = (String) names.nextElement();
-                if( ! ( Globals.REQUEST_URI_ATTR.equals(name) ||
-                        Globals.SERVLET_PATH_ATTR.equals(name) ) ) {
+                if (!(Globals.REQUEST_URI_ATTR.equals(name) ||
+                        Globals.SERVLET_PATH_ATTR.equals(name))) {
                     Object value = request.getAttribute(name);
                     attributes.put(name, value);
                 }

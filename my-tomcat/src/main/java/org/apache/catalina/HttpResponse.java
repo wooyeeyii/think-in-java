@@ -78,7 +78,7 @@ import javax.servlet.http.Cookie;
  */
 
 public interface HttpResponse
-    extends Response {
+        extends Response {
 
 
     // --------------------------------------------------------- Public Methods
@@ -136,8 +136,8 @@ public interface HttpResponse
      * Reset this response, and specify the values for the HTTP status code
      * and corresponding message.
      *
-     * @exception IllegalStateException if this response has already been
-     *  committed
+     * @throws IllegalStateException if this response has already been
+     *                               committed
      */
     public void reset(int status, String message);
 

@@ -13,9 +13,9 @@ public class Problem5080 {
         List<Integer> nodes2 = new ArrayList<>();
         inorderTraversal(root2, nodes2);
 
-        for(int i = 0; i < nodes1.size(); i++) {
-            for(int j = 0; j < nodes2.size(); j++) {
-                if(target == nodes1.get(i) + nodes2.get(j)) {
+        for (int i = 0; i < nodes1.size(); i++) {
+            for (int j = 0; j < nodes2.size(); j++) {
+                if (target == nodes1.get(i) + nodes2.get(j)) {
                     return true;
                 }
             }
@@ -25,7 +25,7 @@ public class Problem5080 {
     }
 
     private void inorderTraversal(TreeNode node, List<Integer> records) {
-        if(null == node) {
+        if (null == node) {
             return;
         }
 

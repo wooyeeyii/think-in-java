@@ -50,7 +50,7 @@ public class Problem503 {
     }
 
     public int[] nextGreaterElementsExample(int[] nums) {
-        if(null == nums) {
+        if (null == nums) {
             return null;
         }
 
@@ -58,12 +58,12 @@ public class Problem503 {
         int[] result = new int[len];
         Arrays.fill(result, -1);
         Stack<Integer> stack = new Stack<>();
-        for(int i = 0; i < 2 * len; i++) {
-            while(!stack.isEmpty() && nums[i % len] > nums[stack.peek()]) {
+        for (int i = 0; i < 2 * len; i++) {
+            while (!stack.isEmpty() && nums[i % len] > nums[stack.peek()]) {
                 result[stack.pop()] = nums[i % len];
             }
 
-            if(i < len) {
+            if (i < len) {
                 stack.push(i);
             }
         }

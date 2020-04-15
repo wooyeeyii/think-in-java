@@ -4,6 +4,7 @@ package org.apache.catalina.connector;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
+
 import org.apache.catalina.HttpResponse;
 
 
@@ -17,8 +18,8 @@ import org.apache.catalina.HttpResponse;
  */
 
 public final class HttpResponseFacade
-    extends ResponseFacade
-    implements HttpServletResponse {
+        extends ResponseFacade
+        implements HttpServletResponse {
 
 
     // ----------------------------------------------------------- Constructors
@@ -73,11 +74,11 @@ public final class HttpResponseFacade
 
 
     public void sendError(int sc, String msg)
-        throws IOException {
+            throws IOException {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         resp.setAppCommitted(true);
 
@@ -87,11 +88,11 @@ public final class HttpResponseFacade
 
 
     public void sendError(int sc)
-        throws IOException {
+            throws IOException {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         resp.setAppCommitted(true);
 
@@ -101,11 +102,11 @@ public final class HttpResponseFacade
 
 
     public void sendRedirect(String location)
-        throws IOException {
+            throws IOException {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         resp.setAppCommitted(true);
 

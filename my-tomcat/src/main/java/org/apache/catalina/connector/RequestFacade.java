@@ -73,6 +73,7 @@ import java.util.Locale;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.RequestDispatcher;
+
 import org.apache.catalina.Request;
 
 
@@ -143,7 +144,7 @@ public class RequestFacade implements ServletRequest {
 
 
     public void setCharacterEncoding(String env)
-        throws java.io.UnsupportedEncodingException {
+            throws java.io.UnsupportedEncodingException {
         request.setCharacterEncoding(env);
     }
 
@@ -159,7 +160,7 @@ public class RequestFacade implements ServletRequest {
 
 
     public ServletInputStream getInputStream()
-        throws IOException {
+            throws IOException {
         return request.getInputStream();
     }
 
@@ -205,7 +206,7 @@ public class RequestFacade implements ServletRequest {
 
 
     public BufferedReader getReader()
-        throws IOException {
+            throws IOException {
         return request.getReader();
     }
 

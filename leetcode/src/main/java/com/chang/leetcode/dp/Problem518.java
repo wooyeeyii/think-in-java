@@ -85,6 +85,7 @@ public class Problem518 {
         }
         return dp[coins.length][amount];
     }
+
     /**
      * Now we can see that dp[i][j] only rely on dp[i-1][j] and dp[i][j-coins[i]], then we can optimize the space by only using one-dimension array.
      */

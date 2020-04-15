@@ -259,7 +259,7 @@ public final class SecurityConstraint {
         if (collection == null)
             return;
         SecurityCollection results[] =
-            new SecurityCollection[collections.length + 1];
+                new SecurityCollection[collections.length + 1];
         for (int i = 0; i < collections.length; i++)
             results[i] = collections[i];
         results[collections.length] = collection;
@@ -335,7 +335,7 @@ public final class SecurityConstraint {
      * Return <code>true</code> if the specified context-relative URI (and
      * associated HTTP method) are protected by this security constraint.
      *
-     * @param uri Context-relative URI to check
+     * @param uri    Context-relative URI to check
      * @param method Request method being used
      */
     public boolean included(String uri, String method) {
@@ -411,7 +411,7 @@ public final class SecurityConstraint {
         if (n >= 0) {
             int j = 0;
             SecurityCollection results[] =
-                new SecurityCollection[collections.length - 1];
+                    new SecurityCollection[collections.length - 1];
             for (int i = 0; i < collections.length; i++) {
                 if (i != n)
                     results[j++] = collections[i];
@@ -447,8 +447,8 @@ public final class SecurityConstraint {
      * This method follows the same rules (in the same order) as those used
      * for mapping requests to servlets.
      *
-     * @param path Context-relative request path to be checked
-     *  (must start with '/')
+     * @param path    Context-relative request path to be checked
+     *                (must start with '/')
      * @param pattern URL pattern to be compared against
      */
     private boolean matchPattern(String path, String pattern) {
@@ -486,7 +486,7 @@ public final class SecurityConstraint {
             int slash = path.lastIndexOf('/');
             int period = path.lastIndexOf('.');
             if ((slash >= 0) && (period > slash) &&
-                path.endsWith(pattern.substring(1))) {
+                    path.endsWith(pattern.substring(1))) {
                 return (true);
             }
             return (false);

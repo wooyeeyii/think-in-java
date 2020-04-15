@@ -9,12 +9,12 @@ public class QuickUnion implements UnionFind {
 
     @Override
     public void union(int p, int q) {
-        if(!map.containsKey(q)) {
+        if (!map.containsKey(q)) {
             map.put(q, -1);
             map.put(p, q);
         } else {
             int qValue = map.get(q).equals(-1) ? q : map.get(q);
-            if(!map.containsKey(p)) {
+            if (!map.containsKey(p)) {
                 map.put(p, qValue);
             } else {
                 int pRoot = root(p);
@@ -27,7 +27,7 @@ public class QuickUnion implements UnionFind {
     public boolean connected(int p, int q) {
         p = root(p);
         q = root(q);
-        if(null == map.get(p) || null == map.get(q)) {
+        if (null == map.get(p) || null == map.get(q)) {
             return false;
         }
         int pValue = map.get(p).equals(-1) ? p : map.get(p);
@@ -36,10 +36,10 @@ public class QuickUnion implements UnionFind {
     }
 
     protected Integer root(int p) {
-        while(map.containsKey(p) && !map.get(p).equals(-1)) {
+        while (map.containsKey(p) && !map.get(p).equals(-1)) {
             p = map.get(p);
         }
-        if(!map.containsKey(p)) {
+        if (!map.containsKey(p)) {
             System.out.println("key p: " + p + " is not exist");
             return null;
         }

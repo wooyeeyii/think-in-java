@@ -44,7 +44,7 @@ public class NIOHandler {
     public void handleAccept(SelectionKey selectionKey) throws IOException {
         //通过选择器键获取服务器套接字通道，通过accept()方法获取套接字通道连接
         SocketChannel socketChannel = ((ServerSocketChannel) selectionKey.channel()).accept();
-        if(null != socketChannel) {
+        if (null != socketChannel) {
             //设置套接字通道为非阻塞模式
             socketChannel.configureBlocking(false);
             //为套接字通道注册选择器，该选择器为服务器套接字通道的选择器，即选择到该SocketChannel的选择器

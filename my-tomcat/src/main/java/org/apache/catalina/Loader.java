@@ -137,7 +137,7 @@ public interface Loader {
      * @param defaultContext The newly associated DefaultContext
      */
     public void setDefaultContext(DefaultContext defaultContext);
-    
+
 
     /**
      * Return the "follow standard delegation model" flag used to configure

@@ -16,7 +16,7 @@ public class Test {
         MyThreadPoolExecutor executor = new MyThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<Runnable>(5), Executors.defaultThreadFactory(), defaultHandler);
 
-        for(int i=0;i<15;i++){
+        for (int i = 0; i < 15; i++) {
             MyTask myTask = new MyTask(i);
             executor.execute(myTask);
             //System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
@@ -36,12 +36,12 @@ class MyTask implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("正在执行task "+taskNum);
+        System.out.println("正在执行task " + taskNum);
         try {
             Thread.currentThread().sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("task "+taskNum+"执行完毕");
+        System.out.println("task " + taskNum + "执行完毕");
     }
 }

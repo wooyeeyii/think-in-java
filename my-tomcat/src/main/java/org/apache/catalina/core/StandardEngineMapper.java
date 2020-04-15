@@ -85,7 +85,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class StandardEngineMapper
-    implements Mapper {
+        implements Mapper {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -107,7 +107,7 @@ public class StandardEngineMapper
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -127,15 +127,14 @@ public class StandardEngineMapper
      * Set the Container with which this Mapper is associated.
      *
      * @param container The newly associated Container
-     *
-     * @exception IllegalArgumentException if this Container is not
-     *  acceptable to this Mapper
+     * @throws IllegalArgumentException if this Container is not
+     *                                  acceptable to this Mapper
      */
     public void setContainer(Container container) {
 
         if (!(container instanceof StandardEngine))
             throw new IllegalArgumentException
-                (sm.getString("httpEngineMapper.container"));
+                    (sm.getString("httpEngineMapper.container"));
         engine = (StandardEngine) container;
 
     }
@@ -172,7 +171,7 @@ public class StandardEngineMapper
      * identified, return <code>null</code> instead.
      *
      * @param request Request being processed
-     * @param update Update the Request to reflect the mapping selection?
+     * @param update  Update the Request to reflect the mapping selection?
      */
     public Container map(Request request, boolean update) {
 

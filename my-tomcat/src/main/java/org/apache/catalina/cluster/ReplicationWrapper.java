@@ -89,7 +89,6 @@ public final class ReplicationWrapper implements Serializable {
 
     /**
      * Construct a new ReplicationWrapper
-     *
      */
     public ReplicationWrapper(byte[] b, String senderId) {
         this.senderId = senderId;
@@ -100,7 +99,7 @@ public final class ReplicationWrapper implements Serializable {
      * Write our stream to the <code>OutputStream</code> provided.
      *
      * @param out the OutputStream to write this stream to
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public final void writeTo(OutputStream out) throws IOException {
         out.write(_buf);
@@ -112,7 +111,7 @@ public final class ReplicationWrapper implements Serializable {
      * @return a our data
      */
     public final byte[] getDataStream() {
-        return(_buf);
+        return (_buf);
     }
 
     /**
@@ -130,6 +129,6 @@ public final class ReplicationWrapper implements Serializable {
      * @return The sender Id associated with this wrapper
      */
     public final String getSenderId() {
-        return(this.senderId);
+        return (this.senderId);
     }
 }

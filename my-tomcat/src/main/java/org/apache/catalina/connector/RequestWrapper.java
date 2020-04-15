@@ -70,6 +70,7 @@ import java.io.IOException;
 import java.net.Socket;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Request;
@@ -321,7 +322,7 @@ public abstract class RequestWrapper implements Request {
      * Create and return a ServletInputStream to read the content
      * associated with this Request.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletInputStream createInputStream() throws IOException {
 
@@ -334,7 +335,7 @@ public abstract class RequestWrapper implements Request {
      * Perform whatever actions are required to flush and close the input
      * stream or reader, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishRequest() throws IOException {
 

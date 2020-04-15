@@ -67,14 +67,14 @@ package org.apache.catalina.connector.http10;
 
 /**
  * Static constants for this package.
- * 
+ *
  * @deprecated
  */
 
 public final class Constants {
 
     public static final String Package =
-        "org.apache.catalina.connector.http10";
+            "org.apache.catalina.connector.http10";
     public static final int DEFAULT_CONNECTION_TIMEOUT = 30000;
 
 }

@@ -72,7 +72,7 @@ import java.util.Hashtable;
 
 
 /**
- * Holds and manages the naming resources defined in the J2EE Enterprise 
+ * Holds and manages the naming resources defined in the J2EE Enterprise
  * Naming Context and their associated JNDI context.
  *
  * @author Remy Maucherat
@@ -234,7 +234,7 @@ public final class NamingResources {
             }
             resourceParameters.setNamingResources(this);
             resourceParams.put(resourceParameters.getName(),
-                               resourceParameters);
+                    resourceParameters);
         }
         support.firePropertyChange("resourceParams", null, resourceParameters);
 
@@ -315,7 +315,7 @@ public final class NamingResources {
             resourceEnvRefs.put(name, type);
         }
         support.firePropertyChange("resourceEnvRef", null,
-                                   name + ":" + type);
+                name + ":" + type);
 
     }
 
@@ -471,8 +471,8 @@ public final class NamingResources {
     public ContextResourceLink[] findResourceLinks() {
 
         synchronized (resourceLinks) {
-            ContextResourceLink results[] = 
-                new ContextResourceLink[resourceLinks.size()];
+            ContextResourceLink results[] =
+                    new ContextResourceLink[resourceLinks.size()];
             return ((ContextResourceLink[]) resourceLinks.values()
                     .toArray(results));
         }
@@ -548,8 +548,8 @@ public final class NamingResources {
     public ResourceParams[] findResourceParams() {
 
         synchronized (resourceParams) {
-            ResourceParams results[] = 
-                new ResourceParams[resourceParams.size()];
+            ResourceParams results[] =
+                    new ResourceParams[resourceParams.size()];
             return ((ResourceParams[]) resourceParams.values()
                     .toArray(results));
         }
@@ -678,7 +678,7 @@ public final class NamingResources {
         }
         if (type != null) {
             support.firePropertyChange("resourceEnvRef",
-                                       name + ":" + type, null);
+                    name + ":" + type, null);
         }
 
     }
@@ -718,7 +718,7 @@ public final class NamingResources {
         }
         if (resourceParameters != null) {
             support.firePropertyChange("resourceParams", resourceParameters,
-                                       null);
+                    null);
             resourceParameters.setNamingResources(null);
         }
 

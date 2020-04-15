@@ -9,17 +9,17 @@ public class WeighQuickUnion extends QuickUnion {
 
     @Override
     public void union(int p, int q) {
-        if(!map.containsKey(q) && map.containsKey(p)) {
+        if (!map.containsKey(q) && map.containsKey(p)) {
             map.put(q, p);
             mapCount.put(q, mapCount.get(p) + 1);
             mapCount.put(p, mapCount.get(p) + 1);
             return;
         }
-        if(!map.containsKey(p) && map.containsKey(q)) {
+        if (!map.containsKey(p) && map.containsKey(q)) {
             union(q, p);
             return;
         }
-        if(!map.containsKey(p) && !map.containsKey(q)) {
+        if (!map.containsKey(p) && !map.containsKey(q)) {
             map.put(p, q);
             map.put(q, -1);
             mapCount.put(p, 2);
@@ -29,10 +29,10 @@ public class WeighQuickUnion extends QuickUnion {
 
         int pRoot = root(p);
         int qRoot = root(q);
-        if(pRoot == qRoot) {
+        if (pRoot == qRoot) {
             return;
         }
-        if(count(pRoot) >= count(qRoot)) {
+        if (count(pRoot) >= count(qRoot)) {
             map.put(qRoot, pRoot);
             mapCount.put(pRoot, count(pRoot) + count(qRoot));
         } else {

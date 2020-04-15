@@ -77,6 +77,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Loader;
@@ -94,7 +95,7 @@ import org.apache.catalina.util.CustomObjectInputStream;
  */
 
 public class JDBCStore
-    extends StoreBase implements Store {
+        extends StoreBase implements Store {
 
     /**
      * The descriptive information about this implementation.
@@ -196,21 +197,21 @@ public class JDBCStore
      * Return the info for this Store.
      */
     public String getInfo() {
-        return(info);
+        return (info);
     }
 
     /**
      * Return the thread name for this Store.
      */
     public String getThreadName() {
-        return(threadName);
+        return (threadName);
     }
 
     /**
      * Return the name for this Store, used for logging.
      */
     public String getStoreName() {
-        return(storeName);
+        return (storeName);
     }
 
     /**
@@ -222,8 +223,8 @@ public class JDBCStore
         String oldDriverName = this.driverName;
         this.driverName = driverName;
         support.firePropertyChange("driverName",
-                                   oldDriverName,
-                                   this.driverName);
+                oldDriverName,
+                this.driverName);
         this.driverName = driverName;
     }
 
@@ -231,7 +232,7 @@ public class JDBCStore
      * Return the driver for this Store.
      */
     public String getDriverName() {
-        return(this.driverName);
+        return (this.driverName);
     }
 
     /**
@@ -243,15 +244,15 @@ public class JDBCStore
         String oldConnString = this.connString;
         this.connString = connectionURL;
         support.firePropertyChange("connString",
-                                   oldConnString,
-                                   this.connString);
+                oldConnString,
+                this.connString);
     }
 
     /**
      * Return the Connection URL for this Store.
      */
     public String getConnectionURL() {
-        return(this.connString);
+        return (this.connString);
     }
 
     /**
@@ -263,15 +264,15 @@ public class JDBCStore
         String oldSessionTable = this.sessionTable;
         this.sessionTable = sessionTable;
         support.firePropertyChange("sessionTable",
-                                   oldSessionTable,
-                                   this.sessionTable);
+                oldSessionTable,
+                this.sessionTable);
     }
 
     /**
      * Return the table for this Store.
      */
     public String getSessionTable() {
-        return(this.sessionTable);
+        return (this.sessionTable);
     }
 
     /**
@@ -283,15 +284,15 @@ public class JDBCStore
         String oldSessionIdCol = this.sessionIdCol;
         this.sessionIdCol = sessionIdCol;
         support.firePropertyChange("sessionIdCol",
-                                   oldSessionIdCol,
-                                   this.sessionIdCol);
+                oldSessionIdCol,
+                this.sessionIdCol);
     }
 
     /**
      * Return the Id column for the table.
      */
     public String getSessionIdCol() {
-        return(this.sessionIdCol);
+        return (this.sessionIdCol);
     }
 
     /**
@@ -303,15 +304,15 @@ public class JDBCStore
         String oldSessionDataCol = this.sessionDataCol;
         this.sessionDataCol = sessionDataCol;
         support.firePropertyChange("sessionDataCol",
-                                   oldSessionDataCol,
-                                   this.sessionDataCol);
+                oldSessionDataCol,
+                this.sessionDataCol);
     }
 
     /**
      * Return the data column for the table
      */
     public String getSessionDataCol() {
-        return(this.sessionDataCol);
+        return (this.sessionDataCol);
     }
 
     /**
@@ -323,15 +324,15 @@ public class JDBCStore
         String oldSessionValidCol = this.sessionValidCol;
         this.sessionValidCol = sessionValidCol;
         support.firePropertyChange("sessionValidCol",
-                                   oldSessionValidCol,
-                                   this.sessionValidCol);
+                oldSessionValidCol,
+                this.sessionValidCol);
     }
 
     /**
      * Return the Is Valid column
      */
     public String getSessionValidCol() {
-        return(this.sessionValidCol);
+        return (this.sessionValidCol);
     }
 
     /**
@@ -343,15 +344,15 @@ public class JDBCStore
         String oldSessionMaxInactiveCol = this.sessionMaxInactiveCol;
         this.sessionMaxInactiveCol = sessionMaxInactiveCol;
         support.firePropertyChange("sessionMaxInactiveCol",
-                                   oldSessionMaxInactiveCol,
-                                   this.sessionMaxInactiveCol);
+                oldSessionMaxInactiveCol,
+                this.sessionMaxInactiveCol);
     }
 
     /**
      * Return the Max Inactive column
      */
     public String getSessionMaxInactiveCol() {
-        return(this.sessionMaxInactiveCol);
+        return (this.sessionMaxInactiveCol);
     }
 
     /**
@@ -363,15 +364,15 @@ public class JDBCStore
         String oldSessionLastAccessedCol = this.sessionLastAccessedCol;
         this.sessionLastAccessedCol = sessionLastAccessedCol;
         support.firePropertyChange("sessionLastAccessedCol",
-                                   oldSessionLastAccessedCol,
-                                   this.sessionLastAccessedCol);
+                oldSessionLastAccessedCol,
+                this.sessionLastAccessedCol);
     }
 
     /**
      * Return the Last Accessed column
      */
     public String getSessionLastAccessedCol() {
-        return(this.sessionLastAccessedCol);
+        return (this.sessionLastAccessedCol);
     }
 
     // --------------------------------------------------------- Public Methods
@@ -381,44 +382,44 @@ public class JDBCStore
      * currently saved in this Store.  If there are no such Sessions, a
      * zero-length array is returned.
      *
-     * @exception IOException if an input/output error occurred
+     * @throws IOException if an input/output error occurred
      */
     public String[] keys() throws IOException {
         String keysSql =
-            "SELECT COUNT(s."+sessionIdCol+"), c."+sessionIdCol+
-            " FROM "+sessionTable+" s, "+sessionTable+" c"+
-            " GROUP BY c."+sessionIdCol;
+                "SELECT COUNT(s." + sessionIdCol + "), c." + sessionIdCol +
+                        " FROM " + sessionTable + " s, " + sessionTable + " c" +
+                        " GROUP BY c." + sessionIdCol;
 
         Connection _conn = getConnection();
         ResultSet rst = null;
         String keys[] = null;
         int i;
 
-        if(_conn == null)
-            return(new String[0]);
+        if (_conn == null)
+            return (new String[0]);
 
         try {
-            if(preparedKeysSql == null)
+            if (preparedKeysSql == null)
                 preparedKeysSql = _conn.prepareStatement(keysSql);
 
             rst = preparedKeysSql.executeQuery();
             if (rst != null && rst.next()) {
                 keys = new String[rst.getInt(1)];
                 keys[0] = rst.getString(2);
-                i=1;
+                i = 1;
 
-                while(rst.next())
+                while (rst.next())
                     keys[i++] = rst.getString(2);
             } else {
                 keys = new String[0];
             }
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } finally {
             try {
-                if(rst != null)
+                if (rst != null)
                     rst.close();
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 ;
             }
 
@@ -426,7 +427,7 @@ public class JDBCStore
             _conn = null;
         }
 
-        return(keys);
+        return (keys);
     }
 
     /**
@@ -434,32 +435,32 @@ public class JDBCStore
      * currently saved in this Store.  If there are no Sessions,
      * <code>0</code> is returned.
      *
-     * @exception IOException if an input/output error occurred
+     * @throws IOException if an input/output error occurred
      */
     public int getSize() throws IOException {
         int size = 0;
-        String sizeSql = "SELECT COUNT("+sessionIdCol+
-            ") FROM ".concat(sessionTable);
+        String sizeSql = "SELECT COUNT(" + sessionIdCol +
+                ") FROM ".concat(sessionTable);
         Connection _conn = getConnection();
         ResultSet rst = null;
 
-        if(_conn == null)
-            return(size);
+        if (_conn == null)
+            return (size);
 
         try {
-            if(preparedSizeSql == null)
+            if (preparedSizeSql == null)
                 preparedSizeSql = _conn.prepareStatement(sizeSql);
 
             rst = preparedSizeSql.executeQuery();
             if (rst.next())
                 size = rst.getInt(1);
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } finally {
             try {
-                if(rst != null)
+                if (rst != null)
                     rst.close();
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 ;
             }
 
@@ -467,7 +468,7 @@ public class JDBCStore
             _conn = null;
         }
 
-        return(size);
+        return (size);
     }
 
     /**
@@ -476,11 +477,11 @@ public class JDBCStore
      *
      * @param id a value of type <code>String</code>
      * @return the stored <code>Session</code>
-     * @exception ClassNotFoundException if an error occurs
-     * @exception IOException if an input/output error occurred
+     * @throws ClassNotFoundException if an error occurs
+     * @throws IOException            if an input/output error occurred
      */
     public Session load(String id)
-        throws ClassNotFoundException, IOException {
+            throws ClassNotFoundException, IOException {
         ResultSet rst = null;
         Connection _conn = getConnection();
         StandardSession _session = null;
@@ -489,15 +490,15 @@ public class JDBCStore
         ObjectInputStream ois = null;
         BufferedInputStream bis = null;
         Container container = manager.getContainer();
-        String loadSql = "SELECT "+sessionIdCol+
-            ", "+sessionDataCol+" FROM "+sessionTable+
-            " WHERE "+sessionIdCol+" = ?";
+        String loadSql = "SELECT " + sessionIdCol +
+                ", " + sessionDataCol + " FROM " + sessionTable +
+                " WHERE " + sessionIdCol + " = ?";
 
-        if(_conn == null)
-            return(null);
+        if (_conn == null)
+            return (null);
 
         try {
-            if(preparedLoadSql == null)
+            if (preparedLoadSql == null)
                 preparedLoadSql = _conn.prepareStatement(loadSql);
 
             preparedLoadSql.setString(1, id);
@@ -513,19 +514,19 @@ public class JDBCStore
 
                 if (classLoader != null)
                     ois = new CustomObjectInputStream(bis,
-                                                      classLoader);
+                            classLoader);
                 else
                     ois = new ObjectInputStream(bis);
             } else if (debug > 0) {
-                log(getStoreName()+": No persisted data object found");
+                log(getStoreName() + ": No persisted data object found");
             }
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } finally {
             try {
-                if(rst != null)
+                if (rst != null)
                     rst.close();
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 ;
             }
 
@@ -533,7 +534,7 @@ public class JDBCStore
             _conn = null;
         }
 
-        if(ois != null) {
+        if (ois != null) {
             try {
                 _session = (StandardSession) manager.createSession();
                 _session.readObjectData(ois);
@@ -550,11 +551,11 @@ public class JDBCStore
             }
 
             if (debug > 0)
-                log(sm.getString(getStoreName()+".loading",
-                                 id, sessionTable));
+                log(sm.getString(getStoreName() + ".loading",
+                        id, sessionTable));
         }
 
-        return(_session);
+        return (_session);
     }
 
     /**
@@ -563,53 +564,52 @@ public class JDBCStore
      * takes no action.
      *
      * @param id Session identifier of the Session to be removed
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void remove(String id) throws IOException {
         Connection _conn = getConnection();
-        String removeSql = "DELETE FROM "+sessionTable+" WHERE "+
-            sessionIdCol+" = ?";
+        String removeSql = "DELETE FROM " + sessionTable + " WHERE " +
+                sessionIdCol + " = ?";
 
-        if(_conn == null)
+        if (_conn == null)
             return;
 
         try {
-            if(preparedRemoveSql == null)
+            if (preparedRemoveSql == null)
                 preparedRemoveSql = _conn.prepareStatement(removeSql);
 
             preparedRemoveSql.setString(1, id);
             preparedRemoveSql.execute();
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } finally {
             release(_conn);
             _conn = null;
         }
 
         if (debug > 0)
-            log(sm.getString(getStoreName()+".removing", id, sessionTable));
+            log(sm.getString(getStoreName() + ".removing", id, sessionTable));
     }
 
     /**
      * Remove all of the Sessions in this Store.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void clear() throws IOException {
         Connection _conn = getConnection();
         String clearSql = "DELETE FROM ".concat(sessionTable);
 
-        if(_conn == null)
+        if (_conn == null)
             return;
 
         try {
-            if(preparedClearSql == null)
+            if (preparedClearSql == null)
                 preparedClearSql = _conn.prepareStatement(clearSql);
 
             preparedClearSql.execute();
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } finally {
             release(_conn);
             _conn = null;
@@ -620,22 +620,22 @@ public class JDBCStore
      * Save a session to the Store.
      *
      * @param session the session to be stored
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void save(Session session) throws IOException {
-        String saveSql = "INSERT INTO "+sessionTable+" ("+
-            sessionIdCol+", "+
-            sessionDataCol+", "+
-            sessionValidCol+", "+
-            sessionMaxInactiveCol+", "+
-            sessionLastAccessedCol+") VALUES (?, ?, ?, ?, ?)";
+        String saveSql = "INSERT INTO " + sessionTable + " (" +
+                sessionIdCol + ", " +
+                sessionDataCol + ", " +
+                sessionValidCol + ", " +
+                sessionMaxInactiveCol + ", " +
+                sessionLastAccessedCol + ") VALUES (?, ?, ?, ?, ?)";
         Connection _conn = getConnection();
         ObjectOutputStream oos = null;
         ByteArrayOutputStream bos = null;
         ByteArrayInputStream bis = null;
         InputStream in = null;
 
-        if(_conn == null)
+        if (_conn == null)
             return;
 
         // If sessions already exist in DB, remove and insert again.
@@ -647,7 +647,7 @@ public class JDBCStore
             bos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(new BufferedOutputStream(bos));
 
-            ((StandardSession)session).writeObjectData(oos);
+            ((StandardSession) session).writeObjectData(oos);
             oos.close();
 
             byte[] obs = bos.toByteArray();
@@ -655,24 +655,24 @@ public class JDBCStore
             bis = new ByteArrayInputStream(obs, 0, size);
             in = new BufferedInputStream(bis, size);
 
-            if(preparedSaveSql == null)
+            if (preparedSaveSql == null)
                 preparedSaveSql = _conn.prepareStatement(saveSql);
 
             preparedSaveSql.setString(1, session.getId());
             preparedSaveSql.setBinaryStream(2, in, size);
-            preparedSaveSql.setString(3, session.isValid()?"1":"0");
+            preparedSaveSql.setString(3, session.isValid() ? "1" : "0");
             preparedSaveSql.setInt(4, session.getMaxInactiveInterval());
             preparedSaveSql.setLong(5, session.getLastAccessedTime());
             preparedSaveSql.execute();
-        } catch(SQLException e) {
-            log(sm.getString(getStoreName()+".SQLException", e));
+        } catch (SQLException e) {
+            log(sm.getString(getStoreName() + ".SQLException", e));
         } catch (IOException e) {
             ;
         } finally {
-            if(bis != null)
+            if (bis != null)
                 bis.close();
 
-            if(in != null)
+            if (in != null)
                 in.close();
 
             bis = null;
@@ -684,8 +684,8 @@ public class JDBCStore
             _conn = null;
         }
         if (debug > 0)
-            log(sm.getString(getStoreName()+".saving",
-                             session.getId(), sessionTable));
+            log(sm.getString(getStoreName() + ".saving",
+                    session.getId(), sessionTable));
     }
 
     // --------------------------------------------------------- Protected Methods
@@ -697,23 +697,23 @@ public class JDBCStore
      *
      * @return <code>Connection</code> if the connection suceeded
      */
-    protected Connection getConnection(){
+    protected Connection getConnection() {
         try {
-            if(conn == null || conn.isClosed()) {
+            if (conn == null || conn.isClosed()) {
                 Class.forName(driverName);
-                log(sm.getString(getStoreName()+".checkConnectionDBClosed"));
+                log(sm.getString(getStoreName() + ".checkConnectionDBClosed"));
                 conn = DriverManager.getConnection(connString);
                 conn.setAutoCommit(true);
 
-                if(conn == null || conn.isClosed())
-                    log(sm.getString(getStoreName()+".checkConnectionDBReOpenFail"));
+                if (conn == null || conn.isClosed())
+                    log(sm.getString(getStoreName() + ".checkConnectionDBReOpenFail"));
             }
-        } catch (SQLException ex){
-            log(sm.getString(getStoreName()+".checkConnectionSQLException",
-                             ex.toString()));
+        } catch (SQLException ex) {
+            log(sm.getString(getStoreName() + ".checkConnectionSQLException",
+                    ex.toString()));
         } catch (ClassNotFoundException ex) {
-            log(sm.getString(getStoreName()+".checkConnectionClassNotFoundException",
-                             ex.toString()));
+            log(sm.getString(getStoreName() + ".checkConnectionClassNotFoundException",
+                    ex.toString()));
         }
 
         return conn;
@@ -742,20 +742,19 @@ public class JDBCStore
     /**
      * Gracefully terminate everything associated with our db.
      * Called once when this Store is stoping.
-     *
      */
     public void stop() throws LifecycleException {
         super.stop();
 
         // Close and release everything associated with our db.
-        if(conn != null) {
+        if (conn != null) {
             try {
                 conn.commit();
             } catch (SQLException e) {
                 ;
             }
 
-            if( preparedSizeSql != null ) {
+            if (preparedSizeSql != null) {
                 try {
                     preparedSizeSql.close();
                 } catch (SQLException e) {
@@ -763,7 +762,7 @@ public class JDBCStore
                 }
             }
 
-            if( preparedKeysSql != null ) { 
+            if (preparedKeysSql != null) {
                 try {
                     preparedKeysSql.close();
                 } catch (SQLException e) {
@@ -771,7 +770,7 @@ public class JDBCStore
                 }
             }
 
-            if( preparedSaveSql != null ) { 
+            if (preparedSaveSql != null) {
                 try {
                     preparedSaveSql.close();
                 } catch (SQLException e) {
@@ -779,7 +778,7 @@ public class JDBCStore
                 }
             }
 
-            if( preparedClearSql != null ) { 
+            if (preparedClearSql != null) {
                 try {
                     preparedClearSql.close();
                 } catch (SQLException e) {
@@ -787,7 +786,7 @@ public class JDBCStore
                 }
             }
 
-            if( preparedRemoveSql != null ) { 
+            if (preparedRemoveSql != null) {
                 try {
                     preparedRemoveSql.close();
                 } catch (SQLException e) {
@@ -795,7 +794,7 @@ public class JDBCStore
                 }
             }
 
-            if( preparedLoadSql != null ) { 
+            if (preparedLoadSql != null) {
                 try {
                     preparedLoadSql.close();
                 } catch (SQLException e) {

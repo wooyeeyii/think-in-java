@@ -99,18 +99,18 @@ public class Problem1234 {
      * which leads us to the solution of sliding window.
      * Specilly this time we don't care the count od elements inside the window,
      * we want to know the count outside the window.
-     *
+     * <p>
      * Explanation
      * One pass the all frequency of "QWER".
      * Then slide the windon in the string s.
-     *
+     * <p>
      * Imagine that we erase all character inside the window,
      * as we can modyfy it whatever we want,
      * and it will always increase the count outside the window.
-     *
+     * <p>
      * So we can make the whole string balanced,
      * as long as max(count[Q],count[W],count[E],count[R]) <= n / 4.
-     *
+     * <p>
      * Complexity:
      * Time O(N), one pass for counting, one pass for sliding window
      * Space O(1)

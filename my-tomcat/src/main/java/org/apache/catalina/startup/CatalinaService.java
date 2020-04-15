@@ -67,6 +67,7 @@ package org.apache.catalina.startup;
 
 import java.io.File;
 import java.security.Security;
+
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
 import org.apache.commons.digester.Digester;
@@ -188,34 +189,34 @@ public class CatalinaService extends Catalina {
             System.setProperty("catalina.useNaming", "true");
             String value = "org.apache.naming";
             String oldValue =
-                System.getProperty(javax.naming.Context.URL_PKG_PREFIXES);
+                    System.getProperty(javax.naming.Context.URL_PKG_PREFIXES);
             if (oldValue != null) {
                 value = value + ":" + oldValue;
             }
             System.setProperty(javax.naming.Context.URL_PKG_PREFIXES, value);
             System.setProperty(javax.naming.Context.INITIAL_CONTEXT_FACTORY,
-                               "org.apache.naming.java.javaURLContextFactory");
+                    "org.apache.naming.java.javaURLContextFactory");
         }
 
         // If a SecurityManager is being used, set properties for
         // checkPackageAccess() and checkPackageDefinition
-        if( System.getSecurityManager() != null ) {
+        if (System.getSecurityManager() != null) {
             String access = Security.getProperty("package.access");
-            if( access != null && access.length() > 0 )
+            if (access != null && access.length() > 0)
                 access += ",";
             else
                 access = "sun.,";
             Security.setProperty("package.access",
-                access + "org.apache.catalina.,org.apache.jasper.");
+                    access + "org.apache.catalina.,org.apache.jasper.");
             String definition = Security.getProperty("package.definition");
-            if( definition != null && definition.length() > 0 )
+            if (definition != null && definition.length() > 0)
                 definition += ",";
             else
                 definition = "sun.,";
             Security.setProperty("package.definition",
-                // FIX ME package "javax." was removed to prevent HotSpot
-                // fatal internal errors
-                definition + "java.,org.apache.catalina.,org.apache.jasper.");
+                    // FIX ME package "javax." was removed to prevent HotSpot
+                    // fatal internal errors
+                    definition + "java.,org.apache.catalina.,org.apache.jasper.");
         }
 
         // Start the new server
@@ -234,7 +235,7 @@ public class CatalinaService extends Catalina {
 
     }
 
-    /* 
+    /*
      * Load using arguments
      */
     public void load(String args[]) {

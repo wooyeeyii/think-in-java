@@ -1,15 +1,15 @@
 /**
  * 445. Add Two Numbers II
- *
+ * <p>
  * You are given two non-empty linked lists representing two non-negative integers.
  * The most significant digit comes first and each of their nodes contain a single digit.
  * Add the two numbers and return it as a linked list.
- *
+ * <p>
  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
- *
+ * <p>
  * Follow up:
  * What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
- *
+ * <p>
  * Example:
  * Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 8 -> 0 -> 7
@@ -26,27 +26,27 @@ public class Problem445 {
         Stack<Integer> s1 = new Stack<Integer>();
         Stack<Integer> s2 = new Stack<Integer>();
 
-        while(l1 != null) {
+        while (l1 != null) {
             s1.push(l1.val);
             l1 = l1.next;
         }
-        while(l2 != null) {
+        while (l2 != null) {
             s2.push(l2.val);
             l2 = l2.next;
         }
 
         int sum = 0;
         ListNode end = new ListNode(0);
-        while(!s1.empty() || !s2.empty() || sum > 0) {
-            if(!s1.isEmpty()) sum += s1.pop();
-            if(!s2.isEmpty()) sum += s2.pop();
+        while (!s1.empty() || !s2.empty() || sum > 0) {
+            if (!s1.isEmpty()) sum += s1.pop();
+            if (!s2.isEmpty()) sum += s2.pop();
             end.val = sum % 10;
             ListNode head = new ListNode(0);
             head.next = end;
             end = head;
             sum /= 10;
         }
-        return end.val == 0? end.next : end;
+        return end.val == 0 ? end.next : end;
     }
 
     public static void main(String[] args) {
@@ -66,7 +66,7 @@ public class Problem445 {
         n6.next = n7;
 
         ListNode n = problem.addTwoNumbers(n5, n1);
-        while(null != n) {
+        while (null != n) {
             System.out.print(n.val + ", ");
             n = n.next;
         }

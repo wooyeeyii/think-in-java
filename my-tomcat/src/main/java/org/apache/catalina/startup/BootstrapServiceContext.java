@@ -83,12 +83,15 @@ public class BootstrapServiceContext implements DaemonContext {
     public DaemonController getController() {
         return controller;
     }
+
     public void setController(DaemonController controller) {
         this.controller = controller;
     }
+
     public String[] getArguments() {
         return args;
     }
+
     public void setArguments(String[] args) {
         this.args = args;
     }

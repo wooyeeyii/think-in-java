@@ -69,6 +69,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import org.apache.catalina.Cluster;
 import org.apache.catalina.Container;
 import org.apache.catalina.LifecycleException;
@@ -153,16 +154,16 @@ public final class DistributedManager extends PersistentManagerBase {
             bos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(new BufferedOutputStream(bos));
 
-            ((StandardSession)session).writeObjectData(oos);
+            ((StandardSession) session).writeObjectData(oos);
             oos.close();
 
             byte[] obs = bos.toByteArray();
             clusterSender.send(obs);
 
-            if(debug > 0)
-                log("Replicating Session: "+session.getId());
+            if (debug > 0)
+                log("Replicating Session: " + session.getId());
         } catch (IOException e) {
-            log("An error occurred when replicating Session: "+session.getId());
+            log("An error occurred when replicating Session: " + session.getId());
         }
 
         return (session);
@@ -171,16 +172,16 @@ public final class DistributedManager extends PersistentManagerBase {
     /**
      * Start this manager
      *
-     * @exception LifecycleException if an error occurs
+     * @throws LifecycleException if an error occurs
      */
     public void start() throws LifecycleException {
         Container container = getContainer();
         Cluster cluster = null;
 
-        if(container != null)
+        if (container != null)
             cluster = container.getCluster();
 
-        if(cluster != null) {
+        if (cluster != null) {
             this.clusterSender = cluster.getClusterSender(getName());
             this.clusterReceiver = cluster.getClusterReceiver(getName());
         }
@@ -190,7 +191,6 @@ public final class DistributedManager extends PersistentManagerBase {
 
     /**
      * Called from our background thread to process new received Sessions
-     *
      */
     public void processClusterReceiver() {
         Object[] objs = clusterReceiver.getObjects();
@@ -202,10 +202,10 @@ public final class DistributedManager extends PersistentManagerBase {
         byte[] buf = new byte[5000];
         ReplicationWrapper repObj = null;
 
-        for(int i=0; i < objs.length;i++) {
+        for (int i = 0; i < objs.length; i++) {
             try {
                 bis = new ByteArrayInputStream(buf);
-                repObj = (ReplicationWrapper)objs[i];
+                repObj = (ReplicationWrapper) objs[i];
                 buf = repObj.getDataStream();
                 bis = new ByteArrayInputStream(buf, 0, buf.length);
 
@@ -217,7 +217,7 @@ public final class DistributedManager extends PersistentManagerBase {
 
                 if (classLoader != null)
                     ois = new CustomObjectInputStream(bis,
-                                                      classLoader);
+                            classLoader);
                 else
                     ois = new ObjectInputStream(bis);
 
@@ -226,13 +226,13 @@ public final class DistributedManager extends PersistentManagerBase {
                 _session.setManager(this);
 
                 if (debug > 0)
-                    log("Loading replicated session: "+_session.getId());
+                    log("Loading replicated session: " + _session.getId());
             } catch (IOException e) {
-                log("Error occurred when trying to read replicated session: "+
-                    e.toString());
+                log("Error occurred when trying to read replicated session: " +
+                        e.toString());
             } catch (ClassNotFoundException e) {
-                log("Error occurred when trying to read replicated session: "+
-                    e.toString());
+                log("Error occurred when trying to read replicated session: " +
+                        e.toString());
             } finally {
                 if (ois != null) {
                     try {

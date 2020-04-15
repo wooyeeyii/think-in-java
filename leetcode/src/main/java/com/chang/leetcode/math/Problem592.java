@@ -22,7 +22,7 @@ public class Problem592 {
                 Arrays.asList(expression.split("[0-9]+[/][0-9]+"))
                         .stream()
                         .map(s -> {
-                            if(s.equals("-"))
+                            if (s.equals("-"))
                                 return -1;
                             else
                                 return 1;
@@ -38,7 +38,7 @@ public class Problem592 {
 
         Set<Integer> multiples = new HashSet<>();
 
-        fractions.forEach( fraction -> {
+        fractions.forEach(fraction -> {
             String[] f = fraction.split("[/]");
             int numerator = Integer.parseInt(f[0]);
             int denominator = Integer.parseInt(f[1]);
@@ -51,9 +51,8 @@ public class Problem592 {
 
     private Integer lcm(List<Integer> denominators) {
         Integer mul = 1;
-        for(int i=0;i<denominators.size(); i++)
-        {
-            mul= mul / (gcd(mul, denominators.get(i))) * denominators.get(i) ;
+        for (int i = 0; i < denominators.size(); i++) {
+            mul = mul / (gcd(mul, denominators.get(i))) * denominators.get(i);
         }
         return mul;
     }

@@ -81,6 +81,7 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Realm;
 import org.apache.commons.digester.Digester;
@@ -185,7 +186,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      *
      * @param username User's username
      * @param password User's password (clear text)
-     * @param roles Comma-delimited set of roles associated with this user
+     * @param roles    Comma-delimited set of roles associated with this user
      */
     void addUser(String username, String password, String roles) {
 
@@ -203,7 +204,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
 
         // Construct and cache the Principal for this user
         GenericPrincipal principal =
-            new GenericPrincipal(this, username, password, list);
+                new GenericPrincipal(this, username, password, list);
         principals.put(username, principal);
 
     }
@@ -215,10 +216,9 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * failed somewhere in the overall authentication chain.
      *
      * @return <code>true</code> if this method succeeded, or
-     *  <code>false</code> if this <code>LoginModule</code> should be
-     *  ignored
-     *
-     * @exception LoginException if the abort fails
+     * <code>false</code> if this <code>LoginModule</code> should be
+     * ignored
+     * @throws LoginException if the abort fails
      */
     public boolean abort() throws LoginException {
 
@@ -244,10 +244,9 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * succeeded in the overall authentication chain.
      *
      * @return <code>true</code> if the authentication succeeded, or
-     *  <code>false</code> if this <code>LoginModule</code> should be
-     *  ignored
-     *
-     * @exception LoginException if the commit fails
+     * <code>false</code> if this <code>LoginModule</code> should be
+     * ignored
+     * @throws LoginException if the commit fails
      */
     public boolean commit() throws LoginException {
 
@@ -268,13 +267,13 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * Initialize this <code>LoginModule</code> with the specified
      * configuration information.
      *
-     * @param subject The <code>Subject</code> to be authenticated
+     * @param subject         The <code>Subject</code> to be authenticated
      * @param callbackHandler A <code>CallbackHandler</code> for communicating
-     *  with the end user as necessary
-     * @param sharedState State information shared with other
-     *  <code>LoginModule</code> instances
-     * @param options Configuration information for this specific
-     *  <code>LoginModule</code> instance
+     *                        with the end user as necessary
+     * @param sharedState     State information shared with other
+     *                        <code>LoginModule</code> instances
+     * @param options         Configuration information for this specific
+     *                        <code>LoginModule</code> instance
      */
     public void initialize(Subject subject, CallbackHandler callbackHandler,
                            Map sharedState, Map options) {
@@ -300,10 +299,9 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * Phase 1 of authenticating a <code>Subject</code>.
      *
      * @return <code>true</code> if the authentication succeeded, or
-     *  <code>false</code> if this <code>LoginModule</code> should be
-     *  ignored
-     *
-     * @exception LoginException if the authentication fails
+     * <code>false</code> if this <code>LoginModule</code> should be
+     * ignored
+     * @throws LoginException if the authentication fails
      */
     public boolean login() throws LoginException {
 
@@ -321,7 +319,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
             callbackHandler.handle(callbacks);
             username = ((NameCallback) callbacks[0]).getName();
             password =
-                new String(((PasswordCallback) callbacks[1]).getPassword());
+                    new String(((PasswordCallback) callbacks[1]).getPassword());
         } catch (IOException e) {
             throw new LoginException(e.toString());
         } catch (UnsupportedCallbackException e) {
@@ -336,7 +334,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
             return (true);
         } else {
             throw new
-                FailedLoginException("Username or password is incorrect");
+                    FailedLoginException("Username or password is incorrect");
         }
 
     }
@@ -346,9 +344,8 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * Log out this user.
      *
      * @return <code>true</code> in all cases because thie
-     *  <code>LoginModule</code> should not be ignored
-     *
-     * @exception LoginException if logging out failed
+     * <code>LoginModule</code> should not be ignored
+     * @throws LoginException if logging out failed
      */
     public boolean logout() throws LoginException {
 
@@ -413,9 +410,9 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * Return the Principal associated with the specified username and
      * credentials, if there is one; otherwise return <code>null</code>.
      *
-     * @param username Username of the Principal to look up
+     * @param username    Username of the Principal to look up
      * @param credentials Password or other credentials to use in
-     *  authenticating this username
+     *                    authenticating this username
      */
     public Principal authenticate(String username, String credentials) {
 
@@ -428,9 +425,9 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * Return the Principal associated with the specified username and
      * credentials, if there is one; otherwise return <code>null</code>.
      *
-     * @param username Username of the Principal to look up
+     * @param username    Username of the Principal to look up
      * @param credentials Password or other credentials to use in
-     *  authenticating this username
+     *                    authenticating this username
      */
     public Principal authenticate(String username, byte[] credentials) {
 
@@ -445,12 +442,12 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * method described in RFC 2069; otherwise return <code>null</code>.
      *
      * @param username Username of the Principal to look up
-     * @param digest Digest which has been submitted by the client
-     * @param nonce Unique (or supposedly unique) token which has been used
-     * for this request
-     * @param realm Realm name
-     * @param md5a2 Second MD5 digest used to calculate the digest :
-     * MD5(Method + ":" + uri)
+     * @param digest   Digest which has been submitted by the client
+     * @param nonce    Unique (or supposedly unique) token which has been used
+     *                 for this request
+     * @param realm    Realm name
+     * @param md5a2    Second MD5 digest used to calculate the digest :
+     *                 MD5(Method + ":" + uri)
      */
     public Principal authenticate(String username, String digest,
                                   String nonce, String nc, String cnonce,
@@ -467,7 +464,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * client certificates.  If there is none, return <code>null</code>.
      *
      * @param certs Array of client certificates, with the first one in
-     *  the array being the certificate of the client itself.
+     *              the array being the certificate of the client itself.
      */
     public Principal authenticate(X509Certificate certs[]) {
 
@@ -482,7 +479,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
      * <code>false</code>.
      *
      * @param principal Principal for whom the role is to be checked
-     * @param role Security role to be checked
+     * @param role      Security role to be checked
      */
     public boolean hasRole(Principal principal, String role) {
 
@@ -529,7 +526,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
             digester.parse(file);
         } catch (Exception e) {
             log("Error processing configuration file " +
-                file.getAbsolutePath(), e);
+                    file.getAbsolutePath(), e);
             return;
         }
 
@@ -552,7 +549,7 @@ public class JAASMemoryLoginModule implements LoginModule, Realm {
     /**
      * Log a message and associated exception.
      *
-     * @param message The message to be logged
+     * @param message   The message to be logged
      * @param exception The associated exception
      */
     protected void log(String message, Throwable exception) {

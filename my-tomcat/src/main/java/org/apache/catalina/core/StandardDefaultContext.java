@@ -69,6 +69,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.Hashtable;
 import javax.naming.directory.DirContext;
+
 import org.apache.naming.ContextAccessController;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
@@ -97,8 +98,8 @@ import org.apache.catalina.util.StringManager;
  * @version $Revision: 1.8 $ $Date: 2002/09/19 22:55:48 $
  */
 
-public class StandardDefaultContext 
-    implements DefaultContext, LifecycleListener {
+public class StandardDefaultContext
+        implements DefaultContext, LifecycleListener {
 
 
     // ----------------------------------------------------------- Constructors
@@ -134,7 +135,7 @@ public class StandardDefaultContext
      * The set of application parameters defined for this application.
      */
     private ApplicationParameter applicationParameters[] =
-        new ApplicationParameter[0];
+            new ApplicationParameter[0];
 
 
     /**
@@ -154,7 +155,7 @@ public class StandardDefaultContext
      * The descriptive information string for this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.DefaultContext/1.0";
+            "org.apache.catalina.core.DefaultContext/1.0";
 
 
     /**
@@ -168,7 +169,7 @@ public class StandardDefaultContext
      * The Java class name of the default Mapper class for this Container.
      */
     private String mapperClass =
-        "org.apache.catalina.core.StandardContextMapper";
+            "org.apache.catalina.core.StandardContextMapper";
 
 
     /**
@@ -225,7 +226,6 @@ public class StandardDefaultContext
     /**
      * The resources DirContext object with which this Container is
      * associated.
-     *
      */
     DirContext dirContext = null;
 
@@ -258,7 +258,7 @@ public class StandardDefaultContext
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -454,7 +454,7 @@ public class StandardDefaultContext
     public void setLoader(Loader loader) {
         Loader oldLoader = this.loader;
         this.loader = loader;
-        
+
         // Report this property change to interested listeners
         support.firePropertyChange("loader", oldLoader, this.loader);
     }
@@ -479,7 +479,7 @@ public class StandardDefaultContext
     public void setManager(Manager manager) {
         Manager oldManager = this.manager;
         this.manager = manager;
-        
+
         // Report this property change to interested listeners
         support.firePropertyChange("manager", oldManager, this.manager);
     }
@@ -517,10 +517,9 @@ public class StandardDefaultContext
      * Container by throwing an exception.
      *
      * @param container Container to which this Container is being added
-     *  as a child
-     *
-     * @exception IllegalArgumentException if this Container refuses to become
-     *  attached to the specified Container
+     *                  as a child
+     * @throws IllegalArgumentException if this Container refuses to become
+     *                                  attached to the specified Container
      */
     public void setParent(Container container) {
         Container oldParent = this.parent;
@@ -541,7 +540,7 @@ public class StandardDefaultContext
     public void addApplicationListener(String listener) {
 
         synchronized (applicationListeners) {
-            String results[] =new String[applicationListeners.length + 1];
+            String results[] = new String[applicationListeners.length + 1];
             for (int i = 0; i < applicationListeners.length; i++)
                 results[i] = applicationListeners[i];
             results[applicationListeners.length] = listener;
@@ -560,9 +559,9 @@ public class StandardDefaultContext
 
         synchronized (applicationParameters) {
             ApplicationParameter results[] =
-                new ApplicationParameter[applicationParameters.length + 1];
+                    new ApplicationParameter[applicationParameters.length + 1];
             System.arraycopy(applicationParameters, 0, results, 0,
-                             applicationParameters.length);
+                    applicationParameters.length);
             results[applicationParameters.length] = parameter;
             applicationParameters = results;
         }
@@ -615,7 +614,7 @@ public class StandardDefaultContext
     public void addInstanceListener(String listener) {
 
         synchronized (instanceListeners) {
-            String results[] =new String[instanceListeners.length + 1];
+            String results[] = new String[instanceListeners.length + 1];
             for (int i = 0; i < instanceListeners.length; i++)
                 results[i] = instanceListeners[i];
             results[instanceListeners.length] = listener;
@@ -629,21 +628,20 @@ public class StandardDefaultContext
      * Add a new context initialization parameter, replacing any existing
      * value for the specified name.
      *
-     * @param name Name of the new parameter
+     * @param name  Name of the new parameter
      * @param value Value of the new  parameter
-     *
-     * @exception IllegalArgumentException if the name or value is missing,
-     *  or if this context initialization parameter has already been
-     *  registered
+     * @throws IllegalArgumentException if the name or value is missing,
+     *                                  or if this context initialization parameter has already been
+     *                                  registered
      */
     public void addParameter(String name, String value) {
         // Validate the proposed context initialization parameter
         if ((name == null) || (value == null))
             throw new IllegalArgumentException
-                (sm.getString("standardContext.parameter.required"));
+                    (sm.getString("standardContext.parameter.required"));
         if (parameters.get(name) != null)
             throw new IllegalArgumentException
-                (sm.getString("standardContext.parameter.duplicate", name));
+                    (sm.getString("standardContext.parameter.duplicate", name));
 
         // Add this parameter to our defined set
         synchronized (parameters) {
@@ -651,8 +649,8 @@ public class StandardDefaultContext
         }
 
     }
-    
-    
+
+
     /**
      * Add a property change listener to this component.
      *
@@ -711,7 +709,7 @@ public class StandardDefaultContext
     public void addWrapperLifecycle(String listener) {
 
         synchronized (wrapperLifecycles) {
-            String results[] =new String[wrapperLifecycles.length + 1];
+            String results[] = new String[wrapperLifecycles.length + 1];
             for (int i = 0; i < wrapperLifecycles.length; i++)
                 results[i] = wrapperLifecycles[i];
             results[wrapperLifecycles.length] = listener;
@@ -730,7 +728,7 @@ public class StandardDefaultContext
     public void addWrapperListener(String listener) {
 
         synchronized (wrapperListeners) {
-            String results[] =new String[wrapperListeners.length + 1];
+            String results[] = new String[wrapperListeners.length + 1];
             for (int i = 0; i < wrapperListeners.length; i++)
                 results[i] = wrapperListeners[i];
             results[wrapperListeners.length] = listener;
@@ -1028,7 +1026,7 @@ public class StandardDefaultContext
             // Remove the specified parameter
             int j = 0;
             ApplicationParameter results[] =
-                new ApplicationParameter[applicationParameters.length - 1];
+                    new ApplicationParameter[applicationParameters.length - 1];
             for (int i = 0; i < applicationParameters.length; i++) {
                 if (i != n)
                     results[j++] = applicationParameters[i];
@@ -1112,8 +1110,8 @@ public class StandardDefaultContext
         }
 
     }
-    
-    
+
+
     /**
      * Remove a property change listener from this component.
      *
@@ -1274,7 +1272,7 @@ public class StandardDefaultContext
 
             // Send notifications to the listener to add the appropriate 
             // resources
-            ContextEjb [] contextEjb = findEjbs();
+            ContextEjb[] contextEjb = findEjbs();
             for (int i = 0; i < contextEjb.length; i++) {
                 ContextEjb contextEntry = contextEjb[i];
                 if (contextResources.exists(contextEntry.getName())) {
@@ -1282,7 +1280,7 @@ public class StandardDefaultContext
                 }
                 listener.addEjb(contextEntry);
             }
-            ContextEnvironment [] contextEnv = findEnvironments();
+            ContextEnvironment[] contextEnv = findEnvironments();
             for (int i = 0; i < contextEnv.length; i++) {
                 ContextEnvironment contextEntry = contextEnv[i];
                 if (contextResources.exists(contextEntry.getName())) {
@@ -1290,7 +1288,7 @@ public class StandardDefaultContext
                 }
                 listener.addEnvironment(contextEntry);
             }
-            ContextResource [] resources = findResources();
+            ContextResource[] resources = findResources();
             for (int i = 0; i < resources.length; i++) {
                 ContextResource contextEntry = resources[i];
                 if (contextResources.exists(contextEntry.getName())) {
@@ -1298,13 +1296,13 @@ public class StandardDefaultContext
                 }
                 listener.addResource(contextEntry);
             }
-            String [] envRefs = findResourceEnvRefs();
+            String[] envRefs = findResourceEnvRefs();
             for (int i = 0; i < envRefs.length; i++) {
                 if (contextResources.exists(envRefs[i])) {
                     listener.removeResourceEnvRef(envRefs[i]);
                 }
                 listener.addResourceEnvRef
-                    (envRefs[i], findResourceEnvRef(envRefs[i]));
+                        (envRefs[i], findResourceEnvRef(envRefs[i]));
             }
 
             // Setting the context in read only mode
@@ -1338,8 +1336,8 @@ public class StandardDefaultContext
     public void importDefaultContext(Context context) {
 
         if (context instanceof StandardContext) {
-            ((StandardContext)context).setUseNaming(isUseNaming());
-            ((StandardContext)context).setSwallowOutput(getSwallowOutput());
+            ((StandardContext) context).setUseNaming(isUseNaming());
+            ((StandardContext) context).setSwallowOutput(getSwallowOutput());
             if (!contexts.containsKey(context)) {
                 ((StandardContext) context).addLifecycleListener(this);
             }
@@ -1349,38 +1347,38 @@ public class StandardDefaultContext
         context.setCrossContext(getCrossContext());
         context.setReloadable(getReloadable());
 
-        String [] listeners = findApplicationListeners();
-        for( int i = 0; i < listeners.length; i++ ) {
+        String[] listeners = findApplicationListeners();
+        for (int i = 0; i < listeners.length; i++) {
             context.addApplicationListener(listeners[i]);
         }
         listeners = findInstanceListeners();
-        for( int i = 0; i < listeners.length; i++ ) {
+        for (int i = 0; i < listeners.length; i++) {
             context.addInstanceListener(listeners[i]);
         }
-        String [] wrapper = findWrapperListeners();
-        for( int i = 0; i < wrapper.length; i++ ) {
+        String[] wrapper = findWrapperListeners();
+        for (int i = 0; i < wrapper.length; i++) {
             context.addWrapperListener(wrapper[i]);
         }
         wrapper = findWrapperLifecycles();
-        for( int i = 0; i < wrapper.length; i++ ) {
+        for (int i = 0; i < wrapper.length; i++) {
             context.addWrapperLifecycle(wrapper[i]);
         }
-        String [] parameters = findParameters();
-        for( int i = 0; i < parameters.length; i++ ) {
-            context.addParameter(parameters[i],findParameter(parameters[i]));
+        String[] parameters = findParameters();
+        for (int i = 0; i < parameters.length; i++) {
+            context.addParameter(parameters[i], findParameter(parameters[i]));
         }
-        ApplicationParameter [] appParam = findApplicationParameters();
-        for( int i = 0; i < appParam.length; i++ ) {
+        ApplicationParameter[] appParam = findApplicationParameters();
+        for (int i = 0; i < appParam.length; i++) {
             context.addApplicationParameter(appParam[i]);
         }
 
         if (!(context instanceof StandardContext)) {
-            ContextEjb [] contextEjb = findEjbs();
-            for( int i = 0; i < contextEjb.length; i++ ) {
+            ContextEjb[] contextEjb = findEjbs();
+            for (int i = 0; i < contextEjb.length; i++) {
                 context.addEjb(contextEjb[i]);
             }
-            ContextEnvironment [] contextEnv = findEnvironments();
-            for( int i = 0; i < contextEnv.length; i++ ) {
+            ContextEnvironment[] contextEnv = findEnvironments();
+            for (int i = 0; i < contextEnv.length; i++) {
                 context.addEnvironment(contextEnv[i]);
             }
             /*
@@ -1392,14 +1390,14 @@ public class StandardDefaultContext
                 }
             }
             */
-            ContextResource [] resources = findResources();
-            for( int i = 0; i < resources.length; i++ ) {
+            ContextResource[] resources = findResources();
+            for (int i = 0; i < resources.length; i++) {
                 context.addResource(resources[i]);
             }
-            String [] envRefs = findResourceEnvRefs();
-            for( int i = 0; i < envRefs.length; i++ ) {
+            String[] envRefs = findResourceEnvRefs();
+            for (int i = 0; i < envRefs.length; i++) {
                 context.addResourceEnvRef
-                    (envRefs[i],findResourceEnvRef(envRefs[i]));
+                        (envRefs[i], findResourceEnvRef(envRefs[i]));
             }
         }
 

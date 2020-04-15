@@ -36,7 +36,7 @@ public class UseBlockQueue {
             while (isRunning) {
                 try {
                     Integer data = queue.take();
-                    if ( null != data){
+                    if (null != data) {
                         Thread.sleep(1000);
                         System.out.println(Thread.currentThread().getId() + " data is " + data + " done!");
                     }
@@ -48,11 +48,11 @@ public class UseBlockQueue {
         };
 
         ExecutorService es = Executors.newCachedThreadPool();
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             es.execute(new Thread(prodR));
         }
 
-        for(int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) {
             es.execute(new Thread(conT));
         }
     }

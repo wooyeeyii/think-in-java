@@ -39,6 +39,7 @@ public class Problem40 {
         combinationSum2Cur(candidates, 0, target, used, list, result);
         return result;
     }
+
     private void combinationSum2Cur(int[] candidates, int pos, int target, boolean[] used,
                                     List<Integer> list, List<List<Integer>> result) {
         if (0 == target) {
@@ -83,8 +84,9 @@ public class Problem40 {
         combinationSum2CurSample(candidates, 0, target, list, result);
         return result;
     }
+
     private void combinationSum2CurSample(int[] candidates, int pos, int target,
-                                    List<Integer> list, List<List<Integer>> result) {
+                                          List<Integer> list, List<List<Integer>> result) {
         if (0 == target) {
             result.add(new ArrayList<Integer>(list));
         }

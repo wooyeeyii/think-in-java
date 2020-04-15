@@ -70,6 +70,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+
 import org.apache.catalina.Group;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleEvent;
@@ -91,7 +92,7 @@ import org.apache.commons.modeler.Registry;
  */
 
 public class GlobalResourcesLifecycleListener
-    implements LifecycleListener {
+        implements LifecycleListener {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -162,7 +163,7 @@ public class GlobalResourcesLifecycleListener
         } catch (NamingException e) {
             e.printStackTrace();
             throw new IllegalStateException
-                ("No global naming context defined for server");
+                    ("No global naming context defined for server");
         }
 
         // Recurse through the defined global JNDI resources context
@@ -179,17 +180,16 @@ public class GlobalResourcesLifecycleListener
      * Create the MBeans for the interesting global JNDI resources in
      * the specified naming context.
      *
-     * @param prefix Prefix for complete object name paths
+     * @param prefix  Prefix for complete object name paths
      * @param context Context to be scanned
-     *
-     * @exception NamingException if a JNDI exception occurs
+     * @throws NamingException if a JNDI exception occurs
      */
     protected void createMBeans(String prefix, Context context)
-        throws NamingException {
+            throws NamingException {
 
         if (debug >= 1) {
             log("Creating MBeans for Global JNDI Resources in Context '" +
-                prefix + "'");
+                    prefix + "'");
         }
 
         NamingEnumeration bindings = context.listBindings("");
@@ -207,7 +207,7 @@ public class GlobalResourcesLifecycleListener
                     createMBeans(name, (UserDatabase) value);
                 } catch (Exception e) {
                     log("Exception creating UserDatabase MBeans for " + name,
-                        e);
+                            e);
                 }
             }
         }
@@ -218,13 +218,12 @@ public class GlobalResourcesLifecycleListener
     /**
      * Create the MBeans for the specified UserDatabase and its contents.
      *
-     * @param name Complete resource name of this UserDatabase
+     * @param name     Complete resource name of this UserDatabase
      * @param database The UserDatabase to be processed
-     *
-     * @exception Exception if an exception occurs while creating MBeans
+     * @throws Exception if an exception occurs while creating MBeans
      */
     protected void createMBeans(String name, UserDatabase database)
-        throws Exception {
+            throws Exception {
 
         // Create the MBean for the UserDatabase itself
         if (debug >= 2) {
@@ -233,7 +232,7 @@ public class GlobalResourcesLifecycleListener
         }
         if (MBeanUtils.createMBean(database) == null) {
             throw new IllegalArgumentException
-                ("Cannot create UserDatabase MBean for resource " + name);
+                    ("Cannot create UserDatabase MBean for resource " + name);
         }
 
         // Create the MBeans for each defined Role
@@ -245,7 +244,7 @@ public class GlobalResourcesLifecycleListener
             }
             if (MBeanUtils.createMBean(role) == null) {
                 throw new IllegalArgumentException
-                    ("Cannot create Role MBean for role " + role);
+                        ("Cannot create Role MBean for role " + role);
             }
         }
 
@@ -258,7 +257,7 @@ public class GlobalResourcesLifecycleListener
             }
             if (MBeanUtils.createMBean(group) == null) {
                 throw new IllegalArgumentException
-                    ("Cannot create Group MBean for group " + group);
+                        ("Cannot create Group MBean for group " + group);
             }
         }
 
@@ -271,7 +270,7 @@ public class GlobalResourcesLifecycleListener
             }
             if (MBeanUtils.createMBean(user) == null) {
                 throw new IllegalArgumentException
-                    ("Cannot create User MBean for user " + user);
+                        ("Cannot create User MBean for user " + user);
             }
         }
 
@@ -290,11 +289,10 @@ public class GlobalResourcesLifecycleListener
     }
 
 
-
     /**
      * The destination for log messages.
      */
-    protected java.io.PrintStream  stream = System.out;
+    protected java.io.PrintStream stream = System.out;
 
 
     /**
@@ -324,7 +322,7 @@ public class GlobalResourcesLifecycleListener
     /**
      * Log a message and associated exception.
      *
-     * @param message The message to be logged
+     * @param message   The message to be logged
      * @param throwable The exception to be logged
      */
     protected void log(String message, Throwable throwable) {

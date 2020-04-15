@@ -22,7 +22,7 @@ public class Request {
             e.printStackTrace();
             i = -1;
         }
-        for(int j = 0; j < i; j++) {
+        for (int j = 0; j < i; j++) {
             request.append((char) buffer[j]);
         }
         System.out.println(request.toString());
@@ -32,9 +32,9 @@ public class Request {
     private String parseUri(String requestStr) {
         int index1, index2;
         index1 = requestStr.indexOf(' ');
-        if(-1 != index1) {
+        if (-1 != index1) {
             index2 = requestStr.indexOf(' ', index1 + 1);
-            if(-1 != index2) {
+            if (-1 != index2) {
                 return requestStr.substring(index1 + 1, index2);
             }
         }

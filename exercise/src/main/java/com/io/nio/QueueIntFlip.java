@@ -3,10 +3,9 @@ package com.io.nio;
 /**
  * Same as QueueFillCount, except that QueueFlip uses a flip flag to keep track of when the internal writePos has
  * "overflowed" (meaning it goes back to 0). Other than that, the two implementations are very similar in functionality.
- *
+ * <p>
  * One additional difference is that QueueFlip has an available() method, where this is a public variable in
  * QueueFillCount.
- *
  */
 public class QueueIntFlip {
 
@@ -14,7 +13,7 @@ public class QueueIntFlip {
 
     public int capacity = 0;
     public int writePos = 0;
-    public int readPos  = 0;
+    public int readPos = 0;
     public boolean flipped = false;
 
     public QueueIntFlip(int capacity) {
@@ -24,31 +23,31 @@ public class QueueIntFlip {
 
     public void reset() {
         this.writePos = 0;
-        this.readPos  = 0;
-        this.flipped  = false;
+        this.readPos = 0;
+        this.flipped = false;
     }
 
     public int available() {
-        if(!flipped){
+        if (!flipped) {
             return writePos - readPos;
         }
         return capacity - readPos + writePos;
     }
 
     public int remainingCapacity() {
-        if(!flipped){
+        if (!flipped) {
             return capacity - writePos;
         }
         return readPos - writePos;
     }
 
-    public boolean put(int element){
-        if(!flipped){
-            if(writePos == capacity){
+    public boolean put(int element) {
+        if (!flipped) {
+            if (writePos == capacity) {
                 writePos = 0;
                 flipped = true;
 
-                if(writePos < readPos){
+                if (writePos < readPos) {
                     elements[writePos++] = element;
                     return true;
                 } else {
@@ -59,7 +58,7 @@ public class QueueIntFlip {
                 return true;
             }
         } else {
-            if(writePos < readPos ){
+            if (writePos < readPos) {
                 elements[writePos++] = element;
                 return true;
             } else {
@@ -68,16 +67,16 @@ public class QueueIntFlip {
         }
     }
 
-    public int put(int[] newElements, int length){
+    public int put(int[] newElements, int length) {
         int newElementsReadPos = 0;
-        if(!flipped){
+        if (!flipped) {
             //readPos lower than writePos - free sections are:
             //1) from writePos to capacity
             //2) from 0 to readPos
 
-            if(length <= capacity - writePos){
+            if (length <= capacity - writePos) {
                 //new elements fit into top of elements array - copy directly
-                for(; newElementsReadPos < length; newElementsReadPos++){
+                for (; newElementsReadPos < length; newElementsReadPos++) {
                     this.elements[this.writePos++] = newElements[newElementsReadPos];
                 }
 
@@ -86,15 +85,15 @@ public class QueueIntFlip {
                 //new elements must be divided between top and bottom of elements array
 
                 //writing to top
-                for(;this.writePos < capacity; this.writePos++){
+                for (; this.writePos < capacity; this.writePos++) {
                     this.elements[this.writePos] = newElements[newElementsReadPos++];
                 }
 
                 //writing to bottom
                 this.writePos = 0;
-                this.flipped  = true;
+                this.flipped = true;
                 int endPos = Math.min(this.readPos, length - newElementsReadPos);
-                for(; this.writePos < endPos; this.writePos++){
+                for (; this.writePos < endPos; this.writePos++) {
                     this.elements[writePos] = newElements[newElementsReadPos++];
                 }
 
@@ -108,7 +107,7 @@ public class QueueIntFlip {
 
             int endPos = Math.min(this.readPos, this.writePos + length);
 
-            for(; this.writePos < endPos; this.writePos++){
+            for (; this.writePos < endPos; this.writePos++) {
                 this.elements[this.writePos] = newElements[newElementsReadPos++];
             }
 
@@ -118,18 +117,18 @@ public class QueueIntFlip {
 
 
     public int take() {
-        if(!flipped){
-            if(readPos < writePos){
+        if (!flipped) {
+            if (readPos < writePos) {
                 return elements[readPos++];
             } else {
                 return -1;
             }
         } else {
-            if(readPos == capacity){
+            if (readPos == capacity) {
                 readPos = 0;
                 flipped = false;
 
-                if(readPos < writePos){
+                if (readPos < writePos) {
                     return elements[readPos++];
                 } else {
                     return -1;
@@ -140,22 +139,22 @@ public class QueueIntFlip {
         }
     }
 
-    public int take(int[] into, int length){
+    public int take(int[] into, int length) {
         int intoWritePos = 0;
-        if(!flipped){
+        if (!flipped) {
             //writePos higher than readPos - available section is writePos - readPos
 
             int endPos = Math.min(this.writePos, this.readPos + length);
-            for(; this.readPos < endPos; this.readPos++){
+            for (; this.readPos < endPos; this.readPos++) {
                 into[intoWritePos++] = this.elements[this.readPos];
             }
             return intoWritePos;
         } else {
             //readPos higher than writePos - available sections are top + bottom of elements array
 
-            if(length <= capacity - readPos){
+            if (length <= capacity - readPos) {
                 //length is lower than the elements available at the top of the elements array - copy directly
-                for(; intoWritePos < length; intoWritePos++){
+                for (; intoWritePos < length; intoWritePos++) {
                     into[intoWritePos] = this.elements[this.readPos++];
                 }
 
@@ -165,7 +164,7 @@ public class QueueIntFlip {
                 //split copy into a copy from both top and bottom of elements array.
 
                 //copy from top
-                for(; this.readPos < capacity; this.readPos++){
+                for (; this.readPos < capacity; this.readPos++) {
                     into[intoWritePos++] = this.elements[this.readPos];
                 }
 
@@ -173,7 +172,7 @@ public class QueueIntFlip {
                 this.readPos = 0;
                 this.flipped = false;
                 int endPos = Math.min(this.writePos, length - intoWritePos);
-                for(; this.readPos < endPos; this.readPos++){
+                for (; this.readPos < endPos; this.readPos++) {
                     into[intoWritePos++] = this.elements[this.readPos];
                 }
 

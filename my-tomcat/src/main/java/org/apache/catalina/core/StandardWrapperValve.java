@@ -9,6 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Globals;
 import org.apache.catalina.HttpRequest;
@@ -31,7 +32,7 @@ import org.apache.catalina.valves.ValveBase;
  */
 
 final class StandardWrapperValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -53,14 +54,14 @@ final class StandardWrapperValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.StandardWrapperValve/1.0";
+            "org.apache.catalina.core.StandardWrapperValve/1.0";
 
 
     /**
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -83,16 +84,15 @@ final class StandardWrapperValve
      * Invoke the servlet we are managing, respecting the rules regarding
      * servlet lifecycle and SingleThreadModel support.
      *
-     * @param request Request to be processed
-     * @param response Response to be produced
+     * @param request      Request to be processed
+     * @param response     Response to be produced
      * @param valveContext Valve context used to forward to the next Valve
-     *
-     * @exception IOException if an input/output error occurred
-     * @exception ServletException if a servlet error occurred
+     * @throws IOException      if an input/output error occurred
+     * @throws ServletException if a servlet error occurred
      */
     public void invoke(Request request, Response response,
                        ValveContext valveContext)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
         // Initialize local variables we may need
         boolean unavailable = false;
         Throwable throwable = null;
@@ -110,14 +110,14 @@ final class StandardWrapperValve
         // Check for the application being marked unavailable
         if (!((Context) wrapper.getParent()).getAvailable()) {
             hres.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,
-                           sm.getString("standardContext.isUnavailable"));
+                    sm.getString("standardContext.isUnavailable"));
             unavailable = true;
         }
 
         // Check for the servlet being marked unavailable
         if (!unavailable && wrapper.isUnavailable()) {
             log(sm.getString("standardWrapper.isUnavailable",
-                             wrapper.getName()));
+                    wrapper.getName()));
             if (hres == null) {
                 ;       // NOTE - Not much we can do generically
             } else {
@@ -125,8 +125,8 @@ final class StandardWrapperValve
                 if ((available > 0L) && (available < Long.MAX_VALUE))
                     hres.setDateHeader("Retry-After", available);
                 hres.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,
-                               sm.getString("standardWrapper.isUnavailable",
-                                            wrapper.getName()));
+                        sm.getString("standardWrapper.isUnavailable",
+                                wrapper.getName()));
             }
             unavailable = true;
         }
@@ -138,13 +138,13 @@ final class StandardWrapperValve
             }
         } catch (ServletException e) {
             log(sm.getString("standardWrapper.allocateException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
             servlet = null;
         } catch (Throwable e) {
             log(sm.getString("standardWrapper.allocateException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
             servlet = null;
@@ -156,12 +156,12 @@ final class StandardWrapperValve
         } catch (IOException e) {
             sreq.removeAttribute(Globals.JSP_FILE_ATTR);
             log(sm.getString("standardWrapper.acknowledgeException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
         } catch (Throwable e) {
             log(sm.getString("standardWrapper.acknowledgeException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
             servlet = null;
@@ -169,7 +169,7 @@ final class StandardWrapperValve
 
         // Create the filter chain for this request
         ApplicationFilterChain filterChain =
-            createFilterChain(request, servlet);
+                createFilterChain(request, servlet);
 
         // Call the filter chain for this request
         // NOTE: This also calls the servlet's service() method
@@ -186,13 +186,13 @@ final class StandardWrapperValve
         } catch (IOException e) {
             sreq.removeAttribute(Globals.JSP_FILE_ATTR);
             log(sm.getString("standardWrapper.serviceException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
         } catch (UnavailableException e) {
             sreq.removeAttribute(Globals.JSP_FILE_ATTR);
             log(sm.getString("standardWrapper.serviceException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             //            throwable = e;
             //            exception(request, response, e);
             wrapper.unavailable(e);
@@ -200,20 +200,20 @@ final class StandardWrapperValve
             if ((available > 0L) && (available < Long.MAX_VALUE))
                 hres.setDateHeader("Retry-After", available);
             hres.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,
-                           sm.getString("standardWrapper.isUnavailable",
-                                        wrapper.getName()));
+                    sm.getString("standardWrapper.isUnavailable",
+                            wrapper.getName()));
             // Do not save exception in 'throwable', because we
             // do not want to do exception(request, response, e) processing
         } catch (ServletException e) {
             sreq.removeAttribute(Globals.JSP_FILE_ATTR);
             log(sm.getString("standardWrapper.serviceException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
         } catch (Throwable e) {
             sreq.removeAttribute(Globals.JSP_FILE_ATTR);
             log(sm.getString("standardWrapper.serviceException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             throwable = e;
             exception(request, response, e);
         }
@@ -224,7 +224,7 @@ final class StandardWrapperValve
                 filterChain.release();
         } catch (Throwable e) {
             log(sm.getString("standardWrapper.releaseFilters",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             if (throwable == null) {
                 throwable = e;
                 exception(request, response, e);
@@ -238,7 +238,7 @@ final class StandardWrapperValve
             }
         } catch (Throwable e) {
             log(sm.getString("standardWrapper.deallocateException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             if (throwable == null) {
                 throwable = e;
                 exception(request, response, e);
@@ -249,12 +249,12 @@ final class StandardWrapperValve
         // unload it and release this instance
         try {
             if ((servlet != null) &&
-                (wrapper.getAvailable() == Long.MAX_VALUE)) {
+                    (wrapper.getAvailable() == Long.MAX_VALUE)) {
                 wrapper.unload();
             }
         } catch (Throwable e) {
             log(sm.getString("standardWrapper.unloadException",
-                             wrapper.getName()), e);
+                    wrapper.getName()), e);
             if (throwable == null) {
                 throwable = e;
                 exception(request, response, e);
@@ -286,7 +286,7 @@ final class StandardWrapperValve
 
         // Create and initialize a filter chain object
         ApplicationFilterChain filterChain =
-          new ApplicationFilterChain();
+                new ApplicationFilterChain();
         filterChain.setServlet(servlet);
         StandardWrapper wrapper = (StandardWrapper) getContainer();
         filterChain.setSupport(wrapper.getInstanceSupport());
@@ -306,7 +306,7 @@ final class StandardWrapperValve
         String requestPath = null;
         if (request instanceof HttpRequest) {
             HttpServletRequest hreq =
-                (HttpServletRequest) request.getRequest();
+                    (HttpServletRequest) request.getRequest();
             String contextPath = hreq.getContextPath();
             if (contextPath == null)
                 contextPath = "";
@@ -329,7 +329,7 @@ final class StandardWrapperValve
             if (!matchFiltersURL(filterMaps[i], requestPath))
                 continue;
             ApplicationFilterConfig filterConfig = (ApplicationFilterConfig)
-                context.findFilterConfig(filterMaps[i].getFilterName());
+                    context.findFilterConfig(filterMaps[i].getFilterName());
             if (filterConfig == null) {
 //                if (debug >= 2)
 //                    log(" Missing path-mapped filter '" +
@@ -352,7 +352,7 @@ final class StandardWrapperValve
             if (!matchFiltersServlet(filterMaps[i], servletName))
                 continue;
             ApplicationFilterConfig filterConfig = (ApplicationFilterConfig)
-                context.findFilterConfig(filterMaps[i].getFilterName());
+                    context.findFilterConfig(filterMaps[i].getFilterName());
             if (filterConfig == null) {
 //                if (debug >= 2)
 //                    log(" Missing servlet-mapped filter '" +
@@ -381,10 +381,10 @@ final class StandardWrapperValve
      * exceptions that occur during generation of the exception report are
      * logged and swallowed.
      *
-     * @param request The request being processed
-     * @param response The response being generated
+     * @param request   The request being processed
+     * @param response  The response being generated
      * @param exception The exception that occurred (which possibly wraps
-     *  a root cause exception
+     *                  a root cause exception
      */
     private void exception(Request request, Response response,
                            Throwable exception) {
@@ -395,7 +395,7 @@ final class StandardWrapperValve
         ServletResponse sresponse = response.getResponse();
         if (sresponse instanceof HttpServletResponse)
             ((HttpServletResponse) sresponse).setStatus
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
     }
 
@@ -412,13 +412,13 @@ final class StandardWrapperValve
             logger = container.getLogger();
         if (logger != null)
             logger.log("StandardWrapperValve[" + container.getName() + "]: "
-                       + message);
+                    + message);
         else {
             String containerName = null;
             if (container != null)
                 containerName = container.getName();
             System.out.println("StandardWrapperValve[" + containerName
-                               + "]: " + message);
+                    + "]: " + message);
         }
 
     }
@@ -427,7 +427,7 @@ final class StandardWrapperValve
     /**
      * Log a message on the Logger associated with our Container (if any)
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     private void log(String message, Throwable throwable) {
@@ -437,13 +437,13 @@ final class StandardWrapperValve
             logger = container.getLogger();
         if (logger != null)
             logger.log("StandardWrapperValve[" + container.getName() + "]: "
-                       + message, throwable);
+                    + message, throwable);
         else {
             String containerName = null;
             if (container != null)
                 containerName = container.getName();
             System.out.println("StandardWrapperValve[" + containerName
-                               + "]: " + message);
+                    + "]: " + message);
             System.out.println("" + throwable);
             throwable.printStackTrace(System.out);
         }
@@ -456,7 +456,7 @@ final class StandardWrapperValve
      * the requirements of the specified filter mapping; otherwise
      * return <code>false</code>.
      *
-     * @param filterMap Filter mapping being checked
+     * @param filterMap   Filter mapping being checked
      * @param servletName Servlet name being checked
      */
     private boolean matchFiltersServlet(FilterMap filterMap,
@@ -479,7 +479,7 @@ final class StandardWrapperValve
      * matches the requirements of the specified filter mapping;
      * otherwise, return <code>null</code>.
      *
-     * @param filterMap Filter mapping being checked
+     * @param filterMap   Filter mapping being checked
      * @param requestPath Context-relative request path of this request
      */
     private boolean matchFiltersURL(FilterMap filterMap,
@@ -523,7 +523,7 @@ final class StandardWrapperValve
             int period = requestPath.lastIndexOf('.');
             if ((slash >= 0) && (period > slash))
                 return (testPath.equals("*." +
-                                        requestPath.substring(period + 1)));
+                        requestPath.substring(period + 1)));
         }
 
         // Case 4 - "Default" Match

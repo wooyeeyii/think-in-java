@@ -1,20 +1,19 @@
 /**
  * 279. Perfect Squares
  * Medium
- *
+ * <p>
  * Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...)
  * which sum to n.
- *
+ * <p>
  * Example 1:
  * Input: n = 12
  * Output: 3
  * Explanation: 12 = 4 + 4 + 4.
- *
+ * <p>
  * Example 2:
  * Input: n = 13
  * Output: 2
  * Explanation: 13 = 4 + 9.
- *
  */
 package com.chang.leetcode;
 
@@ -26,14 +25,14 @@ public class Problem279 {
     public int numSquaresWrong(int m) {
         int count = 0;
         int n = m;
-        while(n >= 4) {
-            int sq = (int)Math.sqrt(n);
+        while (n >= 4) {
+            int sq = (int) Math.sqrt(n);
             count++;
             n = n - sq * sq;
         }
-        if(0 != n) {
-            for(int i = (int)Math.sqrt(m); i >= 2; i--) {
-                if(0 == m % (i * i)) {
+        if (0 != n) {
+            for (int i = (int) Math.sqrt(m); i >= 2; i--) {
+                if (0 == m % (i * i)) {
                     return m / (i * i);
                 }
             }
@@ -54,9 +53,9 @@ public class Problem279 {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
-        for(int i = 0; i <= n; i++){
-            for(int j = 1; i + j * j <= n; j++){
-                dp[i  + j * j] = Math.min(dp[i + j * j], dp[i] + 1);
+        for (int i = 0; i <= n; i++) {
+            for (int j = 1; i + j * j <= n; j++) {
+                dp[i + j * j] = Math.min(dp[i + j * j], dp[i] + 1);
             }
         }
         return dp[n];

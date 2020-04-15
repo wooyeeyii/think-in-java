@@ -1,17 +1,17 @@
 /**
  * 62. Unique Paths
- *
+ * <p>
  * A robot is located at the top-left corner of a m x n grid
  * (marked 'Start' in the diagram below).
  * The robot can only move either down or right at any point in time.
  * The robot is trying to reach the bottom-right corner of the grid
  * (marked 'Finish' in the diagram below).
  * How many possible unique paths are there?
- *
+ * <p>
  * Note: m and n will be at most 100.
- *
+ * <p>
  * Example 1:
- *
+ * <p>
  * Input: m = 3, n = 2
  * Output: 3
  * Explanation:
@@ -28,8 +28,8 @@ public class Problem62 {
     public int uniquePaths(int m, int n) {
         int[] record = new int[n];
         Arrays.fill(record, 1);
-        for(int i = 1; i < m; i++) {
-            for(int j = 1; j < n; j++) {
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
                 record[j] += record[j - 1];
             }
         }

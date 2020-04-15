@@ -1,12 +1,12 @@
 package com.chang.command.example.tvcontroller;
 
-//ºêÃüÁî
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public interface MacroCommand extends Command {
-	//ºêÃüÁî¾Û¼¯µÄ¹ÜÀí·½·¨
-	//Ìí¼ÓÒ»¸ö³ÉÔ±ÃüÁî
-	public void add(Command cmd);
-	
-	//ºêÃüÁî¾Û¼¯µÄ¹ÜÀí·½·¨
-	//É¾³ıÒ»¸ö³ÉÔ±ÃüÁî
-	public void remove(Command cmd);
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+    public void add(Command cmd);
+
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½
+    //É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+    public void remove(Command cmd);
 }

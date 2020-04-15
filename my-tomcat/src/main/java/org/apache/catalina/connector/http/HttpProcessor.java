@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Globals;
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.Lifecycle;
@@ -43,7 +44,7 @@ import org.apache.catalina.util.StringParser;
  */
 
 final class HttpProcessor
-    implements Lifecycle, Runnable {
+        implements Lifecycle, Runnable {
 
 
     // ----------------------------------------------------- Manifest Constants
@@ -53,7 +54,7 @@ final class HttpProcessor
      * Server information string for this server.
      */
     private static final String SERVER_INFO =
-        ServerInfo.getServerInfo() + " (HTTP/1.1 Connector)";
+            ServerInfo.getServerInfo() + " (HTTP/1.1 Connector)";
 
 
     // ----------------------------------------------------------- Constructors
@@ -63,7 +64,7 @@ final class HttpProcessor
      * Construct a new HttpProcessor associated with the specified connector.
      *
      * @param connector HttpConnector that owns this processor
-     * @param id Identifier of this HttpProcessor (unique per connector)
+     * @param id        Identifier of this HttpProcessor (unique per connector)
      */
     public HttpProcessor(HttpConnector connector, int id) {
 
@@ -77,7 +78,7 @@ final class HttpProcessor
         this.response = (HttpResponseImpl) connector.createResponse();
         this.serverPort = connector.getPort();
         this.threadName =
-          "HttpProcessor[" + connector.getPort() + "][" + id + "]";
+                "HttpProcessor[" + connector.getPort() + "][" + id + "]";
 
     }
 
@@ -119,7 +120,7 @@ final class HttpProcessor
      * The match string for identifying a session ID parameter.
      */
     private static final String match =
-        ";" + Globals.SESSION_PARAMETER_NAME + "=";
+            ";" + Globals.SESSION_PARAMETER_NAME + "=";
 
 
     /**
@@ -168,7 +169,7 @@ final class HttpProcessor
      * The string manager for this package.
      */
     protected StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -233,7 +234,7 @@ final class HttpProcessor
      * Ack string when pipelining HTTP requests.
      */
     private static final byte[] ack =
-        (new String("HTTP/1.1 100 Continue\r\n\r\n")).getBytes();
+            (new String("HTTP/1.1 100 Continue\r\n\r\n")).getBytes();
 
 
     /**
@@ -336,7 +337,6 @@ final class HttpProcessor
     }
 
 
-
     /**
      * Log a message on the Logger associated with our Container (if any)
      *
@@ -354,7 +354,7 @@ final class HttpProcessor
     /**
      * Log a message on the Logger associated with our Container (if any)
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     private void log(String message, Throwable throwable) {
@@ -482,16 +482,15 @@ final class HttpProcessor
      * Parse and record the connection parameters related to this request.
      *
      * @param socket The socket on which we are connected
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a parsing error occurs
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a parsing error occurs
      */
     private void parseConnection(Socket socket)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         if (debug >= 2)
             log("  parseConnection: address=" + socket.getInetAddress() +
-                ", port=" + connector.getPort());
+                    ", port=" + connector.getPort());
         ((HttpRequestImpl) request).setInet(socket.getInetAddress());
         if (proxyPort != 0)
             request.setServerPort(proxyPort);
@@ -507,12 +506,11 @@ final class HttpProcessor
      * request headers.
      *
      * @param input The input stream connected to our socket
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a parsing error occurs
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a parsing error occurs
      */
     private void parseHeaders(SocketInputStream input)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         while (true) {
 
@@ -525,14 +523,14 @@ final class HttpProcessor
                     return;
                 } else {
                     throw new ServletException
-                        (sm.getString("httpProcessor.parseHeaders.colon"));
+                            (sm.getString("httpProcessor.parseHeaders.colon"));
                 }
             }
 
             String value = new String(header.value, 0, header.valueEnd);
             if (debug >= 1)
                 log(" Header " + new String(header.name, 0, header.nameEnd)
-                    + " = " + value);
+                        + " = " + value);
 
             // Set the corresponding request headers
             if (header.equals(DefaultHeaders.AUTHORIZATION_NAME)) {
@@ -543,23 +541,23 @@ final class HttpProcessor
                 Cookie cookies[] = RequestUtil.parseCookieHeader(value);
                 for (int i = 0; i < cookies.length; i++) {
                     if (cookies[i].getName().equals
-                        (Globals.SESSION_COOKIE_NAME)) {
+                            (Globals.SESSION_COOKIE_NAME)) {
                         // Override anything requested in the URL
                         if (!request.isRequestedSessionIdFromCookie()) {
                             // Accept only the first session id cookie
                             request.setRequestedSessionId
-                                (cookies[i].getValue());
+                                    (cookies[i].getValue());
                             request.setRequestedSessionCookie(true);
                             request.setRequestedSessionURL(false);
                             if (debug >= 1)
                                 log(" Requested cookie session id is " +
-                                    ((HttpServletRequest) request.getRequest())
-                                    .getRequestedSessionId());
+                                        ((HttpServletRequest) request.getRequest())
+                                                .getRequestedSessionId());
                         }
                     }
                     if (debug >= 1)
                         log(" Adding cookie " + cookies[i].getName() + "=" +
-                            cookies[i].getValue());
+                                cookies[i].getValue());
                     request.addCookie(cookies[i]);
                 }
             } else if (header.equals(DefaultHeaders.CONTENT_LENGTH_NAME)) {
@@ -568,8 +566,8 @@ final class HttpProcessor
                     n = Integer.parseInt(value);
                 } catch (Exception e) {
                     throw new ServletException
-                        (sm.getString
-                         ("httpProcessor.parseHeaders.contentLength"));
+                            (sm.getString
+                                    ("httpProcessor.parseHeaders.contentLength"));
                 }
                 request.setContentLength(n);
             } else if (header.equals(DefaultHeaders.CONTENT_TYPE_NAME)) {
@@ -597,18 +595,18 @@ final class HttpProcessor
                         int port = 80;
                         try {
                             port =
-                                Integer.parseInt(value.substring(n+1).trim());
+                                    Integer.parseInt(value.substring(n + 1).trim());
                         } catch (Exception e) {
                             throw new ServletException
-                                (sm.getString
-                                 ("httpProcessor.parseHeaders.portNumber"));
+                                    (sm.getString
+                                            ("httpProcessor.parseHeaders.portNumber"));
                         }
                         request.setServerPort(port);
                     }
                 }
             } else if (header.equals(DefaultHeaders.CONNECTION_NAME)) {
                 if (header.valueEquals
-                    (DefaultHeaders.CONNECTION_CLOSE_VALUE)) {
+                        (DefaultHeaders.CONNECTION_CLOSE_VALUE)) {
                     keepAlive = false;
                     response.setHeader("Connection", "close");
                 }
@@ -623,8 +621,8 @@ final class HttpProcessor
                     sendAck = true;
                 else
                     throw new ServletException
-                        (sm.getString
-                         ("httpProcessor.parseHeaders.unknownExpectation"));
+                            (sm.getString
+                                    ("httpProcessor.parseHeaders.unknownExpectation"));
             } else if (header.equals(DefaultHeaders.TRANSFER_ENCODING_NAME)) {
                 //request.setTransferEncoding(header);
             }
@@ -640,14 +638,13 @@ final class HttpProcessor
      * Parse the incoming HTTP request and set the corresponding HTTP request
      * properties.
      *
-     * @param input The input stream attached to our socket
+     * @param input  The input stream attached to our socket
      * @param output The output stream of the socket
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a parsing error occurs
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a parsing error occurs
      */
     private void parseRequest(SocketInputStream input, OutputStream output)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Parse the incoming request line
         input.readRequestLine(requestLine);
@@ -657,10 +654,10 @@ final class HttpProcessor
         status = Constants.PROCESSOR_ACTIVE;
 
         String method =
-            new String(requestLine.method, 0, requestLine.methodEnd);
+                new String(requestLine.method, 0, requestLine.methodEnd);
         String uri = null;
         String protocol = new String(requestLine.protocol, 0,
-                                     requestLine.protocolEnd);
+                requestLine.protocolEnd);
 
         //System.out.println(" Method:" + method + "_ Uri:" + uri
         //                   + "_ Protocol:" + protocol);
@@ -670,7 +667,7 @@ final class HttpProcessor
 
         // Now check if the connection should be kept alive after parsing the
         // request.
-        if ( protocol.equals("HTTP/1.1") ) {
+        if (protocol.equals("HTTP/1.1")) {
             http11 = true;
             sendAck = false;
         } else {
@@ -684,22 +681,22 @@ final class HttpProcessor
         // Validate the incoming request line
         if (method.length() < 1) {
             throw new ServletException
-                (sm.getString("httpProcessor.parseRequest.method"));
+                    (sm.getString("httpProcessor.parseRequest.method"));
         } else if (requestLine.uriEnd < 1) {
             throw new ServletException
-                (sm.getString("httpProcessor.parseRequest.uri"));
+                    (sm.getString("httpProcessor.parseRequest.uri"));
         }
 
         // Parse any query parameters out of the request URI
         int question = requestLine.indexOf("?");
         if (question >= 0) {
             request.setQueryString
-                (new String(requestLine.uri, question + 1,
+                    (new String(requestLine.uri, question + 1,
                             requestLine.uriEnd - question - 1));
             if (debug >= 1)
                 log(" Query string is " +
-                    ((HttpServletRequest) request.getRequest())
-                    .getQueryString());
+                        ((HttpServletRequest) request.getRequest())
+                                .getQueryString());
             uri = new String(requestLine.uri, 0, question);
         } else {
             request.setQueryString(null);
@@ -736,8 +733,8 @@ final class HttpProcessor
             uri = uri.substring(0, semicolon) + rest;
             if (debug >= 1)
                 log(" Requested URL session id is " +
-                    ((HttpServletRequest) request.getRequest())
-                    .getRequestedSessionId());
+                        ((HttpServletRequest) request.getRequest())
+                                .getRequestedSessionId());
         } else {
             request.setRequestedSessionId(null);
             request.setRequestedSessionURL(false);
@@ -766,7 +763,7 @@ final class HttpProcessor
 
         if (debug >= 1)
             log(" Request is '" + method + "' for '" + uri +
-                "' with protocol '" + protocol + "'");
+                    "' with protocol '" + protocol + "'");
 
     }
 
@@ -790,18 +787,18 @@ final class HttpProcessor
 
         // Normalize "/%7E" and "/%7e" at the beginning to "/~"
         if (normalized.startsWith("/%7E") ||
-            normalized.startsWith("/%7e"))
+                normalized.startsWith("/%7e"))
             normalized = "/~" + normalized.substring(4);
 
         // Prevent encoding '%', '/', '.' and '\', which are special reserved
         // characters
         if ((normalized.indexOf("%25") >= 0)
-            || (normalized.indexOf("%2F") >= 0)
-            || (normalized.indexOf("%2E") >= 0)
-            || (normalized.indexOf("%5C") >= 0)
-            || (normalized.indexOf("%2f") >= 0)
-            || (normalized.indexOf("%2e") >= 0)
-            || (normalized.indexOf("%5c") >= 0)) {
+                || (normalized.indexOf("%2F") >= 0)
+                || (normalized.indexOf("%2E") >= 0)
+                || (normalized.indexOf("%5C") >= 0)
+                || (normalized.indexOf("%2f") >= 0)
+                || (normalized.indexOf("%2e") >= 0)
+                || (normalized.indexOf("%5c") >= 0)) {
             return null;
         }
 
@@ -820,7 +817,7 @@ final class HttpProcessor
             if (index < 0)
                 break;
             normalized = normalized.substring(0, index) +
-                normalized.substring(index + 1);
+                    normalized.substring(index + 1);
         }
 
         // Resolve occurrences of "/./" in the normalized path
@@ -829,7 +826,7 @@ final class HttpProcessor
             if (index < 0)
                 break;
             normalized = normalized.substring(0, index) +
-                normalized.substring(index + 2);
+                    normalized.substring(index + 2);
         }
 
         // Resolve occurrences of "/../" in the normalized path
@@ -841,7 +838,7 @@ final class HttpProcessor
                 return (null);  // Trying to go outside our context
             int index2 = normalized.lastIndexOf('/', index - 1);
             normalized = normalized.substring(0, index2) +
-                normalized.substring(index + 3);
+                    normalized.substring(index + 3);
         }
 
         // Declare occurrences of "/..." (three or more dots) to be invalid
@@ -862,7 +859,7 @@ final class HttpProcessor
      * @param output Socket output stream
      */
     private void ackRequest(OutputStream output)
-        throws IOException {
+            throws IOException {
         if (sendAck)
             output.write(ack);
     }
@@ -884,7 +881,7 @@ final class HttpProcessor
         // Construct and initialize the objects we will need
         try {
             input = new SocketInputStream(socket.getInputStream(),
-                                          connector.getBufferSize());
+                    connector.getBufferSize());
         } catch (Exception e) {
             log("process.create", e);
             ok = false;
@@ -903,7 +900,7 @@ final class HttpProcessor
                 response.setStream(output);
                 response.setRequest(request);
                 ((HttpServletResponse) response.getResponse()).setHeader
-                    ("Server", SERVER_INFO);
+                        ("Server", SERVER_INFO);
             } catch (Exception e) {
                 log("process.create", e);
                 ok = false;
@@ -917,7 +914,7 @@ final class HttpProcessor
                     parseConnection(socket);
                     parseRequest(input, output);
                     if (!request.getRequest().getProtocol()
-                        .startsWith("HTTP/0"))
+                            .startsWith("HTTP/0"))
                         parseHeaders(input);
                     if (http11) {
                         // Sending a request acknowledge back to the client if
@@ -938,7 +935,7 @@ final class HttpProcessor
                 ok = false;
                 try {
                     ((HttpServletResponse) response.getResponse())
-                        .sendError(HttpServletResponse.SC_BAD_REQUEST);
+                            .sendError(HttpServletResponse.SC_BAD_REQUEST);
                 } catch (Exception f) {
                     ;
                 }
@@ -947,7 +944,7 @@ final class HttpProcessor
                     try {
                         log("process.parse", e);
                         ((HttpServletResponse) response.getResponse())
-                            .sendError(HttpServletResponse.SC_BAD_REQUEST);
+                                .sendError(HttpServletResponse.SC_BAD_REQUEST);
                     } catch (Exception f) {
                         ;
                     }
@@ -957,7 +954,7 @@ final class HttpProcessor
                 try {
                     log("process.parse", e);
                     ((HttpServletResponse) response.getResponse()).sendError
-                        (HttpServletResponse.SC_BAD_REQUEST);
+                            (HttpServletResponse.SC_BAD_REQUEST);
                 } catch (Exception f) {
                     ;
                 }
@@ -967,7 +964,7 @@ final class HttpProcessor
             // Ask our Container to process this request
             try {
                 ((HttpServletResponse) response).setHeader
-                    ("Date", FastHttpDateFormat.getCurrentDate());
+                        ("Date", FastHttpDateFormat.getCurrentDate());
                 if (ok) {
                     connector.getContainer().invoke(request, response);
                 }
@@ -975,7 +972,7 @@ final class HttpProcessor
                 log("process.invoke", e);
                 try {
                     ((HttpServletResponse) response.getResponse()).sendError
-                        (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                            (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 } catch (Exception f) {
                     ;
                 }
@@ -986,7 +983,7 @@ final class HttpProcessor
                 log("process.invoke", e);
                 try {
                     ((HttpServletResponse) response.getResponse()).sendError
-                        (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                            (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 } catch (Exception f) {
                     ;
                 }
@@ -1022,7 +1019,7 @@ final class HttpProcessor
             // We have to check if the connection closure has been requested
             // by the application or the response stream (in case of HTTP/1.0
             // and keep-alive).
-            if ( "close".equals(response.getHeader("Connection")) ) {
+            if ("close".equals(response.getHeader("Connection"))) {
                 keepAlive = false;
             }
 
@@ -1044,7 +1041,6 @@ final class HttpProcessor
             log("process.invoke", e);
         }
         socket = null;
-
 
 
     }
@@ -1183,13 +1179,13 @@ final class HttpProcessor
     /**
      * Start the background thread we will use for request processing.
      *
-     * @exception LifecycleException if a fatal startup error occurs
+     * @throws LifecycleException if a fatal startup error occurs
      */
     public void start() throws LifecycleException {
 
         if (started)
             throw new LifecycleException
-                (sm.getString("httpProcessor.alreadyStarted"));
+                    (sm.getString("httpProcessor.alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
 
@@ -1201,13 +1197,13 @@ final class HttpProcessor
     /**
      * Stop the background thread we will use for request processing.
      *
-     * @exception LifecycleException if a fatal shutdown error occurs
+     * @throws LifecycleException if a fatal shutdown error occurs
      */
     public void stop() throws LifecycleException {
 
         if (!started)
             throw new LifecycleException
-                (sm.getString("httpProcessor.notStarted"));
+                    (sm.getString("httpProcessor.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 

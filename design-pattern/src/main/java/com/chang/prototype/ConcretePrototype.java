@@ -1,12 +1,12 @@
 package com.chang.prototype;
 
-//具体原型角色
+//锟斤拷锟斤拷原锟酵斤拷色
 public class ConcretePrototype implements Prototype {
-	
-	public Object clone() {
-		//
-		Prototype prototype = new ConcretePrototype();
-		return prototype;
-	}
+
+    public Object clone() {
+        //
+        Prototype prototype = new ConcretePrototype();
+        return prototype;
+    }
 
 }

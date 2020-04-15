@@ -34,7 +34,7 @@ public class GoogleAuthenticator {
 
     public String genSecret(String name) {
         String secret = generateSecretKey();
-        getQRBarcodeURL(name,"testhost", secret);
+        getQRBarcodeURL(name, "testhost", secret);
         return secret;
     }
 

@@ -30,7 +30,6 @@ public class UnionFindTest {
     }
 
 
-
     private void testData1(UnionFind unionFind) {
         unionFind.union(4, 3);
         unionFind.union(3, 8);

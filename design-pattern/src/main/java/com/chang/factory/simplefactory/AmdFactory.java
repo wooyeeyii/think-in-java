@@ -7,14 +7,14 @@ import com.chang.factory.abstractfactory.IMainboard;
 
 public class AmdFactory implements AbstractFactory {
 
-	@Override
-	public ICpu createCpu() {
-		return new AmdCpu(938);
-	}
+    @Override
+    public ICpu createCpu() {
+        return new AmdCpu(938);
+    }
 
-	@Override
-	public IMainboard createMainboard() {
-		return new AmdMainboard(938);
-	}
+    @Override
+    public IMainboard createMainboard() {
+        return new AmdMainboard(938);
+    }
 
 }

@@ -4,20 +4,20 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MyService {
-	
-	private ReentrantLock lock = new ReentrantLock();
-	private Condition condition = lock.newCondition();
-	
-	public void isHeldByCurrentThreadMethod() {
-		try {
-			System.out.println("before lock, isLocked(): " + lock.isLocked());
-			System.out.println("before lock, µ±Ç°Ïß³ÌÊÇ·ñ±£³Ö´ËËø¶¨, isHeldByCurrentThread()£º" + lock.isHeldByCurrentThread());
-			lock.lock();
-			System.out.println("after lock, isLocked(): " + lock.isLocked());
-			System.out.println("after lock, µ±Ç°Ïß³ÌÊÇ·ñ±£³Ö´ËËø¶¨, isHeldByCurrentThread()£º" + lock.isHeldByCurrentThread());
-		} finally {
-			lock.unlock();
-		}
-	}
+
+    private ReentrantLock lock = new ReentrantLock();
+    private Condition condition = lock.newCondition();
+
+    public void isHeldByCurrentThreadMethod() {
+        try {
+            System.out.println("before lock, isLocked(): " + lock.isLocked());
+            System.out.println("before lock, ï¿½ï¿½Ç°ï¿½ß³ï¿½ï¿½Ç·ñ±£³Ö´ï¿½ï¿½ï¿½ï¿½ï¿½, isHeldByCurrentThread()ï¿½ï¿½" + lock.isHeldByCurrentThread());
+            lock.lock();
+            System.out.println("after lock, isLocked(): " + lock.isLocked());
+            System.out.println("after lock, ï¿½ï¿½Ç°ï¿½ß³ï¿½ï¿½Ç·ñ±£³Ö´ï¿½ï¿½ï¿½ï¿½ï¿½, isHeldByCurrentThread()ï¿½ï¿½" + lock.isHeldByCurrentThread());
+        } finally {
+            lock.unlock();
+        }
+    }
 
 }

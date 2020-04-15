@@ -78,6 +78,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.catalina.Authenticator;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
@@ -124,8 +125,8 @@ import org.apache.catalina.valves.ValveBase;
 
 
 public abstract class AuthenticatorBase
-    extends ValveBase
-    implements Authenticator, Lifecycle {
+        extends ValveBase
+        implements Authenticator, Lifecycle {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -190,7 +191,7 @@ public abstract class AuthenticatorBase
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.authenticator.AuthenticatorBase/1.0";
+            "org.apache.catalina.authenticator.AuthenticatorBase/1.0";
 
 
     /**
@@ -216,7 +217,7 @@ public abstract class AuthenticatorBase
      * The string manager for this package.
      */
     protected static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -298,7 +299,7 @@ public abstract class AuthenticatorBase
 
         if (!(container instanceof Context))
             throw new IllegalArgumentException
-                (sm.getString("authenticator.notContext"));
+                    (sm.getString("authenticator.notContext"));
 
         super.setContainer(container);
         this.context = (Context) container;
@@ -394,26 +395,25 @@ public abstract class AuthenticatorBase
      * Enforce the security restrictions in the web application deployment
      * descriptor of our associated Context.
      *
-     * @param request Request to be processed
+     * @param request  Request to be processed
      * @param response Response to be processed
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if thrown by a processing element
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if thrown by a processing element
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // If this is not an HTTP request, do nothing
         if (!(request instanceof HttpRequest) ||
-            !(response instanceof HttpResponse)) {
+                !(response instanceof HttpResponse)) {
             context.invokeNext(request, response);
             return;
         }
         if (!(request.getRequest() instanceof HttpServletRequest) ||
-            !(response.getResponse() instanceof HttpServletResponse)) {
+                !(response.getResponse() instanceof HttpServletResponse)) {
             context.invokeNext(request, response);
             return;
         }
@@ -421,14 +421,14 @@ public abstract class AuthenticatorBase
         HttpResponse hresponse = (HttpResponse) response;
         if (debug >= 1)
             log("Security checking request " +
-                ((HttpServletRequest) request.getRequest()).getMethod() + " " +
-                ((HttpServletRequest) request.getRequest()).getRequestURI());
+                    ((HttpServletRequest) request.getRequest()).getMethod() + " " +
+                    ((HttpServletRequest) request.getRequest()).getRequestURI());
         LoginConfig config = this.context.getLoginConfig();
 
         // Have we got a cached authenticated Principal to record?
         if (cache) {
             Principal principal =
-                ((HttpServletRequest) request.getRequest()).getUserPrincipal();
+                    ((HttpServletRequest) request.getRequest()).getUserPrincipal();
             if (principal == null) {
                 Session session = getSession(hrequest);
                 if (session != null) {
@@ -436,9 +436,9 @@ public abstract class AuthenticatorBase
                     if (principal != null) {
                         if (debug >= 1)
                             log("We have cached auth type " +
-                                session.getAuthType() +
-                                " for principal " +
-                                session.getPrincipal());
+                                    session.getAuthType() +
+                                    " for principal " +
+                                    session.getPrincipal());
                         hrequest.setAuthType(session.getAuthType());
                         hrequest.setUserPrincipal(principal);
                     }
@@ -452,7 +452,7 @@ public abstract class AuthenticatorBase
         String contextPath = this.context.getPath();
         String requestURI = hrequest.getDecodedRequestURI();
         if (requestURI.startsWith(contextPath) &&
-            requestURI.endsWith(Constants.FORM_ACTION)) {
+                requestURI.endsWith(Constants.FORM_ACTION)) {
             if (!authenticate(hrequest, hresponse, config)) {
                 if (debug >= 1)
                     log(" Failed authenticate() test");
@@ -463,7 +463,7 @@ public abstract class AuthenticatorBase
         // Is this request URI subject to a security constraint?
         SecurityConstraint constraint = findConstraint(hrequest);
         if ((constraint == null) /* &&
-            (!Constants.FORM_METHOD.equals(config.getAuthMethod())) */ ) {
+            (!Constants.FORM_METHOD.equals(config.getAuthMethod())) */) {
             if (debug >= 1)
                 log(" Not subject to any constraint");
             context.invokeNext(request, response);
@@ -475,8 +475,8 @@ public abstract class AuthenticatorBase
         // Make sure that constrained resources are not cached by web proxies
         // or browsers as caching can provide a security hole
         if (!(((HttpServletRequest) hrequest.getRequest()).isSecure())) {
-            HttpServletResponse sresponse = 
-                (HttpServletResponse) response.getResponse();
+            HttpServletResponse sresponse =
+                    (HttpServletResponse) response.getResponse();
             sresponse.setHeader("Pragma", "No-cache");
             sresponse.setHeader("Cache-Control", "no-cache");
             sresponse.setDateHeader("Expires", 1);
@@ -535,16 +535,15 @@ public abstract class AuthenticatorBase
      * Return <code>true</code> if this constraint is satisfied and processing
      * should continue, or <code>false</code> otherwise.
      *
-     * @param request Request we are processing
-     * @param response Response we are creating
+     * @param request    Request we are processing
+     * @param response   Response we are creating
      * @param constraint Security constraint we are enforcing
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     protected boolean accessControl(HttpRequest request,
                                     HttpResponse response,
                                     SecurityConstraint constraint)
-        throws IOException {
+            throws IOException {
 
         if (constraint == null)
             return (true);
@@ -553,7 +552,7 @@ public abstract class AuthenticatorBase
         // and the "j_security_check" action
         LoginConfig config = context.getLoginConfig();
         if ((config != null) &&
-            (Constants.FORM_METHOD.equals(config.getAuthMethod()))) {
+                (Constants.FORM_METHOD.equals(config.getAuthMethod()))) {
             String requestURI = request.getDecodedRequestURI();
             String loginPage = context.getPath() + config.getLoginPage();
             if (loginPage.equals(requestURI)) {
@@ -576,13 +575,13 @@ public abstract class AuthenticatorBase
 
         // Which user principal have we already authenticated?
         Principal principal =
-            ((HttpServletRequest) request.getRequest()).getUserPrincipal();
+                ((HttpServletRequest) request.getRequest()).getUserPrincipal();
         if (principal == null) {
             if (debug >= 2)
                 log("  No user authenticated, cannot grant access");
             ((HttpServletResponse) response.getResponse()).sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 sm.getString("authenticator.notAuthenticated"));
+                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                            sm.getString("authenticator.notAuthenticated"));
             return (false);
         }
 
@@ -596,8 +595,8 @@ public abstract class AuthenticatorBase
             return (true);
         if ((roles.length == 0) && (constraint.getAuthConstraint())) {
             ((HttpServletResponse) response.getResponse()).sendError
-                (HttpServletResponse.SC_FORBIDDEN,
-                 sm.getString("authenticator.forbidden"));
+                    (HttpServletResponse.SC_FORBIDDEN,
+                            sm.getString("authenticator.forbidden"));
             return (false); // No listed roles means no access at all
         }
         for (int i = 0; i < roles.length; i++) {
@@ -607,8 +606,8 @@ public abstract class AuthenticatorBase
 
         // Return a "Forbidden" message denying access to this resource
         ((HttpServletResponse) response.getResponse()).sendError
-            (HttpServletResponse.SC_FORBIDDEN,
-             sm.getString("authenticator.forbidden"));
+                (HttpServletResponse.SC_FORBIDDEN,
+                        sm.getString("authenticator.forbidden"));
         return (false);
 
     }
@@ -618,7 +617,7 @@ public abstract class AuthenticatorBase
      * Associate the specified single sign on identifier with the
      * specified Session.
      *
-     * @param ssoId Single sign on identifier
+     * @param ssoId   Single sign on identifier
      * @param session Session to be associated
      */
     protected void associate(String ssoId, Session session) {
@@ -636,17 +635,16 @@ public abstract class AuthenticatorBase
      * constraint has been satisfied, or <code>false</code> if we have
      * created a response challenge already.
      *
-     * @param request Request we are processing
+     * @param request  Request we are processing
      * @param response Response we are creating
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     *
-     * @exception IOException if an input/output error occurs
+     * @param login    Login configuration describing how authentication
+     *                 should be performed
+     * @throws IOException if an input/output error occurs
      */
     protected abstract boolean authenticate(HttpRequest request,
                                             HttpResponse response,
                                             LoginConfig config)
-        throws IOException;
+            throws IOException;
 
 
     /**
@@ -655,16 +653,15 @@ public abstract class AuthenticatorBase
      * was not violated and processing should continue, or <code>false</code>
      * if we have created a response already.
      *
-     * @param request Request we are processing
-     * @param response Response we are creating
+     * @param request    Request we are processing
+     * @param response   Response we are creating
      * @param constraint Security constraint being checked
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     protected boolean checkUserData(HttpRequest request,
                                     HttpResponse response,
                                     SecurityConstraint constraint)
-        throws IOException {
+            throws IOException {
 
         // Is there a relevant user data constraint?
         if (constraint == null) {
@@ -693,9 +690,9 @@ public abstract class AuthenticatorBase
 
         // Initialize variables we need to determine the appropriate action
         HttpServletRequest hrequest =
-            (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpServletResponse hresponse =
-            (HttpServletResponse) response.getResponse();
+                (HttpServletResponse) response.getResponse();
         int redirectPort = request.getConnector().getRedirectPort();
 
         // Is redirecting disabled?
@@ -703,8 +700,8 @@ public abstract class AuthenticatorBase
             if (debug >= 2)
                 log("  SSL redirect is disabled");
             hresponse.sendError
-                (HttpServletResponse.SC_FORBIDDEN,
-                 hrequest.getRequestURI());
+                    (HttpServletResponse.SC_FORBIDDEN,
+                            hrequest.getRequestURI());
             return (false);
         }
 
@@ -714,7 +711,7 @@ public abstract class AuthenticatorBase
         StringBuffer file = new StringBuffer(hrequest.getRequestURI());
         String requestedSessionId = hrequest.getRequestedSessionId();
         if ((requestedSessionId != null) &&
-            hrequest.isRequestedSessionIdFromURL()) {
+                hrequest.isRequestedSessionIdFromURL()) {
             file.append(";jsessionid=");
             file.append(requestedSessionId);
         }
@@ -734,8 +731,8 @@ public abstract class AuthenticatorBase
             if (debug >= 2)
                 log("  Cannot create new URL", e);
             hresponse.sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 hrequest.getRequestURI());
+                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                            hrequest.getRequestURI());
             return (false);
         }
 
@@ -768,8 +765,8 @@ public abstract class AuthenticatorBase
         for (int i = 0; i < constraints.length; i++) {
             if (debug >= 2)
                 log("  Checking constraint '" + constraints[i] +
-                    "' against " + method + " " + uri + " --> " +
-                    constraints[i].included(uri, method));
+                        "' against " + method + " " + uri + " --> " +
+                        constraints[i].included(uri, method));
             if (constraints[i].included(uri, method))
                 return (constraints[i]);
         }
@@ -884,12 +881,12 @@ public abstract class AuthenticatorBase
      * there is no such session and we did not create one.
      *
      * @param request The HttpRequest we are processing
-     * @param create Should we create a session if needed?
+     * @param create  Should we create a session if needed?
      */
     protected Session getSession(HttpRequest request, boolean create) {
 
         HttpServletRequest hreq =
-            (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpSession hses = hreq.getSession(create);
         if (hses == null)
             return (null);
@@ -917,10 +914,10 @@ public abstract class AuthenticatorBase
         Logger logger = context.getLogger();
         if (logger != null)
             logger.log("Authenticator[" + context.getPath() + "]: " +
-                       message);
+                    message);
         else
             System.out.println("Authenticator[" + context.getPath() +
-                               "]: " + message);
+                    "]: " + message);
 
     }
 
@@ -928,7 +925,7 @@ public abstract class AuthenticatorBase
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     protected void log(String message, Throwable throwable) {
@@ -936,10 +933,10 @@ public abstract class AuthenticatorBase
         Logger logger = context.getLogger();
         if (logger != null)
             logger.log("Authenticator[" + context.getPath() + "]: " +
-                       message, throwable);
+                    message, throwable);
         else {
             System.out.println("Authenticator[" + context.getPath() +
-                               "]: " + message);
+                    "]: " + message);
             throwable.printStackTrace(System.out);
         }
 
@@ -952,12 +949,12 @@ public abstract class AuthenticatorBase
      * SingleSignOn valve, if there is one.  Set the appropriate cookie
      * to be returned.
      *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are generating
+     * @param request   The servlet request we are processing
+     * @param response  The servlet response we are generating
      * @param principal The authenticated Principal to be registered
-     * @param authType The authentication type to be registered
-     * @param username Username used to authenticate (if any)
-     * @param password Password used to authenticate (if any)
+     * @param authType  The authentication type to be registered
+     * @param username  Username used to authenticate (if any)
+     * @param password  Password used to authenticate (if any)
      */
     protected void register(HttpRequest request, HttpResponse response,
                             Principal principal, String authType,
@@ -965,7 +962,7 @@ public abstract class AuthenticatorBase
 
         if (debug >= 1)
             log("Authenticated '" + principal.getName() + "' with type '"
-                + authType + "'");
+                    + authType + "'");
 
         // Cache the authentication information in our request
         request.setAuthType(authType);
@@ -992,9 +989,9 @@ public abstract class AuthenticatorBase
         if (sso == null)
             return;
         HttpServletRequest hreq =
-            (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpServletResponse hres =
-            (HttpServletResponse) response.getResponse();
+                (HttpServletResponse) response.getResponse();
         String value = generateSessionId();
         Cookie cookie = new Cookie(Constants.SINGLE_SIGN_ON_COOKIE, value);
         cookie.setMaxAge(-1);
@@ -1024,7 +1021,7 @@ public abstract class AuthenticatorBase
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -1051,23 +1048,23 @@ public abstract class AuthenticatorBase
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
 
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("authenticator.alreadyStarted"));
+                    (sm.getString("authenticator.alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         if ("org.apache.catalina.core.StandardContext".equals
-            (context.getClass().getName())) {
+                (context.getClass().getName())) {
             try {
                 Class paramTypes[] = new Class[0];
                 Object paramValues[] = new Object[0];
                 Method method =
-                    context.getClass().getMethod("getDebug", paramTypes);
+                        context.getClass().getMethod("getDebug", paramTypes);
                 Integer result = (Integer) method.invoke(context, paramValues);
                 setDebug(result.intValue());
             } catch (Exception e) {
@@ -1109,15 +1106,15 @@ public abstract class AuthenticatorBase
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
 
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("authenticator.notStarted"));
+                    (sm.getString("authenticator.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 

@@ -1,15 +1,15 @@
 package com.chang.TemplateMethod;
 
 public class ConcreteTemplate extends AbstractTemplate {
-	
-	@Override
-	public void abstractMethod() {
-		//ÒµÎñÏà¹Ø´úÂë
-	}
-	
-	@Override
-	public void hookMethod() {
-		//ÒµÎñÏà¹Ø´úÂë
-	}
+
+    @Override
+    public void abstractMethod() {
+        //Òµï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+    }
+
+    @Override
+    public void hookMethod() {
+        //Òµï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+    }
 
 }

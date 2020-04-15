@@ -7,7 +7,10 @@ public interface Lifecycle {
     public static final String STOP_EVENT = "stop";
 
     public void addLifecycleListener(LifecycleListener listener);
+
     public void removeLifecycleListener(LifecycleListener listener);
+
     public void start() throws Exception;
+
     public void stop() throws Exception;
 }

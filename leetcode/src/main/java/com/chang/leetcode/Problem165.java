@@ -8,21 +8,21 @@ public class Problem165 {
         int len1 = list1.length;
         int len2 = list2.length;
         int len = Math.min(len1, len2);
-        for(int i = 0; i < len; i++) {
-            if(Integer.parseInt(list1[i]) > Integer.parseInt(list2[i])) {
+        for (int i = 0; i < len; i++) {
+            if (Integer.parseInt(list1[i]) > Integer.parseInt(list2[i])) {
                 return 1;
-            } else if(Integer.parseInt(list1[i]) < Integer.parseInt(list2[i])) {
+            } else if (Integer.parseInt(list1[i]) < Integer.parseInt(list2[i])) {
                 return -1;
             }
         }
 
-        for(int j = len; j < len1; j++) {
-            if(0 != Integer.parseInt(list1[j])) {
+        for (int j = len; j < len1; j++) {
+            if (0 != Integer.parseInt(list1[j])) {
                 return 1;
             }
         }
-        for(int j = len; j < len2; j++) {
-            if(0 != Integer.parseInt(list2[j])) {
+        for (int j = len; j < len2; j++) {
+            if (0 != Integer.parseInt(list2[j])) {
                 return -1;
             }
         }

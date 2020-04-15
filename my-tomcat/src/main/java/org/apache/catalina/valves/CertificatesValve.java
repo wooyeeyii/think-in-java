@@ -73,6 +73,7 @@ import javax.net.ssl.SSLSocket;
 import java.security.cert.CertificateFactory;
 import javax.security.cert.X509Certificate;
 import javax.servlet.ServletException;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Globals;
 import org.apache.catalina.Lifecycle;
@@ -114,7 +115,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public final class CertificatesValve
-    extends ValveBase implements Lifecycle {
+        extends ValveBase implements Lifecycle {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -132,14 +133,14 @@ public final class CertificatesValve
      * underlying data came from the TLS Specification (RFC 2246), Appendix C.
      */
     protected static final CipherData ciphers[] = {
-        new CipherData("_WITH_NULL_", 0),
-        new CipherData("_WITH_IDEA_CBC_", 128),
-        new CipherData("_WITH_RC2_CBC_40_", 40),
-        new CipherData("_WITH_RC4_40_", 40),
-        new CipherData("_WITH_RC4_128_", 128),
-        new CipherData("_WITH_DES40_CBC_", 40),
-        new CipherData("_WITH_DES_CBC_", 56),
-        new CipherData("_WITH_3DES_EDE_CBC_", 168)
+            new CipherData("_WITH_NULL_", 0),
+            new CipherData("_WITH_IDEA_CBC_", 128),
+            new CipherData("_WITH_RC2_CBC_40_", 40),
+            new CipherData("_WITH_RC4_40_", 40),
+            new CipherData("_WITH_RC4_128_", 128),
+            new CipherData("_WITH_DES40_CBC_", 40),
+            new CipherData("_WITH_DES_CBC_", 56),
+            new CipherData("_WITH_3DES_EDE_CBC_", 168)
     };
 
 
@@ -153,7 +154,7 @@ public final class CertificatesValve
      * The descriptive information related to this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.valves.CertificatesValve/1.0";
+            "org.apache.catalina.valves.CertificatesValve/1.0";
 
 
     /**
@@ -166,7 +167,7 @@ public final class CertificatesValve
      * The StringManager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -214,17 +215,16 @@ public final class CertificatesValve
     /**
      * Expose the certificates chain if one was included on this request.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Identify the underlying request if this request was wrapped
         Request actual = request;
@@ -262,7 +262,7 @@ public final class CertificatesValve
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -290,15 +290,15 @@ public final class CertificatesValve
      * methods of this component are utilized.  It should also send a
      * LifecycleEvent of type START_EVENT to any registered listeners.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
 
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("certificatesValve.alreadyStarted"));
+                    (sm.getString("certificatesValve.alreadyStarted"));
         started = true;
         if (debug >= 1)
             log("Starting");
@@ -327,15 +327,15 @@ public final class CertificatesValve
      * instance of this component.  It should also send a LifecycleEvent
      * of type STOP_EVENT to any registered listeners.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
 
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("certificatesValve.notStarted"));
+                    (sm.getString("certificatesValve.notStarted"));
         lifecycle.fireLifecycleEvent(Lifecycle.STOP_EVENT, null);
         started = false;
         if (debug >= 1)
@@ -353,7 +353,7 @@ public final class CertificatesValve
      * Expose the certificate chain for this request, if there is one.
      *
      * @param request The possibly wrapped Request being processed
-     * @param actual The actual underlying Request object
+     * @param actual  The actual underlying Request object
      */
     protected void expose(Request request, Request actual) {
 
@@ -375,7 +375,7 @@ public final class CertificatesValve
         String cipherSuite = session.getCipherSuite();
         if (cipherSuite != null)
             request.getRequest().setAttribute(Globals.CIPHER_SUITE_ATTR,
-                                              cipherSuite);
+                    cipherSuite);
         Integer keySize = (Integer) session.getValue(Globals.KEY_SIZE_ATTR);
         if (keySize == null) {
             int size = 0;
@@ -389,24 +389,24 @@ public final class CertificatesValve
             session.putValue(Globals.KEY_SIZE_ATTR, keySize);
         }
         request.getRequest().setAttribute(Globals.KEY_SIZE_ATTR,
-                                          keySize);
+                keySize);
         //        if (debug >= 2)
         //            log(" expose: Has cipher suite " + cipherSuite +
         //                " and key size " + keySize);
 
         // Expose ssl_session (getId)
-        byte [] ssl_session = session.getId();
-        if (ssl_session!=null) {
-            StringBuffer buf=new StringBuffer("");
-            for(int x=0; x<ssl_session.length; x++) {
-                String digit=Integer.toHexString((int)ssl_session[x]);
-                if (digit.length()<2) buf.append('0');
-                if (digit.length()>2) digit=digit.substring(digit.length()-2);
+        byte[] ssl_session = session.getId();
+        if (ssl_session != null) {
+            StringBuffer buf = new StringBuffer("");
+            for (int x = 0; x < ssl_session.length; x++) {
+                String digit = Integer.toHexString((int) ssl_session[x]);
+                if (digit.length() < 2) buf.append('0');
+                if (digit.length() > 2) digit = digit.substring(digit.length() - 2);
                 buf.append(digit);
             }
             request.getRequest().setAttribute(
-                "javax.servlet.request.ssl_session",
-                buf.toString());
+                    "javax.servlet.request.ssl_session",
+                    buf.toString());
         }
 
         // If we have cached certificates, return them
@@ -415,7 +415,7 @@ public final class CertificatesValve
             //            if (debug >= 2)
             //                log(" expose: Has cached certificates");
             request.getRequest().setAttribute(Globals.CERTIFICATES_ATTR,
-                                              cached);
+                    cached);
             return;
         }
 
@@ -427,15 +427,15 @@ public final class CertificatesValve
             if (jsseCerts == null)
                 jsseCerts = new X509Certificate[0];
             x509Certs =
-              new java.security.cert.X509Certificate[jsseCerts.length];
+                    new java.security.cert.X509Certificate[jsseCerts.length];
             for (int i = 0; i < x509Certs.length; i++) {
                 byte buffer[] = jsseCerts[i].getEncoded();
                 CertificateFactory cf =
-                  CertificateFactory.getInstance("X.509");
+                        CertificateFactory.getInstance("X.509");
                 ByteArrayInputStream stream =
-                  new ByteArrayInputStream(buffer);
+                        new ByteArrayInputStream(buffer);
                 x509Certs[i] = (java.security.cert.X509Certificate)
-                  cf.generateCertificate(stream);
+                        cf.generateCertificate(stream);
             }
         } catch (Throwable t) {
             return;
@@ -447,7 +447,7 @@ public final class CertificatesValve
         session.putValue(Globals.CERTIFICATES_ATTR, x509Certs);
         log(" expose: Exposing converted certificates");
         request.getRequest().setAttribute(Globals.CERTIFICATES_ATTR,
-                                          x509Certs);
+                x509Certs);
 
     }
 
@@ -462,10 +462,10 @@ public final class CertificatesValve
         Logger logger = container.getLogger();
         if (logger != null)
             logger.log("CertificatesValve[" + container.getName() + "]: " +
-                       message);
+                    message);
         else
             System.out.println("CertificatesValve[" + container.getName() +
-                               "]: " + message);
+                    "]: " + message);
 
     }
 
@@ -473,7 +473,7 @@ public final class CertificatesValve
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     protected void log(String message, Throwable throwable) {
@@ -481,10 +481,10 @@ public final class CertificatesValve
         Logger logger = container.getLogger();
         if (logger != null)
             logger.log("CertificatesValve[" + container.getName() + "]: " +
-                       message, throwable);
+                    message, throwable);
         else {
             System.out.println("CertificatesValve[" + container.getName() +
-                               "]: " + message);
+                    "]: " + message);
             throwable.printStackTrace(System.out);
         }
 
@@ -496,7 +496,7 @@ public final class CertificatesValve
      * is doing client certificate authentication.
      *
      * @param request The possibly wrapped Request being processed
-     * @param actual The actual underlying Request object
+     * @param actual  The actual underlying Request object
      */
     protected void verify(Request request, Request actual) {
 

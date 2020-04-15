@@ -67,24 +67,23 @@ import java.io.PrintWriter;
 
 /**
  * The interface that all SSI commands ( SSIEcho, SSIInclude, ...) must implement.
- * 
+ *
  * @author Bip Thelin
  * @author Dan Sandberg
  * @version $Revision: 1.1 $, $Date: 2002/05/24 16:35:39 $
- *
  */
 public interface SSICommand {
     /**
      * Write the output of the command to the writer.
      *
      * @param ssiMediator the ssi mediator
-     * @param paramNames The parameter names
+     * @param paramNames  The parameter names
      * @param paramValues The parameter values
-     * @param writer the writer to output to
+     * @param writer      the writer to output to
      * @throws SSIStopProcessingException if SSI processing should be aborted
      */
     public void process(SSIMediator ssiMediator,
-			String[] paramNames,
-			String[] paramValues,
-			PrintWriter writer) throws SSIStopProcessingException;
+                        String[] paramNames,
+                        String[] paramValues,
+                        PrintWriter writer) throws SSIStopProcessingException;
 }

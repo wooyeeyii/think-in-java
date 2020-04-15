@@ -70,9 +70,9 @@ public class Problem227 {
         Stack<String> stack = new Stack();
         list.forEach(s -> {
             if (isSymbol(s)) {
-                if("(".equals(s)) {
+                if ("(".equals(s)) {
                     stack.push(s);
-                } else if(")".equals(s)) {
+                } else if (")".equals(s)) {
                     while (!"(".equals(stack.peek())) {
                         inverse.add(stack.pop());
                     }
@@ -99,13 +99,13 @@ public class Problem227 {
 
     // calculate
     public int calPoland(List<String> inverse) {
-        if(null == inverse || inverse.size() == 0) {
+        if (null == inverse || inverse.size() == 0) {
             return 0;
         }
 
         Stack<Integer> stack = new Stack();
-        for(int i = 0; i < inverse.size(); i++) {
-            if(isSymbol(inverse.get(i))) {
+        for (int i = 0; i < inverse.size(); i++) {
+            if (isSymbol(inverse.get(i))) {
                 int b = stack.pop();
                 int a = stack.pop();
                 switch (inverse.get(i)) {

@@ -1,24 +1,29 @@
 package com.chang.TemplateMethod;
 
 public abstract class AbstractTemplate {
-	
-	/** Ä£°å·½·¨ **/
-	public  void templateMethod() {
-		//µ÷ÓÃ»ù±¾·½·¨
-		abstractMethod();
-		hookMethod();
-		concreteMethod();
-	}
 
-	//»ù±¾·½·¨µÄÉùÃ÷£¬ÓÉ×ÓÀàÊµÏÖ
-	protected abstract void abstractMethod();
+    /**
+     * Ä£ï¿½å·½ï¿½ï¿½
+     **/
+    public void templateMethod() {
+        //ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        abstractMethod();
+        hookMethod();
+        concreteMethod();
+    }
 
-	// »ù±¾·½·¨£¬ ¿Õ·½·¨
-	protected void hookMethod() {}
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+    protected abstract void abstractMethod();
 
-	// »ù±¾·½·¨£¬ ÒÑÊµÏÖ
-	private void concreteMethod() {
-		//ÒµÎñÏà¹ØµÄ´úÂë
-	};
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õ·ï¿½ï¿½ï¿½
+    protected void hookMethod() {
+    }
+
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Êµï¿½ï¿½
+    private void concreteMethod() {
+        //Òµï¿½ï¿½ï¿½ï¿½ØµÄ´ï¿½ï¿½ï¿½
+    }
+
+    ;
 
 }

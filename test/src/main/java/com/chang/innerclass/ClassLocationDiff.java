@@ -12,35 +12,35 @@ package com.chang.innerclass;
 
 public class ClassLocationDiff {
 
-	private int num = 10;
+    private int num = 10;
 
-	class Inner {
-		String pri = "TTTTTTeeeeessssstttttt";
+    class Inner {
+        String pri = "TTTTTTeeeeessssstttttt";
 
-		public void show() {
-			System.out.println(num);
-		}
-	}
+        public void show() {
+            System.out.println(num);
+        }
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ClassLocationDiff outer = new ClassLocationDiff();
-		outer.method();
+        ClassLocationDiff outer = new ClassLocationDiff();
+        outer.method();
 
-		Inner inner1 = outer.new Inner();
-		inner1.show();
-		System.out.println( inner1.pri);
+        Inner inner1 = outer.new Inner();
+        inner1.show();
+        System.out.println(inner1.pri);
 
-		Inner inner2 = outer.new Inner();
-		System.out.println( inner1 == inner2 );
-	}
+        Inner inner2 = outer.new Inner();
+        System.out.println(inner1 == inner2);
+    }
 
-	public void method() {
-		//找不到符号
-		//show();
+    public void method() {
+        //找不到符号
+        //show();
 
-		Inner i = new Inner();
-		i.show();
-	}
+        Inner i = new Inner();
+        i.show();
+    }
 
 }

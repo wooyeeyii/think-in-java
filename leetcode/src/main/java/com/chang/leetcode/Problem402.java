@@ -38,15 +38,15 @@ public class Problem402 {
         for (int i = 0; i < remain; i++) {
             int pos = findMin(num, start, end);
             char c = num.charAt(pos);
-            if('0' != c) flag = true;
-            if(flag || '0' != c) {
+            if ('0' != c) flag = true;
+            if (flag || '0' != c) {
                 sb.append(c);
             }
             start = pos + 1;
             end++;
         }
 
-        if(sb.length() == 0) {
+        if (sb.length() == 0) {
             return "0";
         }
         return sb.toString();
@@ -55,7 +55,7 @@ public class Problem402 {
     private int findMin(String num, int start, int end) {
         int pos = start;
         for (int i = start; i <= end; i++) {
-            if(num.charAt(i) < num.charAt(pos)) {
+            if (num.charAt(i) < num.charAt(pos)) {
                 pos = i;
             }
         }

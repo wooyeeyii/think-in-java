@@ -1,20 +1,20 @@
 /**
  * 264. Ugly Number II
- *
+ * <p>
  * Write a program to find the n-th ugly number.
- *
+ * <p>
  * Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
- *
+ * <p>
  * Example:
- *
+ * <p>
  * Input: n = 10
  * Output: 12
  * Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
- *
+ * <p>
  * Note:
- *
- *     1 is typically treated as an ugly number.
- *     n does not exceed 1690.
+ * <p>
+ * 1 is typically treated as an ugly number.
+ * n does not exceed 1690.
  */
 package com.chang.leetcode;
 
@@ -23,8 +23,8 @@ public class Problem264 {
     public int nthUglyNumber(int n) {
         int count = 0;
         int res = 1;
-        while(count < n) {
-            if(isUgly(res++)) {
+        while (count < n) {
+            if (isUgly(res++)) {
                 count++;
             }
         }
@@ -32,16 +32,16 @@ public class Problem264 {
     }
 
     public boolean isUgly(int num) {
-        if(0 >= num) {
+        if (0 >= num) {
             return false;
         }
-        while(num % 5 == 0) {
+        while (num % 5 == 0) {
             num = num / 5;
         }
-        while(num % 3 == 0) {
+        while (num % 3 == 0) {
             num = num / 3;
         }
-        while(num % 2 == 0) {
+        while (num % 2 == 0) {
             num = num / 2;
         }
         return 1 == num;

@@ -70,6 +70,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Request;
@@ -197,7 +198,7 @@ public abstract class ResponseWrapper implements Response {
      * Set the "processing inside an include" flag.
      *
      * @param included <code>true</code> if we are currently inside a
-     *  RequestDispatcher.include(), else <code>false</code>
+     *                 RequestDispatcher.include(), else <code>false</code>
      */
     public void setIncluded(boolean included) {
 
@@ -280,7 +281,7 @@ public abstract class ResponseWrapper implements Response {
      * Create and return a ServletOutputStream to write the content
      * associated with this Response.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletOutputStream createOutputStream() throws IOException {
 
@@ -293,7 +294,7 @@ public abstract class ResponseWrapper implements Response {
      * Perform whatever actions are required to flush and close the output
      * stream or writer, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishResponse() throws IOException {
 

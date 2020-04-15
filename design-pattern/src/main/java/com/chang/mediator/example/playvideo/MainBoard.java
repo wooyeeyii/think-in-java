@@ -9,7 +9,7 @@ public class MainBoard implements Mediator {
     private VideoCard videoCard = null;
     //需要知道要交互的同事类——声卡类
     private SoundCard soundCard = null;
-    
+
     public void setCdDriver(CDDriver cdDriver) {
         this.cdDriver = cdDriver;
     }
@@ -28,28 +28,28 @@ public class MainBoard implements Mediator {
 
     @Override
     public void changed(Colleague c) {
-        if(c instanceof CDDriver){
+        if (c instanceof CDDriver) {
             //表示光驱读取数据了
-            this.opeCDDriverReadData((CDDriver)c);
-        }else if(c instanceof CPU){
-            this.opeCPU((CPU)c);
+            this.opeCDDriverReadData((CDDriver) c);
+        } else if (c instanceof CPU) {
+            this.opeCPU((CPU) c);
         }
     }
-    
+
     /**
      * 处理光驱读取数据以后与其他对象的交互
      */
-    private void opeCDDriverReadData(CDDriver cd){
+    private void opeCDDriverReadData(CDDriver cd) {
         //先获取光驱读取的数据
         String data = cd.getData();
         //把这些数据传递给CPU进行处理
         cpu.executeData(data);
     }
-    
+
     /**
      * 处理CPU处理完数据后与其他对象的交互
      */
-    private void opeCPU(CPU cpu){
+    private void opeCPU(CPU cpu) {
         //先获取CPU处理后的数据
         String videoData = cpu.getVideoData();
         String soundData = cpu.getSoundData();

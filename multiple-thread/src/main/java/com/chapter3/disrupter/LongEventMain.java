@@ -14,8 +14,9 @@ public class LongEventMain {
 
         // 参数准备工作
         LongEventFactory eventFactory = new LongEventFactory();
-        int ringBufferSize = 4;
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        int ringBufferSize = 1024;
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+//        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
         /**
          * 1 eventFactory: 消息(event)工厂对象
@@ -42,7 +43,7 @@ public class LongEventMain {
         LongEventProducer producer = new LongEventProducer(ringBuffer);
 
         ByteBuffer bb = ByteBuffer.allocate(8);
-        for (long i = 0; i < 5; i++) {
+        for (long i = 0; i < 1000; i++) {
             bb.putLong(0, i);
             producer.sendData(bb);
         }

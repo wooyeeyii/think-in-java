@@ -1,31 +1,31 @@
 /**
  * 230. Kth Smallest Element in a BST
- *
+ * <p>
  * Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
- *
+ * <p>
  * Note:
  * You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
- *
+ * <p>
  * Example 1:
  * Input: root = [3,1,4,null,2], k = 1
- *    3
- *   / \
- *  1   4
- *   \
- *    2
+ * 3
+ * / \
+ * 1   4
+ * \
+ * 2
  * Output: 1
- *
+ * <p>
  * Example 2:
  * Input: root = [5,3,6,2,4,null,null,1], k = 3
- *        5
- *       / \
- *      3   6
- *     / \
- *    2   4
- *   /
- *  1
+ * 5
+ * / \
+ * 3   6
+ * / \
+ * 2   4
+ * /
+ * 1
  * Output: 3
- *
+ * <p>
  * Follow up:
  * What if the BST is modified (insert/delete operations) often and you need
  * to find the kth smallest frequently? How would you optimize the kthSmallest routine?
@@ -43,7 +43,7 @@ public class Problem230 {
     private Integer res = null;
 
     public int kthSmallest(TreeNode root, int k) {
-        if(null == root || k <= 0) {
+        if (null == root || k <= 0) {
             return 0;
         }
         this.k = k;
@@ -52,17 +52,17 @@ public class Problem230 {
     }
 
     private void preOrderTra(TreeNode node) {
-        if(null != node.left && k > 0) {
+        if (null != node.left && k > 0) {
             preOrderTra(node.left);
         }
         //根节点
         k = k - 1;
-        if(0 == k) {
+        if (0 == k) {
             res = node.val;
             return;
         }
 
-        if(null != node.right && k > 0) {
+        if (null != node.right && k > 0) {
             preOrderTra(node.right);
         }
     }

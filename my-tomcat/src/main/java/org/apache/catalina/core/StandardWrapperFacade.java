@@ -77,7 +77,7 @@ import javax.servlet.ServletContext;
  */
 
 public final class StandardWrapperFacade
-    implements ServletConfig {
+        implements ServletConfig {
 
 
     // ----------------------------------------------------------- Constructors
@@ -114,7 +114,7 @@ public final class StandardWrapperFacade
     public ServletContext getServletContext() {
         ServletContext theContext = config.getServletContext();
         if ((theContext != null) &&
-            (theContext instanceof ApplicationContext))
+                (theContext instanceof ApplicationContext))
             theContext = ((ApplicationContext) theContext).getFacade();
         return (theContext);
     }

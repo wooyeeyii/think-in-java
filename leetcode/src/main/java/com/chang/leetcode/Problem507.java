@@ -1,8 +1,8 @@
 /**
  * 507. Perfect Number
- *
+ * <p>
  * We define the Perfect Number is a positive integer that is equal to the sum of all its positive divisors except itself.
- *
+ * <p>
  * Now, given an integer n, write a function that returns true when it is a perfect number and false when it is not.
  * Example:
  * Input: 28
@@ -15,16 +15,16 @@ package com.chang.leetcode;
 public class Problem507 {
 
     public boolean checkPerfectNumber(int num) {
-        if(0 >= num) return false;
+        if (0 >= num) return false;
 
         long sum = 1;
-        int half = (int)Math.sqrt(num);
-        for(int i = 2; i <= half; i++) {
-            if(0 == num % i) {
+        int half = (int) Math.sqrt(num);
+        for (int i = 2; i <= half; i++) {
+            if (0 == num % i) {
                 sum += (i + num / i);
             }
         }
-        if(num  == half * half) {
+        if (num == half * half) {
             sum -= half;
         }
         return sum == num;

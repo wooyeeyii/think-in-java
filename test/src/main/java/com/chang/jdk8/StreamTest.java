@@ -38,10 +38,10 @@ public class StreamTest {
          * 4.使用collect方法将处理好的stream对象转换为集合对象
          */
         List<Student> result1 = list.stream()
-                .filter(s -> s.getScore()>=90)
+                .filter(s -> s.getScore() >= 90)
                 //.sorted((s1,s2) -> Integer.compare(s2.getScore(), s1.getScore()))
                 //使用Comparator中的comparing方法
-                .sorted(Comparator.comparing(Student :: getScore).reversed())
+                .sorted(Comparator.comparing(Student::getScore).reversed())
                 .collect(Collectors.toList());
         System.out.println("####################");
         System.out.println(result1);

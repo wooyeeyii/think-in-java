@@ -2,18 +2,18 @@ package com.chang.cursor.extrinsiciterator;
 
 public class Test {
 
-    public void operation(){
-        Object[] objArray = {"One","Two","Three","Four","Five","Six"};
-        //´´½¨¾ÛºÏ¶ÔÏó
+    public void operation() {
+        Object[] objArray = {"One", "Two", "Three", "Four", "Five", "Six"};
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ÛºÏ¶ï¿½ï¿½ï¿½
         Aggregate agg = new ConcreteAggregate(objArray);
-        //Ñ­»·Êä³ö¾ÛºÏ¶ÔÏóÖÐµÄÖµ
+        //Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛºÏ¶ï¿½ï¿½ï¿½ï¿½Ðµï¿½Öµ
         MyIterator it = agg.createIterator();
-        while(!it.isDone()){
+        while (!it.isDone()) {
             System.out.println(it.currentItem());
             it.next();
         }
     }
-    
+
     public static void main(String[] args) {
         Test test = new Test();
         test.operation();

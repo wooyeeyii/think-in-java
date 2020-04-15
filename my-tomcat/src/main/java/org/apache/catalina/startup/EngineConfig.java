@@ -82,7 +82,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public final class EngineConfig
-    implements LifecycleListener {
+        implements LifecycleListener {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -104,7 +104,7 @@ public final class EngineConfig
      * The string resources for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -188,7 +188,7 @@ public final class EngineConfig
     /**
      * Log a message on the Logger associated with our Engine (if any)
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     private void log(String message, Throwable throwable) {

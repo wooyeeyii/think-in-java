@@ -73,6 +73,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.DefaultContext;
 import org.apache.catalina.Engine;
@@ -135,8 +136,8 @@ public abstract class ManagerBase implements Manager {
      * The DefaultContext with which this Manager is associated.
      */
     protected DefaultContext defaultContext = null;
-    
-    
+
+
     /**
      * Return the MessageDigest implementation to be used when
      * creating session identifiers.
@@ -208,7 +209,7 @@ public abstract class ManagerBase implements Manager {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -290,8 +291,8 @@ public abstract class ManagerBase implements Manager {
         support.firePropertyChange("defaultContext", oldDefaultContext, this.defaultContext);
 
     }
-    
-    
+
+
     /**
      * Return the debugging detail level for this component.
      */
@@ -332,7 +333,7 @@ public abstract class ManagerBase implements Manager {
                     this.digest = MessageDigest.getInstance(DEFAULT_ALGORITHM);
                 } catch (NoSuchAlgorithmException f) {
                     log(sm.getString("managerBase.digest",
-                                     DEFAULT_ALGORITHM), e);
+                            DEFAULT_ALGORITHM), e);
                     this.digest = null;
                 }
             }
@@ -368,8 +369,8 @@ public abstract class ManagerBase implements Manager {
         boolean oldDistributable = this.distributable;
         this.distributable = distributable;
         support.firePropertyChange("distributable",
-                                   new Boolean(oldDistributable),
-                                   new Boolean(this.distributable));
+                new Boolean(oldDistributable),
+                new Boolean(this.distributable));
 
     }
 
@@ -437,8 +438,8 @@ public abstract class ManagerBase implements Manager {
         int oldMaxInactiveInterval = this.maxInactiveInterval;
         this.maxInactiveInterval = interval;
         support.firePropertyChange("maxInactiveInterval",
-                                   new Integer(oldMaxInactiveInterval),
-                                   new Integer(this.maxInactiveInterval));
+                new Integer(oldMaxInactiveInterval),
+                new Integer(this.maxInactiveInterval));
 
     }
 
@@ -479,7 +480,7 @@ public abstract class ManagerBase implements Manager {
                     } catch (Exception e) {
                         // Fall back to the simple case
                         log(sm.getString("managerBase.random", randomClass),
-                            e);
+                                e);
                         this.random = new java.util.Random();
                         this.random.setSeed(seed);
                     }
@@ -513,7 +514,7 @@ public abstract class ManagerBase implements Manager {
         String oldRandomClass = this.randomClass;
         this.randomClass = randomClass;
         support.firePropertyChange("randomClass", oldRandomClass,
-                                   this.randomClass);
+                this.randomClass);
 
     }
 
@@ -554,8 +555,8 @@ public abstract class ManagerBase implements Manager {
      * method of the returned session.  If a new session cannot be created
      * for any reason, return <code>null</code>.
      *
-     * @exception IllegalStateException if a new session cannot be
-     *  instantiated for any reason
+     * @throws IllegalStateException if a new session cannot be
+     *                               instantiated for any reason
      */
     public Session createSession() {
 
@@ -603,11 +604,10 @@ public abstract class ManagerBase implements Manager {
      * specified session id (if any); otherwise return <code>null</code>.
      *
      * @param id The session id for the session to be returned
-     *
-     * @exception IllegalStateException if a new session cannot be
-     *  instantiated for any reason
-     * @exception IOException if an input/output error occurs while
-     *  processing this request
+     * @throws IllegalStateException if a new session cannot be
+     *                               instantiated for any reason
+     * @throws IOException           if an input/output error occurs while
+     *                               processing this request
      */
     public Session findSession(String id) throws IOException {
 
@@ -706,9 +706,9 @@ public abstract class ManagerBase implements Manager {
      */
     public Engine getEngine() {
         Engine e = null;
-        for (Container c = getContainer(); e == null && c != null ; c = c.getParent()) {
+        for (Container c = getContainer(); e == null && c != null; c = c.getParent()) {
             if (c != null && c instanceof Engine) {
-                e = (Engine)c;
+                e = (Engine) c;
             }
         }
         return e;
@@ -717,6 +717,7 @@ public abstract class ManagerBase implements Manager {
 
     /**
      * Retrieve the JvmRoute for the enclosing Engine.
+     *
      * @return the JvmRoute or null.
      */
     public String getJvmRoute() {
@@ -740,13 +741,13 @@ public abstract class ManagerBase implements Manager {
             logger = container.getLogger();
         if (logger != null)
             logger.log(getName() + "[" + container.getName() + "]: "
-                       + message);
+                    + message);
         else {
             String containerName = null;
             if (container != null)
                 containerName = container.getName();
             System.out.println(getName() + "[" + containerName
-                               + "]: " + message);
+                    + "]: " + message);
         }
 
     }
@@ -755,7 +756,7 @@ public abstract class ManagerBase implements Manager {
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     void log(String message, Throwable throwable) {
@@ -765,13 +766,13 @@ public abstract class ManagerBase implements Manager {
             logger = container.getLogger();
         if (logger != null)
             logger.log(getName() + "[" + container.getName() + "] "
-                       + message, throwable);
+                    + message, throwable);
         else {
             String containerName = null;
             if (container != null)
                 containerName = container.getName();
             System.out.println(getName() + "[" + containerName
-                               + "]: " + message);
+                    + "]: " + message);
             throwable.printStackTrace(System.out);
         }
 

@@ -77,6 +77,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.UnrecoverableKeyException;
 import java.security.KeyManagementException;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Container;
 import org.apache.catalina.Lifecycle;
@@ -103,7 +104,7 @@ import org.apache.catalina.util.StringManager;
 
 
 public final class HttpConnector
-    implements Connector, Lifecycle, Runnable {
+        implements Connector, Lifecycle, Runnable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -168,7 +169,7 @@ public final class HttpConnector
      * Descriptive information about this Connector implementation.
      */
     private static final String info =
-        "org.apache.catalina.connector.http10.HttpConnector/1.0";
+            "org.apache.catalina.connector.http10.HttpConnector/1.0";
 
 
     /**
@@ -263,7 +264,7 @@ public final class HttpConnector
      * The string manager for this package.
      */
     private StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -816,7 +817,7 @@ public final class HttpConnector
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     private void log(String message, Throwable throwable) {
@@ -861,22 +862,21 @@ public final class HttpConnector
      * address has been specified, the socket will be opened only on that
      * address; otherwise it will be opened on all addresses.
      *
-     * @exception IOException                input/output or network error
-     * @exception KeyStoreException          error instantiating the
-     *                                       KeyStore from file (SSL only)
-     * @exception NoSuchAlgorithmException   KeyStore algorithm unsupported
-     *                                       by current provider (SSL only)
-     * @exception CertificateException       general certificate error (SSL only)
-     * @exception UnrecoverableKeyException  internal KeyStore problem with
-     *                                       the certificate (SSL only)
-     * @exception KeyManagementException     problem in the key management
-     *                                       layer (SSL only)
+     * @throws IOException               input/output or network error
+     * @throws KeyStoreException         error instantiating the
+     *                                   KeyStore from file (SSL only)
+     * @throws NoSuchAlgorithmException  KeyStore algorithm unsupported
+     *                                   by current provider (SSL only)
+     * @throws CertificateException      general certificate error (SSL only)
+     * @throws UnrecoverableKeyException internal KeyStore problem with
+     *                                   the certificate (SSL only)
+     * @throws KeyManagementException    problem in the key management
+     *                                   layer (SSL only)
      */
     private ServerSocket open()
-    throws IOException, KeyStoreException, NoSuchAlgorithmException,
-           CertificateException, UnrecoverableKeyException,
-           KeyManagementException
-    {
+            throws IOException, KeyStoreException, NoSuchAlgorithmException,
+            CertificateException, UnrecoverableKeyException,
+            KeyManagementException {
 
         // Acquire the server socket factory for this Connector
         ServerSocketFactory factory = getFactory();
@@ -889,7 +889,7 @@ public final class HttpConnector
 
         // Open a server socket on the specified address
         InetAddress[] addresses =
-            InetAddress.getAllByName(InetAddress.getLocalHost().getHostName());
+                InetAddress.getAllByName(InetAddress.getLocalHost().getHostName());
         int i;
         for (i = 0; i < addresses.length; i++) {
             if (addresses[i].getHostAddress().equals(address))
@@ -1008,7 +1008,7 @@ public final class HttpConnector
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -1034,12 +1034,12 @@ public final class HttpConnector
      * Initialize this connector (create ServerSocket here!)
      */
     public void initialize()
-    throws LifecycleException {
+            throws LifecycleException {
         if (initialized)
-            throw new LifecycleException (
-                sm.getString("httpConnector.alreadyInitialized"));
+            throw new LifecycleException(
+                    sm.getString("httpConnector.alreadyInitialized"));
 
-        this.initialized=true;
+        this.initialized = true;
         Exception eRethrow = null;
 
         // Establish a server socket on the specified port
@@ -1065,7 +1065,7 @@ public final class HttpConnector
             eRethrow = kme;
         }
 
-        if ( eRethrow != null )
+        if (eRethrow != null)
             throw new LifecycleException(threadName + ".open", eRethrow);
 
     }
@@ -1073,14 +1073,14 @@ public final class HttpConnector
     /**
      * Begin processing requests via this Connector.
      *
-     * @exception LifecycleException if a fatal startup error occurs
+     * @throws LifecycleException if a fatal startup error occurs
      */
     public void start() throws LifecycleException {
 
         // Validate and update our current state
         if (started)
             throw new LifecycleException
-                (sm.getString("httpConnector.alreadyStarted"));
+                    (sm.getString("httpConnector.alreadyStarted"));
         threadName = "HttpConnector[" + port + "]";
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
@@ -1102,14 +1102,14 @@ public final class HttpConnector
     /**
      * Terminate processing requests via this Connector.
      *
-     * @exception LifecycleException if a fatal shutdown error occurs
+     * @throws LifecycleException if a fatal shutdown error occurs
      */
     public void stop() throws LifecycleException {
 
         // Validate and update our current state
         if (!started)
             throw new LifecycleException
-                (sm.getString("httpConnector.notStarted"));
+                    (sm.getString("httpConnector.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 

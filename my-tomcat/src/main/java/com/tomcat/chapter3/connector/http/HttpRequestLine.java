@@ -11,7 +11,7 @@ final class HttpRequestLine {
 
     public HttpRequestLine() {
         this(new char[INITIAL_METHOD_SIZE], 0, new char[INITIAL_URI_SIZE], 0,
-             new char[INITIAL_PROTOCOL_SIZE], 0);
+                new char[INITIAL_PROTOCOL_SIZE], 0);
     }
 
     public HttpRequestLine(char[] method, int methodEnd,
@@ -64,7 +64,7 @@ final class HttpRequestLine {
             for (int i = 0; i < end; i++) {
                 if (uri[i + pos] != buf[i])
                     break;
-                if (i == (end-1))
+                if (i == (end - 1))
                     return pos;
             }
             pos++;
@@ -83,7 +83,7 @@ final class HttpRequestLine {
      * Returns the index of a character in the value.
      */
     public int indexOf(char c, int start) {
-        for (int i=start; i<uriEnd; i++) {
+        for (int i = start; i < uriEnd; i++) {
             if (uri[i] == c)
                 return i;
         }

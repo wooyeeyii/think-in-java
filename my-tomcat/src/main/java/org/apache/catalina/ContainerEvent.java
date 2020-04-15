@@ -76,7 +76,7 @@ import java.util.EventObject;
  */
 
 public final class ContainerEvent
-    extends EventObject {
+        extends EventObject {
 
 
     /**
@@ -101,8 +101,8 @@ public final class ContainerEvent
      * Construct a new ContainerEvent with the specified parameters.
      *
      * @param container Container on which this event occurred
-     * @param type Event type
-     * @param data Event data
+     * @param type      Event type
+     * @param data      Event data
      */
     public ContainerEvent(Container container, String type, Object data) {
 

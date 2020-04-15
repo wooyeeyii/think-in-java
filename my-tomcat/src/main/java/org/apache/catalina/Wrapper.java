@@ -190,7 +190,7 @@ public interface Wrapper extends Container {
     /**
      * Add a new servlet initialization parameter for this servlet.
      *
-     * @param name Name of this initialization parameter to add
+     * @param name  Name of this initialization parameter to add
      * @param value Value of this initialization parameter to add
      */
     public void addInitParameter(String name, String value);
@@ -208,8 +208,8 @@ public interface Wrapper extends Container {
      * Add a new security role reference record to the set of records for
      * this servlet.
      *
-     * @param name Role name used within this servlet
-     * @param link Role name used within the web application
+     * @param name        Role name used within this servlet
+     * @param link        Role name used within the web application
      * @param description Description of this security role reference
      */
     public void addSecurityReference(String name, String link);
@@ -224,9 +224,9 @@ public interface Wrapper extends Container {
      * that this instance is not allocated again until it is deallocated by a
      * call to <code>deallocate()</code>.
      *
-     * @exception ServletException if the servlet init() method threw
-     *  an exception
-     * @exception ServletException if a loading error occurs
+     * @throws ServletException if the servlet init() method threw
+     *                          an exception
+     * @throws ServletException if a loading error occurs
      */
     public Servlet allocate() throws ServletException;
 
@@ -237,8 +237,7 @@ public interface Wrapper extends Container {
      * no action is actually required.
      *
      * @param servlet The servlet to be returned
-     *
-     * @exception ServletException if a deallocation error occurs
+     * @throws ServletException if a deallocation error occurs
      */
     public void deallocate(Servlet servlet) throws ServletException;
 
@@ -281,9 +280,9 @@ public interface Wrapper extends Container {
      * load servlets that are marked in the deployment descriptor to be loaded
      * at server startup time.
      *
-     * @exception ServletException if the servlet init() method threw
-     *  an exception
-     * @exception ServletException if some other loading problem occurs
+     * @throws ServletException if the servlet init() method threw
+     *                          an exception
+     * @throws ServletException if some other loading problem occurs
      */
     public void load() throws ServletException;
 
@@ -317,7 +316,7 @@ public interface Wrapper extends Container {
      * for the specified amount of time.
      *
      * @param unavailable The exception that occurred, or <code>null</code>
-     *  to mark this servlet as permanently unavailable
+     *                    to mark this servlet as permanently unavailable
      */
     public void unavailable(UnavailableException unavailable);
 
@@ -329,7 +328,7 @@ public interface Wrapper extends Container {
      * prior to reloading all of the classes from the Loader associated with
      * our Loader's repository.
      *
-     * @exception ServletException if an unload error occurs
+     * @throws ServletException if an unload error occurs
      */
     public void unload() throws ServletException;
 

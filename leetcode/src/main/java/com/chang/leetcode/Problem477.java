@@ -1,11 +1,11 @@
 /**
  * 477. Total Hamming Distance
- *
+ * <p>
  * The Hamming distance between two integers is the number of positions
  * at which the corresponding bits are different.
- *
+ * <p>
  * Now your job is to find the total Hamming distance between all pairs of the given numbers.
- *
+ * <p>
  * Example:
  * Input: 4, 14, 2
  * Output: 6
@@ -23,13 +23,14 @@ public class Problem477 {
     // Time Limit Exceeded
     public int totalHammingDistanceSlow(int[] nums) {
         int count = 0;
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = i; j < nums.length; j++) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
                 count += countOnes(nums[i] ^ nums[j]);
             }
         }
         return count;
     }
+
     private int countOnes(int n) {
         int count = 0;
         while (n > 0) {
@@ -60,7 +61,6 @@ public class Problem477 {
         int[] nums1 = new int[]{4, 14, 2};
         System.out.println(6 == problem.totalHammingDistance(nums1));
     }
-
 
 
 }

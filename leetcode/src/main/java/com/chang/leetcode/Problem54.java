@@ -39,28 +39,28 @@ public class Problem54 {
         int rows = matrix.length;
         int cols = matrix[0].length;
         for (int i = 0; i < Math.min(rows, cols) / 2; i++) {
-            for (int j = i; j <=cols - 1 - i; j++) {
+            for (int j = i; j <= cols - 1 - i; j++) {
                 result.add(matrix[i][j]);
             }
-            for(int j = i + 1; j <= rows - 1 - i; j++) {
-                result.add(matrix[j][cols-1-i]);
+            for (int j = i + 1; j <= rows - 1 - i; j++) {
+                result.add(matrix[j][cols - 1 - i]);
             }
-            for(int j = cols - 2 - i; j >= i; j--) {
+            for (int j = cols - 2 - i; j >= i; j--) {
                 result.add(matrix[rows - 1 - i][j]);
             }
-            for(int j = rows - 2 - i; j > i; j--) {
+            for (int j = rows - 2 - i; j > i; j--) {
                 result.add(matrix[j][i]);
             }
         }
         // 可能还剩一行或一列
-        if(cols >= rows && 0 != rows % 2) {
+        if (cols >= rows && 0 != rows % 2) {
             int start = rows / 2;
             for (int j = start; j <= cols - 1 - start; j++) {
                 result.add(matrix[start][j]);
             }
-        } else if(rows > cols && 0 != cols % 2) {
+        } else if (rows > cols && 0 != cols % 2) {
             int start = cols / 2;
-            for(int j = start; j <= rows - 1 - start; j++) {
+            for (int j = start; j <= rows - 1 - start; j++) {
                 result.add(matrix[j][start]);
             }
         }

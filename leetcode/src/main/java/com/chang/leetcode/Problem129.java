@@ -1,30 +1,30 @@
 /**
  * 129. Sum Root to Leaf Numbers
- *
+ * <p>
  * Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
  * An example is the root-to-leaf path 1->2->3 which represents the number 123.
  * Find the total sum of all root-to-leaf numbers.
- *
+ * <p>
  * Note: A leaf is a node with no children.
-
+ * <p>
  * Example:
  * Input: [1,2,3]
- *     1
- *    / \
- *   2   3
+ * 1
+ * / \
+ * 2   3
  * Output: 25
  * Explanation:
  * The root-to-leaf path 1->2 represents the number 12.
  * The root-to-leaf path 1->3 represents the number 13.
  * Therefore, sum = 12 + 13 = 25.
- *
+ * <p>
  * Example 2:
- *
+ * <p>
  * Input: [4,9,0,5,1]
- *     4
- *    / \
- *   9   0
- *  / \
+ * 4
+ * / \
+ * 9   0
+ * / \
  * 5   1
  * Output: 1026
  * Explanation:
@@ -48,14 +48,14 @@ public class Problem129 {
      * 自下而上
      */
     public int sumNumbersBottomUp(TreeNode root) {
-        if(null == root) {
+        if (null == root) {
             return 0;
         }
         return sumNumberLayer(root, new ArrayList<Integer>());
     }
 
     public int sumNumberLayer(TreeNode node, List<Integer> leafLayers) {
-        if(null == node.left && null == node.right) {
+        if (null == node.left && null == node.right) {
             leafLayers.add(1);
             return node.val;
         }
@@ -64,16 +64,16 @@ public class Problem129 {
         int right = 0;
         List<Integer> leftLeaves = new ArrayList<Integer>();
         List<Integer> rightLeaves = new ArrayList<Integer>();
-        if(null != node.left) {
+        if (null != node.left) {
             left = sumNumberLayer(node.left, leftLeaves);
         }
-        if(null != node.right) {
+        if (null != node.right) {
             right = sumNumberLayer(node.right, rightLeaves);
         }
         int sum = left + right;
         leafLayers.addAll(leftLeaves);
         leafLayers.addAll(rightLeaves);
-        for(int i = 0; i < leafLayers.size(); i++) {
+        for (int i = 0; i < leafLayers.size(); i++) {
             sum += node.val * Math.pow(10, leafLayers.get(i));
             leafLayers.set(i, leafLayers.get(i) + 1);
         }
@@ -112,7 +112,7 @@ public class Problem129 {
 
     public int sumNumbers(TreeNode root) {
         int sum = 0;
-        if(null == root) {
+        if (null == root) {
             return sum;
         }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
@@ -120,21 +120,21 @@ public class Problem129 {
         queue.add(root);
         sumQ.add(root.val);
         sum = root.val;
-        while(queue.size() > 0) {
+        while (queue.size() > 0) {
             Queue<TreeNode> nextQ = new LinkedList<TreeNode>();
             Queue<Integer> nextSumQ = new LinkedList<Integer>();
-            while(queue.size() > 0) {
+            while (queue.size() > 0) {
                 TreeNode node = queue.poll();
                 Integer rootVal = sumQ.poll();
-                if(null != node.left || null != node.right) {
+                if (null != node.left || null != node.right) {
                     sum -= rootVal;
                 }
-                if(null != node.left) {
+                if (null != node.left) {
                     sum += rootVal * 10 + node.left.val;
                     nextQ.add(node.left);
                     nextSumQ.add(rootVal * 10 + node.left.val);
                 }
-                if(null != node.right ) {
+                if (null != node.right) {
                     sum += rootVal * 10 + node.right.val;
                     nextQ.add(node.right);
                     nextSumQ.add(rootVal * 10 + node.right.val);

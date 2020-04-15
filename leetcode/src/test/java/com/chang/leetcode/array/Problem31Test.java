@@ -11,21 +11,21 @@ public class Problem31Test {
 
     @Test
     public void test1() {
-        int[] nums = new int[] {3, 2, 1};
+        int[] nums = new int[]{3, 2, 1};
         problem.nextPermutation(nums);
-        Assert.assertArrayEquals(new int[] {1, 2, 3}, nums);
+        Assert.assertArrayEquals(new int[]{1, 2, 3}, nums);
 
-        nums = new int[] {1, 2, 3};
+        nums = new int[]{1, 2, 3};
         problem.nextPermutation(nums);
-        Assert.assertArrayEquals(new int[] {1, 3, 2}, nums);
+        Assert.assertArrayEquals(new int[]{1, 3, 2}, nums);
 
-        nums = new int[] {1, 1, 5};
+        nums = new int[]{1, 1, 5};
         problem.nextPermutation(nums);
-        Assert.assertArrayEquals(new int[] {1, 5, 1}, nums);
+        Assert.assertArrayEquals(new int[]{1, 5, 1}, nums);
 
-        nums = new int[] {1, 3, 2};
+        nums = new int[]{1, 3, 2};
         problem.nextPermutation(nums);
-        Assert.assertArrayEquals(new int[] {2, 1, 3}, nums);
+        Assert.assertArrayEquals(new int[]{2, 1, 3}, nums);
 
     }
 

@@ -9,20 +9,20 @@ public class Test4 {
             new Thread(new TestThreadA(sbf)).start();
             new Thread(new TestThreadB(sb)).start();
         }
-        
+
         Thread.sleep(5000);
         System.out.println("StringBuffer result:" + sbf.length());
-		System.out.println("StringBuider result:" + sb.length());
+        System.out.println("StringBuider result:" + sb.length());
     }
 }
 
 class TestThreadA implements Runnable {
     StringBuffer sbf;
- 
+
     TestThreadA(StringBuffer sbf) {
         this.sbf = sbf;
     }
- 
+
     @Override
     public void run() {
         for (int i = 0; i < 100; i++) {
@@ -38,11 +38,11 @@ class TestThreadA implements Runnable {
 
 class TestThreadB implements Runnable {
     StringBuilder sb;
- 
+
     TestThreadB(StringBuilder sb) {
         this.sb = sb;
     }
- 
+
     @Override
     public void run() {
         for (int i = 0; i < 100; i++) {

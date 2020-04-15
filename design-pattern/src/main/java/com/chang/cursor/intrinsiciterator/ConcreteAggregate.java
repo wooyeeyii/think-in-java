@@ -4,59 +4,59 @@ import com.chang.cursor.extrinsiciterator.Aggregate;
 import com.chang.cursor.extrinsiciterator.MyIterator;
 
 public class ConcreteAggregate extends Aggregate {
-	
-	public Object[] objArray = null;
-	
-	//¹¹Ôì·½·¨£¬´«Èë¾ÛºÏ¶ÔÏóµÄ¾ßÌåÄÚÈÝ
-	public ConcreteAggregate(Object[] obj) {
-		this.objArray = obj;
-	}
 
-	@Override
-	public MyIterator createIterator() {
-		// TODO Auto-generated method stub
-		return new ConcreteIterator();
-	}
-	
-	//ÄÚ²¿³ÉÔ±Àà£¬¾ßÌåµü´ú×ÓÀà
-	private class ConcreteIterator implements MyIterator {
-		
-		//ÄÚ²¿Ë÷Òý£¬¼ÇÂ¼µ±Ç°µü´úµ½µÄË÷ÒýÎ»ÖÃ
-		private int index = 0;
-		
-		//¼ÇÂ¼µ±Ç°¾Û¼¯¶ÔÏóµÄ´óÐ¡
-		private int size = 0;
-		
-		public ConcreteIterator() {
-			this.size = objArray.length;
-			index = 0;
-		}
-		
-		@Override
-		public void first() {
-			index = 0;
-		}
+    public Object[] objArray = null;
 
-		@Override
-		public void next() {
-			// TODO Auto-generated method stub
-			if(index < size) {
-				index++;
-			}
-		}
+    //ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛºÏ¶ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public ConcreteAggregate(Object[] obj) {
+        this.objArray = obj;
+    }
 
-		@Override
-		public boolean isDone() {
-			// TODO Auto-generated method stub
-			return (index >= size);
-		}
+    @Override
+    public MyIterator createIterator() {
+        // TODO Auto-generated method stub
+        return new ConcreteIterator();
+    }
 
-		@Override
-		public Object currentItem() {
-			// TODO Auto-generated method stub
-			return objArray[index];
-		}
-		
-	}
+    //ï¿½Ú²ï¿½ï¿½ï¿½Ô±ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private class ConcreteIterator implements MyIterator {
+
+        //ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+        private int index = 0;
+
+        //ï¿½ï¿½Â¼ï¿½ï¿½Ç°ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡
+        private int size = 0;
+
+        public ConcreteIterator() {
+            this.size = objArray.length;
+            index = 0;
+        }
+
+        @Override
+        public void first() {
+            index = 0;
+        }
+
+        @Override
+        public void next() {
+            // TODO Auto-generated method stub
+            if (index < size) {
+                index++;
+            }
+        }
+
+        @Override
+        public boolean isDone() {
+            // TODO Auto-generated method stub
+            return (index >= size);
+        }
+
+        @Override
+        public Object currentItem() {
+            // TODO Auto-generated method stub
+            return objArray[index];
+        }
+
+    }
 
 }

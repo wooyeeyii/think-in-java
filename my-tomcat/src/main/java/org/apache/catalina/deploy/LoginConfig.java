@@ -97,9 +97,9 @@ public final class LoginConfig {
      * Construct a new LoginConfig with the specified properties.
      *
      * @param authMethod The authentication method
-     * @param realmName The realm name
-     * @param loginPage The login page URI
-     * @param errorPage The error page URI
+     * @param realmName  The realm name
+     * @param loginPage  The login page URI
+     * @param errorPage  The error page URI
      */
     public LoginConfig(String authMethod, String realmName,
                        String loginPage, String errorPage) {

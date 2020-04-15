@@ -114,7 +114,7 @@ public final class SecurityCollection {
     /**
      * Construct a new security collection instance with specified values.
      *
-     * @param name Name of this security collection
+     * @param name        Name of this security collection
      * @param description Description of this security collection
      */
     public SecurityCollection(String name, String description) {

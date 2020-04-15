@@ -69,6 +69,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Host;
 import org.apache.catalina.Request;
 import org.apache.catalina.Response;
@@ -89,7 +90,7 @@ import org.apache.catalina.valves.ValveBase;
  */
 
 final class StandardEngineValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -99,14 +100,14 @@ final class StandardEngineValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.StandardEngineValve/1.0";
+            "org.apache.catalina.core.StandardEngineValve/1.0";
 
 
     /**
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -130,30 +131,29 @@ final class StandardEngineValve
      * based on the requested server name.  If no matching Host can
      * be found, return an appropriate HTTP error.
      *
-     * @param request Request to be processed
-     * @param response Response to be produced
+     * @param request      Request to be processed
+     * @param response     Response to be produced
      * @param valveContext Valve context used to forward to the next Valve
-     *
-     * @exception IOException if an input/output error occurred
-     * @exception ServletException if a servlet error occurred
+     * @throws IOException      if an input/output error occurred
+     * @throws ServletException if a servlet error occurred
      */
     public void invoke(Request request, Response response,
                        ValveContext valveContext)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
         // Validate the request and response object types
         if (!(request.getRequest() instanceof HttpServletRequest) ||
-            !(response.getResponse() instanceof HttpServletResponse)) {
+                !(response.getResponse() instanceof HttpServletResponse)) {
             return;     // NOTE - Not much else we can do generically
         }
 
         // Validate that any HTTP/1.1 request included a host header
         HttpServletRequest hrequest = (HttpServletRequest) request;
         if ("HTTP/1.1".equals(hrequest.getProtocol()) &&
-            (hrequest.getServerName() == null)) {
+                (hrequest.getServerName() == null)) {
             ((HttpServletResponse) response.getResponse()).sendError
-                (HttpServletResponse.SC_BAD_REQUEST,
-                 sm.getString("standardEngine.noHostHeader",
-                              request.getRequest().getServerName()));
+                    (HttpServletResponse.SC_BAD_REQUEST,
+                            sm.getString("standardEngine.noHostHeader",
+                                    request.getRequest().getServerName()));
             return;
         }
 
@@ -162,9 +162,9 @@ final class StandardEngineValve
         Host host = (Host) engine.map(request, true);
         if (host == null) {
             ((HttpServletResponse) response.getResponse()).sendError
-                (HttpServletResponse.SC_BAD_REQUEST,
-                 sm.getString("standardEngine.noHost",
-                              request.getRequest().getServerName()));
+                    (HttpServletResponse.SC_BAD_REQUEST,
+                            sm.getString("standardEngine.noHost",
+                                    request.getRequest().getServerName()));
             return;
         }
 

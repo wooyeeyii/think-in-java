@@ -7,7 +7,7 @@
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,15 +23,15 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:  
- *       "This product includes software developed by the 
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written 
+ *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
@@ -59,7 +59,7 @@
  *
  * [Additional notices, if required by prior licensing conditions]
  *
- */ 
+ */
 
 
 package org.apache.naming.resources;
@@ -117,8 +117,8 @@ public class ProxyDirContext implements DirContext {
             if (((BaseDirContext) dirContext).isCached()) {
                 cache = Collections.synchronizedMap(new LRUMap(cacheSize));
                 cacheTTL = ((BaseDirContext) dirContext).getCacheTTL();
-                cacheObjectMaxSize = 
-                    ((BaseDirContext) dirContext).getCacheObjectMaxSize();
+                cacheObjectMaxSize =
+                        ((BaseDirContext) dirContext).getCacheObjectMaxSize();
             }
         }
         hostName = (String) env.get(HOST);
@@ -130,7 +130,7 @@ public class ProxyDirContext implements DirContext {
      * Builds a clone of this proxy dir context, wrapping the given directory
      * context, and sharing the same cache.
      */
-    protected ProxyDirContext(ProxyDirContext proxyDirContext, 
+    protected ProxyDirContext(ProxyDirContext proxyDirContext,
                               DirContext dirContext, String vPath) {
         this.env = proxyDirContext.env;
         this.dirContext = dirContext;
@@ -250,22 +250,22 @@ public class ProxyDirContext implements DirContext {
 
 
     /**
-     * Retrieves the named object. If name is empty, returns a new instance 
-     * of this context (which represents the same naming context as this 
-     * context, but its environment may be modified independently and it may 
+     * Retrieves the named object. If name is empty, returns a new instance
+     * of this context (which represents the same naming context as this
+     * context, but its environment may be modified independently and it may
      * be accessed concurrently).
-     * 
+     *
      * @param name the name of the object to look up
      * @return the object bound to name
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Object lookup(Name name)
-        throws NamingException {
+            throws NamingException {
         CacheEntry entry = cacheLookup(name.toString());
         if (entry != null) {
             if (entry.resource != null) {
                 // Check content caching.
-                
+
                 return entry.resource;
             } else {
                 return entry.context;
@@ -281,13 +281,13 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Retrieves the named object.
-     * 
+     *
      * @param name the name of the object to look up
      * @return the object bound to name
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Object lookup(String name)
-        throws NamingException {
+            throws NamingException {
         CacheEntry entry = cacheLookup(name);
         if (entry != null) {
             if (entry.resource != null) {
@@ -305,25 +305,25 @@ public class ProxyDirContext implements DirContext {
             return object;
         } else {
             return new Resource(new ByteArrayInputStream
-                (object.toString().getBytes()));
+                    (object.toString().getBytes()));
         }
     }
 
 
     /**
-     * Binds a name to an object. All intermediate contexts and the target 
-     * context (that named by all but terminal atomic component of the name) 
+     * Binds a name to an object. All intermediate contexts and the target
+     * context (that named by all but terminal atomic component of the name)
      * must already exist.
-     * 
+     *
      * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if object did not supply all 
-     * mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @param obj  the object to bind; possibly null
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if object did not supply all
+     *                                    mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public void bind(Name name, Object obj)
-        throws NamingException {
+            throws NamingException {
         dirContext.bind(parseName(name), obj);
         cacheUnload(name.toString());
     }
@@ -331,38 +331,38 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Binds a name to an object.
-     * 
+     *
      * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if object did not supply all 
-     * mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @param obj  the object to bind; possibly null
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if object did not supply all
+     *                                    mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public void bind(String name, Object obj)
-        throws NamingException {
+            throws NamingException {
         dirContext.bind(parseName(name), obj);
         cacheUnload(name);
     }
 
 
     /**
-     * Binds a name to an object, overwriting any existing binding. All 
-     * intermediate contexts and the target context (that named by all but 
+     * Binds a name to an object, overwriting any existing binding. All
+     * intermediate contexts and the target context (that named by all but
      * terminal atomic component of the name) must already exist.
      * <p>
-     * If the object is a DirContext, any existing attributes associated with 
-     * the name are replaced with those of the object. Otherwise, any 
+     * If the object is a DirContext, any existing attributes associated with
+     * the name are replaced with those of the object. Otherwise, any
      * existing attributes associated with the name remain unchanged.
-     * 
+     *
      * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
-     * @exception InvalidAttributesException if object did not supply all 
-     * mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @param obj  the object to bind; possibly null
+     * @throws InvalidAttributesException if object did not supply all
+     *                                    mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public void rebind(Name name, Object obj)
-        throws NamingException {
+            throws NamingException {
         dirContext.rebind(parseName(name), obj);
         cacheUnload(name.toString());
     }
@@ -370,36 +370,36 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Binds a name to an object, overwriting any existing binding.
-     * 
+     *
      * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
-     * @exception InvalidAttributesException if object did not supply all 
-     * mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @param obj  the object to bind; possibly null
+     * @throws InvalidAttributesException if object did not supply all
+     *                                    mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public void rebind(String name, Object obj)
-        throws NamingException {
+            throws NamingException {
         dirContext.rebind(parseName(name), obj);
         cacheUnload(name);
     }
 
 
     /**
-     * Unbinds the named object. Removes the terminal atomic name in name 
-     * from the target context--that named by all but the terminal atomic 
+     * Unbinds the named object. Removes the terminal atomic name in name
+     * from the target context--that named by all but the terminal atomic
      * part of name.
      * <p>
-     * This method is idempotent. It succeeds even if the terminal atomic 
-     * name is not bound in the target context, but throws 
-     * NameNotFoundException if any of the intermediate contexts do not exist. 
-     * 
+     * This method is idempotent. It succeeds even if the terminal atomic
+     * name is not bound in the target context, but throws
+     * NameNotFoundException if any of the intermediate contexts do not exist.
+     *
      * @param name the name to bind; may not be empty
-     * @exception NameNotFoundException if an intermediate context does not 
-     * exist
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameNotFoundException if an intermediate context does not
+     *                               exist
+     * @throws NamingException       if a naming exception is encountered
      */
     public void unbind(Name name)
-        throws NamingException {
+            throws NamingException {
         dirContext.unbind(parseName(name));
         cacheUnload(name.toString());
     }
@@ -407,148 +407,148 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Unbinds the named object.
-     * 
+     *
      * @param name the name to bind; may not be empty
-     * @exception NameNotFoundException if an intermediate context does not 
-     * exist
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameNotFoundException if an intermediate context does not
+     *                               exist
+     * @throws NamingException       if a naming exception is encountered
      */
     public void unbind(String name)
-        throws NamingException {
+            throws NamingException {
         dirContext.unbind(parseName(name));
         cacheUnload(name);
     }
 
 
     /**
-     * Binds a new name to the object bound to an old name, and unbinds the 
-     * old name. Both names are relative to this context. Any attributes 
-     * associated with the old name become associated with the new name. 
+     * Binds a new name to the object bound to an old name, and unbinds the
+     * old name. Both names are relative to this context. Any attributes
+     * associated with the old name become associated with the new name.
      * Intermediate contexts of the old name are not changed.
-     * 
+     *
      * @param oldName the name of the existing binding; may not be empty
      * @param newName the name of the new binding; may not be empty
-     * @exception NameAlreadyBoundException if newName is already bound
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException if newName is already bound
+     * @throws NamingException           if a naming exception is encountered
      */
     public void rename(Name oldName, Name newName)
-        throws NamingException {
+            throws NamingException {
         dirContext.rename(parseName(oldName), parseName(newName));
         cacheUnload(oldName.toString());
     }
 
 
     /**
-     * Binds a new name to the object bound to an old name, and unbinds the 
+     * Binds a new name to the object bound to an old name, and unbinds the
      * old name.
-     * 
+     *
      * @param oldName the name of the existing binding; may not be empty
      * @param newName the name of the new binding; may not be empty
-     * @exception NameAlreadyBoundException if newName is already bound
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException if newName is already bound
+     * @throws NamingException           if a naming exception is encountered
      */
     public void rename(String oldName, String newName)
-        throws NamingException {
+            throws NamingException {
         dirContext.rename(parseName(oldName), parseName(newName));
         cacheUnload(oldName);
     }
 
 
     /**
-     * Enumerates the names bound in the named context, along with the class 
-     * names of objects bound to them. The contents of any subcontexts are 
+     * Enumerates the names bound in the named context, along with the class
+     * names of objects bound to them. The contents of any subcontexts are
      * not included.
      * <p>
-     * If a binding is added to or removed from this context, its effect on 
+     * If a binding is added to or removed from this context, its effect on
      * an enumeration previously returned is undefined.
-     * 
+     *
      * @param name the name of the context to list
-     * @return an enumeration of the names and class names of the bindings in 
+     * @return an enumeration of the names and class names of the bindings in
      * this context. Each element of the enumeration is of type NameClassPair.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration list(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.list(parseName(name));
     }
 
 
     /**
-     * Enumerates the names bound in the named context, along with the class 
+     * Enumerates the names bound in the named context, along with the class
      * names of objects bound to them.
-     * 
+     *
      * @param name the name of the context to list
-     * @return an enumeration of the names and class names of the bindings in 
+     * @return an enumeration of the names and class names of the bindings in
      * this context. Each element of the enumeration is of type NameClassPair.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration list(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.list(parseName(name));
     }
 
 
     /**
-     * Enumerates the names bound in the named context, along with the 
-     * objects bound to them. The contents of any subcontexts are not 
+     * Enumerates the names bound in the named context, along with the
+     * objects bound to them. The contents of any subcontexts are not
      * included.
      * <p>
-     * If a binding is added to or removed from this context, its effect on 
+     * If a binding is added to or removed from this context, its effect on
      * an enumeration previously returned is undefined.
-     * 
+     *
      * @param name the name of the context to list
-     * @return an enumeration of the bindings in this context. 
+     * @return an enumeration of the bindings in this context.
      * Each element of the enumeration is of type Binding.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration listBindings(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.listBindings(parseName(name));
     }
 
 
     /**
-     * Enumerates the names bound in the named context, along with the 
+     * Enumerates the names bound in the named context, along with the
      * objects bound to them.
-     * 
+     *
      * @param name the name of the context to list
-     * @return an enumeration of the bindings in this context. 
+     * @return an enumeration of the bindings in this context.
      * Each element of the enumeration is of type Binding.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration listBindings(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.listBindings(parseName(name));
     }
 
 
     /**
-     * Destroys the named context and removes it from the namespace. Any 
-     * attributes associated with the name are also removed. Intermediate 
+     * Destroys the named context and removes it from the namespace. Any
+     * attributes associated with the name are also removed. Intermediate
      * contexts are not destroyed.
      * <p>
-     * This method is idempotent. It succeeds even if the terminal atomic 
-     * name is not bound in the target context, but throws 
-     * NameNotFoundException if any of the intermediate contexts do not exist. 
-     * 
-     * In a federated naming system, a context from one naming system may be 
-     * bound to a name in another. One can subsequently look up and perform 
-     * operations on the foreign context using a composite name. However, an 
-     * attempt destroy the context using this composite name will fail with 
-     * NotContextException, because the foreign context is not a "subcontext" 
-     * of the context in which it is bound. Instead, use unbind() to remove 
-     * the binding of the foreign context. Destroying the foreign context 
-     * requires that the destroySubcontext() be performed on a context from 
+     * This method is idempotent. It succeeds even if the terminal atomic
+     * name is not bound in the target context, but throws
+     * NameNotFoundException if any of the intermediate contexts do not exist.
+     * <p>
+     * In a federated naming system, a context from one naming system may be
+     * bound to a name in another. One can subsequently look up and perform
+     * operations on the foreign context using a composite name. However, an
+     * attempt destroy the context using this composite name will fail with
+     * NotContextException, because the foreign context is not a "subcontext"
+     * of the context in which it is bound. Instead, use unbind() to remove
+     * the binding of the foreign context. Destroying the foreign context
+     * requires that the destroySubcontext() be performed on a context from
      * the foreign context's "native" naming system.
-     * 
+     *
      * @param name the name of the context to be destroyed; may not be empty
-     * @exception NameNotFoundException if an intermediate context does not 
-     * exist
-     * @exception NotContextException if the name is bound but does not name 
-     * a context, or does not name a context of the appropriate type
+     * @throws NameNotFoundException if an intermediate context does not
+     *                               exist
+     * @throws NotContextException   if the name is bound but does not name
+     *                               a context, or does not name a context of the appropriate type
      */
     public void destroySubcontext(Name name)
-        throws NamingException {
+            throws NamingException {
         dirContext.destroySubcontext(parseName(name));
         cacheUnload(name.toString());
     }
@@ -556,116 +556,116 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Destroys the named context and removes it from the namespace.
-     * 
+     *
      * @param name the name of the context to be destroyed; may not be empty
-     * @exception NameNotFoundException if an intermediate context does not 
-     * exist
-     * @exception NotContextException if the name is bound but does not name 
-     * a context, or does not name a context of the appropriate type
+     * @throws NameNotFoundException if an intermediate context does not
+     *                               exist
+     * @throws NotContextException   if the name is bound but does not name
+     *                               a context, or does not name a context of the appropriate type
      */
     public void destroySubcontext(String name)
-        throws NamingException {
+            throws NamingException {
         dirContext.destroySubcontext(parseName(name));
         cacheUnload(name);
     }
 
 
     /**
-     * Creates and binds a new context. Creates a new context with the given 
-     * name and binds it in the target context (that named by all but 
-     * terminal atomic component of the name). All intermediate contexts and 
+     * Creates and binds a new context. Creates a new context with the given
+     * name and binds it in the target context (that named by all but
+     * terminal atomic component of the name). All intermediate contexts and
      * the target context must already exist.
-     * 
+     *
      * @param name the name of the context to create; may not be empty
      * @return the newly created context
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if creation of the subcontext 
-     * requires specification of mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if creation of the subcontext
+     *                                    requires specification of mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public Context createSubcontext(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.createSubcontext(parseName(name));
     }
 
 
     /**
      * Creates and binds a new context.
-     * 
+     *
      * @param name the name of the context to create; may not be empty
      * @return the newly created context
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if creation of the subcontext 
-     * requires specification of mandatory attributes
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if creation of the subcontext
+     *                                    requires specification of mandatory attributes
+     * @throws NamingException            if a naming exception is encountered
      */
     public Context createSubcontext(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.createSubcontext(parseName(name));
     }
 
 
     /**
-     * Retrieves the named object, following links except for the terminal 
-     * atomic component of the name. If the object bound to name is not a 
+     * Retrieves the named object, following links except for the terminal
+     * atomic component of the name. If the object bound to name is not a
      * link, returns the object itself.
-     * 
+     *
      * @param name the name of the object to look up
-     * @return the object bound to name, not following the terminal link 
+     * @return the object bound to name, not following the terminal link
      * (if any).
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Object lookupLink(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.lookupLink(parseName(name));
     }
 
 
     /**
-     * Retrieves the named object, following links except for the terminal 
+     * Retrieves the named object, following links except for the terminal
      * atomic component of the name.
-     * 
+     *
      * @param name the name of the object to look up
-     * @return the object bound to name, not following the terminal link 
+     * @return the object bound to name, not following the terminal link
      * (if any).
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Object lookupLink(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.lookupLink(parseName(name));
     }
 
 
     /**
-     * Retrieves the parser associated with the named context. In a 
-     * federation of namespaces, different naming systems will parse names 
-     * differently. This method allows an application to get a parser for 
-     * parsing names into their atomic components using the naming convention 
-     * of a particular naming system. Within any single naming system, 
-     * NameParser objects returned by this method must be equal (using the 
+     * Retrieves the parser associated with the named context. In a
+     * federation of namespaces, different naming systems will parse names
+     * differently. This method allows an application to get a parser for
+     * parsing names into their atomic components using the naming convention
+     * of a particular naming system. Within any single naming system,
+     * NameParser objects returned by this method must be equal (using the
      * equals() test).
-     * 
+     *
      * @param name the name of the context from which to get the parser
-     * @return a name parser that can parse compound names into their atomic 
+     * @return a name parser that can parse compound names into their atomic
      * components
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NameParser getNameParser(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getNameParser(parseName(name));
     }
 
 
     /**
      * Retrieves the parser associated with the named context.
-     * 
+     *
      * @param name the name of the context from which to get the parser
-     * @return a name parser that can parse compound names into their atomic 
+     * @return a name parser that can parse compound names into their atomic
      * components
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NameParser getNameParser(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getNameParser(parseName(name));
     }
 
@@ -673,95 +673,95 @@ public class ProxyDirContext implements DirContext {
     /**
      * Composes the name of this context with a name relative to this context.
      * <p>
-     * Given a name (name) relative to this context, and the name (prefix) 
-     * of this context relative to one of its ancestors, this method returns 
-     * the composition of the two names using the syntax appropriate for the 
-     * naming system(s) involved. That is, if name names an object relative 
-     * to this context, the result is the name of the same object, but 
+     * Given a name (name) relative to this context, and the name (prefix)
+     * of this context relative to one of its ancestors, this method returns
+     * the composition of the two names using the syntax appropriate for the
+     * naming system(s) involved. That is, if name names an object relative
+     * to this context, the result is the name of the same object, but
      * relative to the ancestor context. None of the names may be null.
-     * 
-     * @param name a name relative to this context
+     *
+     * @param name   a name relative to this context
      * @param prefix the name of this context relative to one of its ancestors
      * @return the composition of prefix and name
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Name composeName(Name name, Name prefix)
-        throws NamingException {
+            throws NamingException {
         prefix = (Name) name.clone();
-	return prefix.addAll(name);
+        return prefix.addAll(name);
     }
 
 
     /**
      * Composes the name of this context with a name relative to this context.
-     * 
-     * @param name a name relative to this context
+     *
+     * @param name   a name relative to this context
      * @param prefix the name of this context relative to one of its ancestors
      * @return the composition of prefix and name
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public String composeName(String name, String prefix)
-        throws NamingException {
+            throws NamingException {
         return prefix + "/" + name;
     }
 
 
     /**
-     * Adds a new environment property to the environment of this context. If 
+     * Adds a new environment property to the environment of this context. If
      * the property already exists, its value is overwritten.
-     * 
-     * @param propName the name of the environment property to add; may not 
-     * be null
-     * @param propVal the value of the property to add; may not be null
-     * @exception NamingException if a naming exception is encountered
+     *
+     * @param propName the name of the environment property to add; may not
+     *                 be null
+     * @param propVal  the value of the property to add; may not be null
+     * @throws NamingException if a naming exception is encountered
      */
     public Object addToEnvironment(String propName, Object propVal)
-        throws NamingException {
+            throws NamingException {
         return dirContext.addToEnvironment(propName, propVal);
     }
 
 
     /**
-     * Removes an environment property from the environment of this context. 
-     * 
-     * @param propName the name of the environment property to remove; 
-     * may not be null
-     * @exception NamingException if a naming exception is encountered
+     * Removes an environment property from the environment of this context.
+     *
+     * @param propName the name of the environment property to remove;
+     *                 may not be null
+     * @throws NamingException if a naming exception is encountered
      */
     public Object removeFromEnvironment(String propName)
-        throws NamingException {
+            throws NamingException {
         return dirContext.removeFromEnvironment(propName);
     }
 
 
     /**
-     * Retrieves the environment in effect for this context. See class 
-     * description for more details on environment properties. 
-     * The caller should not make any changes to the object returned: their 
-     * effect on the context is undefined. The environment of this context 
+     * Retrieves the environment in effect for this context. See class
+     * description for more details on environment properties.
+     * The caller should not make any changes to the object returned: their
+     * effect on the context is undefined. The environment of this context
      * may be changed using addToEnvironment() and removeFromEnvironment().
-     * 
+     *
      * @return the environment of this context; never null
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Hashtable getEnvironment()
-        throws NamingException {
+            throws NamingException {
         return dirContext.getEnvironment();
     }
 
 
     /**
-     * Closes this context. This method releases this context's resources 
-     * immediately, instead of waiting for them to be released automatically 
+     * Closes this context. This method releases this context's resources
+     * immediately, instead of waiting for them to be released automatically
      * by the garbage collector.
-     * This method is idempotent: invoking it on a context that has already 
-     * been closed has no effect. Invoking any other method on a closed 
+     * This method is idempotent: invoking it on a context that has already
+     * been closed has no effect. Invoking any other method on a closed
      * context is not allowed, and results in undefined behaviour.
-     * 
-     * @exception NamingException if a naming exception is encountered
+     *
+     * @throws NamingException if a naming exception is encountered
      */
     public void close()
-        throws NamingException {
+            throws NamingException {
         dirContext.close();
     }
 
@@ -769,22 +769,22 @@ public class ProxyDirContext implements DirContext {
     /**
      * Retrieves the full name of this context within its own namespace.
      * <p>
-     * Many naming services have a notion of a "full name" for objects in 
-     * their respective namespaces. For example, an LDAP entry has a 
-     * distinguished name, and a DNS record has a fully qualified name. This 
-     * method allows the client application to retrieve this name. The string 
-     * returned by this method is not a JNDI composite name and should not be 
-     * passed directly to context methods. In naming systems for which the 
-     * notion of full name does not make sense, 
+     * Many naming services have a notion of a "full name" for objects in
+     * their respective namespaces. For example, an LDAP entry has a
+     * distinguished name, and a DNS record has a fully qualified name. This
+     * method allows the client application to retrieve this name. The string
+     * returned by this method is not a JNDI composite name and should not be
+     * passed directly to context methods. In naming systems for which the
+     * notion of full name does not make sense,
      * OperationNotSupportedException is thrown.
-     * 
+     *
      * @return this context's name in its own namespace; never null
-     * @exception OperationNotSupportedException if the naming system does 
-     * not have the notion of a full name
-     * @exception NamingException if a naming exception is encountered
+     * @throws OperationNotSupportedException if the naming system does
+     *                                        not have the notion of a full name
+     * @throws NamingException                if a naming exception is encountered
      */
     public String getNameInNamespace()
-        throws NamingException {
+            throws NamingException {
         return dirContext.getNameInNamespace();
     }
 
@@ -793,15 +793,15 @@ public class ProxyDirContext implements DirContext {
 
 
     /**
-     * Retrieves all of the attributes associated with a named object. 
-     * 
-     * @return the set of attributes associated with name. 
-     * Returns an empty attribute set if name has no attributes; never null.
+     * Retrieves all of the attributes associated with a named object.
+     *
      * @param name the name of the object from which to retrieve attributes
-     * @exception NamingException if a naming exception is encountered
+     * @return the set of attributes associated with name.
+     * Returns an empty attribute set if name has no attributes; never null.
+     * @throws NamingException if a naming exception is encountered
      */
     public Attributes getAttributes(Name name)
-        throws NamingException {
+            throws NamingException {
         CacheEntry entry = cacheLookup(name.toString());
         if (entry != null) {
             return entry.attributes;
@@ -816,13 +816,13 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Retrieves all of the attributes associated with a named object.
-     * 
-     * @return the set of attributes associated with name
+     *
      * @param name the name of the object from which to retrieve attributes
-     * @exception NamingException if a naming exception is encountered
+     * @return the set of attributes associated with name
+     * @throws NamingException if a naming exception is encountered
      */
     public Attributes getAttributes(String name)
-        throws NamingException {
+            throws NamingException {
         CacheEntry entry = cacheLookup(name);
         if (entry != null) {
             return entry.attributes;
@@ -836,21 +836,21 @@ public class ProxyDirContext implements DirContext {
 
 
     /**
-     * Retrieves selected attributes associated with a named object. 
-     * See the class description regarding attribute models, attribute type 
+     * Retrieves selected attributes associated with a named object.
+     * See the class description regarding attribute models, attribute type
      * names, and operational attributes.
-     * 
+     *
+     * @param name    the name of the object from which to retrieve attributes
+     * @param attrIds the identifiers of the attributes to retrieve. null
+     *                indicates that all attributes should be retrieved; an empty array
+     *                indicates that none should be retrieved
      * @return the requested attributes; never null
-     * @param name the name of the object from which to retrieve attributes
-     * @param attrIds the identifiers of the attributes to retrieve. null 
-     * indicates that all attributes should be retrieved; an empty array 
-     * indicates that none should be retrieved
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public Attributes getAttributes(Name name, String[] attrIds)
-        throws NamingException {
-        Attributes attributes = 
-            dirContext.getAttributes(parseName(name), attrIds);
+            throws NamingException {
+        Attributes attributes =
+                dirContext.getAttributes(parseName(name), attrIds);
         if (!(attributes instanceof ResourceAttributes)) {
             attributes = new ResourceAttributes(attributes);
         }
@@ -860,488 +860,488 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Retrieves selected attributes associated with a named object.
-     * 
+     *
+     * @param name    the name of the object from which to retrieve attributes
+     * @param attrIds the identifiers of the attributes to retrieve. null
+     *                indicates that all attributes should be retrieved; an empty array
+     *                indicates that none should be retrieved
      * @return the requested attributes; never null
-     * @param name the name of the object from which to retrieve attributes
-     * @param attrIds the identifiers of the attributes to retrieve. null 
-     * indicates that all attributes should be retrieved; an empty array 
-     * indicates that none should be retrieved
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
-     public Attributes getAttributes(String name, String[] attrIds)
-         throws NamingException {
-        Attributes attributes = 
-            dirContext.getAttributes(parseName(name), attrIds);
+    public Attributes getAttributes(String name, String[] attrIds)
+            throws NamingException {
+        Attributes attributes =
+                dirContext.getAttributes(parseName(name), attrIds);
         if (!(attributes instanceof ResourceAttributes)) {
             attributes = new ResourceAttributes(attributes);
         }
         return attributes;
-     }
+    }
 
 
     /**
-     * Modifies the attributes associated with a named object. The order of 
-     * the modifications is not specified. Where possible, the modifications 
+     * Modifies the attributes associated with a named object. The order of
+     * the modifications is not specified. Where possible, the modifications
      * are performed atomically.
-     * 
-     * @param name the name of the object whose attributes will be updated
-     * @param mod_op the modification operation, one of: ADD_ATTRIBUTE, 
-     * REPLACE_ATTRIBUTE, REMOVE_ATTRIBUTE
-     * @param attrs the attributes to be used for the modification; may not 
-     * be null
-     * @exception AttributeModificationException if the modification cannot be
-     * completed successfully
-     * @exception NamingException if a naming exception is encountered
+     *
+     * @param name   the name of the object whose attributes will be updated
+     * @param mod_op the modification operation, one of: ADD_ATTRIBUTE,
+     *               REPLACE_ATTRIBUTE, REMOVE_ATTRIBUTE
+     * @param attrs  the attributes to be used for the modification; may not
+     *               be null
+     * @throws AttributeModificationException if the modification cannot be
+     *                                        completed successfully
+     * @throws NamingException                if a naming exception is encountered
      */
     public void modifyAttributes(Name name, int mod_op, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.modifyAttributes(parseName(name), mod_op, attrs);
     }
 
 
     /**
      * Modifies the attributes associated with a named object.
-     * 
-     * @param name the name of the object whose attributes will be updated
-     * @param mod_op the modification operation, one of: ADD_ATTRIBUTE, 
-     * REPLACE_ATTRIBUTE, REMOVE_ATTRIBUTE
-     * @param attrs the attributes to be used for the modification; may not 
-     * be null
-     * @exception AttributeModificationException if the modification cannot be
-     * completed successfully
-     * @exception NamingException if a naming exception is encountered
+     *
+     * @param name   the name of the object whose attributes will be updated
+     * @param mod_op the modification operation, one of: ADD_ATTRIBUTE,
+     *               REPLACE_ATTRIBUTE, REMOVE_ATTRIBUTE
+     * @param attrs  the attributes to be used for the modification; may not
+     *               be null
+     * @throws AttributeModificationException if the modification cannot be
+     *                                        completed successfully
+     * @throws NamingException                if a naming exception is encountered
      */
     public void modifyAttributes(String name, int mod_op, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.modifyAttributes(parseName(name), mod_op, attrs);
     }
 
 
     /**
-     * Modifies the attributes associated with a named object using an an 
-     * ordered list of modifications. The modifications are performed in the 
-     * order specified. Each modification specifies a modification operation 
-     * code and an attribute on which to operate. Where possible, the 
+     * Modifies the attributes associated with a named object using an an
+     * ordered list of modifications. The modifications are performed in the
+     * order specified. Each modification specifies a modification operation
+     * code and an attribute on which to operate. Where possible, the
      * modifications are performed atomically.
-     * 
+     *
      * @param name the name of the object whose attributes will be updated
-     * @param mods an ordered sequence of modifications to be performed; may 
-     * not be null
-     * @exception AttributeModificationException if the modification cannot be
-     * completed successfully
-     * @exception NamingException if a naming exception is encountered
+     * @param mods an ordered sequence of modifications to be performed; may
+     *             not be null
+     * @throws AttributeModificationException if the modification cannot be
+     *                                        completed successfully
+     * @throws NamingException                if a naming exception is encountered
      */
     public void modifyAttributes(Name name, ModificationItem[] mods)
-        throws NamingException {
+            throws NamingException {
         dirContext.modifyAttributes(parseName(name), mods);
     }
 
 
     /**
-     * Modifies the attributes associated with a named object using an an 
+     * Modifies the attributes associated with a named object using an an
      * ordered list of modifications.
-     * 
+     *
      * @param name the name of the object whose attributes will be updated
-     * @param mods an ordered sequence of modifications to be performed; may 
-     * not be null
-     * @exception AttributeModificationException if the modification cannot be
-     * completed successfully
-     * @exception NamingException if a naming exception is encountered
+     * @param mods an ordered sequence of modifications to be performed; may
+     *             not be null
+     * @throws AttributeModificationException if the modification cannot be
+     *                                        completed successfully
+     * @throws NamingException                if a naming exception is encountered
      */
     public void modifyAttributes(String name, ModificationItem[] mods)
-        throws NamingException {
+            throws NamingException {
         dirContext.modifyAttributes(parseName(name), mods);
     }
 
 
     /**
-     * Binds a name to an object, along with associated attributes. If attrs 
-     * is null, the resulting binding will have the attributes associated 
-     * with obj if obj is a DirContext, and no attributes otherwise. If attrs 
-     * is non-null, the resulting binding will have attrs as its attributes; 
+     * Binds a name to an object, along with associated attributes. If attrs
+     * is null, the resulting binding will have the attributes associated
+     * with obj if obj is a DirContext, and no attributes otherwise. If attrs
+     * is non-null, the resulting binding will have attrs as its attributes;
      * any attributes associated with obj are ignored.
-     * 
-     * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
+     *
+     * @param name  the name to bind; may not be empty
+     * @param obj   the object to bind; possibly null
      * @param attrs the attributes to associate with the binding
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if some "mandatory" attributes 
-     * of the binding are not supplied
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if some "mandatory" attributes
+     *                                    of the binding are not supplied
+     * @throws NamingException            if a naming exception is encountered
      */
     public void bind(Name name, Object obj, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.bind(parseName(name), obj, attrs);
     }
 
 
     /**
      * Binds a name to an object, along with associated attributes.
-     * 
-     * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
+     *
+     * @param name  the name to bind; may not be empty
+     * @param obj   the object to bind; possibly null
      * @param attrs the attributes to associate with the binding
-     * @exception NameAlreadyBoundException if name is already bound
-     * @exception InvalidAttributesException if some "mandatory" attributes 
-     * of the binding are not supplied
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if name is already bound
+     * @throws InvalidAttributesException if some "mandatory" attributes
+     *                                    of the binding are not supplied
+     * @throws NamingException            if a naming exception is encountered
      */
     public void bind(String name, Object obj, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.bind(parseName(name), obj, attrs);
     }
 
 
     /**
-     * Binds a name to an object, along with associated attributes, 
-     * overwriting any existing binding. If attrs is null and obj is a 
-     * DirContext, the attributes from obj are used. If attrs is null and obj 
+     * Binds a name to an object, along with associated attributes,
+     * overwriting any existing binding. If attrs is null and obj is a
+     * DirContext, the attributes from obj are used. If attrs is null and obj
      * is not a DirContext, any existing attributes associated with the object
-     * already bound in the directory remain unchanged. If attrs is non-null, 
-     * any existing attributes associated with the object already bound in 
-     * the directory are removed and attrs is associated with the named 
-     * object. If obj is a DirContext and attrs is non-null, the attributes 
+     * already bound in the directory remain unchanged. If attrs is non-null,
+     * any existing attributes associated with the object already bound in
+     * the directory are removed and attrs is associated with the named
+     * object. If obj is a DirContext and attrs is non-null, the attributes
      * of obj are ignored.
-     * 
-     * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
+     *
+     * @param name  the name to bind; may not be empty
+     * @param obj   the object to bind; possibly null
      * @param attrs the attributes to associate with the binding
-     * @exception InvalidAttributesException if some "mandatory" attributes 
-     * of the binding are not supplied
-     * @exception NamingException if a naming exception is encountered
+     * @throws InvalidAttributesException if some "mandatory" attributes
+     *                                    of the binding are not supplied
+     * @throws NamingException            if a naming exception is encountered
      */
     public void rebind(Name name, Object obj, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.rebind(parseName(name), obj, attrs);
     }
 
 
     /**
-     * Binds a name to an object, along with associated attributes, 
+     * Binds a name to an object, along with associated attributes,
      * overwriting any existing binding.
-     * 
-     * @param name the name to bind; may not be empty
-     * @param obj the object to bind; possibly null
+     *
+     * @param name  the name to bind; may not be empty
+     * @param obj   the object to bind; possibly null
      * @param attrs the attributes to associate with the binding
-     * @exception InvalidAttributesException if some "mandatory" attributes 
-     * of the binding are not supplied
-     * @exception NamingException if a naming exception is encountered
+     * @throws InvalidAttributesException if some "mandatory" attributes
+     *                                    of the binding are not supplied
+     * @throws NamingException            if a naming exception is encountered
      */
     public void rebind(String name, Object obj, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         dirContext.rebind(parseName(name), obj, attrs);
     }
 
 
     /**
-     * Creates and binds a new context, along with associated attributes. 
-     * This method creates a new subcontext with the given name, binds it in 
-     * the target context (that named by all but terminal atomic component of 
-     * the name), and associates the supplied attributes with the newly 
-     * created object. All intermediate and target contexts must already 
-     * exist. If attrs is null, this method is equivalent to 
+     * Creates and binds a new context, along with associated attributes.
+     * This method creates a new subcontext with the given name, binds it in
+     * the target context (that named by all but terminal atomic component of
+     * the name), and associates the supplied attributes with the newly
+     * created object. All intermediate and target contexts must already
+     * exist. If attrs is null, this method is equivalent to
      * Context.createSubcontext().
-     * 
-     * @param name the name of the context to create; may not be empty
+     *
+     * @param name  the name of the context to create; may not be empty
      * @param attrs the attributes to associate with the newly created context
      * @return the newly created context
-     * @exception NameAlreadyBoundException if the name is already bound
-     * @exception InvalidAttributesException if attrs does not contain all 
-     * the mandatory attributes required for creation
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if the name is already bound
+     * @throws InvalidAttributesException if attrs does not contain all
+     *                                    the mandatory attributes required for creation
+     * @throws NamingException            if a naming exception is encountered
      */
     public DirContext createSubcontext(Name name, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         return dirContext.createSubcontext(parseName(name), attrs);
     }
 
 
     /**
      * Creates and binds a new context, along with associated attributes.
-     * 
-     * @param name the name of the context to create; may not be empty
+     *
+     * @param name  the name of the context to create; may not be empty
      * @param attrs the attributes to associate with the newly created context
      * @return the newly created context
-     * @exception NameAlreadyBoundException if the name is already bound
-     * @exception InvalidAttributesException if attrs does not contain all 
-     * the mandatory attributes required for creation
-     * @exception NamingException if a naming exception is encountered
+     * @throws NameAlreadyBoundException  if the name is already bound
+     * @throws InvalidAttributesException if attrs does not contain all
+     *                                    the mandatory attributes required for creation
+     * @throws NamingException            if a naming exception is encountered
      */
     public DirContext createSubcontext(String name, Attributes attrs)
-        throws NamingException {
+            throws NamingException {
         return dirContext.createSubcontext(parseName(name), attrs);
     }
 
 
     /**
-     * Retrieves the schema associated with the named object. The schema 
-     * describes rules regarding the structure of the namespace and the 
-     * attributes stored within it. The schema specifies what types of 
-     * objects can be added to the directory and where they can be added; 
-     * what mandatory and optional attributes an object can have. The range 
+     * Retrieves the schema associated with the named object. The schema
+     * describes rules regarding the structure of the namespace and the
+     * attributes stored within it. The schema specifies what types of
+     * objects can be added to the directory and where they can be added;
+     * what mandatory and optional attributes an object can have. The range
      * of support for schemas is directory-specific.
-     * 
+     *
      * @param name the name of the object whose schema is to be retrieved
      * @return the schema associated with the context; never null
-     * @exception OperationNotSupportedException if schema not supported
-     * @exception NamingException if a naming exception is encountered
+     * @throws OperationNotSupportedException if schema not supported
+     * @throws NamingException                if a naming exception is encountered
      */
     public DirContext getSchema(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getSchema(parseName(name));
     }
 
 
     /**
      * Retrieves the schema associated with the named object.
-     * 
+     *
      * @param name the name of the object whose schema is to be retrieved
      * @return the schema associated with the context; never null
-     * @exception OperationNotSupportedException if schema not supported
-     * @exception NamingException if a naming exception is encountered
+     * @throws OperationNotSupportedException if schema not supported
+     * @throws NamingException                if a naming exception is encountered
      */
     public DirContext getSchema(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getSchema(parseName(name));
     }
 
 
     /**
-     * Retrieves a context containing the schema objects of the named 
+     * Retrieves a context containing the schema objects of the named
      * object's class definitions.
-     * 
-     * @param name the name of the object whose object class definition is to 
-     * be retrieved
-     * @return the DirContext containing the named object's class 
+     *
+     * @param name the name of the object whose object class definition is to
+     *             be retrieved
+     * @return the DirContext containing the named object's class
      * definitions; never null
-     * @exception OperationNotSupportedException if schema not supported
-     * @exception NamingException if a naming exception is encountered
+     * @throws OperationNotSupportedException if schema not supported
+     * @throws NamingException                if a naming exception is encountered
      */
     public DirContext getSchemaClassDefinition(Name name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getSchemaClassDefinition(parseName(name));
     }
 
 
     /**
-     * Retrieves a context containing the schema objects of the named 
+     * Retrieves a context containing the schema objects of the named
      * object's class definitions.
-     * 
-     * @param name the name of the object whose object class definition is to 
-     * be retrieved
-     * @return the DirContext containing the named object's class 
+     *
+     * @param name the name of the object whose object class definition is to
+     *             be retrieved
+     * @return the DirContext containing the named object's class
      * definitions; never null
-     * @exception OperationNotSupportedException if schema not supported
-     * @exception NamingException if a naming exception is encountered
+     * @throws OperationNotSupportedException if schema not supported
+     * @throws NamingException                if a naming exception is encountered
      */
     public DirContext getSchemaClassDefinition(String name)
-        throws NamingException {
+            throws NamingException {
         return dirContext.getSchemaClassDefinition(parseName(name));
     }
 
 
     /**
-     * Searches in a single context for objects that contain a specified set 
-     * of attributes, and retrieves selected attributes. The search is 
+     * Searches in a single context for objects that contain a specified set
+     * of attributes, and retrieves selected attributes. The search is
      * performed using the default SearchControls settings.
-     * 
-     * @param name the name of the context to search
-     * @param matchingAttributes the attributes to search for. If empty or 
-     * null, all objects in the target context are returned.
-     * @param attributesToReturn the attributes to return. null indicates 
-     * that all attributes are to be returned; an empty array indicates that 
-     * none are to be returned.
-     * @return a non-null enumeration of SearchResult objects. Each 
-     * SearchResult contains the attributes identified by attributesToReturn 
-     * and the name of the corresponding object, named relative to the 
+     *
+     * @param name               the name of the context to search
+     * @param matchingAttributes the attributes to search for. If empty or
+     *                           null, all objects in the target context are returned.
+     * @param attributesToReturn the attributes to return. null indicates
+     *                           that all attributes are to be returned; an empty array indicates that
+     *                           none are to be returned.
+     * @return a non-null enumeration of SearchResult objects. Each
+     * SearchResult contains the attributes identified by attributesToReturn
+     * and the name of the corresponding object, named relative to the
      * context named by name.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration search(Name name, Attributes matchingAttributes,
                                     String[] attributesToReturn)
-        throws NamingException {
-        return dirContext.search(parseName(name), matchingAttributes, 
-                                 attributesToReturn);
+            throws NamingException {
+        return dirContext.search(parseName(name), matchingAttributes,
+                attributesToReturn);
     }
 
 
     /**
-     * Searches in a single context for objects that contain a specified set 
+     * Searches in a single context for objects that contain a specified set
      * of attributes, and retrieves selected attributes.
-     * 
-     * @param name the name of the context to search
-     * @param matchingAttributes the attributes to search for. If empty or 
-     * null, all objects in the target context are returned.
-     * @param attributesToReturn the attributes to return. null indicates 
-     * that all attributes are to be returned; an empty array indicates that 
-     * none are to be returned.
-     * @return a non-null enumeration of SearchResult objects. Each 
-     * SearchResult contains the attributes identified by attributesToReturn 
-     * and the name of the corresponding object, named relative to the 
+     *
+     * @param name               the name of the context to search
+     * @param matchingAttributes the attributes to search for. If empty or
+     *                           null, all objects in the target context are returned.
+     * @param attributesToReturn the attributes to return. null indicates
+     *                           that all attributes are to be returned; an empty array indicates that
+     *                           none are to be returned.
+     * @return a non-null enumeration of SearchResult objects. Each
+     * SearchResult contains the attributes identified by attributesToReturn
+     * and the name of the corresponding object, named relative to the
      * context named by name.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration search(String name, Attributes matchingAttributes,
                                     String[] attributesToReturn)
-        throws NamingException {
-        return dirContext.search(parseName(name), matchingAttributes, 
-                                 attributesToReturn);
+            throws NamingException {
+        return dirContext.search(parseName(name), matchingAttributes,
+                attributesToReturn);
     }
 
 
     /**
-     * Searches in a single context for objects that contain a specified set 
-     * of attributes. This method returns all the attributes of such objects. 
-     * It is equivalent to supplying null as the atributesToReturn parameter 
+     * Searches in a single context for objects that contain a specified set
+     * of attributes. This method returns all the attributes of such objects.
+     * It is equivalent to supplying null as the atributesToReturn parameter
      * to the method search(Name, Attributes, String[]).
-     * 
-     * @param name the name of the context to search
-     * @param matchingAttributes the attributes to search for. If empty or 
-     * null, all objects in the target context are returned.
-     * @return a non-null enumeration of SearchResult objects. Each 
-     * SearchResult contains the attributes identified by attributesToReturn 
-     * and the name of the corresponding object, named relative to the 
+     *
+     * @param name               the name of the context to search
+     * @param matchingAttributes the attributes to search for. If empty or
+     *                           null, all objects in the target context are returned.
+     * @return a non-null enumeration of SearchResult objects. Each
+     * SearchResult contains the attributes identified by attributesToReturn
+     * and the name of the corresponding object, named relative to the
      * context named by name.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration search(Name name, Attributes matchingAttributes)
-        throws NamingException {
+            throws NamingException {
         return dirContext.search(parseName(name), matchingAttributes);
     }
 
 
     /**
-     * Searches in a single context for objects that contain a specified set 
+     * Searches in a single context for objects that contain a specified set
      * of attributes.
-     * 
-     * @param name the name of the context to search
-     * @param matchingAttributes the attributes to search for. If empty or 
-     * null, all objects in the target context are returned.
-     * @return a non-null enumeration of SearchResult objects. Each 
-     * SearchResult contains the attributes identified by attributesToReturn 
-     * and the name of the corresponding object, named relative to the 
+     *
+     * @param name               the name of the context to search
+     * @param matchingAttributes the attributes to search for. If empty or
+     *                           null, all objects in the target context are returned.
+     * @return a non-null enumeration of SearchResult objects. Each
+     * SearchResult contains the attributes identified by attributesToReturn
+     * and the name of the corresponding object, named relative to the
      * context named by name.
-     * @exception NamingException if a naming exception is encountered
+     * @throws NamingException if a naming exception is encountered
      */
     public NamingEnumeration search(String name, Attributes matchingAttributes)
-        throws NamingException {
+            throws NamingException {
         return dirContext.search(parseName(name), matchingAttributes);
     }
 
 
     /**
-     * Searches in the named context or object for entries that satisfy the 
-     * given search filter. Performs the search as specified by the search 
+     * Searches in the named context or object for entries that satisfy the
+     * given search filter. Performs the search as specified by the search
      * controls.
-     * 
-     * @param name the name of the context or object to search
-     * @param filter the filter expression to use for the search; may not be 
-     * null
-     * @param cons the search controls that control the search. If null, 
-     * the default search controls are used (equivalent to 
-     * (new SearchControls())).
-     * @return an enumeration of SearchResults of the objects that satisfy 
+     *
+     * @param name   the name of the context or object to search
+     * @param filter the filter expression to use for the search; may not be
+     *               null
+     * @param cons   the search controls that control the search. If null,
+     *               the default search controls are used (equivalent to
+     *               (new SearchControls())).
+     * @return an enumeration of SearchResults of the objects that satisfy
      * the filter; never null
-     * @exception InvalidSearchFilterException if the search filter specified 
-     * is not supported or understood by the underlying directory
-     * @exception InvalidSearchControlsException if the search controls 
-     * contain invalid settings
-     * @exception NamingException if a naming exception is encountered
+     * @throws InvalidSearchFilterException   if the search filter specified
+     *                                        is not supported or understood by the underlying directory
+     * @throws InvalidSearchControlsException if the search controls
+     *                                        contain invalid settings
+     * @throws NamingException                if a naming exception is encountered
      */
-    public NamingEnumeration search(Name name, String filter, 
+    public NamingEnumeration search(Name name, String filter,
                                     SearchControls cons)
-        throws NamingException {
+            throws NamingException {
         return dirContext.search(parseName(name), filter, cons);
     }
 
 
     /**
-     * Searches in the named context or object for entries that satisfy the 
-     * given search filter. Performs the search as specified by the search 
+     * Searches in the named context or object for entries that satisfy the
+     * given search filter. Performs the search as specified by the search
      * controls.
-     * 
-     * @param name the name of the context or object to search
-     * @param filter the filter expression to use for the search; may not be 
-     * null
-     * @param cons the search controls that control the search. If null, 
-     * the default search controls are used (equivalent to 
-     * (new SearchControls())).
-     * @return an enumeration of SearchResults of the objects that satisfy 
+     *
+     * @param name   the name of the context or object to search
+     * @param filter the filter expression to use for the search; may not be
+     *               null
+     * @param cons   the search controls that control the search. If null,
+     *               the default search controls are used (equivalent to
+     *               (new SearchControls())).
+     * @return an enumeration of SearchResults of the objects that satisfy
      * the filter; never null
-     * @exception InvalidSearchFilterException if the search filter 
-     * specified is not supported or understood by the underlying directory
-     * @exception InvalidSearchControlsException if the search controls 
-     * contain invalid settings
-     * @exception NamingException if a naming exception is encountered
+     * @throws InvalidSearchFilterException   if the search filter
+     *                                        specified is not supported or understood by the underlying directory
+     * @throws InvalidSearchControlsException if the search controls
+     *                                        contain invalid settings
+     * @throws NamingException                if a naming exception is encountered
      */
-    public NamingEnumeration search(String name, String filter, 
+    public NamingEnumeration search(String name, String filter,
                                     SearchControls cons)
-        throws NamingException {
+            throws NamingException {
         return dirContext.search(parseName(name), filter, cons);
     }
 
 
     /**
-     * Searches in the named context or object for entries that satisfy the 
-     * given search filter. Performs the search as specified by the search 
+     * Searches in the named context or object for entries that satisfy the
+     * given search filter. Performs the search as specified by the search
      * controls.
-     * 
-     * @param name the name of the context or object to search
-     * @param filterExpr the filter expression to use for the search. 
-     * The expression may contain variables of the form "{i}" where i is a 
-     * nonnegative integer. May not be null.
-     * @param filterArgs the array of arguments to substitute for the 
-     * variables in filterExpr. The value of filterArgs[i] will replace each 
-     * occurrence of "{i}". If null, equivalent to an empty array.
-     * @param cons the search controls that control the search. If null, the 
-     * default search controls are used (equivalent to (new SearchControls())).
-     * @return an enumeration of SearchResults of the objects that satisy the 
+     *
+     * @param name       the name of the context or object to search
+     * @param filterExpr the filter expression to use for the search.
+     *                   The expression may contain variables of the form "{i}" where i is a
+     *                   nonnegative integer. May not be null.
+     * @param filterArgs the array of arguments to substitute for the
+     *                   variables in filterExpr. The value of filterArgs[i] will replace each
+     *                   occurrence of "{i}". If null, equivalent to an empty array.
+     * @param cons       the search controls that control the search. If null, the
+     *                   default search controls are used (equivalent to (new SearchControls())).
+     * @return an enumeration of SearchResults of the objects that satisy the
      * filter; never null
-     * @exception ArrayIndexOutOfBoundsException if filterExpr contains {i} 
-     * expressions where i is outside the bounds of the array filterArgs
-     * @exception InvalidSearchControlsException if cons contains invalid 
-     * settings
-     * @exception InvalidSearchFilterException if filterExpr with filterArgs 
-     * represents an invalid search filter
-     * @exception NamingException if a naming exception is encountered
+     * @throws ArrayIndexOutOfBoundsException if filterExpr contains {i}
+     *                                        expressions where i is outside the bounds of the array filterArgs
+     * @throws InvalidSearchControlsException if cons contains invalid
+     *                                        settings
+     * @throws InvalidSearchFilterException   if filterExpr with filterArgs
+     *                                        represents an invalid search filter
+     * @throws NamingException                if a naming exception is encountered
      */
     public NamingEnumeration search(Name name, String filterExpr,
                                     Object[] filterArgs, SearchControls cons)
-        throws NamingException {
-        return dirContext.search(parseName(name), filterExpr, filterArgs, 
-                                 cons);
+            throws NamingException {
+        return dirContext.search(parseName(name), filterExpr, filterArgs,
+                cons);
     }
 
 
     /**
-     * Searches in the named context or object for entries that satisfy the 
-     * given search filter. Performs the search as specified by the search 
+     * Searches in the named context or object for entries that satisfy the
+     * given search filter. Performs the search as specified by the search
      * controls.
-     * 
-     * @param name the name of the context or object to search
-     * @param filterExpr the filter expression to use for the search. 
-     * The expression may contain variables of the form "{i}" where i is a 
-     * nonnegative integer. May not be null.
-     * @param filterArgs the array of arguments to substitute for the 
-     * variables in filterExpr. The value of filterArgs[i] will replace each 
-     * occurrence of "{i}". If null, equivalent to an empty array.
-     * @param cons the search controls that control the search. If null, the 
-     * default search controls are used (equivalent to (new SearchControls())).
-     * @return an enumeration of SearchResults of the objects that satisy the 
+     *
+     * @param name       the name of the context or object to search
+     * @param filterExpr the filter expression to use for the search.
+     *                   The expression may contain variables of the form "{i}" where i is a
+     *                   nonnegative integer. May not be null.
+     * @param filterArgs the array of arguments to substitute for the
+     *                   variables in filterExpr. The value of filterArgs[i] will replace each
+     *                   occurrence of "{i}". If null, equivalent to an empty array.
+     * @param cons       the search controls that control the search. If null, the
+     *                   default search controls are used (equivalent to (new SearchControls())).
+     * @return an enumeration of SearchResults of the objects that satisy the
      * filter; never null
-     * @exception ArrayIndexOutOfBoundsException if filterExpr contains {i} 
-     * expressions where i is outside the bounds of the array filterArgs
-     * @exception InvalidSearchControlsException if cons contains invalid 
-     * settings
-     * @exception InvalidSearchFilterException if filterExpr with filterArgs 
-     * represents an invalid search filter
-     * @exception NamingException if a naming exception is encountered
+     * @throws ArrayIndexOutOfBoundsException if filterExpr contains {i}
+     *                                        expressions where i is outside the bounds of the array filterArgs
+     * @throws InvalidSearchControlsException if cons contains invalid
+     *                                        settings
+     * @throws InvalidSearchFilterException   if filterExpr with filterArgs
+     *                                        represents an invalid search filter
+     * @throws NamingException                if a naming exception is encountered
      */
     public NamingEnumeration search(String name, String filterExpr,
                                     Object[] filterArgs, SearchControls cons)
-        throws NamingException {
-        return dirContext.search(parseName(name), filterExpr, filterArgs, 
-                                 cons);
+            throws NamingException {
+        return dirContext.search(parseName(name), filterExpr, filterArgs,
+                cons);
     }
 
 
@@ -1350,22 +1350,22 @@ public class ProxyDirContext implements DirContext {
 
     /**
      * Parses a name.
-     * 
+     *
      * @return the parsed name
      */
-    protected String parseName(String name) 
-        throws NamingException {
+    protected String parseName(String name)
+            throws NamingException {
         return name;
     }
 
 
     /**
      * Parses a name.
-     * 
+     *
      * @return the parsed name
      */
-    protected Name parseName(Name name) 
-        throws NamingException {
+    protected Name parseName(Name name)
+            throws NamingException {
         return name;
     }
 
@@ -1390,8 +1390,8 @@ public class ProxyDirContext implements DirContext {
                     cacheUnload(cacheEntry.name);
                     return (null);
                 } else {
-                    cacheEntry.timestamp = 
-                        System.currentTimeMillis() + cacheTTL;
+                    cacheEntry.timestamp =
+                            System.currentTimeMillis() + cacheTTL;
                 }
             }
             return (cacheEntry);
@@ -1403,9 +1403,9 @@ public class ProxyDirContext implements DirContext {
      * Validate entry.
      */
     protected boolean validate(CacheEntry entry) {
-        if ((entry.resource != null) 
-            && (entry.resource.getContent() != null) 
-            && (System.currentTimeMillis() < entry.timestamp)) {
+        if ((entry.resource != null)
+                && (entry.resource.getContent() != null)
+                && (System.currentTimeMillis() < entry.timestamp)) {
             return true;
         }
         return false;
@@ -1434,8 +1434,8 @@ public class ProxyDirContext implements DirContext {
             }
             long lastModified2 = attributes.getLastModified();
             long contentLength2 = attributes.getContentLength();
-            return (lastModified == lastModified2) 
-                && (contentLength == contentLength2);
+            return (lastModified == lastModified2)
+                    && (contentLength == contentLength2);
         } catch (NamingException e) {
             return false;
         }
@@ -1459,8 +1459,8 @@ public class ProxyDirContext implements DirContext {
             try {
                 Attributes attributes = dirContext.getAttributes(entry.name);
                 if (!(attributes instanceof ResourceAttributes)) {
-                    entry.attributes = 
-                        new ResourceAttributes(attributes);
+                    entry.attributes =
+                            new ResourceAttributes(attributes);
                 } else {
                     entry.attributes = (ResourceAttributes) attributes;
                 }
@@ -1481,7 +1481,7 @@ public class ProxyDirContext implements DirContext {
                     entry.resource = (Resource) object;
                 } else {
                     entry.resource = new Resource(new ByteArrayInputStream
-                        (object.toString().getBytes()));
+                            (object.toString().getBytes()));
                 }
             } catch (NamingException e) {
                 return false;
@@ -1489,9 +1489,9 @@ public class ProxyDirContext implements DirContext {
         }
 
         // Load object content
-        if ((entry.resource != null) && (entry.resource.getContent() == null) 
-            && (entry.attributes.getContentLength() >= 0)
-            && (entry.attributes.getContentLength() < cacheObjectMaxSize)) {
+        if ((entry.resource != null) && (entry.resource.getContent() == null)
+                && (entry.attributes.getContentLength() >= 0)
+                && (entry.attributes.getContentLength() < cacheObjectMaxSize)) {
             int length = (int) entry.attributes.getContentLength();
             InputStream is = null;
             try {
@@ -1516,7 +1516,7 @@ public class ProxyDirContext implements DirContext {
                 }
             }
         }
-        
+
         // Set timestamp
         entry.timestamp = System.currentTimeMillis() + cacheTTL;
 

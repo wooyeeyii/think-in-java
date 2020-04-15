@@ -1,8 +1,8 @@
 /**
  * 1240. Tiling a Rectangle with the Fewest Squares
- *
+ * <p>
  * Given a rectangle of size n x m, find the minimum number of integer-sided squares that tile the rectangle.
- *
+ * <p>
  * https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/
  */
 package com.chang.leetcode.contest.weekly160;
@@ -40,6 +40,7 @@ public class Problem1240 {
      */
     Map<Long, Integer> set = new HashMap<>();
     int res = Integer.MAX_VALUE;
+
     public int tilingRectangle(int n, int m) {
         if (n == m) return 1;
         if (n > m) {
@@ -83,7 +84,7 @@ public class Problem1240 {
         for (int j = end; j >= pos; j--) {
             int curH = j - pos + 1;
 
-            int[] next  = Arrays.copyOf(h, n + 1);
+            int[] next = Arrays.copyOf(h, n + 1);
             for (int k = pos; k <= j; k++) {
                 next[k] += curH;
             }

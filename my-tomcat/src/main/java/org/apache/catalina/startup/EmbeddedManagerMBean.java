@@ -64,6 +64,7 @@
 package org.apache.catalina.startup;
 
 import java.net.InetAddress;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
@@ -89,13 +90,13 @@ public interface EmbeddedManagerMBean {
      * Status constants.
      */
     public static final String[] states =
-    {"Stopped", "Stopping", "Starting", "Started"};
+            {"Stopped", "Stopping", "Starting", "Started"};
 
 
-    public static final int STOPPED  = 0;
+    public static final int STOPPED = 0;
     public static final int STOPPING = 1;
     public static final int STARTING = 2;
-    public static final int STARTED  = 3;
+    public static final int STARTED = 3;
 
 
     /**
@@ -113,7 +114,7 @@ public interface EmbeddedManagerMBean {
     // ------------------------------------------------------ Interface Methods
 
 
-     /**
+    /**
      * Retruns the Catalina component name.
      */
     public String getName();
@@ -131,7 +132,7 @@ public interface EmbeddedManagerMBean {
     public String getStateString();
 
 
-   /**
+    /**
      * Return the debugging detail level for this component.
      */
     public int getDebug();
@@ -206,8 +207,7 @@ public interface EmbeddedManagerMBean {
      * added Connector will be associated with the most recently added Engine.
      *
      * @param connector The connector to be added
-     *
-     * @exception IllegalStateException if no engines have been added yet
+     * @throws IllegalStateException if no engines have been added yet
      */
     public void addConnector(Connector connector);
 
@@ -225,9 +225,9 @@ public interface EmbeddedManagerMBean {
      * based on the specified properties.
      *
      * @param address InetAddress to listen to, or <code>null</code>
-     *  to listen on all address on this server
-     * @param port Port number to listen to
-     * @param secure Should this port be SSL-enabled?
+     *                to listen on all address on this server
+     * @param port    Port number to listen to
+     * @param secure  Should this port be SSL-enabled?
      */
     public Connector createConnector(InetAddress address, int port,
                                      boolean secure);
@@ -248,13 +248,12 @@ public interface EmbeddedManagerMBean {
      * which will also cause the Context to be started if the Host has
      * already been started.
      *
-     * @param path Context path of this application ("" for the default
-     *  application for this host, must start with a slash otherwise)
+     * @param path    Context path of this application ("" for the default
+     *                application for this host, must start with a slash otherwise)
      * @param docBase Absolute pathname to the document base directory
-     *  for this web application
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
+     *                for this web application
+     * @throws IllegalArgumentException if an invalid parameter
+     *                                  is specified
      */
     public Context createContext(String path, String docBase);
 
@@ -286,12 +285,11 @@ public interface EmbeddedManagerMBean {
      *   engine.setDefaultHost(host.getName());
      * </pre>
      *
-     * @param name Canonical name of this virtual host
+     * @param name    Canonical name of this virtual host
      * @param appBase Absolute pathname to the application base directory
-     *  for this virtual host
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
+     *                for this virtual host
+     * @throws IllegalArgumentException if an invalid parameter
+     *                                  is specified
      */
     public Host createHost(String name, String appBase);
 
@@ -347,8 +345,8 @@ public interface EmbeddedManagerMBean {
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception IllegalStateException if this component has already been
-     *  started
+     * @throws IllegalStateException if this component has already been
+     *                               started
      */
     public void start();
 
@@ -358,7 +356,7 @@ public interface EmbeddedManagerMBean {
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception IllegalStateException if this component has not been started
+     * @throws IllegalStateException if this component has not been started
      */
     public void stop();
 

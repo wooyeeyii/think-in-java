@@ -68,6 +68,7 @@ package org.apache.catalina.realm;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.catalina.Realm;
 
 
@@ -89,8 +90,8 @@ public class GenericPrincipal implements Principal {
      * Construct a new Principal, associated with the specified Realm, for the
      * specified username and password.
      *
-     * @param realm The Realm that owns this Principal
-     * @param name The username of the user represented by this Principal
+     * @param realm    The Realm that owns this Principal
+     * @param name     The username of the user represented by this Principal
      * @param password Credentials used to authenticate this user
      */
     public GenericPrincipal(Realm realm, String name, String password) {
@@ -105,10 +106,10 @@ public class GenericPrincipal implements Principal {
      * specified username and password, with the specified role names
      * (as Strings).
      *
-     * @param realm The Realm that owns this principal
-     * @param name The username of the user represented by this Principal
+     * @param realm    The Realm that owns this principal
+     * @param name     The username of the user represented by this Principal
      * @param password Credentials used to authenticate this user
-     * @param roles List of roles (must be Strings) possessed by this user
+     * @param roles    List of roles (must be Strings) possessed by this user
      */
     public GenericPrincipal(Realm realm, String name, String password,
                             List roles) {

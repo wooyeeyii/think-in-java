@@ -1,19 +1,19 @@
 /**
  * 199. Binary Tree Right Side View
- *
+ * <p>
  * Given a binary tree, imagine yourself standing on the right side of it,
  * return the values of the nodes you can see ordered from top to bottom.
- *
+ * <p>
  * Example:
  * Input: [1,2,3,null,5,null,4]
  * Output: [1, 3, 4]
  * Explanation:
- *
- *    1            <---
- *  /   \
+ * <p>
+ * 1            <---
+ * /   \
  * 2     3         <---
- *  \     \
- *   5     4       <---
+ * \     \
+ * 5     4       <---
  */
 package com.chang.leetcode;
 
@@ -30,11 +30,11 @@ public class Problem199 {
         List<Integer> list = new ArrayList<>();
         TreeNode node = root;
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        if(null != node) {
+        if (null != node) {
             queue.add(node);
             list.add(node.val);
         }
-        while(queue.size() > 0) {
+        while (queue.size() > 0) {
             Queue<TreeNode> nextQ = new LinkedList<>();
             TreeNode right = null;
             while (queue.size() > 0) {
@@ -48,7 +48,7 @@ public class Problem199 {
                     right = node.right;
                 }
             }
-            if(null != right) {
+            if (null != right) {
                 list.add(right.val);
             }
             queue = nextQ;

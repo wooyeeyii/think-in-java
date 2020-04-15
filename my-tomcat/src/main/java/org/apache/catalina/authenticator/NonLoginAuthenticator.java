@@ -66,10 +66,10 @@ package org.apache.catalina.authenticator;
 
 
 import java.io.IOException;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.deploy.LoginConfig;
-
 
 
 /**
@@ -81,7 +81,7 @@ import org.apache.catalina.deploy.LoginConfig;
  */
 
 public final class NonLoginAuthenticator
-    extends AuthenticatorBase {
+        extends AuthenticatorBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -91,7 +91,7 @@ public final class NonLoginAuthenticator
      * Descriptive information about this implementation.
      */
     private static final String info =
-        "org.apache.catalina.authenticator.NonLoginAuthenticator/1.0";
+            "org.apache.catalina.authenticator.NonLoginAuthenticator/1.0";
 
 
     // ------------------------------------------------------------- Properties
@@ -116,17 +116,16 @@ public final class NonLoginAuthenticator
      * constraint has been satisfied, or <code>false</code> if we have
      * created a response challenge already.
      *
-     * @param request Request we are processing
+     * @param request  Request we are processing
      * @param response Response we are creating
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     *
-     * @exception IOException if an input/output error occurs
+     * @param login    Login configuration describing how authentication
+     *                 should be performed
+     * @throws IOException if an input/output error occurs
      */
     public boolean authenticate(HttpRequest request,
                                 HttpResponse response,
                                 LoginConfig config)
-        throws IOException {
+            throws IOException {
 
         if (debug >= 1)
             log("User authentication is not required");

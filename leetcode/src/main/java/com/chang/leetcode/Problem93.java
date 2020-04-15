@@ -22,7 +22,7 @@ public class Problem93 {
     }
 
     private void restoreDiv(String s, int index, int left, ArrayList<String> list, List<String> res) {
-        if(s.length() == index && left == 0) {
+        if (s.length() == index && left == 0) {
             StringBuilder sb = new StringBuilder();
             list.forEach(str -> sb.append(str).append("."));
             String oneRes = sb.toString();
@@ -30,13 +30,13 @@ public class Problem93 {
         } else if (s.length() == index || left == 0) {
             return;
         }
-        if( ((s.length() - index) < left) || ((s.length() - index) > 3 * left)) {
+        if (((s.length() - index) < left) || ((s.length() - index) > 3 * left)) {
             return;
         }
 
-        for(int i = 1; i <= 3 && index + i <= s.length(); i++) {
+        for (int i = 1; i <= 3 && index + i <= s.length(); i++) {
             int next = Integer.valueOf(s.substring(index, index + i));
-            if(next > 255 || (i > 1 && "0".equals(s.substring(index, index + 1)))) {
+            if (next > 255 || (i > 1 && "0".equals(s.substring(index, index + 1)))) {
                 return;
             }
             list.add(s.substring(index, index + i));

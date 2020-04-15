@@ -1,23 +1,22 @@
 /**
  * 516. Longest Palindromic Subsequence
- *
+ * <p>
  * Given a string s, find the longest palindromic subsequence's length in s.
  * You may assume that the maximum length of s is 1000.
- *
+ * <p>
  * Example 1:
  * Input:
  * "bbbab"
  * Output:
  * 4
  * One possible longest palindromic subsequence is "bbbb".
- *
+ * <p>
  * Example 2:
  * Input:
  * "cbbd"
  * Output:
  * 2
  * One possible longest palindromic subsequence is "bb".
- *
  */
 package com.chang.leetcode.dp;
 
@@ -47,10 +46,10 @@ public class Problem516 {
      */
     public int longestPalindromeSubseq(String s) {
         int[][] dp = new int[s.length()][s.length()];
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             dp[i][i] = 1;
-            for(int j = i - 1; j >= 0; j--) {
-                if(s.charAt(i) == s.charAt(j)) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (s.charAt(i) == s.charAt(j)) {
                     dp[j][i] = dp[j + 1][i - 1] + 2;
                 } else {
                     dp[j][i] = Math.max(dp[j + 1][i], dp[j][i - 1]);

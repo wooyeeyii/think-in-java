@@ -235,7 +235,7 @@ public final class StringParser {
      * not possible, a zero-length string is returned.
      *
      * @param start Starting index, zero relative, inclusive
-     * @param end Ending index, zero relative, exclusive
+     * @param end   Ending index, zero relative, exclusive
      */
     public String extract(int start, int end) {
 

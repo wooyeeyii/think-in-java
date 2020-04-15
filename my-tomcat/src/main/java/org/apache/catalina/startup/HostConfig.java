@@ -79,6 +79,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import javax.naming.NamingException;
 import javax.naming.directory.DirContext;
+
 import org.apache.naming.resources.ResourceAttributes;
 import org.apache.catalina.Context;
 import org.apache.catalina.Deployer;
@@ -102,7 +103,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class HostConfig
-    implements LifecycleListener, Runnable {
+        implements LifecycleListener, Runnable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -143,7 +144,7 @@ public class HostConfig
      * The string resources for this package.
      */
     protected static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -283,7 +284,7 @@ public class HostConfig
      */
     public void setDeployXML(boolean deployXML) {
 
-        this.deployXML= deployXML;
+        this.deployXML = deployXML;
 
     }
 
@@ -380,7 +381,7 @@ public class HostConfig
         File file = new File(host.getAppBase());
         if (!file.isAbsolute())
             file = new File(System.getProperty("catalina.base"),
-                            host.getAppBase());
+                    host.getAppBase());
         return (file);
 
     }
@@ -415,7 +416,7 @@ public class HostConfig
     protected void deployDescriptors(File appBase, String[] files) {
 
         if (!deployXML)
-           return;
+            return;
 
         for (int i = 0; i < files.length; i++) {
 
@@ -444,11 +445,11 @@ public class HostConfig
                 log(sm.getString("hostConfig.deployDescriptor", files[i]));
                 try {
                     URL config =
-                        new URL("file", null, dir.getCanonicalPath());
+                            new URL("file", null, dir.getCanonicalPath());
                     ((Deployer) host).install(config, null);
                 } catch (Throwable t) {
                     log(sm.getString("hostConfig.deployDescriptor.error",
-                                     files[i]), t);
+                            files[i]), t);
                 }
 
             }
@@ -492,13 +493,13 @@ public class HostConfig
                     log(sm.getString("hostConfig.expand", files[i]));
                     try {
                         URL url = new URL("jar:file:" +
-                                          dir.getCanonicalPath() + "!/");
+                                dir.getCanonicalPath() + "!/");
                         String path = expand(url);
                         url = new URL("file:" + path);
                         ((Deployer) host).install(contextPath, url);
                     } catch (Throwable t) {
                         log(sm.getString("hostConfig.expand.error", files[i]),
-                            t);
+                                t);
                     }
 
                 } else {
@@ -507,12 +508,12 @@ public class HostConfig
                     log(sm.getString("hostConfig.deployJar", files[i]));
                     try {
                         URL url = new URL("file", null,
-                                          dir.getCanonicalPath());
+                                dir.getCanonicalPath());
                         url = new URL("jar:" + url.toString() + "!/");
                         ((Deployer) host).install(contextPath, url);
                     } catch (Throwable t) {
                         log(sm.getString("hostConfig.deployJar.error",
-                                         files[i]), t);
+                                files[i]), t);
                     }
 
                 }
@@ -548,7 +549,7 @@ public class HostConfig
                 // are deployed and not directories for web space.
                 File webInf = new File(dir, "/WEB-INF");
                 if (!webInf.exists() || !webInf.isDirectory() ||
-                    !webInf.canRead())
+                        !webInf.canRead())
                     continue;
 
                 // Calculate the context path and make sure it is unique
@@ -565,7 +566,7 @@ public class HostConfig
                     ((Deployer) host).install(contextPath, url);
                 } catch (Throwable t) {
                     log(sm.getString("hostConfig.deployDir.error", files[i]),
-                        t);
+                            t);
                 }
 
             }
@@ -602,14 +603,14 @@ public class HostConfig
                     // the context
                     continue;
                 }
-                ResourceAttributes webXmlAttributes = 
-                    (ResourceAttributes) 
-                    resources.getAttributes("/WEB-INF/web.xml");
+                ResourceAttributes webXmlAttributes =
+                        (ResourceAttributes)
+                                resources.getAttributes("/WEB-INF/web.xml");
                 long newLastModified = webXmlAttributes.getLastModified();
                 Long lastModified = (Long) webXmlLastModified.get(contextName);
                 if (lastModified == null) {
                     webXmlLastModified.put
-                        (contextName, new Long(newLastModified));
+                            (contextName, new Long(newLastModified));
                 } else {
                     if (lastModified.longValue() != newLastModified) {
                         webXmlLastModified.remove(contextName);
@@ -631,18 +632,16 @@ public class HostConfig
     }
 
 
-
     /**
      * Expand the WAR file found at the specified URL into an unpacked
      * directory structure, and return the absolute pathname to the expanded
      * directory.
      *
      * @param war URL of the web application archive to be expanded
-     *  (must start with "jar:")
-     *
-     * @exception IllegalArgumentException if this is not a "jar:" URL
-     * @exception IOException if an input/output error was encountered
-     *  during expansion
+     *            (must start with "jar:")
+     * @throws IllegalArgumentException if this is not a "jar:" URL
+     * @throws IOException              if an input/output error was encountered
+     *                                  during expansion
      */
     protected String expand(URL war) throws IOException {
 
@@ -669,12 +668,12 @@ public class HostConfig
         File appBase = new File(host.getAppBase());
         if (!appBase.isAbsolute()) {
             appBase = new File(System.getProperty("catalina.base"),
-                               host.getAppBase());
+                    host.getAppBase());
         }
         if (!appBase.exists() || !appBase.isDirectory()) {
             throw new IOException
-                (sm.getString("standardHost.appBase",
-                              appBase.getAbsolutePath()));
+                    (sm.getString("standardHost.appBase",
+                            appBase.getAbsolutePath()));
         }
         File docBase = new File(appBase, pathname);
         if (docBase.exists()) {
@@ -686,7 +685,7 @@ public class HostConfig
         docBase.mkdir();
         if (getDebug() >= 2) {
             log("  Have created expansion directory " +
-                docBase.getAbsolutePath());
+                    docBase.getAbsolutePath());
         }
 
         // Expand the WAR into the new document base directory
@@ -748,7 +747,7 @@ public class HostConfig
                 int last = name.lastIndexOf('/');
                 if (last >= 0) {
                     File parent = new File(docBase,
-                                           name.substring(0, last));
+                            name.substring(0, last));
                     if (getDebug() >= 2) {
                         log("  Creating parent directory " + parent);
                     }
@@ -796,18 +795,17 @@ public class HostConfig
      * Expand the specified input stream into the specified directory, creating
      * a file named from the specified relative path.
      *
-     * @param input InputStream to be copied
+     * @param input   InputStream to be copied
      * @param docBase Document base directory into which we are expanding
-     * @param name Relative pathname of the file to be created
-     *
-     * @exception IOException if an input/output error occurs
+     * @param name    Relative pathname of the file to be created
+     * @throws IOException if an input/output error occurs
      */
     protected void expand(InputStream input, File docBase, String name)
-        throws IOException {
+            throws IOException {
 
         File file = new File(docBase, name);
         BufferedOutputStream output =
-            new BufferedOutputStream(new FileOutputStream(file));
+                new BufferedOutputStream(new FileOutputStream(file));
         byte buffer[] = new byte[2048];
         while (true) {
             int n = input.read(buffer);
@@ -834,7 +832,7 @@ public class HostConfig
             logger.log("HostConfig[" + host.getName() + "]: " + message);
         else
             System.out.println("HostConfig[" + host.getName() + "]: "
-                               + message);
+                    + message);
 
     }
 
@@ -842,7 +840,7 @@ public class HostConfig
     /**
      * Log a message on the Logger associated with our Host (if any)
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     protected void log(String message, Throwable throwable) {
@@ -852,10 +850,10 @@ public class HostConfig
             logger = host.getLogger();
         if (logger != null)
             logger.log("HostConfig[" + host.getName() + "] "
-                       + message, throwable);
+                    + message, throwable);
         else {
             System.out.println("HostConfig[" + host.getName() + "]: "
-                               + message);
+                    + message);
             System.out.println("" + throwable);
             throwable.printStackTrace(System.out);
         }
@@ -915,7 +913,7 @@ public class HostConfig
                 ((Deployer) host).remove(contextPaths[i]);
             } catch (Throwable t) {
                 log(sm.getString("hostConfig.undeploy.error",
-                                 contextPaths[i]), t);
+                        contextPaths[i]), t);
             }
         }
 
@@ -926,8 +924,8 @@ public class HostConfig
      * Start the background thread that will periodically check for
      * web application autoDeploy and changes to the web.xml config.
      *
-     * @exception IllegalStateException if we should not be starting
-     *  a background thread now
+     * @throws IllegalStateException if we should not be starting
+     *                               a background thread now
      */
     protected void threadStart() {
 

@@ -11,6 +11,7 @@ public class MalDoNothing implements Node {
     public void setFollowees(boolean[] followees) {
         return;
     }
+
     public void setPendingTransaction(Set<Transaction> pendingTransactions) {
         return;
     }

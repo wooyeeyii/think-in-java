@@ -40,11 +40,14 @@ public class CommonCook {
     }
 
     //  用厨具烹饪食材
-    static void cook(Chuju chuju, Shicai shicai) {}
+    static void cook(Chuju chuju, Shicai shicai) {
+    }
 
     // 厨具类
-    static class Chuju {}
+    static class Chuju {
+    }
 
     // 食材类
-    static class Shicai {}
+    static class Shicai {
+    }
 }

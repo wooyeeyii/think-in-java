@@ -64,12 +64,14 @@
 package org.apache.catalina.startup;
 
 import java.net.InetAddress;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.Logger;
 import org.apache.catalina.Realm;
+
 import javax.management.NotificationBroadcasterSupport;
 import javax.management.ObjectName;
 import javax.management.MBeanServer;
@@ -85,8 +87,8 @@ import javax.management.Notification;
  */
 
 public final class EmbeddedManager
-    extends NotificationBroadcasterSupport
-    implements EmbeddedManagerMBean, MBeanRegistration {
+        extends NotificationBroadcasterSupport
+        implements EmbeddedManagerMBean, MBeanRegistration {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -114,7 +116,7 @@ public final class EmbeddedManager
 
 
     public ObjectName preRegister(MBeanServer server, ObjectName name)
-        throws Exception {
+            throws Exception {
         return new ObjectName(OBJECT_NAME);
     }
 
@@ -126,7 +128,7 @@ public final class EmbeddedManager
 
 
     public void preDeregister()
-        throws Exception {
+            throws Exception {
     }
 
 
@@ -177,9 +179,9 @@ public final class EmbeddedManager
         // Notifying the MBEan server that we're starting
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Starting " + NAME, "State", "java.lang.Integer",
-             new Integer(STOPPED), new Integer(STARTING));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Starting " + NAME, "State", "java.lang.Integer",
+                        new Integer(STOPPED), new Integer(STARTING));
         sendNotification(notification);
 
         try {
@@ -188,17 +190,17 @@ public final class EmbeddedManager
 
             state = STARTED;
             notification = new AttributeChangeNotification
-                (this, sequenceNumber++, System.currentTimeMillis(),
-                 "Started " + NAME, "State", "java.lang.Integer",
-                 new Integer(STARTING), new Integer(STARTED));
+                    (this, sequenceNumber++, System.currentTimeMillis(),
+                            "Started " + NAME, "State", "java.lang.Integer",
+                            new Integer(STARTING), new Integer(STARTED));
             sendNotification(notification);
 
         } catch (Throwable t) {
             state = STOPPED;
             notification = new AttributeChangeNotification
-                (this, sequenceNumber++, System.currentTimeMillis(),
-                 "Stopped " + NAME, "State", "java.lang.Integer",
-                 new Integer(STARTING), new Integer(STOPPED));
+                    (this, sequenceNumber++, System.currentTimeMillis(),
+                            "Stopped " + NAME, "State", "java.lang.Integer",
+                            new Integer(STARTING), new Integer(STOPPED));
             sendNotification(notification);
         }
 
@@ -218,9 +220,9 @@ public final class EmbeddedManager
         state = STOPPING;
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Stopping " + NAME, "State", "java.lang.Integer",
-             new Integer(STARTED), new Integer(STOPPING));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Stopping " + NAME, "State", "java.lang.Integer",
+                        new Integer(STARTED), new Integer(STOPPING));
         sendNotification(notification);
 
         try {
@@ -237,9 +239,9 @@ public final class EmbeddedManager
         state = STOPPED;
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Stopped " + NAME, "State", "java.lang.Integer",
-             new Integer(STOPPING), new Integer(STOPPED));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Stopped " + NAME, "State", "java.lang.Integer",
+                        new Integer(STOPPING), new Integer(STOPPED));
         sendNotification(notification);
 
     }
@@ -256,7 +258,7 @@ public final class EmbeddedManager
     }
 
 
-   /**
+    /**
      * Return the debugging detail level for this component.
      */
     public int getDebug() {
@@ -351,8 +353,7 @@ public final class EmbeddedManager
      * added Connector will be associated with the most recently added Engine.
      *
      * @param connector The connector to be added
-     *
-     * @exception IllegalStateException if no engines have been added yet
+     * @throws IllegalStateException if no engines have been added yet
      */
     public void addConnector(Connector connector) {
         embedded.addConnector(connector);
@@ -374,9 +375,9 @@ public final class EmbeddedManager
      * based on the specified properties.
      *
      * @param address InetAddress to listen to, or <code>null</code>
-     *  to listen on all address on this server
-     * @param port Port number to listen to
-     * @param secure Should this port be SSL-enabled?
+     *                to listen on all address on this server
+     * @param port    Port number to listen to
+     * @param secure  Should this port be SSL-enabled?
      */
     public Connector createConnector(InetAddress address, int port,
                                      boolean secure) {
@@ -399,13 +400,12 @@ public final class EmbeddedManager
      * which will also cause the Context to be started if the Host has
      * already been started.
      *
-     * @param path Context path of this application ("" for the default
-     *  application for this host, must start with a slash otherwise)
+     * @param path    Context path of this application ("" for the default
+     *                application for this host, must start with a slash otherwise)
      * @param docBase Absolute pathname to the document base directory
-     *  for this web application
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
+     *                for this web application
+     * @throws IllegalArgumentException if an invalid parameter
+     *                                  is specified
      */
     public Context createContext(String path, String docBase) {
         return embedded.createContext(path, docBase);
@@ -441,12 +441,11 @@ public final class EmbeddedManager
      *   engine.setDefaultHost(host.getName());
      * </pre>
      *
-     * @param name Canonical name of this virtual host
+     * @param name    Canonical name of this virtual host
      * @param appBase Absolute pathname to the application base directory
-     *  for this virtual host
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
+     *                for this virtual host
+     * @throws IllegalArgumentException if an invalid parameter
+     *                                  is specified
      */
     public Host createHost(String name, String appBase) {
         return embedded.createHost(name, appBase);

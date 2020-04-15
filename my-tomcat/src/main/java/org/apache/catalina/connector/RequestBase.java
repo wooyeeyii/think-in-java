@@ -17,6 +17,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Request;
@@ -38,7 +39,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public abstract class RequestBase
-    implements ServletRequest, Request {
+        implements ServletRequest, Request {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -102,7 +103,7 @@ public abstract class RequestBase
      * Descriptive information about this Request implementation.
      */
     protected static final String info =
-        "org.apache.catalina.connector.RequestBase/1.0";
+            "org.apache.catalina.connector.RequestBase/1.0";
 
 
     /**
@@ -182,7 +183,7 @@ public abstract class RequestBase
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -414,7 +415,7 @@ public abstract class RequestBase
      * instance of RequestStream associated with this request, but this can
      * be overridden if necessary.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletInputStream createInputStream() throws IOException {
 
@@ -427,7 +428,7 @@ public abstract class RequestBase
      * Perform whatever actions are required to flush and close the input
      * stream or reader, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishRequest() throws IOException {
 
@@ -562,7 +563,7 @@ public abstract class RequestBase
      * Bind an object to a specified name in the internal notes associated
      * with this request, replacing any existing binding for this name.
      *
-     * @param name Name to which the object should be bound
+     * @param name  Name to which the object should be bound
      * @param value Object to be bound to the specified name
      */
     public void setNote(String name, Object value) {
@@ -697,7 +698,7 @@ public abstract class RequestBase
      */
     public String getCharacterEncoding() {
 
-      return (this.characterEncoding);
+        return (this.characterEncoding);
 
     }
 
@@ -727,15 +728,15 @@ public abstract class RequestBase
      * implementation returns a servlet input stream created by
      * <code>createInputStream()</code>.
      *
-     * @exception IllegalStateException if <code>getReader()</code> has
-     *  already been called for this request
-     * @exception IOException if an input/output error occurs
+     * @throws IllegalStateException if <code>getReader()</code> has
+     *                               already been called for this request
+     * @throws IOException           if an input/output error occurs
      */
     public ServletInputStream getInputStream() throws IOException {
 
         if (reader != null)
             throw new IllegalStateException
-                (sm.getString("requestBase.getInputStream.ise"));
+                    (sm.getString("requestBase.getInputStream.ise"));
 
         if (stream == null)
             stream = createInputStream();
@@ -798,7 +799,7 @@ public abstract class RequestBase
      * or posted form data.
      *
      * @return A <code>Map</code> containing parameter names as keys
-     *  and parameter values as map values.
+     * and parameter values as map values.
      */
     public abstract Map getParameterMap();
 
@@ -833,22 +834,22 @@ public abstract class RequestBase
      * default implementation wraps a <code>BufferedReader</code> around the
      * servlet input stream returned by <code>createInputStream()</code>.
      *
-     * @exception IllegalStateException if <code>getInputStream()</code>
-     *  has already been called for this request
-     * @exception IOException if an input/output error occurs
+     * @throws IllegalStateException if <code>getInputStream()</code>
+     *                               has already been called for this request
+     * @throws IOException           if an input/output error occurs
      */
     public BufferedReader getReader() throws IOException {
 
         if (stream != null)
             throw new IllegalStateException
-                (sm.getString("requestBase.getReader.ise"));
+                    (sm.getString("requestBase.getReader.ise"));
 
         if (reader == null) {
             String encoding = getCharacterEncoding();
             if (encoding == null)
                 encoding = "ISO-8859-1";
             InputStreamReader isr =
-                new InputStreamReader(createInputStream(), encoding);
+                    new InputStreamReader(createInputStream(), encoding);
             reader = new BufferedReader(isr);
         }
         return (reader);
@@ -860,9 +861,8 @@ public abstract class RequestBase
      * Return the real path of the specified virtual path.
      *
      * @param path Path to be translated
-     *
      * @deprecated As of version 2.1 of the Java Servlet API, use
-     *  <code>ServletContext.getRealPath()</code>.
+     * <code>ServletContext.getRealPath()</code>.
      */
     public String getRealPath(String path) {
 
@@ -968,7 +968,7 @@ public abstract class RequestBase
     /**
      * Set the specified request attribute to the specified value.
      *
-     * @param name Name of the request attribute to set
+     * @param name  Name of the request attribute to set
      * @param value The associated value
      */
     public void setAttribute(String name, Object value) {
@@ -976,7 +976,7 @@ public abstract class RequestBase
         // Name cannot be null
         if (name == null)
             throw new IllegalArgumentException
-                (sm.getString("requestBase.setAttribute.namenull"));
+                    (sm.getString("requestBase.setAttribute.namenull"));
 
         // Null value is the same as removeAttribute()
         if (value == null) {
@@ -997,14 +997,12 @@ public abstract class RequestBase
      * parameters or reading input using <code>getReader()</code>.
      *
      * @param enc The character encoding to be used
-     *
-     * @exception UnsupportedEncodingException if the specified encoding
-     *  is not supported
-     *
+     * @throws UnsupportedEncodingException if the specified encoding
+     *                                      is not supported
      * @since Servlet 2.3
      */
     public void setCharacterEncoding(String enc)
-        throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
 
         // Ensure that the specified encoding is valid
         byte buffer[] = new byte[1];

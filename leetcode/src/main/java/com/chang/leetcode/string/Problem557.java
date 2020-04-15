@@ -1,9 +1,9 @@
 /**
  * 557. Reverse Words in a String III
- *
+ * <p>
  * Given a string, you need to reverse the order of characters in each word
  * within a sentence while still preserving whitespace and initial word order.
- *
+ * <p>
  * Example 1:
  * Input: "Let's take LeetCode contest"
  * Output: "s'teL ekat edoCteeL tsetnoc"
@@ -14,7 +14,7 @@ package com.chang.leetcode.string;
 public class Problem557 {
 
     public String reverseWords(String s) {
-        if(null == s || s.length() == 0) {
+        if (null == s || s.length() == 0) {
             return s;
         }
 
@@ -23,9 +23,9 @@ public class Problem557 {
         int idx = 0;
         int start = idx;
         int end = idx;
-        while(idx < len) {
-            if(s.charAt(idx) == ' ') {
-                for(int i = end - 1; i >= start; i--) {
+        while (idx < len) {
+            if (s.charAt(idx) == ' ') {
+                for (int i = end - 1; i >= start; i--) {
                     sb.append(s.charAt(i));
                 }
                 sb.append(" ");
@@ -37,7 +37,7 @@ public class Problem557 {
             idx++;
         }
 
-        for(int i = end - 1; i >= start; i--) {
+        for (int i = end - 1; i >= start; i--) {
             sb.append(s.charAt(i));
         }
 
@@ -45,12 +45,12 @@ public class Problem557 {
     }
 
     public String reverseWordsUseSplit(String s) {
-        if(null == s || s.length() == 0) {
+        if (null == s || s.length() == 0) {
             return s;
         }
         String[] strs = s.split(" ");
         StringBuilder sb = new StringBuilder();
-        for(String si : strs) {
+        for (String si : strs) {
             sb.append(reverse(si)).append(" ");
         }
 
@@ -59,7 +59,7 @@ public class Problem557 {
 
     private String reverse(String si) {
         StringBuilder sb = new StringBuilder();
-        for(int i = si.length() - 1; i >= 0; i--) {
+        for (int i = si.length() - 1; i >= 0; i--) {
             sb.append(si.charAt(i));
         }
         return sb.toString();

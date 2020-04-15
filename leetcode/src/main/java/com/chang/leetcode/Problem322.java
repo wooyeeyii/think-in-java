@@ -76,11 +76,11 @@ public class Problem322 {
         int sum = 0;
         dp[0] = 0;
 
-        while(++sum <= amount) {
+        while (++sum <= amount) {
             int min = -1;
-            for(int coin : coins) {
-                if(sum >= coin && dp[sum - coin] != -1) {
-                    if(min == -1 || dp[sum - coin] + 1 < min) {
+            for (int coin : coins) {
+                if (sum >= coin && dp[sum - coin] != -1) {
+                    if (min == -1 || dp[sum - coin] + 1 < min) {
                         min = dp[sum - coin] + 1;
                     }
                 }

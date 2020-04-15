@@ -78,6 +78,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Globals;
@@ -105,8 +106,8 @@ import org.apache.catalina.util.LifecycleSupport;
  */
 
 public class StandardManager
-    extends ManagerBase
-    implements Lifecycle, PropertyChangeListener, Runnable {
+        extends ManagerBase
+        implements Lifecycle, PropertyChangeListener, Runnable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -200,8 +201,8 @@ public class StandardManager
         int oldCheckInterval = this.checkInterval;
         this.checkInterval = checkInterval;
         support.firePropertyChange("checkInterval",
-                                   new Integer(oldCheckInterval),
-                                   new Integer(this.checkInterval));
+                new Integer(oldCheckInterval),
+                new Integer(this.checkInterval));
 
     }
 
@@ -225,7 +226,7 @@ public class StandardManager
         // Register with the new Container (if any)
         if ((this.container != null) && (this.container instanceof Context)) {
             setMaxInactiveInterval
-                ( ((Context) this.container).getSessionTimeout()*60 );
+                    (((Context) this.container).getSessionTimeout() * 60);
             ((Context) this.container).addPropertyChangeListener(this);
         }
 
@@ -266,8 +267,8 @@ public class StandardManager
         int oldMaxActiveSessions = this.maxActiveSessions;
         this.maxActiveSessions = max;
         support.firePropertyChange("maxActiveSessions",
-                                   new Integer(oldMaxActiveSessions),
-                                   new Integer(this.maxActiveSessions));
+                new Integer(oldMaxActiveSessions),
+                new Integer(this.maxActiveSessions));
 
     }
 
@@ -317,15 +318,15 @@ public class StandardManager
      * method of the returned session.  If a new session cannot be created
      * for any reason, return <code>null</code>.
      *
-     * @exception IllegalStateException if a new session cannot be
-     *  instantiated for any reason
+     * @throws IllegalStateException if a new session cannot be
+     *                               instantiated for any reason
      */
     public Session createSession() {
 
         if ((maxActiveSessions >= 0) &&
-          (sessions.size() >= maxActiveSessions))
+                (sessions.size() >= maxActiveSessions))
             throw new IllegalStateException
-                (sm.getString("standardManager.createSession.ise"));
+                    (sm.getString("standardManager.createSession.ise"));
 
         return (super.createSession());
 
@@ -337,9 +338,9 @@ public class StandardManager
      * to the appropriate persistence mechanism, if any.  If persistence is not
      * supported, this method returns without doing anything.
      *
-     * @exception ClassNotFoundException if a serialized class cannot be
-     *  found during the reload
-     * @exception IOException if an input/output error occurs
+     * @throws ClassNotFoundException if a serialized class cannot be
+     *                                found during the reload
+     * @throws IOException            if an input/output error occurs
      */
     public void load() throws ClassNotFoundException, IOException {
 
@@ -370,7 +371,7 @@ public class StandardManager
             if (classLoader != null) {
                 if (debug >= 1)
                     log("Creating custom object input stream for class loader "
-                        + classLoader);
+                            + classLoader);
                 ois = new CustomObjectInputStream(bis, classLoader);
             } else {
                 if (debug >= 1)
@@ -409,7 +410,7 @@ public class StandardManager
                     ((StandardSession) session).activate();
                 }
             } catch (ClassNotFoundException e) {
-              log(sm.getString("standardManager.loading.cnfe", e), e);
+                log(sm.getString("standardManager.loading.cnfe", e), e);
                 if (ois != null) {
                     try {
                         ois.close();
@@ -420,7 +421,7 @@ public class StandardManager
                 }
                 throw e;
             } catch (IOException e) {
-              log(sm.getString("standardManager.loading.ioe", e), e);
+                log(sm.getString("standardManager.loading.ioe", e), e);
                 if (ois != null) {
                     try {
                         ois.close();
@@ -440,7 +441,7 @@ public class StandardManager
                 }
 
                 // Delete the persistent storage file
-                if (file != null && file.exists() )
+                if (file != null && file.exists())
                     file.delete();
             }
         }
@@ -455,7 +456,7 @@ public class StandardManager
      * mechanism, if any.  If persistence is not supported, this method
      * returns without doing anything.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void unload() throws IOException {
 
@@ -496,7 +497,7 @@ public class StandardManager
                 Iterator elements = sessions.values().iterator();
                 while (elements.hasNext()) {
                     StandardSession session =
-                        (StandardSession) elements.next();
+                            (StandardSession) elements.next();
                     list.add(session);
                     ((StandardSession) session).passivate();
                     session.writeObjectData(oos);
@@ -567,7 +568,7 @@ public class StandardManager
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -594,8 +595,8 @@ public class StandardManager
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
 
@@ -605,7 +606,7 @@ public class StandardManager
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("standardManager.alreadyStarted"));
+                    (sm.getString("standardManager.alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
 
@@ -634,8 +635,8 @@ public class StandardManager
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
 
@@ -645,7 +646,7 @@ public class StandardManager
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("standardManager.notStarted"));
+                    (sm.getString("standardManager.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 
@@ -697,10 +698,10 @@ public class StandardManager
         if (event.getPropertyName().equals("sessionTimeout")) {
             try {
                 setMaxInactiveInterval
-                    ( ((Integer) event.getNewValue()).intValue()*60 );
+                        (((Integer) event.getNewValue()).intValue() * 60);
             } catch (NumberFormatException e) {
                 log(sm.getString("standardManager.sessionTimeout",
-                                 event.getNewValue().toString()));
+                        event.getNewValue().toString()));
             }
         }
 
@@ -722,9 +723,9 @@ public class StandardManager
         if (!file.isAbsolute()) {
             if (container instanceof Context) {
                 ServletContext servletContext =
-                    ((Context) container).getServletContext();
+                        ((Context) container).getServletContext();
                 File tempdir = (File)
-                    servletContext.getAttribute(Globals.WORK_DIR_ATTR);
+                        servletContext.getAttribute(Globals.WORK_DIR_ATTR);
                 if (tempdir != null)
                     file = new File(tempdir, pathname);
             }
@@ -752,7 +753,7 @@ public class StandardManager
             if (maxInactiveInterval < 0)
                 continue;
             int timeIdle = // Truncate, do not round up
-                (int) ((timeNow - session.getLastAccessedTime()) / 1000L);
+                    (int) ((timeNow - session.getLastAccessedTime()) / 1000L);
             if (timeIdle >= maxInactiveInterval) {
                 try {
                     session.expire();

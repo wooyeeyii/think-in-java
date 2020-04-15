@@ -1,11 +1,11 @@
 /**
  * 86. Partition List
- *
+ * <p>
  * Given a linked list and a value x, partition it such that all nodes
  * less than x come before nodes greater than or equal to x.
- *
+ * <p>
  * You should preserve the original relative order of the nodes in each of the two partitions.
- *
+ * <p>
  * Example:
  * Input: head = 1->4->3->2->5->2, x = 3
  * Output: 1->2->2->4->3->5
@@ -22,24 +22,24 @@ public class Problem86 {
         ListNode nodePos = head;
         ListNode pre = preHead;
         ListNode node = head;
-        while(null != node && x > node.val) {
-            if(node.val > nodePos.val) {
+        while (null != node && x > node.val) {
+            if (node.val > nodePos.val) {
                 prePos = pre;
                 nodePos = node;
             }
             pre = node;
             node = node.next;
         }
-        if(null != node && node.val >= x) {
-            if(node.val > nodePos.val) {
+        if (null != node && node.val >= x) {
+            if (node.val > nodePos.val) {
                 prePos = pre;
                 nodePos = node;
             }
             pre = node;
             node = node.next;
         }
-        while(null != node) {
-            if(node.val < x) {
+        while (null != node) {
+            if (node.val < x) {
                 pre.next = node.next;
                 node.next = prePos.next;
                 prePos.next = node;
@@ -69,7 +69,7 @@ public class Problem86 {
         n5.next = n6;
         ListNode res = problem.partition(n1, 3);
         //1->2->2->4->3->5
-        while(null != res) {
+        while (null != res) {
             System.out.println(res.val + ", ");
             res = res.next;
         }
@@ -83,7 +83,7 @@ public class Problem86 {
         m1.next = m2;
         ListNode res2 = problem.partition(m1, 2);
         //1->2->2->4->3->5
-        while(null != res2) {
+        while (null != res2) {
             System.out.println(res2.val + ", ");
             res2 = res2.next;
         }

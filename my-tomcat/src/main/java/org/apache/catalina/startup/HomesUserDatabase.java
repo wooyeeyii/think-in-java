@@ -80,7 +80,7 @@ import java.util.Enumeration;
  */
 
 public final class HomesUserDatabase
-    implements UserDatabase {
+        implements UserDatabase {
 
 
     // --------------------------------------------------------- Constructors

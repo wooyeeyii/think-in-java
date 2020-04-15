@@ -7,15 +7,15 @@ public class Problem5099 {
     //  Time Limit Exceeded
     public boolean isValidPalindromeTooSlow(String s, int k) {
         int len = s.length();
-        if(k >= len - 1) {
+        if (k >= len - 1) {
             return true;
         }
 
-        for(int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {
             int count = 0;
-            for(int j = len - 1 - count; j > i && (i + count) <= k; j--, count++) {
-                if(s.charAt(i) == s.charAt(j)) {
-                    if(isValidPalindromeTooSlow(s.substring(i + 1, j), k - i - count)) {
+            for (int j = len - 1 - count; j > i && (i + count) <= k; j--, count++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    if (isValidPalindromeTooSlow(s.substring(i + 1, j), k - i - count)) {
                         return true;
                     }
                 }

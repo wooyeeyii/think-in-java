@@ -1,13 +1,13 @@
 /**
  * 82. Remove Duplicates from Sorted List II
- *
+ * <p>
  * Given a sorted linked list, delete all nodes that have duplicate numbers,
  * leaving only distinct numbers from the original list.
- *
+ * <p>
  * Example 1:
  * Input: 1->2->3->3->4->4->5
  * Output: 1->2->5
- *
+ * <p>
  * Example 2:
  * Input: 1->1->1->2->3
  * Output: 2->3
@@ -25,12 +25,12 @@ public class Problem82 {
         ListNode node = head;
         ListNode pre = preHead;
         boolean duplicate = false;
-        while(null != node) {
-            while(node.next != null && node.val == node.next.val) {
+        while (null != node) {
+            while (node.next != null && node.val == node.next.val) {
                 duplicate = true;
                 node = node.next;
             }
-            if(duplicate) {
+            if (duplicate) {
                 pre.next = node.next;
             } else {
                 pre = node;
@@ -55,7 +55,7 @@ public class Problem82 {
         n4.next = n5;
         n5.next = n6;
         ListNode res = problem.deleteDuplicates(n1);
-        while(null != res) {
+        while (null != res) {
             System.out.println(res.val + ", ");
             res = res.next;
         }

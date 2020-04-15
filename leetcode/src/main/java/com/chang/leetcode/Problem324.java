@@ -1,16 +1,16 @@
 /**
  * 324. Wiggle Sort II
- *
+ * <p>
  * Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
- *
+ * <p>
  * Example 1:
  * Input: nums = [1, 5, 1, 1, 6, 4]
  * Output: One possible answer is [1, 4, 1, 5, 1, 6].
- *
+ * <p>
  * Example 2:
  * Input: nums = [1, 3, 2, 2, 3, 1]
  * Output: One possible answer is [2, 3, 1, 3, 1, 2].
- *
+ * <p>
  * Note:
  * You may assume all input has valid answer.
  */
@@ -22,27 +22,28 @@ public class Problem324 {
 
     // 不可行，处理不了中间出现重复数字的情况
     public void wiggleSortWrong(int[] nums) {
-        if(null == nums || 0 == nums.length) {
+        if (null == nums || 0 == nums.length) {
             return;
         }
         Arrays.sort(nums);
         int len = nums.length;
         int start = 1;
         int end = (len % 2 == 0 ? len - 2 : len - 1);
-        while(start < end) {
+        while (start < end) {
             swap(nums, start, end);
             start += 2;
             end -= 2;
         }
 
-        if(0 == len % 2) {
+        if (0 == len % 2) {
             int mid = len / 2;
-            if(nums[mid] == nums[mid - 1]) {
-                swap(nums, mid - 2, mid );
+            if (nums[mid] == nums[mid - 1]) {
+                swap(nums, mid - 2, mid);
                 swap(nums, mid - 1, mid + 1);
             }
         }
     }
+
     private void swap(int[] nums, int i, int j) {
         int a = nums[i];
         nums[i] = nums[j];
@@ -51,25 +52,25 @@ public class Problem324 {
 
     public static void main(String[] args) {
         Problem324 problem = new Problem324();
-        int[] nums1 = new int[] {1, 5, 1, 1, 6, 4};
+        int[] nums1 = new int[]{1, 5, 1, 1, 6, 4};
         problem.wiggleSort(nums1);
         printArray(nums1);
 
-        int[] nums2 = new int[] {1, 3, 2, 2, 3, 1};
+        int[] nums2 = new int[]{1, 3, 2, 2, 3, 1};
         problem.wiggleSort(nums2);
         printArray(nums2);
 
-        int[] nums3 = new int[] {1, 5, 1, 1, 6, 4, 7};
+        int[] nums3 = new int[]{1, 5, 1, 1, 6, 4, 7};
         problem.wiggleSort(nums3);
         printArray(nums3);
 
-        int[] nums4 = new int[] {4, 5, 5, 6};
+        int[] nums4 = new int[]{4, 5, 5, 6};
         problem.wiggleSort(nums4);
         printArray(nums4);
     }
 
     private static void printArray(int[] nums) {
-        for(int s : nums) {
+        for (int s : nums) {
             System.out.print(s);
             System.out.print(" ");
         }
@@ -89,8 +90,8 @@ public class Problem324 {
     public void wiggleSort(int[] nums) {
         int[] sort = nums.clone();
         Arrays.sort(sort);
-        for(int i=(sort.length-1)/2, j=0; i>=0; i--, j+=2) nums[j]=sort[i];
-        for(int i=sort.length-1, j=1; i>(sort.length-1)/2; i--, j+=2) nums[j]=sort[i];
+        for (int i = (sort.length - 1) / 2, j = 0; i >= 0; i--, j += 2) nums[j] = sort[i];
+        for (int i = sort.length - 1, j = 1; i > (sort.length - 1) / 2; i--, j += 2) nums[j] = sort[i];
     }
 
     // 改进，不需要排序，找到中位数，区分大于它的和小于他的就可以了

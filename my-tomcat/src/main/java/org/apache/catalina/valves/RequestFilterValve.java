@@ -70,6 +70,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 import org.apache.catalina.Request;
@@ -113,7 +114,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public abstract class RequestFilterValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -147,14 +148,14 @@ public abstract class RequestFilterValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.valves.RequestFilterValve/1.0";
+            "org.apache.catalina.valves.RequestFilterValve/1.0";
 
 
     /**
      * The StringManager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -229,17 +230,16 @@ public abstract class RequestFilterValve
      * <code>process()</code> method to perform the actual filtering.
      * This method must be implemented by a concrete subclass.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public abstract void invoke(Request request, Response response,
                                 ValveContext context)
-        throws IOException, ServletException;
+            throws IOException, ServletException;
 
 
     // ------------------------------------------------------ Protected Methods
@@ -251,9 +251,8 @@ public abstract class RequestFilterValve
      * list of regular expression patterns.
      *
      * @param list The comma-separated list of patterns
-     *
-     * @exception IllegalArgumentException if one of the patterns has
-     *  invalid syntax
+     * @throws IllegalArgumentException if one of the patterns has
+     *                                  invalid syntax
      */
     protected RE[] precalculate(String list) {
 
@@ -274,7 +273,7 @@ public abstract class RequestFilterValve
                 reList.add(new RE(pattern));
             } catch (RESyntaxException e) {
                 throw new IllegalArgumentException
-                    (sm.getString("requestFilterValve.syntax", pattern));
+                        (sm.getString("requestFilterValve.syntax", pattern));
             }
             list = list.substring(comma + 1);
         }
@@ -290,18 +289,17 @@ public abstract class RequestFilterValve
      * against the specified request property.
      *
      * @param property The request property on which to filter
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be processed
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     protected void process(String property,
                            Request request, Response response,
                            ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Check the deny patterns, if any
         for (int i = 0; i < denies.length; i++) {

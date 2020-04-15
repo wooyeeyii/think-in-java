@@ -64,6 +64,7 @@
 package org.apache.catalina.cluster;
 
 import java.io.Serializable;
+
 import org.apache.catalina.util.ServerInfo;
 
 /**
@@ -91,7 +92,7 @@ public final class ClusterMemberInfo implements Serializable {
     }
 
     public String getClusterName() {
-        return(this.clusterName);
+        return (this.clusterName);
     }
 
     public void setHostName(String hostName) {
@@ -99,11 +100,11 @@ public final class ClusterMemberInfo implements Serializable {
     }
 
     public String getHostName() {
-        return(this.hostName);
+        return (this.hostName);
     }
 
     public String getServerVersion() {
-        return(ServerInfo.getServerInfo());
+        return (ServerInfo.getServerInfo());
     }
 
     public void setClusterInfo(String clusterInfo) {
@@ -111,6 +112,6 @@ public final class ClusterMemberInfo implements Serializable {
     }
 
     public String getClusterInfo() {
-        return(this.clusterInfo);
+        return (this.clusterInfo);
     }
 }

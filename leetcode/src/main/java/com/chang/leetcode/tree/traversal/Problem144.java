@@ -1,18 +1,18 @@
 /**
  * 144 Binary Tree Preorder Traversal
- *
+ * <p>
  * Given a binary tree, return the preorder traversal of its nodes' values.
- *
+ * <p>
  * Example:
  * Input: [1,null,2,3]
- *    1
- *     \
- *      2
- *     /
- *    3
- *
+ * 1
+ * \
+ * 2
+ * /
+ * 3
+ * <p>
  * Output: [1,2,3]
- *
+ * <p>
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  */
 package com.chang.leetcode.tree.traversal;
@@ -30,8 +30,9 @@ public class Problem144 {
         preorderTraversal(root, result);
         return result;
     }
+
     private void preorderTraversal(TreeNode node, List<Integer> list) {
-        if(null == node) {
+        if (null == node) {
             return;
         }
         list.add(node.val);
@@ -43,16 +44,16 @@ public class Problem144 {
     public List<Integer> preorderTraversalIter(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
-        if(null != root) {
+        if (null != root) {
             stack.push(root);
         }
-        while(stack.size() > 0) {
+        while (stack.size() > 0) {
             TreeNode node = stack.pop();
             result.add(node.val);
-            if(null != node.right) {
+            if (null != node.right) {
                 stack.push(node.right);
             }
-            if(null != node.left) {
+            if (null != node.left) {
                 stack.push(node.left);
             }
         }
@@ -63,7 +64,7 @@ public class Problem144 {
     public List<Integer> preorderTraversalIterImpro(TreeNode node) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> rights = new Stack<TreeNode>();
-        while(node != null) {
+        while (node != null) {
             result.add(node.val);
             if (node.right != null) {
                 rights.push(node.right);

@@ -136,20 +136,19 @@ public final class ClassLoaderFactory {
      * defaults and the specified directory paths:
      *
      * @param unpacked Array of pathnames to unpacked directories that should
-     *  be added to the repositories of the class loader, or <code>null</code> 
-     * for no unpacked directories to be considered
-     * @param packed Array of pathnames to directories containing JAR files
-     *  that should be added to the repositories of the class loader, 
-     * or <code>null</code> for no directories of JAR files to be considered
-     * @param parent Parent class loader for the new class loader, or
-     *  <code>null</code> for the system class loader.
-     *
-     * @exception Exception if an error occurs constructing the class loader
+     *                 be added to the repositories of the class loader, or <code>null</code>
+     *                 for no unpacked directories to be considered
+     * @param packed   Array of pathnames to directories containing JAR files
+     *                 that should be added to the repositories of the class loader,
+     *                 or <code>null</code> for no directories of JAR files to be considered
+     * @param parent   Parent class loader for the new class loader, or
+     *                 <code>null</code> for the system class loader.
+     * @throws Exception if an error occurs constructing the class loader
      */
     public static ClassLoader createClassLoader(File unpacked[],
                                                 File packed[],
                                                 ClassLoader parent)
-        throws Exception {
+            throws Exception {
 
         if (debug >= 1)
             log("Creating new class loader");
@@ -159,14 +158,14 @@ public final class ClassLoaderFactory {
 
         // Add unpacked directories
         if (unpacked != null) {
-            for (int i = 0; i < unpacked.length; i++)  {
+            for (int i = 0; i < unpacked.length; i++) {
                 File file = unpacked[i];
                 if (!file.isDirectory() || !file.exists() || !file.canRead())
                     continue;
                 if (debug >= 1)
                     log("  Including directory " + file.getAbsolutePath());
                 URL url = new URL("file", null,
-                                  file.getCanonicalPath() + File.separator);
+                        file.getCanonicalPath() + File.separator);
                 list.add(url.toString());
             }
         }
@@ -176,7 +175,7 @@ public final class ClassLoaderFactory {
             for (int i = 0; i < packed.length; i++) {
                 File directory = packed[i];
                 if (!directory.isDirectory() || !directory.exists() ||
-                    !directory.canRead())
+                        !directory.canRead())
                     continue;
                 String filenames[] = directory.list();
                 for (int j = 0; j < filenames.length; j++) {
@@ -187,7 +186,7 @@ public final class ClassLoaderFactory {
                     if (debug >= 1)
                         log("  Including jar file " + file.getAbsolutePath());
                     URL url = new URL("file", null,
-                                      file.getCanonicalPath());
+                            file.getCanonicalPath());
                     list.add(url.toString());
                 }
             }
@@ -232,7 +231,7 @@ public final class ClassLoaderFactory {
     /**
      * Log a message and exception for this class.
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param exception Exception to be logged
      */
     private static void log(String message, Throwable exception) {
@@ -241,8 +240,6 @@ public final class ClassLoaderFactory {
         exception.printStackTrace(System.out);
 
     }
-
-
 
 
 }

@@ -12,6 +12,7 @@ public class SerializeUtil {
 
     /**
      * serialize Object
+     *
      * @param object
      * @return byte[]
      */
@@ -24,13 +25,14 @@ public class SerializeUtil {
             oos.writeObject(object);
             return baos.toByteArray();
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }
 
     /**
      * unserialize byte[]
+     *
      * @param bytes
      * @return Object
      */
@@ -41,15 +43,16 @@ public class SerializeUtil {
             ObjectInputStream ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-        	e.printStackTrace();
-        } 
+            e.printStackTrace();
+        }
         return null;
     }
 
     /**
      * serialize hash Map<Object, Object>
+     *
      * @param hash
-     * @return Map<byte[], byte[]>
+     * @return Map<byte [ ], byte [ ]>
      */
     public static Map<byte[], byte[]> serializehmoo2mbb(Map<Object, Object> hash) {
         Map<byte[], byte[]> result = new HashMap<byte[], byte[]>();
@@ -67,6 +70,7 @@ public class SerializeUtil {
 
     /**
      * unserialize hash Map<byte[], byte[]>
+     *
      * @param hash
      * @return Map<Object, Object>
      */
@@ -86,8 +90,9 @@ public class SerializeUtil {
 
     /**
      * serialize hash Map<String, Object>
+     *
      * @param hash
-     * @return Map<byte[], byte[]>
+     * @return Map<byte [ ], byte [ ]>
      */
     public static Map<byte[], byte[]> serializehmso2mbb(final Map<String, Object> hash) {
         Map<byte[], byte[]> result = new HashMap<byte[], byte[]>();
@@ -105,6 +110,7 @@ public class SerializeUtil {
 
     /**
      * unserialize hash Map<byte[], byte[]>
+     *
      * @param hash
      * @return Map<String, Object>
      */

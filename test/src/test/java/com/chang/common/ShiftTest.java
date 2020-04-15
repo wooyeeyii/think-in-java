@@ -18,10 +18,10 @@ public class ShiftTest {
 
     @Test
     public void test2() {
-        String[] a = new String[] {"aaa", null, ""};
-        for(String s : a) {
+        String[] a = new String[]{"aaa", null, ""};
+        for (String s : a) {
             System.out.println("##################");
-            if(s instanceof String) {
+            if (s instanceof String) {
                 System.out.println(s);
             } else {
                 System.out.println("not string");
@@ -29,9 +29,9 @@ public class ShiftTest {
             System.out.println("-------------------");
         }
         Integer b = null;
-        if((Object)b instanceof String) {
+        if ((Object) b instanceof String) {
             System.out.println("b is String");
-        } else if((Object)b instanceof Integer) {
+        } else if ((Object) b instanceof Integer) {
             System.out.println("b is Integer");
         } else {
             System.out.println("b is null");

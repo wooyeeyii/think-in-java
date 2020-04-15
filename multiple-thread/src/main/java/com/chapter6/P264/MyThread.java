@@ -2,8 +2,8 @@ package com.chapter6.P264;
 
 public class MyThread extends Thread {
 
-	@Override
-	public void run() {
-		System.out.println(MyObject.getInstance().hashCode());
-	}
+    @Override
+    public void run() {
+        System.out.println(MyObject.getInstance().hashCode());
+    }
 }

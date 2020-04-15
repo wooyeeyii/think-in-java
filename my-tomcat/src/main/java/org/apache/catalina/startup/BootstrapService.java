@@ -67,6 +67,7 @@ package org.apache.catalina.startup;
 
 import java.io.File;
 import java.lang.reflect.Method;
+
 import org.apache.commons.daemon.Daemon;
 import org.apache.commons.daemon.DaemonContext;
 
@@ -83,8 +84,8 @@ import org.apache.commons.daemon.DaemonContext;
  * @version $Revision: 1.17 $ $Date: 2002/09/16 15:36:54 $
  */
 
-public final class BootstrapService 
-    implements Daemon {
+public final class BootstrapService
+        implements Daemon {
 
 
     // ------------------------------------------------------- Static Variables
@@ -115,14 +116,14 @@ public final class BootstrapService
      * Load the Catalina Service.
      */
     public void init(DaemonContext context)
-        throws Exception {
+            throws Exception {
 
         String arguments[] = null;
 
         /* Read the arguments from the Daemon context */
-        if (context!=null) {
+        if (context != null) {
             arguments = context.getArguments();
-            if (arguments!=null) {
+            if (arguments != null) {
                 for (int i = 0; i < arguments.length; i++) {
                     if (arguments[i].equals("-debug")) {
                         debug = 1;
@@ -149,39 +150,39 @@ public final class BootstrapService
             ClassLoaderFactory.setDebug(debug);
 
             unpacked[0] = new File(getCatalinaHome(),
-                                   "common" + File.separator + "classes");
+                    "common" + File.separator + "classes");
             packed2[0] = new File(getCatalinaHome(),
-                                  "common" + File.separator + "endorsed");
+                    "common" + File.separator + "endorsed");
             packed2[1] = new File(getCatalinaHome(),
-                                  "common" + File.separator + "lib");
+                    "common" + File.separator + "lib");
             commonLoader =
-                ClassLoaderFactory.createClassLoader(unpacked, packed2, null);
+                    ClassLoaderFactory.createClassLoader(unpacked, packed2, null);
 
             unpacked[0] = new File(getCatalinaHome(),
-                                   "server" + File.separator + "classes");
+                    "server" + File.separator + "classes");
             packed[0] = new File(getCatalinaHome(),
-                                 "server" + File.separator + "lib");
+                    "server" + File.separator + "lib");
             catalinaLoader =
-                ClassLoaderFactory.createClassLoader(unpacked, packed,
-                                                     commonLoader);
+                    ClassLoaderFactory.createClassLoader(unpacked, packed,
+                            commonLoader);
             System.err.println("Created catalinaLoader in: " + getCatalinaHome()
-                 +  File.separator +
-                 "server" + File.separator + "lib");
+                    + File.separator +
+                    "server" + File.separator + "lib");
 
             unpacked[0] = new File(getCatalinaBase(),
-                                   "shared" + File.separator + "classes");
+                    "shared" + File.separator + "classes");
             packed[0] = new File(getCatalinaBase(),
-                                 "shared" + File.separator + "lib");
+                    "shared" + File.separator + "lib");
             sharedLoader =
-                ClassLoaderFactory.createClassLoader(unpacked, packed,
-                                                     commonLoader);
+                    ClassLoaderFactory.createClassLoader(unpacked, packed,
+                            commonLoader);
 
         } catch (Throwable t) {
 
             log("Class loader creation threw exception", t);
 
         }
-        
+
         Thread.currentThread().setContextClassLoader(catalinaLoader);
 
         SecurityClassLoad.securityClassLoad(catalinaLoader);
@@ -190,10 +191,10 @@ public final class BootstrapService
         if (debug >= 1)
             log("Loading startup class");
         Class startupClass =
-            catalinaLoader.loadClass
-            ("org.apache.catalina.startup.CatalinaService");
+                catalinaLoader.loadClass
+                        ("org.apache.catalina.startup.CatalinaService");
         Object startupInstance = startupClass.newInstance();
-        
+
         // Set the shared extensions class loader
         if (debug >= 1)
             log("Setting startup class properties");
@@ -203,15 +204,15 @@ public final class BootstrapService
         Object paramValues[] = new Object[1];
         paramValues[0] = sharedLoader;
         Method method =
-            startupInstance.getClass().getMethod(methodName, paramTypes);
+                startupInstance.getClass().getMethod(methodName, paramTypes);
         method.invoke(startupInstance, paramValues);
-        
+
         catalinaService = startupInstance;
-        
+
         // Call the load() method
         methodName = "load";
         Object param[];
-        if (arguments==null || arguments.length==0) {
+        if (arguments == null || arguments.length == 0) {
             paramTypes = null;
             param = null;
         } else {
@@ -231,7 +232,7 @@ public final class BootstrapService
      * Start the Catalina Service.
      */
     public void start()
-        throws Exception {
+            throws Exception {
 
         log("Starting service");
         String methodName = "start";
@@ -246,7 +247,7 @@ public final class BootstrapService
      * Stop the Catalina Service.
      */
     public void stop()
-        throws Exception {
+            throws Exception {
 
         log("Stopping service");
         String methodName = "stop";
@@ -278,7 +279,7 @@ public final class BootstrapService
     public static void main(String args[]) {
 
         // Set the debug flag appropriately
-        for (int i = 0; i < args.length; i++)  {
+        for (int i = 0; i < args.length; i++) {
             if ("-debug".equals(args[i]))
                 debug = 1;
         }
@@ -319,10 +320,10 @@ public final class BootstrapService
             return;
         if (System.getProperty("catalina.home") != null)
             System.setProperty("catalina.base",
-                               System.getProperty("catalina.home"));
+                    System.getProperty("catalina.home"));
         else
             System.setProperty("catalina.base",
-                               System.getProperty("user.dir"));
+                    System.getProperty("user.dir"));
 
     }
 
@@ -336,7 +337,7 @@ public final class BootstrapService
         if (System.getProperty("catalina.home") != null)
             return;
         System.setProperty("catalina.home",
-                           System.getProperty("user.dir"));
+                System.getProperty("user.dir"));
 
     }
 
@@ -346,7 +347,7 @@ public final class BootstrapService
      */
     private static String getCatalinaHome() {
         return System.getProperty("catalina.home",
-                                  System.getProperty("user.dir"));
+                System.getProperty("user.dir"));
     }
 
 
@@ -374,7 +375,7 @@ public final class BootstrapService
     /**
      * Log a debugging detail message with an exception.
      *
-     * @param message The message to be logged
+     * @param message   The message to be logged
      * @param exception The exception to be logged
      */
     private static void log(String message, Throwable exception) {

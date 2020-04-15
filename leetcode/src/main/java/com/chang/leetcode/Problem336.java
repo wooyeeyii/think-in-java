@@ -12,11 +12,11 @@ public class Problem336 {
             return result;
         }
         Map<String, Integer> map = new HashMap<String, Integer>();
-        for (int i=0; i<words.length; i++) map.put(words[i], i);
-        
-        for (int i=0; i<words.length; i++) {
+        for (int i = 0; i < words.length; i++) map.put(words[i], i);
+
+        for (int i = 0; i < words.length; i++) {
             // System.out.println(words[i]);
-            for (int j=0; j<=words[i].length(); j++) { // notice it should be "j <= words[i].length()"
+            for (int j = 0; j <= words[i].length(); j++) { // notice it should be "j <= words[i].length()"
                 String str1 = words[i].substring(0, j);
                 String str2 = words[i].substring(j);
                 if (isPalindrome(str1)) {
@@ -32,7 +32,7 @@ public class Problem336 {
                 if (isPalindrome(str2)) {
                     String str1rvs = new StringBuilder(str1).reverse().toString();
                     // check "str.length() != 0" to avoid duplicates
-                    if (map.containsKey(str1rvs) && map.get(str1rvs) != i && str2.length()!=0) { 
+                    if (map.containsKey(str1rvs) && map.get(str1rvs) != i && str2.length() != 0) {
                         List<Integer> list = new ArrayList<Integer>();
                         list.add(i);
                         list.add(map.get(str1rvs));
@@ -44,11 +44,11 @@ public class Problem336 {
         }
         return result;
     }
-    
+
     private boolean isPalindrome(String str) {
         int i = 0, j = str.length() - 1;
         while (i < j) {
-            if(str.charAt(i) != str.charAt(j)) {
+            if (str.charAt(i) != str.charAt(j)) {
                 return false;
             }
             i++;
@@ -56,11 +56,11 @@ public class Problem336 {
         }
         return true;
     }
-    
+
     public static void main(String[] args) {
         Problem336 problem = new Problem336();
 //        String[] words = new String[] {"bat", "tab", "cat"};
-        String[] words = new String[] {"abcd", "dcba", "lls", "s", "sssll"};
+        String[] words = new String[]{"abcd", "dcba", "lls", "s", "sssll"};
         System.out.println(problem.palindromePairs(words));
     }
 }

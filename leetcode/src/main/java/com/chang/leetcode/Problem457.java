@@ -40,7 +40,7 @@ public class Problem457 {
 
     public boolean circularArrayLoop(int[] nums) {
         int len = nums.length;
-        if(len <= 1) {
+        if (len <= 1) {
             return false;
         }
         boolean[] used = new boolean[len];
@@ -68,7 +68,7 @@ public class Problem457 {
 
             used[next] = true;
             int n = (next + nums[next]) < 0 ? ((next + nums[next]) % nums.length + nums.length) : ((next + nums[next]) % nums.length);
-            if(n == next) return false;
+            if (n == next) return false;
             next = n;
         }
 
@@ -93,7 +93,7 @@ public class Problem457 {
         int[] nums5 = new int[]{-1};
         System.out.println(!problem.circularArrayLoop(nums5));
 
-        int[] nums6 = new int[]{-1,-2,-3,-4,-5};
+        int[] nums6 = new int[]{-1, -2, -3, -4, -5};
         System.out.println(!problem.circularArrayLoop(nums6));
     }
 

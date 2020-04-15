@@ -69,6 +69,7 @@ import java.security.Principal;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.util.StringManager;
@@ -90,7 +91,7 @@ import org.apache.commons.digester.Digester;
  */
 
 public final class MemoryRealm
-    extends RealmBase {
+        extends RealmBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -112,7 +113,7 @@ public final class MemoryRealm
      * Descriptive information about this Realm implementation.
      */
     protected final String info =
-        "org.apache.catalina.realm.MemoryRealm/1.0";
+            "org.apache.catalina.realm.MemoryRealm/1.0";
 
 
     /**
@@ -139,7 +140,7 @@ public final class MemoryRealm
      * The string manager for this package.
      */
     private static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -193,24 +194,24 @@ public final class MemoryRealm
      * Return the Principal associated with the specified username and
      * credentials, if there is one; otherwise return <code>null</code>.
      *
-     * @param username Username of the Principal to look up
+     * @param username    Username of the Principal to look up
      * @param credentials Password or other credentials to use in
-     *  authenticating this username
+     *                    authenticating this username
      */
     public Principal authenticate(String username, String credentials) {
 
         GenericPrincipal principal =
-            (GenericPrincipal) principals.get(username);
+                (GenericPrincipal) principals.get(username);
 
         boolean validated = false;
         if (principal != null) {
             if (hasMessageDigest()) {
                 // Hex hashes should be compared case-insensitive
                 validated = (digest(credentials)
-                             .equalsIgnoreCase(principal.getPassword()));
+                        .equalsIgnoreCase(principal.getPassword()));
             } else {
-                validated = 
-                    (digest(credentials).equals(principal.getPassword()));
+                validated =
+                        (digest(credentials).equals(principal.getPassword()));
             }
         }
 
@@ -235,7 +236,7 @@ public final class MemoryRealm
      *
      * @param username User's username
      * @param password User's password (clear text)
-     * @param roles Comma-delimited set of roles associated with this user
+     * @param roles    Comma-delimited set of roles associated with this user
      */
     void addUser(String username, String password, String roles) {
 
@@ -253,7 +254,7 @@ public final class MemoryRealm
 
         // Construct and cache the Principal for this user
         GenericPrincipal principal =
-            new GenericPrincipal(this, username, password, list);
+                new GenericPrincipal(this, username, password, list);
         principals.put(username, principal);
 
     }
@@ -295,7 +296,7 @@ public final class MemoryRealm
     protected String getPassword(String username) {
 
         GenericPrincipal principal =
-            (GenericPrincipal) principals.get(username);
+                (GenericPrincipal) principals.get(username);
         if (principal != null) {
             return (principal.getPassword());
         } else {
@@ -321,8 +322,8 @@ public final class MemoryRealm
     /**
      * Prepare for active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents it from being started
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents it from being started
      */
     public synchronized void start() throws LifecycleException {
 
@@ -332,13 +333,13 @@ public final class MemoryRealm
             file = new File(System.getProperty("catalina.base"), pathname);
         if (!file.exists() || !file.canRead())
             throw new LifecycleException
-                (sm.getString("memoryRealm.loadExist",
-                              file.getAbsolutePath()));
+                    (sm.getString("memoryRealm.loadExist",
+                            file.getAbsolutePath()));
 
         // Load the contents of the database file
         if (debug >= 1)
             log(sm.getString("memoryRealm.loadPath",
-                             file.getAbsolutePath()));
+                    file.getAbsolutePath()));
         Digester digester = getDigester();
         try {
             synchronized (digester) {
@@ -358,8 +359,8 @@ public final class MemoryRealm
     /**
      * Gracefully shut down active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public synchronized void stop() throws LifecycleException {
 

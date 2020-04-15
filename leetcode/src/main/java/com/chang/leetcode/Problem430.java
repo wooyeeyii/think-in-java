@@ -1,22 +1,22 @@
 /**
  * 430. Flatten a Multilevel Doubly Linked List
- *
+ * <p>
  * You are given a doubly linked list which in addition to the next and previous pointers,
  * it could have a child pointer, which may or may not point to a separate doubly linked list.
  * These child lists may have one or more children of their own, and so on,
  * to produce a multilevel data structure, as shown in the example below.
- *
+ * <p>
  * Flatten the list so that all the nodes appear in a single-level, doubly linked list.
  * You are given the head of the first level of the list.
- *
+ * <p>
  * Example:
  * Input:
- *  1---2---3---4---5---6--NULL
- *          |
- *          7---8---9---10--NULL
- *              |
- *              11--12--NULL
- *
+ * 1---2---3---4---5---6--NULL
+ * |
+ * 7---8---9---10--NULL
+ * |
+ * 11--12--NULL
+ * <p>
  * Output:
  * 1-2-3-7-8-11-12-9-10-4-5-6-NULL
  */
@@ -26,18 +26,18 @@ public class Problem430 {
 
     public Node flatten(Node head) {
         Node node = head;
-        while(null != node) {
+        while (null != node) {
             if (null != node.child) {
                 Node next = node.next;
                 Node newHead = flatten(node.child);
                 node.next = newHead;
                 newHead.prev = node;
                 node.child = null;
-                while(null != node.next) {
+                while (null != node.next) {
                     node = node.next;
                 }
                 node.next = next;
-                if(null != next) {
+                if (null != next) {
                     next.prev = node;
                 }
                 node = next;
@@ -110,13 +110,13 @@ public class Problem430 {
 
 
         Node head = problem.flattenExample(n1);
-        while(null != head.next) {
+        while (null != head.next) {
             System.out.print(head.next.val + ", ");
             head = head.next;
         }
         System.out.println();
         System.out.println("###########");
-        while(null != head) {
+        while (null != head) {
             System.out.print(head.val + ", ");
             head = head.prev;
         }
@@ -127,16 +127,16 @@ public class Problem430 {
 
     public Node flattenExample(Node head) {
         Node node = head;
-        while(null!= node) {
-            if(null != node.child) {
+        while (null != node) {
+            if (null != node.child) {
                 Node child = node.child;
                 node.child = null;
                 Node childTail = child;
-                while(null != childTail.next) {
+                while (null != childTail.next) {
                     childTail = childTail.next;
                 }
                 childTail.next = node.next;
-                if(null != node.next) {
+                if (null != node.next) {
                     node.next.prev = childTail;
                 }
                 node.next = child;
@@ -154,13 +154,16 @@ public class Problem430 {
         public Node next;
         public Node child;
 
-        public Node() {}
+        public Node() {
+        }
 
-        public Node(int _val,Node _prev,Node _next,Node _child) {
+        public Node(int _val, Node _prev, Node _next, Node _child) {
             val = _val;
             prev = _prev;
             next = _next;
             child = _child;
         }
-    };
+    }
+
+    ;
 }

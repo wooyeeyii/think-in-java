@@ -1,37 +1,37 @@
 package com.chang.cursor.extrinsiciterator;
 
 public class ConcreteIterator implements MyIterator {
-	//³ÖÓÐ±»µü´úµÄ¾ßÌåµÄ¾ÛºÏ¶ÔÏó
-	private ConcreteAggregate agg;
-	private int index = 0;
-	private int size = 0;
-	
-	public ConcreteIterator(ConcreteAggregate agg) {
-		this.agg = agg;
-		this.size = agg.size();
-		this.index = 0;
-	}
-	
-	@Override
-	public void first() {
-		index = 0;
-	}
+    //ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Ä¾ÛºÏ¶ï¿½ï¿½ï¿½
+    private ConcreteAggregate agg;
+    private int index = 0;
+    private int size = 0;
 
-	@Override
-	public void next() {
-		if(index < size) {
-			index += 1;
-		}
-	}
+    public ConcreteIterator(ConcreteAggregate agg) {
+        this.agg = agg;
+        this.size = agg.size();
+        this.index = 0;
+    }
 
-	@Override
-	public boolean isDone() {
-		return index >= size;
-	}
+    @Override
+    public void first() {
+        index = 0;
+    }
 
-	@Override
-	public Object currentItem() {
-		return agg.getElement(index);
-	}
+    @Override
+    public void next() {
+        if (index < size) {
+            index += 1;
+        }
+    }
+
+    @Override
+    public boolean isDone() {
+        return index >= size;
+    }
+
+    @Override
+    public Object currentItem() {
+        return agg.getElement(index);
+    }
 
 }

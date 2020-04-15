@@ -82,7 +82,7 @@ public interface Response {
      * Set the "processing inside an include" flag.
      *
      * @param included <code>true</code> if we are currently inside a
-     *  RequestDispatcher.include(), else <code>false</code>
+     *                 RequestDispatcher.include(), else <code>false</code>
      */
     public void setIncluded(boolean included);
 
@@ -163,7 +163,7 @@ public interface Response {
      * Create and return a ServletOutputStream to write the content
      * associated with this Response.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletOutputStream createOutputStream() throws IOException;
 
@@ -172,7 +172,7 @@ public interface Response {
      * Perform whatever actions are required to flush and close the output
      * stream or writer, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishResponse() throws IOException;
 
@@ -219,10 +219,10 @@ public interface Response {
     /**
      * Send an acknowledgment of a request.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void sendAcknowledgement()
-        throws IOException;
+            throws IOException;
 
 
 }

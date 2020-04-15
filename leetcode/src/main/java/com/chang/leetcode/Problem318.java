@@ -42,9 +42,9 @@ public class Problem318 {
             replica[i] = r;
         }
 
-        for(int i = 0; i < len; i++) {
-            for(int j = i + 1; j < len; j++) {
-                if( (replica[i] & replica[j]) == 0) {
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if ((replica[i] & replica[j]) == 0) {
                     int mul = words[i].length() * words[j].length();
                     max = Math.max(max, mul);
                 }

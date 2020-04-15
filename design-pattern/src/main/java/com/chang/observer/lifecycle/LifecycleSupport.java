@@ -33,6 +33,7 @@ public final class LifecycleSupport {
             listeners = results;
         }
     }
+
     public void removeLifecycleListener(LifecycleListener listener) {
         synchronized (listeners) {
             int n = -1;
@@ -54,6 +55,7 @@ public final class LifecycleSupport {
             listeners = results;
         }
     }
+
     public LifecycleListener[] findLifecycleListeners() {
         return listeners;
     }

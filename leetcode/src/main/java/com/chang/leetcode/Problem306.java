@@ -31,7 +31,7 @@ public class Problem306 {
         int len = num.length();
         for (int i = 1; i <= len / 2; i++) {
             if (num.charAt(0) == '0' && i > 1) return false;
-            for (int j = 1;  Math.max(j, i) <= len - i - j; j++) {
+            for (int j = 1; Math.max(j, i) <= len - i - j; j++) {
                 if (num.charAt(i) == '0' && j > 1) break;
                 String a = num.substring(0, i);
                 String b = num.substring(i, i + j);
@@ -59,7 +59,7 @@ public class Problem306 {
             b = next;
             bE = end;
         }
-        if(next.equals(c)) {
+        if (next.equals(c)) {
             return true;
         }
         return false;

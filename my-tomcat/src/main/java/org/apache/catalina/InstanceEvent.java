@@ -82,7 +82,7 @@ import javax.servlet.ServletResponse;
  */
 
 public final class InstanceEvent
-    extends EventObject {
+        extends EventObject {
 
 
     // ----------------------------------------------------- Manifest Constants
@@ -187,16 +187,16 @@ public final class InstanceEvent
      * constructor is used for filter lifecycle events.
      *
      * @param wrapper Wrapper managing this servlet instance
-     * @param filter Filter instance for which this event occurred
-     * @param type Event type (required)
+     * @param filter  Filter instance for which this event occurred
+     * @param type    Event type (required)
      */
     public InstanceEvent(Wrapper wrapper, Filter filter, String type) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = filter;
-      this.servlet = null;
-      this.type = type;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = filter;
+        this.servlet = null;
+        this.type = type;
 
     }
 
@@ -205,20 +205,20 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for filter lifecycle events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param filter Filter instance for which this event occurred
-     * @param type Event type (required)
+     * @param wrapper   Wrapper managing this servlet instance
+     * @param filter    Filter instance for which this event occurred
+     * @param type      Event type (required)
      * @param exception Exception that occurred
      */
     public InstanceEvent(Wrapper wrapper, Filter filter, String type,
                          Throwable exception) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = filter;
-      this.servlet = null;
-      this.type = type;
-      this.exception = exception;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = filter;
+        this.servlet = null;
+        this.type = type;
+        this.exception = exception;
 
     }
 
@@ -227,22 +227,22 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for filter processing events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param filter Filter instance for which this event occurred
-     * @param type Event type (required)
-     * @param request Servlet request we are processing
+     * @param wrapper  Wrapper managing this servlet instance
+     * @param filter   Filter instance for which this event occurred
+     * @param type     Event type (required)
+     * @param request  Servlet request we are processing
      * @param response Servlet response we are processing
      */
     public InstanceEvent(Wrapper wrapper, Filter filter, String type,
                          ServletRequest request, ServletResponse response) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = filter;
-      this.servlet = null;
-      this.type = type;
-      this.request = request;
-      this.response = response;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = filter;
+        this.servlet = null;
+        this.type = type;
+        this.request = request;
+        this.response = response;
 
     }
 
@@ -251,25 +251,25 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for filter processing events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param filter Filter instance for which this event occurred
-     * @param type Event type (required)
-     * @param request Servlet request we are processing
-     * @param response Servlet response we are processing
+     * @param wrapper   Wrapper managing this servlet instance
+     * @param filter    Filter instance for which this event occurred
+     * @param type      Event type (required)
+     * @param request   Servlet request we are processing
+     * @param response  Servlet response we are processing
      * @param exception Exception that occurred
      */
     public InstanceEvent(Wrapper wrapper, Filter filter, String type,
                          ServletRequest request, ServletResponse response,
                          Throwable exception) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = filter;
-      this.servlet = null;
-      this.type = type;
-      this.request = request;
-      this.response = response;
-      this.exception = exception;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = filter;
+        this.servlet = null;
+        this.type = type;
+        this.request = request;
+        this.response = response;
+        this.exception = exception;
 
     }
 
@@ -280,15 +280,15 @@ public final class InstanceEvent
      *
      * @param wrapper Wrapper managing this servlet instance
      * @param servlet Servlet instance for which this event occurred
-     * @param type Event type (required)
+     * @param type    Event type (required)
      */
     public InstanceEvent(Wrapper wrapper, Servlet servlet, String type) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = null;
-      this.servlet = servlet;
-      this.type = type;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = null;
+        this.servlet = servlet;
+        this.type = type;
 
     }
 
@@ -297,20 +297,20 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for processing servlet lifecycle events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param servlet Servlet instance for which this event occurred
-     * @param type Event type (required)
+     * @param wrapper   Wrapper managing this servlet instance
+     * @param servlet   Servlet instance for which this event occurred
+     * @param type      Event type (required)
      * @param exception Exception that occurred
      */
     public InstanceEvent(Wrapper wrapper, Servlet servlet, String type,
                          Throwable exception) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = null;
-      this.servlet = servlet;
-      this.type = type;
-      this.exception = exception;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = null;
+        this.servlet = servlet;
+        this.type = type;
+        this.exception = exception;
 
     }
 
@@ -319,22 +319,22 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for processing servlet processing events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param servlet Servlet instance for which this event occurred
-     * @param type Event type (required)
-     * @param request Servlet request we are processing
+     * @param wrapper  Wrapper managing this servlet instance
+     * @param servlet  Servlet instance for which this event occurred
+     * @param type     Event type (required)
+     * @param request  Servlet request we are processing
      * @param response Servlet response we are processing
      */
     public InstanceEvent(Wrapper wrapper, Servlet servlet, String type,
                          ServletRequest request, ServletResponse response) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = null;
-      this.servlet = servlet;
-      this.type = type;
-      this.request = request;
-      this.response = response;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = null;
+        this.servlet = servlet;
+        this.type = type;
+        this.request = request;
+        this.response = response;
 
     }
 
@@ -343,25 +343,25 @@ public final class InstanceEvent
      * Construct a new InstanceEvent with the specified parameters.  This
      * constructor is used for processing servlet processing events.
      *
-     * @param wrapper Wrapper managing this servlet instance
-     * @param servlet Servlet instance for which this event occurred
-     * @param type Event type (required)
-     * @param request Servlet request we are processing
-     * @param response Servlet response we are processing
+     * @param wrapper   Wrapper managing this servlet instance
+     * @param servlet   Servlet instance for which this event occurred
+     * @param type      Event type (required)
+     * @param request   Servlet request we are processing
+     * @param response  Servlet response we are processing
      * @param exception Exception that occurred
      */
     public InstanceEvent(Wrapper wrapper, Servlet servlet, String type,
                          ServletRequest request, ServletResponse response,
                          Throwable exception) {
 
-      super(wrapper);
-      this.wrapper = wrapper;
-      this.filter = null;
-      this.servlet = servlet;
-      this.type = type;
-      this.request = request;
-      this.response = response;
-      this.exception = exception;
+        super(wrapper);
+        this.wrapper = wrapper;
+        this.filter = null;
+        this.servlet = servlet;
+        this.type = type;
+        this.request = request;
+        this.response = response;
+        this.exception = exception;
 
     }
 
@@ -371,7 +371,7 @@ public final class InstanceEvent
 
     /**
      * The exception that was thrown during the processing being reported
-     * by this event (AFTER_INIT_EVENT, AFTER_SERVICE_EVENT, 
+     * by this event (AFTER_INIT_EVENT, AFTER_SERVICE_EVENT,
      * AFTER_DESTROY_EVENT, AFTER_DISPATCH_EVENT, and AFTER_FILTER_EVENT only).
      */
     private Throwable exception = null;

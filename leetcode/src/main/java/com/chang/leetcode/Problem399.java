@@ -32,7 +32,7 @@ public class Problem399 {
         Map<String, Map<String, Double>> map = new HashMap<>();
         for (int i = 0; i < equations.size(); i++) {
             List<String> pair = equations.get(i);
-            if(pair.get(0).equals(pair.get(1))) {
+            if (pair.get(0).equals(pair.get(1))) {
                 continue;
             }
             if (map.containsKey(pair.get(0))) {
@@ -49,11 +49,11 @@ public class Problem399 {
             List<String> pair = queries.get(i);
             String a = pair.get(0);
             String b = pair.get(1);
-            if(a.equals(b)) {
+            if (a.equals(b)) {
                 result[i] = 1;
             } else {
                 result[i] = getValue(map, a, b);
-                if(result[i] - (-1) < 0.0000001) {
+                if (result[i] - (-1) < 0.0000001) {
                     result[i] = 1 / getValue(map, b, a);
                 }
             }
@@ -62,7 +62,7 @@ public class Problem399 {
         return result;
     }
 
-    private double getValue(Map<String,Map<String,Double>> map, String a, String b) {
+    private double getValue(Map<String, Map<String, Double>> map, String a, String b) {
         return 0;
     }
 

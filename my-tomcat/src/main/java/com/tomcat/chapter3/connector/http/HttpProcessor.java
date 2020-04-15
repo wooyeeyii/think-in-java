@@ -52,15 +52,14 @@ public class HttpProcessor {
             if (request.getRequestURI().startsWith("/servlet/")) {
                 ServletProcessor processor = new ServletProcessor();
                 processor.process(request, response);
-            }
-            else {
+            } else {
                 StaticResourceProcessor processor = new StaticResourceProcessor();
                 processor.process(request, response);
             }
 
             //close socket;
             socket.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -76,8 +75,7 @@ public class HttpProcessor {
         // Validate the incoming request line
         if (method.length() < 1) {
             throw new ServletException("Missing HTTP request method");
-        }
-        else if (requestLine.uriEnd < 1) {
+        } else if (requestLine.uriEnd < 1) {
             throw new ServletException("Missing HTTP request URI");
         }
         // Parse any query parameters out of the request URI
@@ -115,15 +113,13 @@ public class HttpProcessor {
             if (semicolon2 >= 0) {
                 request.setRequestedSessionId(rest.substring(0, semicolon2));
                 rest = rest.substring(semicolon2);
-            }
-            else {
+            } else {
                 request.setRequestedSessionId(rest);
                 rest = "";
             }
             request.setRequestedSessionURL(true);
             uri = uri.substring(0, semicolon) + rest;
-        }
-        else {
+        } else {
             request.setRequestedSessionId(null);
             request.setRequestedSessionURL(false);
         }
@@ -136,8 +132,7 @@ public class HttpProcessor {
         request.setProtocol(protocol);
         if (normalizedUri != null) {
             request.setRequestURI(normalizedUri);
-        }
-        else {
+        } else {
             request.setRequestURI(uri);
         }
 
@@ -230,23 +225,23 @@ public class HttpProcessor {
      * org.apache.catalina.connector.http.HttpProcessor.
      * However, this method only parses some "easy" headers, such as
      * "cookie", "content-length", and "content-type", and ignore other headers.
-     * @param input The input stream connected to our socket
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a parsing error occurs
+     * @param input The input stream connected to our socket
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a parsing error occurs
      */
     private void parseHeaders(SocketInputStream input)
             throws IOException, ServletException {
         while (true) {
-            HttpHeader header = new HttpHeader();;
+            HttpHeader header = new HttpHeader();
+            ;
 
             // Read the next header
             input.readHeader(header);
             if (header.nameEnd == 0) {
                 if (header.valueEnd == 0) {
                     return;
-                }
-                else {
+                } else {
                     throw new ServletException
                             (sm.getString("httpProcessor.parseHeaders.colon"));
                 }
@@ -271,18 +266,15 @@ public class HttpProcessor {
                     }
                     request.addCookie(cookies[i]);
                 }
-            }
-            else if (name.equals("content-length")) {
+            } else if (name.equals("content-length")) {
                 int n = -1;
                 try {
                     n = Integer.parseInt(value);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     throw new ServletException(sm.getString("httpProcessor.parseHeaders.contentLength"));
                 }
                 request.setContentLength(n);
-            }
-            else if (name.equals("content-type")) {
+            } else if (name.equals("content-type")) {
                 request.setContentType(value);
             }
         } //end while

@@ -69,6 +69,7 @@ import javax.servlet.Filter;
 import javax.servlet.Servlet;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
 import org.apache.catalina.InstanceEvent;
 import org.apache.catalina.InstanceListener;
 import org.apache.catalina.Wrapper;
@@ -93,7 +94,7 @@ public final class InstanceSupport {
      * Instance component.
      *
      * @param lifecycle The Instance component that will be the source
-     *  of events that we fire
+     *                  of events that we fire
      */
     public InstanceSupport(Wrapper wrapper) {
 
@@ -141,14 +142,14 @@ public final class InstanceSupport {
      */
     public void addInstanceListener(InstanceListener listener) {
 
-      synchronized (listeners) {
-          InstanceListener results[] =
-            new InstanceListener[listeners.length + 1];
-          for (int i = 0; i < listeners.length; i++)
-              results[i] = listeners[i];
-          results[listeners.length] = listener;
-          listeners = results;
-      }
+        synchronized (listeners) {
+            InstanceListener results[] =
+                    new InstanceListener[listeners.length + 1];
+            for (int i = 0; i < listeners.length; i++)
+                results[i] = listeners[i];
+            results[listeners.length] = listener;
+            listeners = results;
+        }
 
     }
 
@@ -158,7 +159,7 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
+     * @param type   Event type
      * @param filter The relevant Filter for this event
      */
     public void fireInstanceEvent(String type, Filter filter) {
@@ -182,8 +183,8 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param filter The relevant Filter for this event
+     * @param type      Event type
+     * @param filter    The relevant Filter for this event
      * @param exception Exception that occurred
      */
     public void fireInstanceEvent(String type, Filter filter,
@@ -193,7 +194,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, filter, type,
-                                                exception);
+                exception);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -209,9 +210,9 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param filter The relevant Filter for this event
-     * @param request The servlet request we are processing
+     * @param type     Event type
+     * @param filter   The relevant Filter for this event
+     * @param request  The servlet request we are processing
      * @param response The servlet response we are processing
      */
     public void fireInstanceEvent(String type, Filter filter,
@@ -222,7 +223,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, filter, type,
-                                                request, response);
+                request, response);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -238,10 +239,10 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param filter The relevant Filter for this event
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are processing
+     * @param type      Event type
+     * @param filter    The relevant Filter for this event
+     * @param request   The servlet request we are processing
+     * @param response  The servlet response we are processing
      * @param exception Exception that occurred
      */
     public void fireInstanceEvent(String type, Filter filter,
@@ -253,7 +254,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, filter, type,
-                                                request, response, exception);
+                request, response, exception);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -269,7 +270,7 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
+     * @param type    Event type
      * @param servlet The relevant Servlet for this event
      */
     public void fireInstanceEvent(String type, Servlet servlet) {
@@ -293,8 +294,8 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param servlet The relevant Servlet for this event
+     * @param type      Event type
+     * @param servlet   The relevant Servlet for this event
      * @param exception Exception that occurred
      */
     public void fireInstanceEvent(String type, Servlet servlet,
@@ -304,7 +305,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, servlet, type,
-                                                exception);
+                exception);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -320,9 +321,9 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param servlet The relevant Servlet for this event
-     * @param request The servlet request we are processing
+     * @param type     Event type
+     * @param servlet  The relevant Servlet for this event
+     * @param request  The servlet request we are processing
      * @param response The servlet response we are processing
      */
     public void fireInstanceEvent(String type, Servlet servlet,
@@ -333,7 +334,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, servlet, type,
-                                                request, response);
+                request, response);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -349,10 +350,10 @@ public final class InstanceSupport {
      * occurred for this Container.  The default implementation performs
      * this notification synchronously using the calling thread.
      *
-     * @param type Event type
-     * @param servlet The relevant Servlet for this event
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are processing
+     * @param type      Event type
+     * @param servlet   The relevant Servlet for this event
+     * @param request   The servlet request we are processing
+     * @param response  The servlet response we are processing
      * @param exception Exception that occurred
      */
     public void fireInstanceEvent(String type, Servlet servlet,
@@ -364,7 +365,7 @@ public final class InstanceSupport {
             return;
 
         InstanceEvent event = new InstanceEvent(wrapper, servlet, type,
-                                                request, response, exception);
+                request, response, exception);
         InstanceListener interested[] = null;
         synchronized (listeners) {
             interested = (InstanceListener[]) listeners.clone();
@@ -393,7 +394,7 @@ public final class InstanceSupport {
             if (n < 0)
                 return;
             InstanceListener results[] =
-              new InstanceListener[listeners.length - 1];
+                    new InstanceListener[listeners.length - 1];
             int j = 0;
             for (int i = 0; i < listeners.length; i++) {
                 if (i != n)

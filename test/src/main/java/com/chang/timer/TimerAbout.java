@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class MyTask extends TimerTask{
+class MyTask extends TimerTask {
 
     @Override
     public void run() {
@@ -22,7 +22,7 @@ public class TimerAbout {
         System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
 
         //创建定时器对象
-        Timer t=new Timer();
+        Timer t = new Timer();
         //在3秒后执行MyTask类中的run方法
         MyTask task = new MyTask();
         t.schedule(task, 3000, 3000); //参数  任务, delay, period

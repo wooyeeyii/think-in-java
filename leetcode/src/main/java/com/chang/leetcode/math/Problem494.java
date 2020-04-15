@@ -1,22 +1,22 @@
 /**
  * 494. Target Sum
- *
+ * <p>
  * You are given a list of non-negative integers, a1, a2, ..., an, and a target, S.
  * Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
- *
+ * <p>
  * Find out how many ways to assign symbols to make sum of integers equal to target S.
- *
+ * <p>
  * Example 1:
  * Input: nums is [1, 1, 1, 1, 1], S is 3.
  * Output: 5
  * Explanation:
- *
+ * <p>
  * -1+1+1+1+1 = 3
  * +1-1+1+1+1 = 3
  * +1+1-1+1+1 = 3
  * +1+1+1-1+1 = 3
  * +1+1+1+1-1 = 3
- *
+ * <p>
  * There are 5 ways to assign symbols to make the sum of nums be target 3.
  * Note:
  * The length of the given array is positive and will not exceed 20.
@@ -32,10 +32,10 @@ public class Problem494 {
     }
 
     private int findTargetSumSub(int[] nums, int start, int left) {
-        if(0 == left && start == nums.length) {
+        if (0 == left && start == nums.length) {
             return 1;
         }
-        if(start >= nums.length) {
+        if (start >= nums.length) {
             return 0;
         }
 
@@ -61,7 +61,7 @@ public class Problem494 {
      * Note that the above formula has proved that target + sum(nums) must be even
      * We can use that fact to quickly identify inputs that do not have a solution
      */
-     public int findTargetSumWaysExample(int[] nums, int s) {
+    public int findTargetSumWaysExample(int[] nums, int s) {
         int sum = 0;
         for (int n : nums)
             sum += n;

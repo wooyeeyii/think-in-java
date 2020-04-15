@@ -196,10 +196,9 @@ public interface Container {
      * parent, Container names must be unique.
      *
      * @param name New name of this container
-     *
-     * @exception IllegalStateException if this Container has already been
-     *  added to the children of a parent Container (after which the name
-     *  may not be changed)
+     * @throws IllegalStateException if this Container has already been
+     *                               added to the children of a parent Container (after which the name
+     *                               may not be changed)
      */
     public void setName(String name);
 
@@ -217,10 +216,9 @@ public interface Container {
      * Container by throwing an exception.
      *
      * @param container Container to which this Container is being added
-     *  as a child
-     *
-     * @exception IllegalArgumentException if this Container refuses to become
-     *  attached to the specified Container
+     *                  as a child
+     * @throws IllegalArgumentException if this Container refuses to become
+     *                                  attached to the specified Container
      */
     public void setParent(Container container);
 
@@ -286,13 +284,12 @@ public interface Container {
      * to be attached to the specified Container, in which case it is not added
      *
      * @param child New child Container to be added
-     *
-     * @exception IllegalArgumentException if this exception is thrown by
-     *  the <code>setParent()</code> method of the child Container
-     * @exception IllegalArgumentException if the new child does not have
-     *  a name unique from that of existing children of this Container
-     * @exception IllegalStateException if this Container does not support
-     *  child Containers
+     * @throws IllegalArgumentException if this exception is thrown by
+     *                                  the <code>setParent()</code> method of the child Container
+     * @throws IllegalArgumentException if the new child does not have
+     *                                  a name unique from that of existing children of this Container
+     * @throws IllegalStateException    if this Container does not support
+     *                                  child Containers
      */
     public void addChild(Container child);
 
@@ -309,9 +306,8 @@ public interface Container {
      * Add the specified Mapper associated with this Container.
      *
      * @param mapper The corresponding Mapper implementation
-     *
-     * @exception IllegalArgumentException if this exception is thrown by
-     *  the <code>setContainer()</code> method of the Mapper
+     * @throws IllegalArgumentException if this exception is thrown by
+     *                                  the <code>setContainer()</code> method of the Mapper
      */
     public void addMapper(Mapper mapper);
 
@@ -369,16 +365,15 @@ public interface Container {
      * Process the specified Request, and generate the corresponding Response,
      * according to the design of this particular Container.
      *
-     * @param request Request to be processed
+     * @param request  Request to be processed
      * @param response Response to be produced
-     *
-     * @exception IOException if an input/output error occurred while
-     *  processing
-     * @exception ServletException if a ServletException was thrown
-     *  while processing this request
+     * @throws IOException      if an input/output error occurred while
+     *                          processing
+     * @throws ServletException if a ServletException was thrown
+     *                          while processing this request
      */
     public void invoke(Request request, Response response)
-        throws IOException, ServletException;
+            throws IOException, ServletException;
 
 
     /**
@@ -387,7 +382,7 @@ public interface Container {
      * identified, return <code>null</code> instead.
      *
      * @param request Request being processed
-     * @param update Update the Request to reflect the mapping selection?
+     * @param update  Update the Request to reflect the mapping selection?
      */
     public Container map(Request request, boolean update);
 

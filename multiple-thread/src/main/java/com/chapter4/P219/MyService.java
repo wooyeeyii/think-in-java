@@ -4,66 +4,67 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MyService {
-	
-	public ReentrantLock lock = new ReentrantLock();
-	private Condition condition = lock.newCondition();
-	
-	/************************************************************************************/
-	public void getHoldCountMethod1() {
-		try {
-			lock.lock();
-			System.out.println("serviceMethod1 before get lock again, getHoldCount=" + lock.getHoldCount());
-			getHoldCountMethod2();
-			System.out.println("serviceMethod1 after release lock once, getHoldCount=" + lock.getHoldCount());
-		} finally {
-			lock.unlock();
-		}
-	}
-	
-	public void getHoldCountMethod2() {
-		try {
-			lock.lock();
-			System.out.println("serviceMethod2 getHoldCount=" + lock.getHoldCount());
-		} finally {
-			lock.unlock();
-		}
-	}
-	
-	
-	/************************************************************************************/
-	public void getQueueLengthMethod1() {
-		try {
-			lock.lock();
-			System.out.println("ThreadName=" + Thread.currentThread().getName() + " ½øÈë·½·¨£¡");
-			Thread.sleep(Integer.MAX_VALUE);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} finally {
-			lock.unlock();
-		}
-	}
-	
-	/************************************************************************************/
-	public void getWaitQueueLengthMethod1() {
-		try {
-			lock.lock();
-			condition.await();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} finally {
-			lock.unlock();
-		}
-	}
-	public void notifyMethod() {
-		try {
-			lock.lock();
-			System.out.println("ÓÐ" + lock.getWaitQueueLength(condition) + " ¸öÏß³ÌÕýÔÚµÈ´ýcondition");
-			condition.signal();
-		} finally {
-			lock.unlock();
-		}
-	}
-	
+
+    public ReentrantLock lock = new ReentrantLock();
+    private Condition condition = lock.newCondition();
+
+    /************************************************************************************/
+    public void getHoldCountMethod1() {
+        try {
+            lock.lock();
+            System.out.println("serviceMethod1 before get lock again, getHoldCount=" + lock.getHoldCount());
+            getHoldCountMethod2();
+            System.out.println("serviceMethod1 after release lock once, getHoldCount=" + lock.getHoldCount());
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void getHoldCountMethod2() {
+        try {
+            lock.lock();
+            System.out.println("serviceMethod2 getHoldCount=" + lock.getHoldCount());
+        } finally {
+            lock.unlock();
+        }
+    }
+
+
+    /************************************************************************************/
+    public void getQueueLengthMethod1() {
+        try {
+            lock.lock();
+            System.out.println("ThreadName=" + Thread.currentThread().getName() + " ï¿½ï¿½ï¿½ë·½ï¿½ï¿½ï¿½ï¿½");
+            Thread.sleep(Integer.MAX_VALUE);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    /************************************************************************************/
+    public void getWaitQueueLengthMethod1() {
+        try {
+            lock.lock();
+            condition.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void notifyMethod() {
+        try {
+            lock.lock();
+            System.out.println("ï¿½ï¿½" + lock.getWaitQueueLength(condition) + " ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ÚµÈ´ï¿½condition");
+            condition.signal();
+        } finally {
+            lock.unlock();
+        }
+    }
+
 }
 
 

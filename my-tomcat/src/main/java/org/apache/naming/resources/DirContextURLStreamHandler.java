@@ -7,7 +7,7 @@
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
+ *    notice, this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,15 +23,15 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:  
- *       "This product includes software developed by the 
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written 
+ *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
@@ -59,7 +59,7 @@
  *
  * [Additional notices, if required by prior licensing conditions]
  *
- */ 
+ */
 
 package org.apache.naming.resources;
 
@@ -72,72 +72,72 @@ import javax.naming.directory.DirContext;
 
 /**
  * Stream handler to a JNDI directory context.
- * 
+ *
  * @author <a href="mailto:remm@apache.org">Remy Maucherat</a>
  * @version $Revision: 1.6 $
  */
-public class DirContextURLStreamHandler 
-    extends URLStreamHandler {
-    
-    
+public class DirContextURLStreamHandler
+        extends URLStreamHandler {
+
+
     // ----------------------------------------------------------- Constructors
-    
-    
+
+
     public DirContextURLStreamHandler() {
     }
-    
-    
+
+
     public DirContextURLStreamHandler(DirContext context) {
         this.context = context;
     }
-    
-    
+
+
     // -------------------------------------------------------------- Variables
-    
-    
+
+
     /**
      * Bindings class loader - directory context. Keyed by CL id.
      */
     private static Hashtable clBindings = new Hashtable();
-    
-    
+
+
     /**
      * Bindings thread - directory context. Keyed by thread id.
      */
     private static Hashtable threadBindings = new Hashtable();
-    
-    
+
+
     // ----------------------------------------------------- Instance Variables
-    
-    
+
+
     /**
      * Directory context.
      */
     protected DirContext context = null;
-    
-    
+
+
     // ------------------------------------------------------------- Properties
-    
-    
+
+
     // ----------------------------------------------- URLStreamHandler Methods
-    
-    
+
+
     /**
-     * Opens a connection to the object referenced by the <code>URL</code> 
+     * Opens a connection to the object referenced by the <code>URL</code>
      * argument.
      */
-    protected URLConnection openConnection(URL u) 
-        throws IOException {
+    protected URLConnection openConnection(URL u)
+            throws IOException {
         DirContext currentContext = this.context;
         if (currentContext == null)
             currentContext = get();
         return new DirContextURLConnection(currentContext, u);
     }
-    
-    
+
+
     // --------------------------------------------------------- Public Methods
-    
-    
+
+
     /**
      * Set the java.protocol.handler.pkgs system property.
      */
@@ -151,57 +151,57 @@ public class DirContextURLStreamHandler
             System.setProperty(Constants.PROTOCOL_HANDLER_VARIABLE, value);
         }
     }
-    
-    
+
+
     /**
-     * Returns true if the thread or the context class loader of the current 
+     * Returns true if the thread or the context class loader of the current
      * thread is bound.
      */
     public static boolean isBound() {
         return (clBindings.containsKey
                 (Thread.currentThread().getContextClassLoader()))
-            || (threadBindings.containsKey(Thread.currentThread()));
+                || (threadBindings.containsKey(Thread.currentThread()));
     }
-    
-    
+
+
     /**
      * Binds a directory context to a class loader.
      */
     public static void bind(DirContext dirContext) {
-        ClassLoader currentCL = 
-            Thread.currentThread().getContextClassLoader();
+        ClassLoader currentCL =
+                Thread.currentThread().getContextClassLoader();
         if (currentCL != null)
             clBindings.put(currentCL, dirContext);
     }
-    
-    
+
+
     /**
      * Unbinds a directory context to a class loader.
      */
     public static void unbind() {
-        ClassLoader currentCL = 
-            Thread.currentThread().getContextClassLoader();
+        ClassLoader currentCL =
+                Thread.currentThread().getContextClassLoader();
         if (currentCL != null)
             clBindings.remove(currentCL);
     }
-    
-    
+
+
     /**
      * Binds a directory context to a thread.
      */
     public static void bindThread(DirContext dirContext) {
         threadBindings.put(Thread.currentThread(), dirContext);
     }
-    
-    
+
+
     /**
      * Unbinds a directory context to a thread.
      */
     public static void unbindThread() {
         threadBindings.remove(Thread.currentThread());
     }
-    
-    
+
+
     /**
      * Get the bound context.
      */
@@ -235,38 +235,38 @@ public class DirContextURLStreamHandler
         return result;
 
     }
-    
-    
+
+
     /**
      * Binds a directory context to a class loader.
      */
     public static void bind(ClassLoader cl, DirContext dirContext) {
         clBindings.put(cl, dirContext);
     }
-    
-    
+
+
     /**
      * Unbinds a directory context to a class loader.
      */
     public static void unbind(ClassLoader cl) {
         clBindings.remove(cl);
     }
-    
-    
+
+
     /**
      * Get the bound context.
      */
     public static DirContext get(ClassLoader cl) {
         return (DirContext) clBindings.get(cl);
     }
-    
-    
+
+
     /**
      * Get the bound context.
      */
     public static DirContext get(Thread thread) {
         return (DirContext) threadBindings.get(thread);
     }
-    
-    
+
+
 }

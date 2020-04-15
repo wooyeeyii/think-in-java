@@ -2,7 +2,7 @@ package com.chang.leetcode;
 
 public class Problem26 {
     public int removeDuplicates(int[] nums) {
-        if (nums.length <= 0 ) {
+        if (nums.length <= 0) {
             return 0;
         }
         int i = 0;
@@ -16,13 +16,13 @@ public class Problem26 {
                 i++;
             }
         }
-        
+
         return corCount;
     }
-    
+
     public static void main(String[] args) {
         Problem26 problem = new Problem26();
-        int[] nums = new int[] {1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,4};
+        int[] nums = new int[]{1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4};
         System.out.println(problem.removeDuplicates(nums));
         System.out.println(nums);
     }

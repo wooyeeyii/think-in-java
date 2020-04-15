@@ -13,14 +13,14 @@ public class Problem47Test {
     @Test
     public void permuteUnique() {
 //        int[] nums = new int[] {2, 2, 1, 1};
-        int[] nums = new int[] {2, 2, 1, 1};
+        int[] nums = new int[]{2, 2, 1, 1};
         List<List<Integer>> result = problem.permuteUnique(nums);
         System.out.println(ArrayToStringUtil.twoDimension(result));
     }
 
     @Test
     public void permuteUniqueSample() {
-        int[] nums = new int[] {2, 2, 1, 1};
+        int[] nums = new int[]{2, 2, 1, 1};
         List<List<Integer>> result = problem.permuteUniqueSample(nums);
         System.out.println(ArrayToStringUtil.twoDimension(result));
     }

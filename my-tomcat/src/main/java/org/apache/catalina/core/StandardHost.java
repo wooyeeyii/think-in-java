@@ -67,6 +67,7 @@ package org.apache.catalina.core;
 
 import java.io.IOException;
 import java.net.URL;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.DefaultContext;
@@ -88,8 +89,8 @@ import org.apache.catalina.valves.ErrorDispatcherValve;
  */
 
 public class StandardHost
-    extends ContainerBase
-    implements Deployer, Host {
+        extends ContainerBase
+        implements Deployer, Host {
 
 
     // ----------------------------------------------------------- Constructors
@@ -132,7 +133,7 @@ public class StandardHost
      * for deployed web applications.
      */
     private String configClass =
-        "org.apache.catalina.startup.ContextConfig";
+            "org.apache.catalina.startup.ContextConfig";
 
 
     /**
@@ -140,7 +141,7 @@ public class StandardHost
      * deployed web applications.
      */
     private String contextClass =
-        "org.apache.catalina.core.StandardContext";
+            "org.apache.catalina.core.StandardContext";
 
 
     /**
@@ -161,14 +162,14 @@ public class StandardHost
      * for deployed web applications.
      */
     private String errorReportValveClass =
-        "org.apache.catalina.valves.ErrorReportValve";
+            "org.apache.catalina.valves.ErrorReportValve";
 
 
     /**
      * The descriptive information string for this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.StandardHost/1.0";
+            "org.apache.catalina.core.StandardHost/1.0";
 
 
     /**
@@ -181,7 +182,7 @@ public class StandardHost
      * The Java class name of the default Mapper class for this Container.
      */
     private String mapperClass =
-        "org.apache.catalina.core.StandardHostMapper";
+            "org.apache.catalina.core.StandardHostMapper";
 
 
     /**
@@ -253,7 +254,7 @@ public class StandardHost
         boolean oldAutoDeploy = this.autoDeploy;
         this.autoDeploy = autoDeploy;
         support.firePropertyChange("autoDeploy", oldAutoDeploy,
-                                   this.autoDeploy);
+                this.autoDeploy);
 
     }
 
@@ -280,7 +281,7 @@ public class StandardHost
         String oldConfigClass = this.configClass;
         this.configClass = configClass;
         support.firePropertyChange("configClass",
-                                   oldConfigClass, this.configClass);
+                oldConfigClass, this.configClass);
 
     }
 
@@ -296,7 +297,7 @@ public class StandardHost
         DefaultContext oldDefaultContext = this.defaultContext;
         this.defaultContext = defaultContext;
         support.firePropertyChange("defaultContext",
-                                   oldDefaultContext, this.defaultContext);
+                oldDefaultContext, this.defaultContext);
 
     }
 
@@ -331,7 +332,7 @@ public class StandardHost
         String oldContextClass = this.contextClass;
         this.contextClass = contextClass;
         support.firePropertyChange("contextClass",
-                                   oldContextClass, this.contextClass);
+                oldContextClass, this.contextClass);
 
     }
 
@@ -380,7 +381,7 @@ public class StandardHost
         boolean oldLiveDeploy = this.liveDeploy;
         this.liveDeploy = liveDeploy;
         support.firePropertyChange("liveDeploy", oldLiveDeploy,
-                                   this.liveDeploy);
+                this.liveDeploy);
 
     }
 
@@ -405,7 +406,7 @@ public class StandardHost
         String oldMapperClass = this.mapperClass;
         this.mapperClass = mapperClass;
         support.firePropertyChange("mapperClass",
-                                   oldMapperClass, this.mapperClass);
+                oldMapperClass, this.mapperClass);
 
     }
 
@@ -432,8 +433,8 @@ public class StandardHost
         String oldErrorReportValveClassClass = this.errorReportValveClass;
         this.errorReportValveClass = errorReportValveClass;
         support.firePropertyChange("errorReportValveClass",
-                                   oldErrorReportValveClassClass,
-                                   this.errorReportValveClass);
+                oldErrorReportValveClassClass,
+                this.errorReportValveClass);
 
     }
 
@@ -454,14 +455,13 @@ public class StandardHost
      * this Container represents.
      *
      * @param name Virtual host name
-     *
-     * @exception IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is null
      */
     public void setName(String name) {
 
         if (name == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.nullName"));
+                    (sm.getString("standardHost.nullName"));
 
         name = name.toLowerCase();      // Internally all names are lower case
 
@@ -520,7 +520,7 @@ public class StandardHost
      */
     public void importDefaultContext(Context context) {
 
-        if( this.defaultContext != null )
+        if (this.defaultContext != null)
             this.defaultContext.importDefaultContext(context);
 
     }
@@ -564,7 +564,7 @@ public class StandardHost
 
         if (!(child instanceof Context)) {
             throw new IllegalArgumentException
-                (sm.getString("standardHost.notContext"));
+                    (sm.getString("standardHost.notContext"));
         }
         super.addChild(child);
 
@@ -703,21 +703,21 @@ public class StandardHost
     /**
      * Start this host.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents it from being started
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents it from being started
      */
     public synchronized void start() throws LifecycleException {
         // Set error report valve
         if ((errorReportValveClass != null)
-            && (!errorReportValveClass.equals(""))) {
+                && (!errorReportValveClass.equals(""))) {
             try {
                 Valve valve = (Valve) Class.forName(errorReportValveClass)
-                    .newInstance();
+                        .newInstance();
                 addValve(valve);
             } catch (Throwable t) {
                 log(sm.getString
-                    ("standardHost.invalidErrorReportValveClass",
-                     errorReportValveClass));
+                        ("standardHost.invalidErrorReportValveClass",
+                                errorReportValveClass));
             }
         }
 
@@ -744,17 +744,16 @@ public class StandardHost
      * with the newly created <code>Context</code> as an argument.
      *
      * @param contextPath The context path to which this application should
-     *  be installed (must be unique)
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalStateException if the specified context path
-     *  is already attached to an existing web application
-     * @exception IOException if an input/output error was encountered
-     *  during install
+     *                    be installed (must be unique)
+     * @param war         A URL of type "jar:" that points to a WAR file, or type
+     *                    "file:" that points to an unpacked directory structure containing
+     *                    the web application to be installed
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalStateException    if the specified context path
+     *                                  is already attached to an existing web application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during install
      */
     public void install(String contextPath, URL war) throws IOException {
 
@@ -774,18 +773,17 @@ public class StandardHost
      * </p>
      *
      * @param config A URL that points to the context configuration file to
-     *  be used for configuring the new Context
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed
-     *
-     * @exception IllegalArgumentException if one of the specified URLs is
-     *  null
-     * @exception IllegalStateException if the context path specified in the
-     *  context configuration file is already attached to an existing web
-     *  application
-     * @exception IOException if an input/output error was encountered
-     *  during installation
+     *               be used for configuring the new Context
+     * @param war    A URL of type "jar:" that points to a WAR file, or type
+     *               "file:" that points to an unpacked directory structure containing
+     *               the web application to be installed
+     * @throws IllegalArgumentException if one of the specified URLs is
+     *                                  null
+     * @throws IllegalStateException    if the context path specified in the
+     *                                  context configuration file is already attached to an existing web
+     *                                  application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during installation
      */
     public synchronized void install(URL config, URL war) throws IOException {
 
@@ -828,13 +826,12 @@ public class StandardHost
      * an argument.
      *
      * @param contextPath The context path of the application to be removed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  removal
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  removal
      */
     public void remove(String contextPath) throws IOException {
 
@@ -848,13 +845,12 @@ public class StandardHost
      * path.  Only starts a web application if it is not running.
      *
      * @param contextPath The context path of the application to be started
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  startup
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  startup
      */
     public void start(String contextPath) throws IOException {
 
@@ -868,13 +864,12 @@ public class StandardHost
      * path.  Only stops a web application if it is running.
      *
      * @param contextPath The context path of the application to be stopped
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs while stopping
-     *  the web application
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs while stopping
+     *                                  the web application
      */
     public void stop(String contextPath) throws IOException {
 

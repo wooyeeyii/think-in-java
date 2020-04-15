@@ -4,24 +4,24 @@ import java.io.Serializable;
 
 public class GoldRingedStaff implements Serializable {
 
-	private static final long serialVersionUID = -8336494749477006718L;
-	private float height = 100.0f;
+    private static final long serialVersionUID = -8336494749477006718L;
+    private float height = 100.0f;
     private float diameter = 10.0f;
-    
+
     /**
-     * Ôö³¤ÐÐÎª£¬Ã¿´Îµ÷ÓÃ³¤¶ÈºÍ°ë¾¶Ôö¼ÓÒ»±¶
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ã¿ï¿½Îµï¿½ï¿½Ã³ï¿½ï¿½ÈºÍ°ë¾¶ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
      */
-    public void grow(){
+    public void grow() {
         this.diameter *= 2;
         this.height *= 2;
     }
-    
+
     /**
-     * ËõÐ¡ÐÐÎª£¬Ã¿´Îµ÷ÓÃ³¤¶ÈºÍ°ë¾¶¼õÉÙÒ»°ë
+     * ï¿½ï¿½Ð¡ï¿½ï¿½Îªï¿½ï¿½Ã¿ï¿½Îµï¿½ï¿½Ã³ï¿½ï¿½ÈºÍ°ë¾¶ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
      */
-    public void shrink(){
+    public void shrink() {
         this.diameter /= 2;
         this.height /= 2;
     }
-    
+
 }

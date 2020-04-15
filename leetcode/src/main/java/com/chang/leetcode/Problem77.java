@@ -29,19 +29,19 @@ public class Problem77 {
      */
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if (n < k || k <0) {
+        if (n < k || k < 0) {
             return result;
         }
         // 看这里..... k是0的话添加空串以供后序使用
-        if(0 == k) {
+        if (0 == k) {
             result.add(new ArrayList<Integer>());
             return result;
         }
 
-        List<List<Integer>> preResult = combine(n-1, k-1);
+        List<List<Integer>> preResult = combine(n - 1, k - 1);
         preResult.forEach(list -> list.add(n));
         result.addAll(preResult);
-        result.addAll(combine(n-1, k));
+        result.addAll(combine(n - 1, k));
 
         return result;
     }
@@ -54,15 +54,16 @@ public class Problem77 {
         combine(combs, new ArrayList<Integer>(), 1, n, k);
         return combs;
     }
+
     private void combine(List<List<Integer>> combs, List<Integer> comb, int start, int n, int k) {
-        if(k==0) {
+        if (k == 0) {
             combs.add(new ArrayList<Integer>(comb));
             return;
         }
-        for(int i=start;i<=n;i++) {
+        for (int i = start; i <= n; i++) {
             comb.add(i);
-            combine(combs, comb, i+1, n, k-1);
-            comb.remove(comb.size()-1);
+            combine(combs, comb, i + 1, n, k - 1);
+            comb.remove(comb.size() - 1);
         }
     }
 

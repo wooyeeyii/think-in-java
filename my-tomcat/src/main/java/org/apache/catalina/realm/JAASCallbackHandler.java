@@ -91,7 +91,7 @@ public class JAASCallbackHandler implements CallbackHandler {
     /**
      * Construct a callback handler configured with the specified values.
      *
-     * @param realm Our associated JAASRealm instance
+     * @param realm    Our associated JAASRealm instance
      * @param username Username to be authenticated with
      * @param password Password to be authenticated with
      */
@@ -136,13 +136,12 @@ public class JAASCallbackHandler implements CallbackHandler {
      * <code>PasswordCallback</code> instances.
      *
      * @param callbacks The set of callbacks to be processed
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception UnsupportedCallbackException if the login method requests
-     *  an unsupported callback type
+     * @throws IOException                  if an input/output error occurs
+     * @throws UnsupportedCallbackException if the login method requests
+     *                                      an unsupported callback type
      */
     public void handle(Callback callbacks[])
-        throws IOException, UnsupportedCallbackException {
+            throws IOException, UnsupportedCallbackException {
 
         for (int i = 0; i < callbacks.length; i++) {
 
@@ -154,7 +153,7 @@ public class JAASCallbackHandler implements CallbackHandler {
                 if (realm.getDebug() >= 3)
                     realm.log("Returning password " + password);
                 ((PasswordCallback) callbacks[i]).setPassword
-                    (password.toCharArray());
+                        (password.toCharArray());
             } else {
                 throw new UnsupportedCallbackException(callbacks[i]);
             }

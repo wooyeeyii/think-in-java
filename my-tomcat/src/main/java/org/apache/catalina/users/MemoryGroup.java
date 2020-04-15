@@ -66,6 +66,7 @@ package org.apache.catalina.users;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import org.apache.catalina.Role;
 import org.apache.catalina.UserDatabase;
 
@@ -89,8 +90,8 @@ public class MemoryGroup extends AbstractGroup {
      * Package-private constructor used by the factory method in
      * {@link MemoryUserDatabase}.
      *
-     * @param database The {@link MemoryUserDatabase} that owns this group
-     * @param groupname Group name of this group
+     * @param database    The {@link MemoryUserDatabase} that owns this group
+     * @param groupname   Group name of this group
      * @param description Description of this group
      */
     MemoryGroup(MemoryUserDatabase database,

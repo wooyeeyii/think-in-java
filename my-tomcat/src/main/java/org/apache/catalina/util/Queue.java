@@ -71,8 +71,8 @@ public class Queue {
     /**
      * Put the object into the queue.
      *
-     * @param   object          the object to be appended to the
-     *                          queue.
+     * @param object the object to be appended to the
+     *               queue.
      */
     public synchronized void put(Object object) {
         vector.addElement(object);

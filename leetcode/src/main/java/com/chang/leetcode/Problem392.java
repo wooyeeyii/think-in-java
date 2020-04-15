@@ -1,23 +1,23 @@
 /**
  * 392. Is Subsequence
- *
- *  Given a string s and a string t, check if s is subsequence of t.
- *
+ * <p>
+ * Given a string s and a string t, check if s is subsequence of t.
+ * <p>
  * You may assume that there is only lower case English letters in both s and t. t is
  * potentially a very long (length ~= 500,000) string, and s is a short string (<=100).
- *
+ * <p>
  * A subsequence of a string is a new string which is formed from the original string by
  * deleting some (can be none) of the characters without disturbing the relative positions
  * of the remaining characters. (ie, "ace" is a subsequence of "abcde" while "aec" is not).
- *
+ * <p>
  * Example 1:
  * s = "abc", t = "ahbgdc"
  * Return true.
- *
+ * <p>
  * Example 2:
  * s = "axc", t = "ahbgdc"
  * Return false.
- *
+ * <p>
  * Follow up:
  * If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B,
  * and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?
@@ -34,9 +34,9 @@ public class Problem392 {
         int[] d = new int[s.length()];
         int start = 0;
         int count = 0;
-        for(char c : s.toCharArray()) {
-            for(int j = start; j < t.length(); j++) {
-                if(t.charAt(j) == c) {
+        for (char c : s.toCharArray()) {
+            for (int j = start; j < t.length(); j++) {
+                if (t.charAt(j) == c) {
                     start = j + 1;
                     count++;
                     break;
@@ -63,7 +63,7 @@ public class Problem392 {
 
         int prev = 0;
         for (int i = 0; i < s.length(); i++) {
-            if(null == idx[s.charAt(i)]) return false;
+            if (null == idx[s.charAt(i)]) return false;
             int j = Collections.binarySearch(idx[s.charAt(i)], prev);
             if (j < 0) j = -j - 1;
             if (j == idx[s.charAt(i)].size()) return false;

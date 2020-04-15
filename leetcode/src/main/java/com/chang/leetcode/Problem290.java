@@ -8,10 +8,10 @@ import java.util.Set;
 public class Problem290 {
     public boolean wordPattern(String pattern, String str) {
         String[] strArray = str.split(" ");
-        if(pattern.length() != strArray.length) {
+        if (pattern.length() != strArray.length) {
             return false;
         }
-        
+
         Map<Character, String> map = new HashMap<Character, String>();
         Set<String> set = new HashSet<String>();
         for (int i = 0; i < pattern.length(); i++) {
@@ -20,7 +20,7 @@ public class Problem290 {
                     return false;
                 }
             } else {
-                if(!set.add(strArray[i])) {
+                if (!set.add(strArray[i])) {
                     return false;
                 }
                 map.put(pattern.charAt(i), strArray[i]);
@@ -28,7 +28,7 @@ public class Problem290 {
         }
         return true;
     }
-    
+
     public static void main(String[] args) {
         Problem290 problem = new Problem290();
         String pattern = "abba";

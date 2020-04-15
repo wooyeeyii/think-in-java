@@ -96,7 +96,7 @@ public interface HttpRequest extends Request {
     /**
      * Add a Header to the set of Headers associated with this Request.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void addHeader(String name, String value);
@@ -116,7 +116,7 @@ public interface HttpRequest extends Request {
      * (This is used when restoring the original request on a form based
      * login).
      *
-     * @param name Name of this request parameter
+     * @param name   Name of this request parameter
      * @param values Corresponding values for this request parameter
      */
     public void addParameter(String name, String values[]);
@@ -233,7 +233,7 @@ public interface HttpRequest extends Request {
 
     /**
      * Set the decoded request URI.
-     * 
+     *
      * @param uri The decoded request URI
      */
     public void setDecodedRequestURI(String uri);
@@ -241,7 +241,7 @@ public interface HttpRequest extends Request {
 
     /**
      * Get the decoded request URI.
-     * 
+     *
      * @return the URL decoded request URI
      */
     public String getDecodedRequestURI();

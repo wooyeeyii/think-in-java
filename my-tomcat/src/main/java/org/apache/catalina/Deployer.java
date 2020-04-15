@@ -80,7 +80,7 @@ import java.net.URL;
  */
 
 /* public interface Deployer extends Container { */
-public interface Deployer  {
+public interface Deployer {
 
 
     // ----------------------------------------------------- Manifest Constants
@@ -129,17 +129,16 @@ public interface Deployer  {
      * with the newly created <code>Context</code> as an argument.
      *
      * @param contextPath The context path to which this application should
-     *  be installed (must be unique)
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalStateException if the specified context path
-     *  is already attached to an existing web application
-     * @exception IOException if an input/output error was encountered
-     *  during installation
+     *                    be installed (must be unique)
+     * @param war         A URL of type "jar:" that points to a WAR file, or type
+     *                    "file:" that points to an unpacked directory structure containing
+     *                    the web application to be installed
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalStateException    if the specified context path
+     *                                  is already attached to an existing web application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during installation
      */
     public void install(String contextPath, URL war) throws IOException;
 
@@ -155,18 +154,17 @@ public interface Deployer  {
      * </p>
      *
      * @param config A URL that points to the context configuration file to
-     *  be used for configuring the new Context
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed
-     *
-     * @exception IllegalArgumentException if one of the specified URLs is
-     *  null
-     * @exception IllegalStateException if the context path specified in the
-     *  context configuration file is already attached to an existing web
-     *  application
-     * @exception IOException if an input/output error was encountered
-     *  during installation
+     *               be used for configuring the new Context
+     * @param war    A URL of type "jar:" that points to a WAR file, or type
+     *               "file:" that points to an unpacked directory structure containing
+     *               the web application to be installed
+     * @throws IllegalArgumentException if one of the specified URLs is
+     *                                  null
+     * @throws IllegalStateException    if the context path specified in the
+     *                                  context configuration file is already attached to an existing web
+     *                                  application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during installation
      */
     public void install(URL config, URL war) throws IOException;
 
@@ -197,13 +195,12 @@ public interface Deployer  {
      * an argument.
      *
      * @param contextPath The context path of the application to be removed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  removal
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  removal
      */
     public void remove(String contextPath) throws IOException;
 
@@ -213,13 +210,12 @@ public interface Deployer  {
      * path.  Only starts a web application if it is not running.
      *
      * @param contextPath The context path of the application to be started
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  startup
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  startup
      */
     public void start(String contextPath) throws IOException;
 
@@ -229,13 +225,12 @@ public interface Deployer  {
      * path.  Only stops a web application if it is running.
      *
      * @param contextPath The context path of the application to be stopped
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs while stopping
-     *  the web application
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs while stopping
+     *                                  the web application
      */
     public void stop(String contextPath) throws IOException;
 

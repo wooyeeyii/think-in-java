@@ -5,27 +5,27 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class MyService {
-	
-	private boolean isFair = false;
-	
-	private Lock lock = null;
-	private Condition condition = null;
-	
-	private boolean hasValue = false;
-	
-	public MyService(boolean isFair) {
-		this.isFair = isFair;
-		lock = new ReentrantLock(isFair);
-		condition = lock.newCondition();
-	}
-	
-	public void serviceMethod() {
-		try{
-			lock.lock();
-			System.out.println("ThreadName=" + Thread.currentThread().getName() + " »ñµÃËø¶¨.");
-		} finally {
-			lock.unlock();
-		}
-	}
+
+    private boolean isFair = false;
+
+    private Lock lock = null;
+    private Condition condition = null;
+
+    private boolean hasValue = false;
+
+    public MyService(boolean isFair) {
+        this.isFair = isFair;
+        lock = new ReentrantLock(isFair);
+        condition = lock.newCondition();
+    }
+
+    public void serviceMethod() {
+        try {
+            lock.lock();
+            System.out.println("ThreadName=" + Thread.currentThread().getName() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.");
+        } finally {
+            lock.unlock();
+        }
+    }
 
 }

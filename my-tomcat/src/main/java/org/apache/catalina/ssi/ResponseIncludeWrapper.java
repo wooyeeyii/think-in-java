@@ -100,17 +100,17 @@ public class ResponseIncludeWrapper extends HttpServletResponseWrapper {
 
     /**
      * Flush the servletOutputStream or printWriter ( only one will be non-null )
-     *
+     * <p>
      * This must be called after a requestDispatcher.include, since we can't assume that
      * the included servlet flushed its stream.
      */
     public void flushOutputStreamOrWriter() throws IOException {
-	if ( servletOutputStream != null ) {
-	    servletOutputStream.flush();
-	}
-	if ( printWriter != null ) {
-	    printWriter.flush();
-	}
+        if (servletOutputStream != null) {
+            servletOutputStream.flush();
+        }
+        if (printWriter != null) {
+            printWriter.flush();
+        }
     }
 
     /**
@@ -118,16 +118,16 @@ public class ResponseIncludeWrapper extends HttpServletResponseWrapper {
      * OutputStream already been returned.
      *
      * @return a PrintWriter object
-     * @exception java.io.IOException if the outputstream already been called
+     * @throws java.io.IOException if the outputstream already been called
      */
     public PrintWriter getWriter() throws java.io.IOException {
-        if ( servletOutputStream == null ) {
-	    if ( printWriter == null ) {
-		printWriter = new PrintWriter( originalServletOutputStream );
-	    }
+        if (servletOutputStream == null) {
+            if (printWriter == null) {
+                printWriter = new PrintWriter(originalServletOutputStream);
+            }
             return printWriter;
-	}
-	throw new IllegalStateException();
+        }
+        throw new IllegalStateException();
     }
 
     /**
@@ -135,15 +135,15 @@ public class ResponseIncludeWrapper extends HttpServletResponseWrapper {
      * printwriter already been returned.
      *
      * @return a OutputStream object
-     * @exception java.io.IOException if the printwriter already been called
+     * @throws java.io.IOException if the printwriter already been called
      */
     public ServletOutputStream getOutputStream() throws java.io.IOException {
-        if ( printWriter == null ) {
-	    if ( servletOutputStream == null ) {
-		servletOutputStream = originalServletOutputStream;
-	    }
-	    return servletOutputStream;
-	}
-	throw new IllegalStateException();
+        if (printWriter == null) {
+            if (servletOutputStream == null) {
+                servletOutputStream = originalServletOutputStream;
+            }
+            return servletOutputStream;
+        }
+        throw new IllegalStateException();
     }
 }

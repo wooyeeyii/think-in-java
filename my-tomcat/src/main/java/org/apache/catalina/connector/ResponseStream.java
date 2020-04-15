@@ -4,6 +4,7 @@ package org.apache.catalina.connector;
 import java.io.IOException;
 import java.io.OutputStream;
 import javax.servlet.ServletOutputStream;
+
 import org.apache.catalina.Response;
 import org.apache.catalina.util.StringManager;
 
@@ -20,7 +21,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class ResponseStream
-    extends ServletOutputStream {
+        extends ServletOutputStream {
 
 
     // ----------------------------------------------------------- Constructors
@@ -82,7 +83,7 @@ public class ResponseStream
      * The localized strings for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -153,7 +154,7 @@ public class ResponseStream
 
         if (suspended)
             throw new IOException
-                (sm.getString("responseStream.suspended"));
+                    (sm.getString("responseStream.suspended"));
 
         if (closed)
             throw new IOException(sm.getString("responseStream.close.closed"));
@@ -172,7 +173,7 @@ public class ResponseStream
 
         if (suspended)
             throw new IOException
-                (sm.getString("responseStream.suspended"));
+                    (sm.getString("responseStream.suspended"));
 
         if (closed)
             throw new IOException(sm.getString("responseStream.flush.closed"));
@@ -187,8 +188,7 @@ public class ResponseStream
      * Write the specified byte to our output stream.
      *
      * @param b The byte to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(int b) throws IOException {
 
@@ -212,8 +212,7 @@ public class ResponseStream
      * to our output stream.
      *
      * @param b The byte array to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(byte b[]) throws IOException {
 
@@ -229,11 +228,10 @@ public class ResponseStream
      * Write <code>len</code> bytes from the specified byte array, starting
      * at the specified offset, to our output stream.
      *
-     * @param b The byte array containing the bytes to be written
+     * @param b   The byte array containing the bytes to be written
      * @param off Zero-relative starting offset of the bytes to be written
      * @param len The number of bytes to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(byte b[], int off, int len) throws IOException {
 

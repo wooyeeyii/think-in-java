@@ -79,31 +79,31 @@ public final class SSIInclude implements SSICommand {
      * @see SSICommand
      */
     public void process(SSIMediator ssiMediator,
-			String[] paramNames,
-			String[] paramValues,
-			PrintWriter writer) {
+                        String[] paramNames,
+                        String[] paramValues,
+                        PrintWriter writer) {
 
-	String configErrMsg = ssiMediator.getConfigErrMsg();
+        String configErrMsg = ssiMediator.getConfigErrMsg();
 
-	for ( int i=0; i < paramNames.length; i++ ) {
-	    String paramName = paramNames[i];
-	    String paramValue = paramValues[i];
+        for (int i = 0; i < paramNames.length; i++) {
+            String paramName = paramNames[i];
+            String paramValue = paramValues[i];
 
-	    try {
-		if ( paramName.equalsIgnoreCase("file") ||
-		     paramName.equalsIgnoreCase("virtual") ) {
-		    boolean virtual = paramName.equalsIgnoreCase("virtual");
-		    String text = ssiMediator.getFileText( paramValue, virtual );
-		    writer.write( text );
-		} else {
-		    ssiMediator.log("#include--Invalid attribute: " + paramName );
-		    writer.write( configErrMsg );
-		}
-	    } catch ( IOException e ) {
-		ssiMediator.log("#include--Couldn't include file: " + paramValue, e );
-		writer.write( configErrMsg );
-	    }
-	}
+            try {
+                if (paramName.equalsIgnoreCase("file") ||
+                        paramName.equalsIgnoreCase("virtual")) {
+                    boolean virtual = paramName.equalsIgnoreCase("virtual");
+                    String text = ssiMediator.getFileText(paramValue, virtual);
+                    writer.write(text);
+                } else {
+                    ssiMediator.log("#include--Invalid attribute: " + paramName);
+                    writer.write(configErrMsg);
+                }
+            } catch (IOException e) {
+                ssiMediator.log("#include--Couldn't include file: " + paramValue, e);
+                writer.write(configErrMsg);
+            }
+        }
     }
 }
 

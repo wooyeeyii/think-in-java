@@ -69,6 +69,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.naming.Context;
+
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Group;
 import org.apache.catalina.Role;
@@ -92,7 +93,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class UserDatabaseRealm
-    extends RealmBase {
+        extends RealmBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -109,7 +110,7 @@ public class UserDatabaseRealm
      * Descriptive information about this Realm implementation.
      */
     protected final String info =
-        "org.apache.catalina.realm.UserDatabaseRealm/1.0";
+            "org.apache.catalina.realm.UserDatabaseRealm/1.0";
 
 
     /**
@@ -129,7 +130,7 @@ public class UserDatabaseRealm
      * The string manager for this package.
      */
     private static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -178,9 +179,9 @@ public class UserDatabaseRealm
      * Return the Principal associated with the specified username and
      * credentials, if there is one; otherwise return <code>null</code>.
      *
-     * @param username Username of the Principal to look up
+     * @param username    Username of the Principal to look up
      * @param credentials Password or other credentials to use in
-     *  authenticating this username
+     *                    authenticating this username
      */
     public Principal authenticate(String username, String credentials) {
 
@@ -196,15 +197,15 @@ public class UserDatabaseRealm
         if (hasMessageDigest()) {
             // Hex hashes should be compared case-insensitive
             validated = (digest(credentials)
-                         .equalsIgnoreCase(user.getPassword()));
+                    .equalsIgnoreCase(user.getPassword()));
         } else {
             validated =
-                (digest(credentials).equals(user.getPassword()));
+                    (digest(credentials).equals(user.getPassword()));
         }
         if (!validated) {
             if (debug >= 2) {
                 log(sm.getString("userDatabaseRealm.authenticateFailure",
-                                 username));
+                        username));
             }
             return (null);
         }
@@ -212,7 +213,7 @@ public class UserDatabaseRealm
         // Construct a GenericPrincipal that represents this user
         if (debug >= 2) {
             log(sm.getString("userDatabaseRealm.authenticateSuccess",
-                             username));
+                    username));
         }
         ArrayList combined = new ArrayList();
         Iterator roles = user.getRoles();
@@ -236,7 +237,7 @@ public class UserDatabaseRealm
             }
         }
         return (new GenericPrincipal(this, user.getUsername(),
-                                     user.getPassword(), combined));
+                user.getPassword(), combined));
 
     }
 
@@ -280,8 +281,8 @@ public class UserDatabaseRealm
     /**
      * Prepare for active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents it from being started
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents it from being started
      */
     public synchronized void start() throws LifecycleException {
 
@@ -296,7 +297,7 @@ public class UserDatabaseRealm
         }
         if (database == null) {
             throw new LifecycleException
-                (sm.getString("userDatabaseRealm.noDatabase", resourceName));
+                    (sm.getString("userDatabaseRealm.noDatabase", resourceName));
         }
 
         // Perform normal superclass initialization
@@ -308,8 +309,8 @@ public class UserDatabaseRealm
     /**
      * Gracefully shut down active use of the public methods of this Component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public synchronized void stop() throws LifecycleException {
 

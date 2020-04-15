@@ -63,12 +63,13 @@
 package org.apache.catalina.ssi;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.catalina.util.RequestUtil;
 
 public class SSIServletRequestUtil {
     /**
      * Return the relative path associated with this servlet.
-     *
+     * <p>
      * Taken from DefaultServlet.java.  Perhaps this should be put in
      * org.apache.catalina.util somewhere?  Seems like it would be widely used.
      *
@@ -77,12 +78,12 @@ public class SSIServletRequestUtil {
     public static String getRelativePath(HttpServletRequest request) {
 
         // Are we being processed by a RequestDispatcher.include()?
-        if (request.getAttribute("javax.servlet.include.request_uri")!=null) {
+        if (request.getAttribute("javax.servlet.include.request_uri") != null) {
             String result = (String)
-                request.getAttribute("javax.servlet.include.path_info");
+                    request.getAttribute("javax.servlet.include.path_info");
             if (result == null)
                 result = (String)
-                    request.getAttribute("javax.servlet.include.servlet_path");
+                        request.getAttribute("javax.servlet.include.servlet_path");
             if ((result == null) || (result.equals("")))
                 result = "/";
             return (result);
@@ -105,7 +106,7 @@ public class SSIServletRequestUtil {
      * are resolved out.  If the specified path attempts to go outside the
      * boundaries of the current context (i.e. too many ".." path elements
      * are present), return <code>null</code> instead.
-     *
+     * <p>
      * This normalize should be the same as DefaultServlet.normalize, which is almost the same
      * ( see source code below ) as RequestUtil.normalize.  Do we need all this duplication?
      *
@@ -115,15 +116,15 @@ public class SSIServletRequestUtil {
         if (path == null)
             return null;
 
-	String normalized = path;
+        String normalized = path;
 
-	//Why doesn't RequestUtil do this??
+        //Why doesn't RequestUtil do this??
 
         // Normalize the slashes and add leading slash if necessary
-        if ( normalized.indexOf('\\') >= 0 )
-            normalized = normalized.replace( '\\', '/' );
+        if (normalized.indexOf('\\') >= 0)
+            normalized = normalized.replace('\\', '/');
 
-	normalized = RequestUtil.normalize( path );
-	return normalized;
+        normalized = RequestUtil.normalize(path);
+        return normalized;
     }
 }

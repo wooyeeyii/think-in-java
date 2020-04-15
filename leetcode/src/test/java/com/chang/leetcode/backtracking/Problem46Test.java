@@ -11,12 +11,12 @@ public class Problem46Test {
 
     @Test
     public void test() {
-        int[] nums = new int[] {1, 2, 3};
+        int[] nums = new int[]{1, 2, 3};
         List<List<Integer>> result = problem.permute(nums);
         System.out.println("[");
-        for(List<Integer> list : result) {
+        for (List<Integer> list : result) {
             System.out.print("[");
-            for(Integer in : list) {
+            for (Integer in : list) {
                 System.out.print(in + ", ");
             }
             System.out.println("]");
@@ -26,7 +26,7 @@ public class Problem46Test {
 
     @Test
     public void permuteSample() {
-        int[] nums = new int[] {1, 2, 3};
+        int[] nums = new int[]{1, 2, 3};
         List<List<Integer>> result = problem.permuteSample(nums);
         String res = ArrayToStringUtil.twoDimension(result);
         System.out.println(res);

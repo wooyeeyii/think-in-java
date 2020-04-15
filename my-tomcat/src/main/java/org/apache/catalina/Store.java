@@ -111,7 +111,7 @@ public interface Store {
     /**
      * Return the number of Sessions present in this Store.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int getSize() throws IOException;
 
@@ -132,7 +132,7 @@ public interface Store {
      * currently saved in this Store.  If there are no such Sessions, a
      * zero-length array is returned.
      *
-     * @exception IOException if an input/output error occurred
+     * @throws IOException if an input/output error occurred
      */
     public String[] keys() throws IOException;
 
@@ -143,12 +143,11 @@ public interface Store {
      * such stored Session, return <code>null</code>.
      *
      * @param id Session identifier of the session to load
-     *
-     * @exception ClassNotFoundException if a deserialization error occurs
-     * @exception IOException if an input/output error occurs
+     * @throws ClassNotFoundException if a deserialization error occurs
+     * @throws IOException            if an input/output error occurs
      */
     public Session load(String id)
-        throws ClassNotFoundException, IOException;
+            throws ClassNotFoundException, IOException;
 
 
     /**
@@ -157,8 +156,7 @@ public interface Store {
      * takes no action.
      *
      * @param id Session identifier of the Session to be removed
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void remove(String id) throws IOException;
 
@@ -182,8 +180,7 @@ public interface Store {
      * information for the associated session identifier is replaced.
      *
      * @param session Session to be saved
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void save(Session session) throws IOException;
 

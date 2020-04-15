@@ -41,7 +41,8 @@ public final class BootstrapOfChapter15 {
 
         Loader loader = new WebappLoader();
         context.setLoader(loader);
-        connector.setContainer(host);context.setPath("/contextA");
+        connector.setContainer(host);
+        context.setPath("/contextA");
         context.setDocBase("contextA");
         try {
             connector.initialize();

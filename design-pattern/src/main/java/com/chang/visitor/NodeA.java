@@ -1,6 +1,6 @@
 package com.chang.visitor;
 
-public class NodeA extends Node{
+public class NodeA extends Node {
     /**
      * 接受操作
      */
@@ -8,10 +8,11 @@ public class NodeA extends Node{
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
     /**
      * NodeA特有的方法
      */
-    public String operationA(){
+    public String operationA() {
         return "NodeA";
     }
 

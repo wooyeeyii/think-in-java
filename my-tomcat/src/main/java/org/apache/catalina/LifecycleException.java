@@ -118,7 +118,7 @@ public final class LifecycleException extends Exception {
      * Construct a new LifecycleException for the specified message
      * and throwable.
      *
-     * @param message Message describing this exception
+     * @param message   Message describing this exception
      * @param throwable Throwable that caused this exception
      */
     public LifecycleException(String message, Throwable throwable) {

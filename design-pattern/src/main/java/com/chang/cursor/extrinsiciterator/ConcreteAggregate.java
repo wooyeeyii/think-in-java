@@ -1,30 +1,30 @@
 package com.chang.cursor.extrinsiciterator;
 
 public class ConcreteAggregate extends Aggregate {
-	private Object[] objArray = null;
-	
-	//¹¹Ôì·½·¨£¬´«Èë¾ÛºÏ¶ÔÏóµÄ¾ßÌåÄÚÈİ
-	public ConcreteAggregate(Object[] obj) {
-		objArray = obj;
-	}
-	
-	@Override
-	public MyIterator createIterator() {
-		return (new ConcreteIterator(this));
-	}
-	
-	//È¡Öµ·½·¨£ºÏòÍâ½çÌá¹©¾Û¼¯ÔªËØ
-	public Object getElement(int index) {
-		if(index < objArray.length) {
-			return objArray[index];
-		} else {
-			return null;
-		}
-	}
-	
-	//È¡Öµ·½·¨£ºÏòÍâ½çÌá¹©¾Û¼¯µÄ´óĞ¡
-	public int size() {
-		return objArray.length;
-	}
-			
+    private Object[] objArray = null;
+
+    //ï¿½ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛºÏ¶ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public ConcreteAggregate(Object[] obj) {
+        objArray = obj;
+    }
+
+    @Override
+    public MyIterator createIterator() {
+        return (new ConcreteIterator(this));
+    }
+
+    //È¡Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½Û¼ï¿½Ôªï¿½ï¿½
+    public Object getElement(int index) {
+        if (index < objArray.length) {
+            return objArray[index];
+        } else {
+            return null;
+        }
+    }
+
+    //È¡Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½Û¼ï¿½ï¿½Ä´ï¿½Ğ¡
+    public int size() {
+        return objArray.length;
+    }
+
 }

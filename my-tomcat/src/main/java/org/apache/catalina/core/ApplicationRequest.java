@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletRequestWrapper;
+
 import org.apache.catalina.Globals;
 import org.apache.catalina.util.Enumerator;
 import org.apache.catalina.util.StringManager;
@@ -36,9 +37,9 @@ class ApplicationRequest extends ServletRequestWrapper {
      * The set of attribute names that are special for request dispatchers.
      */
     protected static final String specials[] =
-    { Globals.REQUEST_URI_ATTR, Globals.CONTEXT_PATH_ATTR,
-      Globals.SERVLET_PATH_ATTR, Globals.PATH_INFO_ATTR,
-      Globals.QUERY_STRING_ATTR };
+            {Globals.REQUEST_URI_ATTR, Globals.CONTEXT_PATH_ATTR,
+                    Globals.SERVLET_PATH_ATTR, Globals.PATH_INFO_ATTR,
+                    Globals.QUERY_STRING_ATTR};
 
 
     // ----------------------------------------------------------- Constructors
@@ -71,7 +72,7 @@ class ApplicationRequest extends ServletRequestWrapper {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------- ServletRequest Methods
@@ -125,7 +126,7 @@ class ApplicationRequest extends ServletRequestWrapper {
      * Override the <code>setAttribute()</code> method of the
      * wrapped request.
      *
-     * @param name Name of the attribute to set
+     * @param name  Name of the attribute to set
      * @param value Value of the attribute to set
      */
     public void setAttribute(String name, Object value) {

@@ -19,6 +19,6 @@ public class RedisLockTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals((Long)200L, threadA.getValue());
+        Assert.assertEquals((Long) 200L, threadA.getValue());
     }
 }

@@ -1,21 +1,21 @@
 package com.chang.TemplateMethod;
 
 public abstract class Account {
-	
-	public final double calculateInterest() {
-		double interestRate = doCalculateInterestRate();
-		String accountType = doCalculateAccountType();
-		double amount = calculateAmount(accountType);
-		return amount * interestRate;
-	}
-	
-	protected abstract double doCalculateInterestRate();
 
-	protected abstract String doCalculateAccountType();
-	
-	private double calculateAmount(String accountType){
+    public final double calculateInterest() {
+        double interestRate = doCalculateInterestRate();
+        String accountType = doCalculateAccountType();
+        double amount = calculateAmount(accountType);
+        return amount * interestRate;
+    }
+
+    protected abstract double doCalculateInterestRate();
+
+    protected abstract String doCalculateAccountType();
+
+    private double calculateAmount(String accountType) {
         /**
-         * Ê¡ÂÔÏà¹ØµÄÒµÎñÂß¼­
+         * Ê¡ï¿½ï¿½ï¿½ï¿½Øµï¿½Òµï¿½ï¿½ï¿½ß¼ï¿½
          */
         return 7243.00;
     }

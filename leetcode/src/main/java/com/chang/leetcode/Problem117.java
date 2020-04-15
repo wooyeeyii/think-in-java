@@ -30,23 +30,23 @@ public class Problem117 {
             nextLayer.next = null;
             TreeLinkNode nextNode = null;
             while (node != null) {
-                if(null != node.left && null != node.right) {
+                if (null != node.left && null != node.right) {
                     node.left.next = node.right;
-                    if(null == nextLayer.next) {
+                    if (null == nextLayer.next) {
                         nextLayer.next = node.left;
                     } else {
                         nextNode.next = node.left;
                     }
                     nextNode = node.right;
-                } else if(null != node.left && null == node.right) {
-                    if(null == nextLayer.next) {
+                } else if (null != node.left && null == node.right) {
+                    if (null == nextLayer.next) {
                         nextLayer.next = node.left;
                     } else {
                         nextNode.next = node.left;
                     }
                     nextNode = node.left;
-                } else if(null == node.left && null != node.right) {
-                    if(null == nextLayer.next) {
+                } else if (null == node.left && null != node.right) {
+                    if (null == nextLayer.next) {
                         nextLayer.next = node.right;
                     } else {
                         nextNode.next = node.right;

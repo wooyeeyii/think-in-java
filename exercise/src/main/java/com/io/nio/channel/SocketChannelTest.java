@@ -23,7 +23,7 @@ public class SocketChannelTest {
 
             int bytesRead = socketChannel.read(buf);
             buf.flip();
-            while(buf.hasRemaining()) {
+            while (buf.hasRemaining()) {
                 writeChannel.write(buf);
             }
         } catch (IOException e) {

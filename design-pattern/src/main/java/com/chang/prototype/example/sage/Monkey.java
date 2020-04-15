@@ -9,27 +9,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Monkey implements Cloneable, Serializable {
-	
-	private static final long serialVersionUID = 5710803629060239236L;
-	//Éí¸ß
+
+    private static final long serialVersionUID = 5710803629060239236L;
+    //ï¿½ï¿½ï¿½
     private int height;
-    //ÌåÖØ
+    //ï¿½ï¿½ï¿½ï¿½
     private int weight;
-    //ÉúÈÕ
+    //ï¿½ï¿½ï¿½ï¿½
     private Date birthDate;
-    //½ð¹¿°ô
+    //ï¿½ð¹¿°ï¿½
     private GoldRingedStaff staff;
+
     /**
-     * ¹¹Ôìº¯Êý
+     * ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
      */
-    public Monkey(){
+    public Monkey() {
         this.birthDate = new Date();
         this.staff = new GoldRingedStaff();
     }
+
     /**
-     * ¿ËÂ¡·½·¨
+     * ï¿½ï¿½Â¡ï¿½ï¿½ï¿½ï¿½
      */
-    public Object clone(){
+    public Object clone() {
         Monkey temp = null;
         try {
             temp = (Monkey) super.clone();
@@ -37,45 +39,52 @@ public class Monkey implements Cloneable, Serializable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        return temp; 
+
+        return temp;
     }
-    
-    //ÀûÓÃÐòÁÐ»¯ÊµÏÖÉî¶È¿ËÂ¡
-    public  Object deepClone() throws IOException, ClassNotFoundException{
-        //½«¶ÔÏóÐ´µ½Á÷Àï
+
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½Êµï¿½ï¿½ï¿½ï¿½È¿ï¿½Â¡
+    public Object deepClone() throws IOException, ClassNotFoundException {
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         oos.writeObject(this);
-        //´ÓÁ÷Àï¶Á»ØÀ´
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(bis);
         return ois.readObject();
     }
-    
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	public Date getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-	public GoldRingedStaff getStaff() {
-		return staff;
-	}
-	public void setStaff(GoldRingedStaff staff) {
-		this.staff = staff;
-	}
-	
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public GoldRingedStaff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(GoldRingedStaff staff) {
+        this.staff = staff;
+    }
+
 }

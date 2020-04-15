@@ -17,8 +17,8 @@ public class Problem5263 {
         }
 
         int rank = k;
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 int row = (rank % total) / cols;
                 int col = (rank % total) % cols;
                 result.get(row).set(col, grid[i][j]);

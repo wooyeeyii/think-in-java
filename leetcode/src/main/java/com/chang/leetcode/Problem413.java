@@ -63,14 +63,14 @@ public class Problem413 {
     }
 
     private int cal(int n) {
-       return (n - 2) * (n - 1) / 2;
+        return (n - 2) * (n - 1) / 2;
     }
 
     public static void main(String[] args) {
         Problem413 problem = new Problem413();
-        int[] nums1 = new int[] {1, 2, 3, 4};
+        int[] nums1 = new int[]{1, 2, 3, 4};
         System.out.println(3 == problem.numberOfArithmeticSlices(nums1));
-        int[] nums2 = new int[] {1,2,3,8,9,10};
+        int[] nums2 = new int[]{1, 2, 3, 8, 9, 10};
         System.out.println(2 == problem.numberOfArithmeticSlices(nums2));
     }
 

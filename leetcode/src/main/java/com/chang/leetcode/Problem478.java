@@ -1,10 +1,10 @@
 /**
  * 478. Generate Random Point in a Circle
- *
+ * <p>
  * Given the radius and x-y positions of the center of a circle, write a function randPoint which generates a uniform random point in the circle.
- *
+ * <p>
  * Note:
- *
+ * <p>
  * input and output values are in floating-point.
  * radius and x-y position of the center of the circle is passed into the class constructor.
  * a point on the circumference of the circle is considered to be in the circle.
@@ -14,14 +14,14 @@
  * ["Solution","randPoint","randPoint","randPoint"]
  * [[1,0,0],[],[],[]]
  * Output: [null,[-0.72939,-0.65505],[-0.78502,-0.28626],[-0.83119,-0.19803]]
- *
+ * <p>
  * Example 2:
  * Input:
  * ["Solution","randPoint","randPoint","randPoint"]
  * [[10,5,-7.5],[],[],[]]
  * Output: [null,[11.52438,-8.33273],[2.46992,-16.21705],[11.13430,-12.42337]]
  * Explanation of Input Syntax:
- *
+ * <p>
  * The input is two lists: the subroutines called and their arguments. Solution's constructor has three arguments,
  * the radius, x-position of the center, and y-position of the center of the circle.
  * randPoint has no arguments. Arguments are always wrapped with a list, even if there aren't any.
@@ -86,12 +86,12 @@ public class Problem478 {
     }*/
 
     public static void main(String[] args) {
-        Problem478 problem1 = new Problem478(1,0,0);
+        Problem478 problem1 = new Problem478(1, 0, 0);
         problem1.randPoint();
         problem1.randPoint();
         problem1.randPoint();
 
-        Problem478 problem2 = new Problem478(10,5,-7.5);
+        Problem478 problem2 = new Problem478(10, 5, -7.5);
         problem2.randPoint();
         problem2.randPoint();
         problem2.randPoint();

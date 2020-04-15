@@ -2,32 +2,34 @@ package com.chang.factory.abstractfactory;
 
 public class ComputerEngineer {
     /**
-     * ¶¨Òå×é×°»úÐèÒªµÄCPU
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½CPU
      */
     private ICpu cpu = null;
     /**
-     * ¶¨Òå×é×°»úÐèÒªµÄÖ÷°å
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     private IMainboard mainboard = null;
-    public void makeComputer(int cpuType , int mainboard){
+
+    public void makeComputer(int cpuType, int mainboard) {
         /**
-         * ×é×°»úÆ÷µÄ»ù±¾²½Öè
+         * ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
          */
-        //1:Ê×ÏÈ×¼±¸ºÃ×°»úËùÐèÒªµÄÅä¼þ
+        //1:ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½
         prepareHardwares(cpuType, mainboard);
-        //2:×é×°»úÆ÷
-        //3:²âÊÔ»úÆ÷
-        //4£º½»¸¶¿Í»§
+        //2:ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
+        //3:ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½
+        //4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½
     }
-    private void prepareHardwares(int cpuType , int mainboard){
-        //ÕâÀïÒªÈ¥×¼±¸CPUºÍÖ÷°åµÄ¾ßÌåÊµÏÖ£¬ÎªÁËÊ¾Àý¼òµ¥£¬ÕâÀïÖ»×¼±¸ÕâÁ½¸ö
-        //¿ÉÊÇ£¬×°»ú¹¤³ÌÊ¦²¢²»ÖªµÀÈçºÎÈ¥´´½¨£¬ÔõÃ´°ìÄØ£¿
-        
-        //Ö±½ÓÕÒÏàÓ¦µÄ¹¤³§»ñÈ¡
+
+    private void prepareHardwares(int cpuType, int mainboard) {
+        //ï¿½ï¿½ï¿½ï¿½ÒªÈ¥×¼ï¿½ï¿½CPUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½Îªï¿½ï¿½Ê¾ï¿½ï¿½ï¿½òµ¥£ï¿½ï¿½ï¿½ï¿½ï¿½Ö»×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½Ç£ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½Ø£ï¿½
+
+        //Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½È¡
         this.cpu = CpuFactory.createCpu(cpuType);
         this.mainboard = MainboardFactory.createMainboard(mainboard);
-        
-        //²âÊÔÅä¼þÊÇ·ñºÃÓÃ
+
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
         this.cpu.calculate();
         this.mainboard.installCpu();
     }

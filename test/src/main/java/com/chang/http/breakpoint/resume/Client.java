@@ -35,7 +35,7 @@ public class Client {
         OutputStream os = null;
         try {
             File file = new File(fileName);
-            if(!file.exists()) {
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
@@ -46,10 +46,10 @@ public class Client {
                 os.write(bs, 0, len);
             }
         } finally {
-            if(null != os) {
+            if (null != os) {
                 os.close();
             }
-            if(null != input) {
+            if (null != input) {
                 input.close();
             }
         }

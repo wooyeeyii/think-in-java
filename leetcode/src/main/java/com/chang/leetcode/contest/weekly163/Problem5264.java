@@ -16,13 +16,13 @@ public class Problem5264 {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            if(node.left != null) {
+            if (node.left != null) {
                 int lv = 2 * node.val + 1;
                 node.left.val = lv;
                 set.add(lv);
                 queue.add(node.left);
             }
-            if(node.right != null) {
+            if (node.right != null) {
                 int rv = 2 * node.val + 2;
                 node.right.val = rv;
                 set.add(rv);

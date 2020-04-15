@@ -13,7 +13,7 @@ public class Problem242 {
             return false;
         }
         Map<Character, Integer> map = new HashMap<Character, Integer>();
-        
+
         for (int i = 0; i < length1; i++) {
 //            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
             map.put(s.charAt(i), MapUtil.getOrDefault(map, s.charAt(i), 0) + 1);
@@ -21,15 +21,15 @@ public class Problem242 {
         for (int i = 0; i < length2; i++) {
 //            int value = map.getOrDefault(t.charAt(i), 0) - 1;
             int value = MapUtil.getOrDefault(map, (t.charAt(i)), 0) - 1;
-            if(value < 0) {
+            if (value < 0) {
                 return false;
             }
             map.put(t.charAt(i), value);
         }
-        
+
         return true;
     }
-    
+
     public static void main(String[] args) {
         Problem242 problem = new Problem242();
         System.out.println(problem.isAnagram("anagram", "nagaram"));

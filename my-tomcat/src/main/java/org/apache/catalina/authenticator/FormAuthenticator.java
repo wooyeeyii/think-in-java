@@ -74,12 +74,12 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.Realm;
 import org.apache.catalina.Session;
 import org.apache.catalina.deploy.LoginConfig;
-
 
 
 /**
@@ -91,7 +91,7 @@ import org.apache.catalina.deploy.LoginConfig;
  */
 
 public class FormAuthenticator
-    extends AuthenticatorBase {
+        extends AuthenticatorBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -101,7 +101,7 @@ public class FormAuthenticator
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.authenticator.FormAuthenticator/1.0";
+            "org.apache.catalina.authenticator.FormAuthenticator/1.0";
 
 
     // ------------------------------------------------------------- Properties
@@ -126,23 +126,22 @@ public class FormAuthenticator
      * constraint has been satisfied, or <code>false</code> if we have
      * created a response challenge already.
      *
-     * @param request Request we are processing
+     * @param request  Request we are processing
      * @param response Response we are creating
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     *
-     * @exception IOException if an input/output error occurs
+     * @param login    Login configuration describing how authentication
+     *                 should be performed
+     * @throws IOException if an input/output error occurs
      */
     public boolean authenticate(HttpRequest request,
                                 HttpResponse response,
                                 LoginConfig config)
-        throws IOException {
+            throws IOException {
 
         // References to objects we will need later
         HttpServletRequest hreq =
-          (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpServletResponse hres =
-          (HttpServletResponse) response.getResponse();
+                (HttpServletResponse) response.getResponse();
         Session session = null;
 
         // Have we already authenticated someone?
@@ -150,7 +149,7 @@ public class FormAuthenticator
         if (principal != null) {
             if (debug >= 1)
                 log("Already authenticated '" +
-                    principal.getName() + "'");
+                        principal.getName() + "'");
             String ssoId = (String) request.getNote(Constants.REQ_SSOID_NOTE);
             if (ssoId != null)
                 associate(ssoId, getSession(request, true));
@@ -163,19 +162,19 @@ public class FormAuthenticator
             if (debug >= 1)
                 log("Checking for reauthenticate in session " + session);
             String username =
-                (String) session.getNote(Constants.SESS_USERNAME_NOTE);
+                    (String) session.getNote(Constants.SESS_USERNAME_NOTE);
             String password =
-                (String) session.getNote(Constants.SESS_PASSWORD_NOTE);
+                    (String) session.getNote(Constants.SESS_PASSWORD_NOTE);
             if ((username != null) && (password != null)) {
                 if (debug >= 1)
                     log("Reauthenticating username '" + username + "'");
                 principal =
-                    context.getRealm().authenticate(username, password);
+                        context.getRealm().authenticate(username, password);
                 if (principal != null) {
                     session.setNote(Constants.FORM_PRINCIPAL_NOTE, principal);
                     register(request, response, principal,
-                             Constants.FORM_METHOD,
-                             username, password);
+                            Constants.FORM_METHOD,
+                            username, password);
                     return (true);
                 }
                 if (debug >= 1)
@@ -190,10 +189,10 @@ public class FormAuthenticator
             if (debug >= 1)
                 log("Restore request from session '" + session.getId() + "'");
             principal = (Principal)
-                session.getNote(Constants.FORM_PRINCIPAL_NOTE);
+                    session.getNote(Constants.FORM_PRINCIPAL_NOTE);
             register(request, response, principal, Constants.FORM_METHOD,
-                     (String) session.getNote(Constants.SESS_USERNAME_NOTE),
-                     (String) session.getNote(Constants.SESS_PASSWORD_NOTE));
+                    (String) session.getNote(Constants.SESS_USERNAME_NOTE),
+                    (String) session.getNote(Constants.SESS_PASSWORD_NOTE));
             String ssoId = (String) request.getNote(Constants.REQ_SSOID_NOTE);
             if (ssoId != null)
                 associate(ssoId, session);
@@ -237,8 +236,8 @@ public class FormAuthenticator
 
         // Is this the action request from the login page?
         boolean loginAction =
-            requestURI.startsWith(contextPath) &&
-            requestURI.endsWith(Constants.FORM_ACTION);
+                requestURI.startsWith(contextPath) &&
+                        requestURI.endsWith(Constants.FORM_ACTION);
 
         // No -- Save this request and redirect to the form login page
         if (!loginAction) {
@@ -287,7 +286,7 @@ public class FormAuthenticator
             log("Redirecting to original '" + requestURI + "'");
         if (requestURI == null)
             hres.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                           sm.getString("authenticator.formlogin"));
+                    sm.getString("authenticator.formlogin"));
         else
             hres.sendRedirect(hres.encodeRedirectURL(requestURI));
         return (false);
@@ -306,27 +305,27 @@ public class FormAuthenticator
      */
     protected boolean matchRequest(HttpRequest request) {
 
-      // Has a session been created?
-      Session session = getSession(request, false);
-      if (session == null)
-          return (false);
+        // Has a session been created?
+        Session session = getSession(request, false);
+        if (session == null)
+            return (false);
 
-      // Is there a saved request?
-      SavedRequest sreq = (SavedRequest)
-          session.getNote(Constants.FORM_REQUEST_NOTE);
-      if (sreq == null)
-          return (false);
+        // Is there a saved request?
+        SavedRequest sreq = (SavedRequest)
+                session.getNote(Constants.FORM_REQUEST_NOTE);
+        if (sreq == null)
+            return (false);
 
-      // Is there a saved principal?
-      if (session.getNote(Constants.FORM_PRINCIPAL_NOTE) == null)
-          return (false);
+        // Is there a saved principal?
+        if (session.getNote(Constants.FORM_PRINCIPAL_NOTE) == null)
+            return (false);
 
-      // Does the request URI match?
-      HttpServletRequest hreq = (HttpServletRequest) request.getRequest();
-      String requestURI = hreq.getRequestURI();
-      if (requestURI == null)
-          return (false);
-      return (requestURI.equals(sreq.getRequestURI()));
+        // Does the request URI match?
+        HttpServletRequest hreq = (HttpServletRequest) request.getRequest();
+        String requestURI = hreq.getRequestURI();
+        if (requestURI == null)
+            return (false);
+        return (requestURI.equals(sreq.getRequestURI()));
 
     }
 
@@ -344,7 +343,7 @@ public class FormAuthenticator
 
         // Retrieve and remove the SavedRequest object from our session
         SavedRequest saved = (SavedRequest)
-            session.getNote(Constants.FORM_REQUEST_NOTE);
+                session.getNote(Constants.FORM_REQUEST_NOTE);
         session.removeNote(Constants.FORM_REQUEST_NOTE);
         session.removeNote(Constants.FORM_PRINCIPAL_NOTE);
         if (saved == null)
@@ -376,7 +375,7 @@ public class FormAuthenticator
             while (paramNames.hasNext()) {
                 String paramName = (String) paramNames.next();
                 String paramValues[] =
-                    (String[]) saved.getParameterValues(paramName);
+                        (String[]) saved.getParameterValues(paramName);
                 request.addParameter(paramName, paramValues);
             }
         }
@@ -444,7 +443,7 @@ public class FormAuthenticator
     private String savedRequestURL(Session session) {
 
         SavedRequest saved =
-            (SavedRequest) session.getNote(Constants.FORM_REQUEST_NOTE);
+                (SavedRequest) session.getNote(Constants.FORM_REQUEST_NOTE);
         if (saved == null)
             return (null);
         StringBuffer sb = new StringBuffer(saved.getRequestURI());

@@ -68,18 +68,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+
 import org.apache.catalina.util.IOTools;
 
 /**
  * Implements the Server-side #exec command
- * 
+ *
  * @author Bip Thelin
  * @author Amy Roh
  * @author Dan Sandberg
  * @version $Revision: 1.1 $, $Date: 2002/05/24 04:38:58 $
- *
  */
-public class SSIExec implements SSICommand {   
+public class SSIExec implements SSICommand {
     protected SSIInclude ssiInclude = new SSIInclude();
     protected final static int BUFFER_SIZE = 1024;
 
@@ -87,39 +87,39 @@ public class SSIExec implements SSICommand {
      * @see SSICommand
      */
     public void process(SSIMediator ssiMediator,
-			String[] paramNames,
-			String[] paramValues,
-			PrintWriter writer) {
+                        String[] paramNames,
+                        String[] paramValues,
+                        PrintWriter writer) {
 
-	String configErrMsg = ssiMediator.getConfigErrMsg();
-	String paramName = paramNames[0];
-	String paramValue = paramValues[0];
+        String configErrMsg = ssiMediator.getConfigErrMsg();
+        String paramName = paramNames[0];
+        String paramValue = paramValues[0];
 
-        if ( paramName.equalsIgnoreCase("cgi") ) {
-	    ssiInclude.process( ssiMediator, new String[] {"virtual"}, new String[] {paramValue}, writer );
-        } else if ( paramName.equalsIgnoreCase("cmd") ) {
-	    boolean foundProgram = false;
-	    try {
-		Runtime rt = Runtime.getRuntime();
-		Process proc = rt.exec( paramValue );
-		foundProgram = true;
+        if (paramName.equalsIgnoreCase("cgi")) {
+            ssiInclude.process(ssiMediator, new String[]{"virtual"}, new String[]{paramValue}, writer);
+        } else if (paramName.equalsIgnoreCase("cmd")) {
+            boolean foundProgram = false;
+            try {
+                Runtime rt = Runtime.getRuntime();
+                Process proc = rt.exec(paramValue);
+                foundProgram = true;
 
-		BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-		BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+                BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
 
-		char[] buf = new char[BUFFER_SIZE];
-		IOTools.flow( stdErrReader, writer, buf );
-		IOTools.flow( stdOutReader, writer, buf );
-		proc.waitFor();
-	    } catch ( InterruptedException e ) {
-		ssiMediator.log( "Couldn't exec file: " + paramValue, e );
-		writer.write( configErrMsg );
-	    } catch ( IOException e ) {
-		if ( !foundProgram ) {
-		    //apache doesn't output an error message if it can't find a program
-		}
-		ssiMediator.log( "Couldn't exec file: " + paramValue, e );
-	    }
-	} 
+                char[] buf = new char[BUFFER_SIZE];
+                IOTools.flow(stdErrReader, writer, buf);
+                IOTools.flow(stdOutReader, writer, buf);
+                proc.waitFor();
+            } catch (InterruptedException e) {
+                ssiMediator.log("Couldn't exec file: " + paramValue, e);
+                writer.write(configErrMsg);
+            } catch (IOException e) {
+                if (!foundProgram) {
+                    //apache doesn't output an error message if it can't find a program
+                }
+                ssiMediator.log("Couldn't exec file: " + paramValue, e);
+            }
+        }
     }
 }

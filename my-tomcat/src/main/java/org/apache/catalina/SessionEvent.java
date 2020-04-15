@@ -76,7 +76,7 @@ import java.util.EventObject;
  */
 
 public final class SessionEvent
-    extends EventObject {
+        extends EventObject {
 
 
     /**
@@ -101,8 +101,8 @@ public final class SessionEvent
      * Construct a new SessionEvent with the specified parameters.
      *
      * @param session Session on which this event occurred
-     * @param type Event type
-     * @param data Event data
+     * @param type    Event type
+     * @param data    Event data
      */
     public SessionEvent(Session session, String type, Object data) {
 

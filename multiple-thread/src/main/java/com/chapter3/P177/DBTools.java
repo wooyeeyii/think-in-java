@@ -1,37 +1,37 @@
 package com.chapter3.P177;
 
 public class DBTools {
-	
-	private boolean preIsA = true;
-	
-	public synchronized void backupA() {
-		try {
-			while( false == preIsA ) {
-				//System.out.println("backupA£º" + Thread.currentThread().getName() + " Ïß³Ì³Êwait×°×´Ì¬. ");
-				this.wait();
-			}
-			System.out.println("¡ï¡ï¡ï¡ï¡ï");
-			preIsA = false;
-			notifyAll();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public synchronized void backupB() {
-		try {
-			while( true == preIsA ) {
-				//System.out.println("backupB£º" + Thread.currentThread().getName() + " Ïß³Ì³Êwait×°×´Ì¬. ");
-				this.wait();
-			}
-			System.out.println("¡î¡î¡î¡î¡î");
-			preIsA = true;
-			notifyAll();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
+    private boolean preIsA = true;
+
+    public synchronized void backupA() {
+        try {
+            while (false == preIsA) {
+                //System.out.println("backupAï¿½ï¿½" + Thread.currentThread().getName() + " ï¿½ß³Ì³ï¿½wait×°×´Ì¬. ");
+                this.wait();
+            }
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            preIsA = false;
+            notifyAll();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void backupB() {
+        try {
+            while (true == preIsA) {
+                //System.out.println("backupBï¿½ï¿½" + Thread.currentThread().getName() + " ï¿½ß³Ì³ï¿½wait×°×´Ì¬. ");
+                this.wait();
+            }
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            preIsA = true;
+            notifyAll();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -41,9 +41,9 @@ public class LamdaExpressionTest {
      * ar.sort((e1, e2) -> e1.compareTo(e2));
      * 等价于
      * ar.sort((e1, e2) -> {
-     *      int result = e1.compareTo(e2);
-     *      return result;
-     *      });
+     * int result = e1.compareTo(e2);
+     * return result;
+     * });
      */
     public void withoutReturn() {
         List<String> ar = Arrays.asList("z", "y", "x");

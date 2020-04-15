@@ -60,7 +60,7 @@ public class Problem1235 {
                 dp[i] = Math.max(dp[i - 1], dp[curInfo[1]] + curInfo[2]);
                 max = Math.max(max, dp[i]);
                 int[] nextInfo = queue.poll();
-                while(null != nextInfo && nextInfo[0] == curInfo[0]) {
+                while (null != nextInfo && nextInfo[0] == curInfo[0]) {
                     dp[i] = Math.max(dp[i], dp[nextInfo[1]] + nextInfo[2]);
                     max = Math.max(max, dp[i]);
                     nextInfo = queue.poll();
@@ -76,21 +76,21 @@ public class Problem1235 {
 
     public static void main(String[] args) {
         Problem1235 problem = new Problem1235();
-        System.out.println(120 == problem.jobScheduling(new int[]{1,2,3,3}, new int[]{3,4,5,6}, new int[]{50,10,40,70}));
-        System.out.println(150 == problem.jobScheduling(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60}));
-        System.out.println(6 == problem.jobScheduling(new int[]{1,1,1}, new int[]{2,3,4}, new int[]{5,6,4}));
+        System.out.println(120 == problem.jobScheduling(new int[]{1, 2, 3, 3}, new int[]{3, 4, 5, 6}, new int[]{50, 10, 40, 70}));
+        System.out.println(150 == problem.jobScheduling(new int[]{1, 2, 3, 4, 6}, new int[]{3, 5, 10, 6, 9}, new int[]{20, 20, 100, 70, 60}));
+        System.out.println(6 == problem.jobScheduling(new int[]{1, 1, 1}, new int[]{2, 3, 4}, new int[]{5, 6, 4}));
         System.out.println(7 == problem.jobScheduling(new int[]{1, 2, 2, 3}, new int[]{2, 5, 3, 4}, new int[]{3, 4, 1, 2}));
-        System.out.println(18 == problem.jobScheduling(new int[]{4,2,4,8,2}, new int[]{5,5,5,10,8}, new int[]{1,2,8,10,4}));
-        System.out.println(18 == problem.jobScheduling(new int[]{11,10,14,24,5,9,3,17,27,20}, new int[]{20,23,22,29,9,13,9,23,28,30}, new int[]{2,2,3,2,4,3,4,4,7,2}));
+        System.out.println(18 == problem.jobScheduling(new int[]{4, 2, 4, 8, 2}, new int[]{5, 5, 5, 10, 8}, new int[]{1, 2, 8, 10, 4}));
+        System.out.println(18 == problem.jobScheduling(new int[]{11, 10, 14, 24, 5, 9, 3, 17, 27, 20}, new int[]{20, 23, 22, 29, 9, 13, 9, 23, 28, 30}, new int[]{2, 2, 3, 2, 4, 3, 4, 4, 7, 2}));
     }
 
     public int jobSchedulingExample(int[] startTime, int[] endTime, int[] profit) {
         int len = startTime.length;
         int[][] items = new int[len][3];
         for (int i = 0; i < len; i++) {
-            items[i] = new int[] {startTime[i], endTime[i], profit[i]};
+            items[i] = new int[]{startTime[i], endTime[i], profit[i]};
         }
-        Arrays.sort(items, (a1, a2)->a1[1] - a2[1]);
+        Arrays.sort(items, (a1, a2) -> a1[1] - a2[1]);
 
         List<Integer> dpEndTime = new ArrayList<>();
         List<Integer> dpProfit = new ArrayList<>();

@@ -92,7 +92,7 @@ public class ServerInfo {
 
         try {
             InputStream is = ServerInfo.class.getResourceAsStream
-                ("/org/apache/catalina/util/ServerInfo.properties");
+                    ("/org/apache/catalina/util/ServerInfo.properties");
             Properties props = new Properties();
             props.load(is);
             is.close();

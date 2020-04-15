@@ -2,13 +2,13 @@ package com.chang.leetcode;
 
 public class Problem274 {
 
-    
+
     public int hIndexExample(int[] citations) {
         int length = 0;
         if (null == citations || 0 == (length = citations.length)) {
             return 0;
         }
-        
+
         int[] array2 = new int[length + 1];
         for (int i = 0; i < length; i++) {
             if (citations[i] > length) {
@@ -27,7 +27,7 @@ public class Problem274 {
         }
         return 0;
     }
-    
+
     public static void main(String[] args) {
         Problem274 problem = new Problem274();
         int[] data1 = new int[]{0};

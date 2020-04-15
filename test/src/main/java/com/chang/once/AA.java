@@ -1,46 +1,26 @@
 package com.chang.once;
 
 
-public class AA {
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
-    private Long aa;
+import java.util.Date;
+
+@Data
+public class AA {
 
     private String bb;
 
     private Integer cc;
 
-    private AA self;
+    private Long aa;
 
-    public Long getAa() {
-        return aa;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private String date;
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
-
-    public void setAa(Long aa) {
-        this.aa = aa;
-    }
-
-    public String getBb() {
-        return bb;
-    }
-
-    public void setBb(String bb) {
-        this.bb = bb;
-    }
-
-    public Integer getCc() {
-        return cc;
-    }
-
-    public void setCc(Integer cc) {
-        this.cc = cc;
-    }
-
-    public AA getSelf() {
-        return self;
-    }
-
-    public void setSelf(AA self) {
-        this.self = self;
-    }
-
 }

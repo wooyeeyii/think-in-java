@@ -74,6 +74,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Globals;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.Logger;
@@ -90,7 +91,7 @@ import org.apache.catalina.util.StringManager;
  *
  * <p>This Valve should be attached at the Host level, although it will work
  * if attached to a Context.</p>
- * 
+ *
  * <p>HTML code from the Cocoon 2 project.</p>
  *
  * @author Remy Maucherat
@@ -101,7 +102,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class ErrorReportValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -117,14 +118,14 @@ public class ErrorReportValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.valves.ErrorReportValve/1.0";
+            "org.apache.catalina.valves.ErrorReportValve/1.0";
 
 
     /**
      * The StringManager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -144,27 +145,26 @@ public class ErrorReportValve
 
 
     /**
-     * Invoke the next Valve in the sequence. When the invoke returns, check 
+     * Invoke the next Valve in the sequence. When the invoke returns, check
      * the response state, and output an error report is necessary.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Perform the request
         context.invokeNext(request, response);
 
         ServletRequest sreq = (ServletRequest) request;
-        Throwable throwable = 
-            (Throwable) sreq.getAttribute(Globals.EXCEPTION_ATTR);
+        Throwable throwable =
+                (Throwable) sreq.getAttribute(Globals.EXCEPTION_ATTR);
 
         ServletResponse sresp = (ServletResponse) response;
         if (sresp.isCommitted()) {
@@ -186,7 +186,7 @@ public class ErrorReportValve
             ServletResponse sresponse = (ServletResponse) response;
             if (sresponse instanceof HttpServletResponse)
                 ((HttpServletResponse) sresponse).sendError
-                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                        (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         }
 
@@ -219,15 +219,15 @@ public class ErrorReportValve
 
     /**
      * Prints out an error report.
-     * 
-     * @param request The request being processed
-     * @param response The response being generated
+     *
+     * @param request   The request being processed
+     * @param response  The response being generated
      * @param exception The exception that occurred (which possibly wraps
-     *  a root cause exception
+     *                  a root cause exception
      */
     protected void report(Request request, Response response,
                           Throwable throwable)
-        throws IOException {
+            throws IOException {
 
         // Do nothing on non-HTTP responses
         if (!(response instanceof HttpResponse))
@@ -293,7 +293,7 @@ public class ErrorReportValve
         sb.append("</head><body>");
         sb.append("<h1>");
         sb.append(sm.getString("errorReportValve.statusHeader",
-                               "" + statusCode, message)).append("</h1>");
+                "" + statusCode, message)).append("</h1>");
         sb.append("<HR size=\"1\" noshade>");
         sb.append("<p><b>type</b> ");
         if (throwable != null) {
@@ -386,7 +386,7 @@ public class ErrorReportValve
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     protected void log(String message, Throwable throwable) {

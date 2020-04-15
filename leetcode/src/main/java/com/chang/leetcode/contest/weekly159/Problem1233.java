@@ -96,7 +96,7 @@ public class Problem1233 {
                     }
                 }
             }
-            if(flag) {
+            if (flag) {
                 li.add(f);
             }
         }

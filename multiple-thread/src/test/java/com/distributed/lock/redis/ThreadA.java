@@ -14,7 +14,7 @@ public class ThreadA extends Thread {
 
     @Override
     public void run() {
-        while(!redisLock.getDistributedLock(uniqueKey, expireTime)) {
+        while (!redisLock.getDistributedLock(uniqueKey, expireTime)) {
         }
         val++;
         System.out.println(val);

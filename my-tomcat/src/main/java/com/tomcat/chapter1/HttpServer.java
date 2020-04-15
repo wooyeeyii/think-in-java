@@ -10,7 +10,7 @@ import java.net.Socket;
 public class HttpServer {
 
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "my-tomcat" +
-            File.separator+ "webroot";
+            File.separator + "webroot";
 
     private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
 
@@ -31,7 +31,7 @@ public class HttpServer {
         }
 
         //loop waiting for a request
-        while(!shutdown) {
+        while (!shutdown) {
             Socket socket = null;
             InputStream inputStream = null;
             OutputStream outputStream = null;

@@ -76,6 +76,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Globals;
 import org.apache.catalina.Loader;
@@ -95,7 +96,7 @@ import org.apache.catalina.util.CustomObjectInputStream;
  */
 
 public final class FileStore
-    extends StoreBase implements Store {
+        extends StoreBase implements Store {
 
 
     // ----------------------------------------------------- Constants
@@ -164,7 +165,7 @@ public final class FileStore
         this.directory = path;
         this.directoryFile = null;
         support.firePropertyChange("directory", oldDirectory,
-                                   this.directory);
+                this.directory);
 
     }
 
@@ -184,21 +185,21 @@ public final class FileStore
      * Return the thread name for this Store.
      */
     public String getThreadName() {
-        return(threadName);
+        return (threadName);
     }
 
     /**
      * Return the name for this Store, used for logging.
      */
     public String getStoreName() {
-        return(storeName);
+        return (storeName);
     }
 
 
     /**
      * Return the number of Sessions present in this Store.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int getSize() throws IOException {
 
@@ -227,10 +228,10 @@ public final class FileStore
     /**
      * Remove all of the Sessions in this Store.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void clear()
-        throws IOException {
+            throws IOException {
 
         String[] keys = keys();
         for (int i = 0; i < keys.length; i++) {
@@ -245,7 +246,7 @@ public final class FileStore
      * currently saved in this Store.  If there are no such Sessions, a
      * zero-length array is returned.
      *
-     * @exception IOException if an input/output error occurred
+     * @throws IOException if an input/output error occurred
      */
     public String[] keys() throws IOException {
 
@@ -275,12 +276,11 @@ public final class FileStore
      * such stored Session, return <code>null</code>.
      *
      * @param id Session identifier of the session to load
-     *
-     * @exception ClassNotFoundException if a deserialization error occurs
-     * @exception IOException if an input/output error occurs
+     * @throws ClassNotFoundException if a deserialization error occurs
+     * @throws IOException            if an input/output error occurs
      */
     public Session load(String id)
-        throws ClassNotFoundException, IOException {
+            throws ClassNotFoundException, IOException {
 
         // Open an input stream to the specified pathname, if any
         File file = file(id);
@@ -288,8 +288,8 @@ public final class FileStore
             return (null);
         }
         if (debug >= 1) {
-            log(sm.getString(getStoreName()+".loading",
-                             id, file.getAbsolutePath()));
+            log(sm.getString(getStoreName() + ".loading",
+                    id, file.getAbsolutePath()));
         }
 
         FileInputStream fis = null;
@@ -326,7 +326,7 @@ public final class FileStore
 
         try {
             StandardSession session =
-                (StandardSession) manager.createSession();
+                    (StandardSession) manager.createSession();
             session.readObjectData(ois);
             session.setManager(manager);
             return (session);
@@ -349,8 +349,7 @@ public final class FileStore
      * takes no action.
      *
      * @param id Session identifier of the Session to be removed
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void remove(String id) throws IOException {
 
@@ -359,8 +358,8 @@ public final class FileStore
             return;
         }
         if (debug >= 1) {
-            log(sm.getString(getStoreName()+".removing",
-                             id, file.getAbsolutePath()));
+            log(sm.getString(getStoreName() + ".removing",
+                    id, file.getAbsolutePath()));
         }
         file.delete();
 
@@ -372,8 +371,7 @@ public final class FileStore
      * information for the associated session identifier is replaced.
      *
      * @param session Session to be saved
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void save(Session session) throws IOException {
 
@@ -383,8 +381,8 @@ public final class FileStore
             return;
         }
         if (debug >= 1) {
-            log(sm.getString(getStoreName()+".saving",
-                             session.getId(), file.getAbsolutePath()));
+            log(sm.getString(getStoreName() + ".saving",
+                    session.getId(), file.getAbsolutePath()));
         }
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -403,7 +401,7 @@ public final class FileStore
         }
 
         try {
-            ((StandardSession)session).writeObjectData(oos);
+            ((StandardSession) session).writeObjectData(oos);
         } finally {
             oos.close();
         }
@@ -433,13 +431,13 @@ public final class FileStore
             Container container = manager.getContainer();
             if (container instanceof Context) {
                 ServletContext servletContext =
-                    ((Context) container).getServletContext();
+                        ((Context) container).getServletContext();
                 File work = (File)
-                    servletContext.getAttribute(Globals.WORK_DIR_ATTR);
+                        servletContext.getAttribute(Globals.WORK_DIR_ATTR);
                 file = new File(work, this.directory);
             } else {
                 throw new IllegalArgumentException
-                    ("Parent Container is not a Context");
+                        ("Parent Container is not a Context");
             }
         }
         if (!file.exists() || !file.isDirectory()) {
@@ -457,7 +455,7 @@ public final class FileStore
      * session persistence file, if any.
      *
      * @param id The ID of the Session to be retrieved. This is
-     *    used in the file naming.
+     *           used in the file naming.
      */
     private File file(String id) {
 

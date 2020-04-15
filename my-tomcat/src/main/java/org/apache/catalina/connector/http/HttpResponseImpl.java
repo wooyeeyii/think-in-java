@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.connector.HttpResponseBase;
 
 
@@ -18,7 +19,7 @@ import org.apache.catalina.connector.HttpResponseBase;
  */
 
 final class HttpResponseImpl
-    extends HttpResponseBase {
+        extends HttpResponseBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -28,7 +29,7 @@ final class HttpResponseImpl
      * Descriptive information about this Response implementation.
      */
     protected static final String info =
-        "org.apache.catalina.connector.http.HttpResponseImpl/1.0";
+            "org.apache.catalina.connector.http.HttpResponseImpl/1.0";
 
 
     /**
@@ -83,7 +84,7 @@ final class HttpResponseImpl
      * @return The &quot;HTTP/1.1&quot; string.
      */
     protected String getProtocol() {
-        return("HTTP/1.1");
+        return ("HTTP/1.1");
     }
 
 
@@ -105,12 +106,11 @@ final class HttpResponseImpl
     /**
      * Send an error response with the specified status and message.
      *
-     * @param status HTTP status code to send
+     * @param status  HTTP status code to send
      * @param message Corresponding message to send
-     *
-     * @exception IllegalStateException if this response has
-     *  already been committed
-     * @exception IOException if an input/output error occurs
+     * @throws IllegalStateException if this response has
+     *                               already been committed
+     * @throws IOException           if an input/output error occurs
      */
     public void sendError(int status, String message) throws IOException {
 
@@ -124,16 +124,16 @@ final class HttpResponseImpl
      * Clear any content written to the buffer.  In addition, all cookies
      * and headers are cleared, and the status is reset.
      *
-     * @exception IllegalStateException if this response has already
-     *  been committed
+     * @throws IllegalStateException if this response has already
+     *                               been committed
      */
     public void reset() {
 
         // Saving important HTTP/1.1 specific headers
         String connectionValue =
-            (String) getHeader("Connection");
+                (String) getHeader("Connection");
         String transferEncodingValue =
-            (String) getHeader("Transfer-Encoding");
+                (String) getHeader("Transfer-Encoding");
         super.reset();
         if (connectionValue != null)
             addHeader("Connection", connectionValue);
@@ -147,7 +147,7 @@ final class HttpResponseImpl
      * Create and return a ServletOutputStream to write the content
      * associated with this Response.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public ServletOutputStream createOutputStream() throws IOException {
 
@@ -171,7 +171,7 @@ final class HttpResponseImpl
     /**
      * Removes the specified header.
      *
-     * @param name Name of the header to remove
+     * @param name  Name of the header to remove
      * @param value Value to remove
      */
     public void removeHeader(String name, String value) {
@@ -206,15 +206,15 @@ final class HttpResponseImpl
      * Perform whatever actions are required to flush and close the output
      * stream or writer, in a single operation.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void finishResponse() throws IOException {
 
         if (getStatus() < HttpServletResponse.SC_BAD_REQUEST) {
             if ((!isStreamInitialized()) && (getContentLength() == -1)
-                && (getStatus() >= 200)
-                && (getStatus() != SC_NOT_MODIFIED)
-                && (getStatus() != SC_NO_CONTENT))
+                    && (getStatus() >= 200)
+                    && (getStatus() != SC_NOT_MODIFIED)
+                    && (getStatus() != SC_NO_CONTENT))
                 setContentLength(0);
         } else {
             setHeader("Connection", "close");

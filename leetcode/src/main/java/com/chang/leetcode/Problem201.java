@@ -1,13 +1,13 @@
 /**
  * 201. Bitwise AND of Numbers Range
- *
+ * <p>
  * Given a range [m, n] where 0 <= m <= n <= 2147483647,
  * return the bitwise AND of all numbers in this range, inclusive.
- *
+ * <p>
  * Example 1:
  * Input: [5,7]
  * Output: 4
- *
+ * <p>
  * Example 2:
  * Input: [0,1]
  * Output: 0
@@ -19,14 +19,14 @@ public class Problem201 {
     public int rangeBitwiseAnd(int m, int n) {
         String ms = intToBinaryStr(m);
         String ns = intToBinaryStr(n);
-        if(ms.length() != ns.length()) {
+        if (ms.length() != ns.length()) {
             return 0;
         }
         int res = 0;
         int i = ms.length() - 1;
         while (i >= 0 && (('1' == ms.charAt(i) && '1' == ns.charAt(i)) ||
                 ('0' == ms.charAt(i) && '0' == ns.charAt(i)))) {
-            if('1' == ms.charAt(i)) {
+            if ('1' == ms.charAt(i)) {
                 res = res + (1 << i);
             }
             i--;
@@ -36,8 +36,8 @@ public class Problem201 {
 
     private String intToBinaryStr(int n) {
         StringBuilder sb = new StringBuilder();
-        while(n > 0) {
-            sb.append( n % 2);
+        while (n > 0) {
+            sb.append(n % 2);
             n = n >> 1;
         }
         return sb.toString();

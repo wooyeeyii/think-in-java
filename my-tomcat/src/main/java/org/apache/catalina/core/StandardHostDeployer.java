@@ -67,6 +67,7 @@ package org.apache.catalina.core;
 import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Deployer;
@@ -158,7 +159,7 @@ public class StandardHostDeployer implements Deployer {
      * The string manager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // -------------------------------------------------------- Depoyer Methods
@@ -189,38 +190,37 @@ public class StandardHostDeployer implements Deployer {
      * <code>Context</code> as an argument.
      *
      * @param contextPath The context path to which this application should
-     *  be installed (must be unique)
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalStateException if the specified context path
-     *  is already attached to an existing web application
-     * @exception IOException if an input/output error was encountered
-     *  during installation
+     *                    be installed (must be unique)
+     * @param war         A URL of type "jar:" that points to a WAR file, or type
+     *                    "file:" that points to an unpacked directory structure containing
+     *                    the web application to be installed
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalStateException    if the specified context path
+     *                                  is already attached to an existing web application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during installation
      */
     public synchronized void install(String contextPath, URL war)
-        throws IOException {
+            throws IOException {
 
         // Validate the format and state of our arguments
         if (contextPath == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathRequired"));
+                    (sm.getString("standardHost.pathRequired"));
         if (!contextPath.equals("") && !contextPath.startsWith("/"))
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathFormat", contextPath));
+                    (sm.getString("standardHost.pathFormat", contextPath));
         if (findDeployedApp(contextPath) != null)
             throw new IllegalStateException
-                (sm.getString("standardHost.pathUsed", contextPath));
+                    (sm.getString("standardHost.pathUsed", contextPath));
         if (war == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.warRequired"));
+                    (sm.getString("standardHost.warRequired"));
 
         // Calculate the document base for the new web application
         host.log(sm.getString("standardHost.installing",
-                              contextPath, war.toString()));
+                contextPath, war.toString()));
         String url = war.toString();
         String docBase = null;
         if (url.startsWith("jar:")) {
@@ -232,19 +232,19 @@ public class StandardHostDeployer implements Deployer {
             docBase = url.substring(5);
         else
             throw new IllegalArgumentException
-                (sm.getString("standardHost.warURL", url));
+                    (sm.getString("standardHost.warURL", url));
 
         // Install the new web application
         try {
             Class clazz = Class.forName(host.getContextClass());
             Context context = (Context) clazz.newInstance();
             context.setPath(contextPath);
-            
+
             context.setDocBase(docBase);
             if (context instanceof Lifecycle) {
                 clazz = Class.forName(host.getConfigClass());
                 LifecycleListener listener =
-                    (LifecycleListener) clazz.newInstance();
+                        (LifecycleListener) clazz.newInstance();
                 ((Lifecycle) context).addLifecycleListener(listener);
             }
             host.fireContainerEvent(PRE_INSTALL_EVENT, context);
@@ -252,7 +252,7 @@ public class StandardHostDeployer implements Deployer {
             host.fireContainerEvent(INSTALL_EVENT, context);
         } catch (Exception e) {
             host.log(sm.getString("standardHost.installError", contextPath),
-                     e);
+                    e);
             throw new IOException(e.toString());
         }
 
@@ -263,7 +263,7 @@ public class StandardHostDeployer implements Deployer {
      * <p>Install a new web application, whose context configuration file
      * (consisting of a <code>&lt;Context&gt;</code> element) and (optional)
      * web application archive are at the specified URLs.</p>
-     *
+     * <p>
      * If this application is successfully installed, a ContainerEvent of type
      * <code>PRE_INSTALL_EVENT</code> will be sent to registered listeners
      * before the associated Context is started, and a ContainerEvent of type
@@ -272,30 +272,29 @@ public class StandardHostDeployer implements Deployer {
      * <code>Context</code> as an argument.
      *
      * @param config A URL that points to the context configuration descriptor
-     *  to be used for configuring the new Context
-     * @param war A URL of type "jar:" that points to a WAR file, or type
-     *  "file:" that points to an unpacked directory structure containing
-     *  the web application to be installed, or <code>null</code> to use
-     *  the <code>docBase</code> attribute from the configuration descriptor
-     *
-     * @exception IllegalArgumentException if one of the specified URLs is
-     *  null
-     * @exception IllegalStateException if the context path specified in the
-     *  context configuration file is already attached to an existing web
-     *  application
-     * @exception IOException if an input/output error was encountered
-     *  during installation
+     *               to be used for configuring the new Context
+     * @param war    A URL of type "jar:" that points to a WAR file, or type
+     *               "file:" that points to an unpacked directory structure containing
+     *               the web application to be installed, or <code>null</code> to use
+     *               the <code>docBase</code> attribute from the configuration descriptor
+     * @throws IllegalArgumentException if one of the specified URLs is
+     *                                  null
+     * @throws IllegalStateException    if the context path specified in the
+     *                                  context configuration file is already attached to an existing web
+     *                                  application
+     * @throws IOException              if an input/output error was encountered
+     *                                  during installation
      */
     public synchronized void install(URL config, URL war) throws IOException {
 
         // Validate the format and state of our arguments
         if (config == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.configRequired"));
+                    (sm.getString("standardHost.configRequired"));
 
         if (!host.isDeployXML())
             throw new IllegalArgumentException
-                (sm.getString("standardHost.configNotAllowed"));
+                    (sm.getString("standardHost.configNotAllowed"));
 
         // Calculate the document base for the new web application (if needed)
         String docBase = null; // Optional override for value in config file
@@ -312,7 +311,7 @@ public class StandardHostDeployer implements Deployer {
                 docBase = url.substring(5);
             else
                 throw new IllegalArgumentException
-                    (sm.getString("standardHost.warURL", url));
+                        (sm.getString("standardHost.warURL", url));
 
         }
 
@@ -331,7 +330,7 @@ public class StandardHostDeployer implements Deployer {
             stream = null;
         } catch (Exception e) {
             host.log
-                (sm.getString("standardHost.installError", docBase), e);
+                    (sm.getString("standardHost.installError", docBase), e);
             throw new IOException(e.toString());
         } finally {
             if (stream != null) {
@@ -384,29 +383,28 @@ public class StandardHostDeployer implements Deployer {
      * an argument.
      *
      * @param contextPath The context path of the application to be removed
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  removal
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  removal
      */
     public void remove(String contextPath) throws IOException {
 
         // Validate the format and state of our arguments
         if (contextPath == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathRequired"));
+                    (sm.getString("standardHost.pathRequired"));
         if (!contextPath.equals("") && !contextPath.startsWith("/"))
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathFormat", contextPath));
+                    (sm.getString("standardHost.pathFormat", contextPath));
 
         // Locate the context and associated work directory
         Context context = findDeployedApp(contextPath);
         if (context == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathMissing", contextPath));
+                    (sm.getString("standardHost.pathMissing", contextPath));
 
         // Remove this web application
         host.log(sm.getString("standardHost.removing", contextPath));
@@ -426,33 +424,32 @@ public class StandardHostDeployer implements Deployer {
      * path.  Only starts a web application if it is not running.
      *
      * @param contextPath The context path of the application to be started
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs during
-     *  startup
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs during
+     *                                  startup
      */
     public void start(String contextPath) throws IOException {
         // Validate the format and state of our arguments
         if (contextPath == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathRequired"));
+                    (sm.getString("standardHost.pathRequired"));
         if (!contextPath.equals("") && !contextPath.startsWith("/"))
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathFormat", contextPath));
+                    (sm.getString("standardHost.pathFormat", contextPath));
         Context context = findDeployedApp(contextPath);
         if (context == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathMissing", contextPath));
+                    (sm.getString("standardHost.pathMissing", contextPath));
         host.log("standardHost.start " + contextPath);
         try {
             ((Lifecycle) context).start();
         } catch (LifecycleException e) {
             host.log("standardHost.start " + contextPath + ": ", e);
             throw new IllegalStateException
-                ("standardHost.start " + contextPath + ": " + e);
+                    ("standardHost.start " + contextPath + ": " + e);
         }
     }
 
@@ -462,34 +459,33 @@ public class StandardHostDeployer implements Deployer {
      * path.  Only stops a web application if it is running.
      *
      * @param contextPath The context path of the application to be stopped
-     *
-     * @exception IllegalArgumentException if the specified context path
-     *  is malformed (it must be "" or start with a slash)
-     * @exception IllegalArgumentException if the specified context path does
-     *  not identify a currently installed web application
-     * @exception IOException if an input/output error occurs while stopping
-     *  the web application
+     * @throws IllegalArgumentException if the specified context path
+     *                                  is malformed (it must be "" or start with a slash)
+     * @throws IllegalArgumentException if the specified context path does
+     *                                  not identify a currently installed web application
+     * @throws IOException              if an input/output error occurs while stopping
+     *                                  the web application
      */
     public void stop(String contextPath) throws IOException {
 
         // Validate the format and state of our arguments
         if (contextPath == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathRequired"));
+                    (sm.getString("standardHost.pathRequired"));
         if (!contextPath.equals("") && !contextPath.startsWith("/"))
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathFormat", contextPath));
+                    (sm.getString("standardHost.pathFormat", contextPath));
         Context context = findDeployedApp(contextPath);
         if (context == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathMissing", contextPath));
+                    (sm.getString("standardHost.pathMissing", contextPath));
         host.log("standardHost.stop " + contextPath);
         try {
             ((Lifecycle) context).stop();
         } catch (LifecycleException e) {
             host.log("standardHost.stop " + contextPath + ": ", e);
             throw new IllegalStateException
-                ("standardHost.stop " + contextPath + ": " + e);
+                    ("standardHost.stop " + contextPath + ": " + e);
         }
 
     }
@@ -509,13 +505,13 @@ public class StandardHostDeployer implements Deployer {
         String contextPath = context.getPath();
         if (contextPath == null)
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathRequired"));
+                    (sm.getString("standardHost.pathRequired"));
         else if (!contextPath.equals("") && !contextPath.startsWith("/"))
             throw new IllegalArgumentException
-                (sm.getString("standardHost.pathFormat", contextPath));
+                    (sm.getString("standardHost.pathFormat", contextPath));
         if (host.findChild(contextPath) != null)
             throw new IllegalStateException
-                (sm.getString("standardHost.pathUsed", contextPath));
+                    (sm.getString("standardHost.pathUsed", contextPath));
         if (this.overrideDocBase != null)
             context.setDocBase(this.overrideDocBase);
         host.fireContainerEvent(PRE_INSTALL_EVENT, context);

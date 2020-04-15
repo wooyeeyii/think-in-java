@@ -72,6 +72,7 @@ import javax.management.MBeanException;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.modelmbean.ModelMBean;
+
 import org.apache.catalina.Connector;
 import org.apache.catalina.Contained;
 import org.apache.catalina.Container;
@@ -121,28 +122,28 @@ public class MBeanUtils {
      * is a class name, and the second element is the managed bean name.
      */
     private static String exceptions[][] = {
-        { "org.apache.ajp.tomcat4.Ajp13Connector",
-          "Ajp13Connector" },
-        { "org.apache.coyote.tomcat4.Ajp13Connector",
-          "CoyoteConnector" },
-        { "org.apache.catalina.core.StandardDefaultContext",
-          "DefaultContext" },
-        { "org.apache.catalina.connector.http10.HttpConnector",
-          "Http10Connector" },
-        { "org.apache.catalina.connector.http.HttpConnector",
-          "Http11Connector" },
-        { "org.apache.catalina.users.JDBCGroup",
-          "Group" },
-        { "org.apache.catalina.users.JDBCRole",
-          "Role" },
-        { "org.apache.catalina.users.JDBCUser",
-          "User" },
-        { "org.apache.catalina.users.MemoryGroup",
-          "Group" },
-        { "org.apache.catalina.users.MemoryRole",
-          "Role" },
-        { "org.apache.catalina.users.MemoryUser",
-          "User" },
+            {"org.apache.ajp.tomcat4.Ajp13Connector",
+                    "Ajp13Connector"},
+            {"org.apache.coyote.tomcat4.Ajp13Connector",
+                    "CoyoteConnector"},
+            {"org.apache.catalina.core.StandardDefaultContext",
+                    "DefaultContext"},
+            {"org.apache.catalina.connector.http10.HttpConnector",
+                    "Http10Connector"},
+            {"org.apache.catalina.connector.http.HttpConnector",
+                    "Http11Connector"},
+            {"org.apache.catalina.users.JDBCGroup",
+                    "Group"},
+            {"org.apache.catalina.users.JDBCRole",
+                    "Role"},
+            {"org.apache.catalina.users.JDBCUser",
+                    "User"},
+            {"org.apache.catalina.users.MemoryGroup",
+                    "Group"},
+            {"org.apache.catalina.users.MemoryRole",
+                    "Role"},
+            {"org.apache.catalina.users.MemoryUser",
+                    "User"},
     };
 
 
@@ -167,7 +168,7 @@ public class MBeanUtils {
      * @return encoded string
      */
     private static final String encodeStr(String t) {
-   
+
         return URLEncoder.encode(t);
 
     }
@@ -203,16 +204,15 @@ public class MBeanUtils {
      * <code>Connector</code> object.
      *
      * @param connector The Connector to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Connector connector)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(connector);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -231,16 +231,15 @@ public class MBeanUtils {
      * <code>Context</code> object.
      *
      * @param context The Context to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Context context)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(context);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -253,22 +252,21 @@ public class MBeanUtils {
 
     }
 
-    
+
     /**
      * Create, register, and return an MBean for this
      * <code>ContextEnvironment</code> object.
      *
      * @param environment The ContextEnvironment to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(ContextEnvironment environment)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(environment);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -287,16 +285,15 @@ public class MBeanUtils {
      * <code>ContextResource</code> object.
      *
      * @param resource The ContextResource to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(ContextResource resource)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resource);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -315,16 +312,15 @@ public class MBeanUtils {
      * <code>ContextResourceLink</code> object.
      *
      * @param resourceLink The ContextResourceLink to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(ContextResourceLink resourceLink)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resourceLink);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -335,24 +331,23 @@ public class MBeanUtils {
         mserver.registerMBean(mbean, oname);
         return (mbean);
 
-    }    
-    
-    
+    }
+
+
     /**
      * Create, register, and return an MBean for this
      * <code>DefaultContext</code> object.
      *
      * @param context The DefaultContext to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(DefaultContext context)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(context);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -371,16 +366,15 @@ public class MBeanUtils {
      * <code>Engine</code> object.
      *
      * @param engine The Engine to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Engine engine)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(engine);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -399,16 +393,15 @@ public class MBeanUtils {
      * <code>Group</code> object.
      *
      * @param group The Group to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Group group)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(group);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -427,16 +420,15 @@ public class MBeanUtils {
      * <code>Host</code> object.
      *
      * @param host The Host to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Host host)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(host);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -455,16 +447,15 @@ public class MBeanUtils {
      * <code>Loader</code> object.
      *
      * @param loader The Loader to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Loader loader)
-        throws Exception {
-    
-        String mname = createManagedName(loader);     
+            throws Exception {
+
+        String mname = createManagedName(loader);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -473,7 +464,7 @@ public class MBeanUtils {
         ModelMBean mbean = managed.createMBean(loader);
         ObjectName oname = createObjectName(domain, loader);
         mserver.registerMBean(mbean, oname);
-        return (mbean);       
+        return (mbean);
     }
 
     /**
@@ -481,16 +472,15 @@ public class MBeanUtils {
      * <code>Logger</code> object.
      *
      * @param logger The Logger to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Logger logger)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(logger);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -509,16 +499,15 @@ public class MBeanUtils {
      * <code>Manager</code> object.
      *
      * @param manager The Manager to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Manager manager)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(manager);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -537,16 +526,15 @@ public class MBeanUtils {
      * <code>MBeanFactory</code> object.
      *
      * @param factory The MBeanFactory to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(MBeanFactory factory)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(factory);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -565,16 +553,15 @@ public class MBeanUtils {
      * <code>NamingResources</code> object.
      *
      * @param resource The NamingResources to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(NamingResources resource)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resource);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -587,22 +574,21 @@ public class MBeanUtils {
 
     }
 
-    
+
     /**
      * Create, register, and return an MBean for this
      * <code>Realm</code> object.
      *
      * @param realm The Realm to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Realm realm)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(realm);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -621,16 +607,15 @@ public class MBeanUtils {
      * <code>Role</code> object.
      *
      * @param role The Role to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Role role)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(role);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -649,16 +634,15 @@ public class MBeanUtils {
      * <code>Server</code> object.
      *
      * @param server The Server to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Server server)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(server);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -677,16 +661,15 @@ public class MBeanUtils {
      * <code>Service</code> object.
      *
      * @param service The Service to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Service service)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(service);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -705,16 +688,15 @@ public class MBeanUtils {
      * <code>User</code> object.
      *
      * @param user The User to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(User user)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(user);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -733,16 +715,15 @@ public class MBeanUtils {
      * <code>UserDatabase</code> object.
      *
      * @param userDatabase The UserDatabase to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(UserDatabase userDatabase)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(userDatabase);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -761,16 +742,15 @@ public class MBeanUtils {
      * <code>Valve</code> object.
      *
      * @param valve The Valve to be managed
-     *
-     * @exception Exception if an MBean cannot be created or registered
+     * @throws Exception if an MBean cannot be created or registered
      */
     public static ModelMBean createMBean(Valve valve)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(valve);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
-            Exception e = new Exception("ManagedBean is not found with "+mname);
+            Exception e = new Exception("ManagedBean is not found with " + mname);
             throw new MBeanException(e);
         }
         String domain = managed.getDomain();
@@ -787,14 +767,13 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>Connector</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain    Domain in which this name is to be created
      * @param connector The Connector to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
-                                        Connector connector)
-        throws MalformedObjectNameException {
+                                              Connector connector)
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         if (connector instanceof HttpConnector) {
@@ -804,65 +783,65 @@ public class MBeanUtils {
             if (service != null)
                 serviceName = service.getName();
             name = new ObjectName(domain + ":type=Connector" +
-                                  ",service=" + serviceName +
-                                  ",port=" + httpConnector.getPort() +
-                                  ",address=" + httpConnector.getAddress());
+                    ",service=" + serviceName +
+                    ",port=" + httpConnector.getPort() +
+                    ",address=" + httpConnector.getAddress());
             return (name);
         } else if (connector instanceof org.apache.catalina.connector.http10.HttpConnector) {
             org.apache.catalina.connector.http10.HttpConnector httpConnector =
-                (org.apache.catalina.connector.http10.HttpConnector) connector;
+                    (org.apache.catalina.connector.http10.HttpConnector) connector;
             Service service = httpConnector.getService();
             String serviceName = null;
             if (service != null)
                 serviceName = service.getName();
             name = new ObjectName(domain + ":type=Connector" +
-                                  ",service=" + serviceName+
-                                  ",port=" + httpConnector.getPort() +
-                                  ",address=" + httpConnector.getAddress());
+                    ",service=" + serviceName +
+                    ",port=" + httpConnector.getPort() +
+                    ",address=" + httpConnector.getAddress());
             return (name);
         } else if ("org.apache.ajp.tomcat4.Ajp13Connector".equals
-                   (connector.getClass().getName())) {
+                (connector.getClass().getName())) {
             try {
                 String address = (String)
-                    PropertyUtils.getSimpleProperty(connector, "address");
+                        PropertyUtils.getSimpleProperty(connector, "address");
                 Integer port = (Integer)
-                    PropertyUtils.getSimpleProperty(connector, "port");
+                        PropertyUtils.getSimpleProperty(connector, "port");
                 Service service = connector.getService();
                 String serviceName = null;
                 if (service != null)
                     serviceName = service.getName();
                 name = new ObjectName(domain + ":type=Connector" +
-                                      ",service=" + serviceName +
-                                      ",port=" + port +
-                                      ",address=" + address);
+                        ",service=" + serviceName +
+                        ",port=" + port +
+                        ",address=" + address);
                 return (name);
             } catch (Exception e) {
                 throw new MalformedObjectNameException
-                    ("Cannot create object name for " + connector+e);
+                        ("Cannot create object name for " + connector + e);
             }
         } else if ("org.apache.coyote.tomcat4.CoyoteConnector".equals
-                   (connector.getClass().getName())) {
+                (connector.getClass().getName())) {
             try {
                 String address = (String)
-                    PropertyUtils.getSimpleProperty(connector, "address");
+                        PropertyUtils.getSimpleProperty(connector, "address");
                 Integer port = (Integer)
-                    PropertyUtils.getSimpleProperty(connector, "port");
+                        PropertyUtils.getSimpleProperty(connector, "port");
                 Service service = connector.getService();
                 String serviceName = null;
                 if (service != null)
                     serviceName = service.getName();
                 name = new ObjectName(domain + ":type=Connector" +
-                                      ",service=" + serviceName +
-                                      ",port=" + port +
-                                      ",address=" + address);
+                        ",service=" + serviceName +
+                        ",port=" + port +
+                        ",address=" + address);
                 return (name);
             } catch (Exception e) {
                 throw new MalformedObjectNameException
-                    ("Cannot create object name for " + connector+e);
+                        ("Cannot create object name for " + connector + e);
             }
         } else {
             throw new MalformedObjectNameException
-                ("Cannot create object name for " + connector);
+                    ("Cannot create object name for " + connector);
         }
 
     }
@@ -872,228 +851,223 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>Context</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param context The Context to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Context context)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        Host host = (Host)context.getParent();
-        Service service = ((Engine)host.getParent()).getService();
+        Host host = (Host) context.getParent();
+        Service service = ((Engine) host.getParent()).getService();
         String path = context.getPath();
         if (path.length() < 1)
             path = "/";
         name = new ObjectName(domain + ":type=Context,path=" +
-                              path + ",host=" +
-                              host.getName() + ",service=" +
-                              service.getName());
+                path + ",host=" +
+                host.getName() + ",service=" +
+                service.getName());
         return (name);
 
     }
 
-    
+
     /**
      * Create an <code>ObjectName</code> for this
      * <code>Service</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param context The ContextEnvironment to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               ContextEnvironment environment)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        Object container = 
+        Object container =
                 environment.getNamingResources().getContainer();
         if (container instanceof Server) {
-            name = new ObjectName(domain + ":type=Environment" + 
-                        ",resourcetype=Global,name=" + environment.getName());
-        } else if (container instanceof Context) {        
-            String path = ((Context)container).getPath();
+            name = new ObjectName(domain + ":type=Environment" +
+                    ",resourcetype=Global,name=" + environment.getName());
+        } else if (container instanceof Context) {
+            String path = ((Context) container).getPath();
             if (path.length() < 1)
                 path = "/";
-            Host host = (Host) ((Context)container).getParent();
+            Host host = (Host) ((Context) container).getParent();
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
-            name = new ObjectName(domain + ":type=Environment" + 
-                        ",resourcetype=Context,path=" + path + 
-                        ",host=" + host.getName() +
-                        ",service=" + service.getName() +
-                        ",name=" + environment.getName());
+            name = new ObjectName(domain + ":type=Environment" +
+                    ",resourcetype=Context,path=" + path +
+                    ",host=" + host.getName() +
+                    ",service=" + service.getName() +
+                    ",name=" + environment.getName());
         } else if (container instanceof DefaultContext) {
-            container = ((DefaultContext)container).getParent();
+            container = ((DefaultContext) container).getParent();
             if (container instanceof Host) {
                 Host host = (Host) container;
-                Service service = ((Engine)host.getParent()).getService();
-                name = new ObjectName(domain + ":type=Environment" + 
+                Service service = ((Engine) host.getParent()).getService();
+                name = new ObjectName(domain + ":type=Environment" +
                         ",resourcetype=HostDefaultContext,host=" + host.getName() +
                         ",service=" + service.getName() +
                         ",name=" + environment.getName());
             } else if (container instanceof Engine) {
                 Engine engine = (Engine) container;
                 Service service = engine.getService();
-                name = new ObjectName(domain + ":type=Environment" + 
-                        ",resourcetype=ServiceDefaultContext,service=" + 
+                name = new ObjectName(domain + ":type=Environment" +
+                        ",resourcetype=ServiceDefaultContext,service=" +
                         service.getName() + ",name=" + environment.getName());
             }
         }
-        
+
         return (name);
 
     }
-    
-    
+
+
     /**
      * Create an <code>ObjectName</code> for this
      * <code>ContextResource</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain   Domain in which this name is to be created
      * @param resource The ContextResource to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               ContextResource resource)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         String encodedResourceName = encodeStr(resource.getName());
-        Object container = 
+        Object container =
                 resource.getNamingResources().getContainer();
-        if (container instanceof Server) {        
+        if (container instanceof Server) {
             name = new ObjectName(domain + ":type=Resource" +
-                        ",resourcetype=Global,class=" + resource.getType() + 
-                        ",name=" + encodedResourceName);
-        } else if (container instanceof Context) {                    
-            String path = ((Context)container).getPath();
+                    ",resourcetype=Global,class=" + resource.getType() +
+                    ",name=" + encodedResourceName);
+        } else if (container instanceof Context) {
+            String path = ((Context) container).getPath();
             if (path.length() < 1)
                 path = "/";
-            Host host = (Host) ((Context)container).getParent();
+            Host host = (Host) ((Context) container).getParent();
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Resource" +
-                        ",resourcetype=Context,path=" + path + 
-                        ",host=" + host.getName() +
-                        ",service=" + service.getName() +
-                        ",class=" + resource.getType() + 
-                        ",name=" + encodedResourceName);
-        } else if (container instanceof DefaultContext) {            
-            container = ((DefaultContext)container).getParent();
+                    ",resourcetype=Context,path=" + path +
+                    ",host=" + host.getName() +
+                    ",service=" + service.getName() +
+                    ",class=" + resource.getType() +
+                    ",name=" + encodedResourceName);
+        } else if (container instanceof DefaultContext) {
+            container = ((DefaultContext) container).getParent();
             if (container instanceof Host) {
                 Host host = (Host) container;
-                Service service = ((Engine)host.getParent()).getService();
-                name = new ObjectName(domain + ":type=Resource" + 
+                Service service = ((Engine) host.getParent()).getService();
+                name = new ObjectName(domain + ":type=Resource" +
                         ",resourcetype=HostDefaultContext,host=" + host.getName() +
                         ",service=" + service.getName() +
-                        ",class=" + resource.getType() + 
+                        ",class=" + resource.getType() +
                         ",name=" + encodedResourceName);
             } else if (container instanceof Engine) {
                 Engine engine = (Engine) container;
                 Service service = engine.getService();
-                name = new ObjectName(domain + ":type=Resource" + 
+                name = new ObjectName(domain + ":type=Resource" +
                         ",resourcetype=ServiceDefaultContext,service=" + service.getName() +
-                        ",class=" + resource.getType() + 
+                        ",class=" + resource.getType() +
                         ",name=" + encodedResourceName);
             }
         }
-        
+
         return (name);
 
     }
-  
-    
-     /**
+
+
+    /**
      * Create an <code>ObjectName</code> for this
      * <code>ContextResourceLink</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain       Domain in which this name is to be created
      * @param resourceLink The ContextResourceLink to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               ContextResourceLink resourceLink)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        String encodedResourceLinkName = encodeStr(resourceLink.getName());        
-        Object container = 
+        String encodedResourceLinkName = encodeStr(resourceLink.getName());
+        Object container =
                 resourceLink.getNamingResources().getContainer();
-        if (container instanceof Server) {        
+        if (container instanceof Server) {
             name = new ObjectName(domain + ":type=ResourceLink" +
-                        ",resourcetype=Global,class=" + resourceLink.getType() + 
-                        ",name=" + encodedResourceLinkName);
-        } else if (container instanceof Context) {                    
-            String path = ((Context)container).getPath();
+                    ",resourcetype=Global,class=" + resourceLink.getType() +
+                    ",name=" + encodedResourceLinkName);
+        } else if (container instanceof Context) {
+            String path = ((Context) container).getPath();
             if (path.length() < 1)
                 path = "/";
-            Host host = (Host) ((Context)container).getParent();
+            Host host = (Host) ((Context) container).getParent();
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=ResourceLink" +
-                        ",resourcetype=Context,path=" + path + 
-                        ",host=" + host.getName() +
-                        ",service=" + service.getName() +
-                        ",class=" + resourceLink.getType() + 
-                        ",name=" + encodedResourceLinkName);
-        } else if (container instanceof DefaultContext) {            
-            container = ((DefaultContext)container).getParent();
+                    ",resourcetype=Context,path=" + path +
+                    ",host=" + host.getName() +
+                    ",service=" + service.getName() +
+                    ",class=" + resourceLink.getType() +
+                    ",name=" + encodedResourceLinkName);
+        } else if (container instanceof DefaultContext) {
+            container = ((DefaultContext) container).getParent();
             if (container instanceof Host) {
                 Host host = (Host) container;
-                Service service = ((Engine)host.getParent()).getService();
-                name = new ObjectName(domain + ":type=ResourceLink" + 
+                Service service = ((Engine) host.getParent()).getService();
+                name = new ObjectName(domain + ":type=ResourceLink" +
                         ",resourcetype=HostDefaultContext,host=" + host.getName() +
                         ",service=" + service.getName() +
-                        ",class=" + resourceLink.getType() + 
+                        ",class=" + resourceLink.getType() +
                         ",name=" + encodedResourceLinkName);
             } else if (container instanceof Engine) {
                 Engine engine = (Engine) container;
                 Service service = engine.getService();
-                name = new ObjectName(domain + ":type=ResourceLink" + 
+                name = new ObjectName(domain + ":type=ResourceLink" +
                         ",resourcetype=ServiceDefaultContext,service=" + service.getName() +
-                        ",class=" + resourceLink.getType() + 
+                        ",class=" + resourceLink.getType() +
                         ",name=" + encodedResourceLinkName);
             }
         }
-        
+
         return (name);
 
     }
-    
-    
+
+
     /**
      * Create an <code>ObjectName</code> for this
      * <code>DefaultContext</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param context The DefaultContext to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               DefaultContext context)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         Container container = context.getParent();
         if (container instanceof Host) {
             Host host = (Host) container;
-            Service service = ((Engine)host.getParent()).getService();
+            Service service = ((Engine) host.getParent()).getService();
             name = new ObjectName(domain + ":type=DefaultContext,host=" +
-                              host.getName() + ",service=" +
-                              service.getName());
+                    host.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Engine) {
             Engine engine = (Engine) container;
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=DefaultContext,service=" +
-                              service.getName());
+                    service.getName());
         }
 
         return (name);
@@ -1106,16 +1080,15 @@ public class MBeanUtils {
      *
      * @param domain Domain in which this name is to be created
      * @param engine The Engine to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Engine engine)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=Engine,service=" +
-                              engine.getService().getName());
+                engine.getService().getName());
         return (name);
 
     }
@@ -1126,18 +1099,17 @@ public class MBeanUtils {
      * <code>Group</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param group The Group to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param group  The Group to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Group group)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=Group,groupname=" +
-                              group.getGroupname() + ",database=" +
-                              group.getUserDatabase().getId());
+                group.getGroupname() + ",database=" +
+                group.getUserDatabase().getId());
         return (name);
 
     }
@@ -1148,20 +1120,19 @@ public class MBeanUtils {
      * <code>Host</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param host The Host to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param host   The Host to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Host host)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        Engine engine = (Engine)host.getParent();
+        Engine engine = (Engine) host.getParent();
         Service service = engine.getService();
         name = new ObjectName(domain + ":type=Host,host=" +
-                              host.getName() + ",service=" +
-                              service.getName());
+                host.getName() + ",service=" +
+                service.getName());
         return (name);
 
     }
@@ -1173,28 +1144,27 @@ public class MBeanUtils {
      *
      * @param domain Domain in which this name is to be created
      * @param loader The Loader to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Loader loader)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         Container container = loader.getContainer();
 
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             name = new ObjectName(domain + ":type=Loader,service=" +
-                              service.getName());
+                    service.getName());
         } else if (container instanceof Host) {
             Engine engine = (Engine) container.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Loader,host=" +
-                              container.getName() + ",service=" +
-                              service.getName());
+                    container.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Context) {
-            String path = ((Context)container).getPath();
+            String path = ((Context) container).getPath();
             if (path.length() < 1) {
                 path = "/";
             }
@@ -1202,14 +1172,14 @@ public class MBeanUtils {
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Loader,path=" + path +
-                              ",host=" + host.getName() + ",service=" +
-                              service.getName());
+                    ",host=" + host.getName() + ",service=" +
+                    service.getName());
         } else if (container == null) {
             DefaultContext defaultContext = loader.getDefaultContext();
             if (defaultContext != null) {
                 Container parent = defaultContext.getParent();
                 if (parent instanceof Engine) {
-                    Service service = ((Engine)parent).getService();
+                    Service service = ((Engine) parent).getService();
                     name = new ObjectName(domain + ":type=DefaultLoader,service=" +
                             service.getName());
                 } else if (parent instanceof Host) {
@@ -1232,28 +1202,27 @@ public class MBeanUtils {
      *
      * @param domain Domain in which this name is to be created
      * @param logger The Logger to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Logger logger)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         Container container = logger.getContainer();
 
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             name = new ObjectName(domain + ":type=Logger,service=" +
-                              service.getName());
+                    service.getName());
         } else if (container instanceof Host) {
             Engine engine = (Engine) container.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Logger,host=" +
-                              container.getName() + ",service=" +
-                              service.getName());
+                    container.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Context) {
-            String path = ((Context)container).getPath();
+            String path = ((Context) container).getPath();
             if (path.length() < 1) {
                 path = "/";
             }
@@ -1261,8 +1230,8 @@ public class MBeanUtils {
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Logger,path=" + path +
-                              ",host=" + host.getName() + ",service=" +
-                              service.getName());
+                    ",host=" + host.getName() + ",service=" +
+                    service.getName());
         }
 
         return (name);
@@ -1274,30 +1243,29 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>Manager</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param manager The Manager to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Manager manager)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         Container container = manager.getContainer();
 
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             name = new ObjectName(domain + ":type=Manager,service=" +
-                              service.getName());
+                    service.getName());
         } else if (container instanceof Host) {
             Engine engine = (Engine) container.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Manager,host=" +
-                              container.getName() + ",service=" +
-                              service.getName());
+                    container.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Context) {
-            String path = ((Context)container).getPath();
+            String path = ((Context) container).getPath();
             if (path.length() < 1) {
                 path = "/";
             }
@@ -1305,14 +1273,14 @@ public class MBeanUtils {
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Manager,path=" + path +
-                              ",host=" + host.getName() + ",service=" +
-                              service.getName());
+                    ",host=" + host.getName() + ",service=" +
+                    service.getName());
         } else if (container == null) {
             DefaultContext defaultContext = manager.getDefaultContext();
             if (defaultContext != null) {
                 Container parent = defaultContext.getParent();
                 if (parent instanceof Engine) {
-                    Service service = ((Engine)parent).getService();
+                    Service service = ((Engine) parent).getService();
                     name = new ObjectName(domain + ":type=DefaultManager,service=" +
                             service.getName());
                 } else if (parent instanceof Host) {
@@ -1327,54 +1295,53 @@ public class MBeanUtils {
         return (name);
 
     }
-    
-    
+
+
     /**
      * Create an <code>ObjectName</code> for this
      * <code>Server</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain    Domain in which this name is to be created
      * @param resources The NamingResources to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               NamingResources resources)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        Object container = resources.getContainer();        
-        if (container instanceof Server) {        
-            name = new ObjectName(domain + ":type=NamingResources" + 
-                        ",resourcetype=Global");
-        } else if (container instanceof Context) {        
-            String path = ((Context)container).getPath();
+        Object container = resources.getContainer();
+        if (container instanceof Server) {
+            name = new ObjectName(domain + ":type=NamingResources" +
+                    ",resourcetype=Global");
+        } else if (container instanceof Context) {
+            String path = ((Context) container).getPath();
             if (path.length() < 1)
                 path = "/";
-            Host host = (Host) ((Context)container).getParent();
+            Host host = (Host) ((Context) container).getParent();
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
-            name = new ObjectName(domain + ":type=NamingResources" + 
-                        ",resourcetype=Context,path=" + path + 
-                        ",host=" + host.getName() +
-                        ",service=" + service.getName());
+            name = new ObjectName(domain + ":type=NamingResources" +
+                    ",resourcetype=Context,path=" + path +
+                    ",host=" + host.getName() +
+                    ",service=" + service.getName());
         } else if (container instanceof DefaultContext) {
-            container = ((DefaultContext)container).getParent();
+            container = ((DefaultContext) container).getParent();
             if (container instanceof Host) {
                 Host host = (Host) container;
-                Service service = ((Engine)host.getParent()).getService();
-                name = new ObjectName(domain + ":type=NamingResources" + 
+                Service service = ((Engine) host.getParent()).getService();
+                name = new ObjectName(domain + ":type=NamingResources" +
                         ",resourcetype=HostDefaultContext,host=" + host.getName() +
                         ",service=" + service.getName());
             } else if (container instanceof Engine) {
                 Engine engine = (Engine) container;
                 Service service = engine.getService();
-                name = new ObjectName(domain + ":type=NamingResources" + 
+                name = new ObjectName(domain + ":type=NamingResources" +
                         ",resourcetype=ServiceDefaultContext" +
                         ",service=" + service.getName());
             }
         }
-        
+
         return (name);
 
     }
@@ -1384,14 +1351,13 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>MBeanFactory</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param factory The MBeanFactory to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               MBeanFactory factory)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = new ObjectName(domain + ":type=MBeanFactory");
 
@@ -1399,35 +1365,34 @@ public class MBeanUtils {
 
     }
 
-    
+
     /**
      * Create an <code>ObjectName</code> for this
      * <code>Realm</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param realm The Realm to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param realm  The Realm to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Realm realm)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         Container container = realm.getContainer();
 
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             name = new ObjectName(domain + ":type=Realm,service=" +
-                              service.getName());
+                    service.getName());
         } else if (container instanceof Host) {
             Engine engine = (Engine) container.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Realm,host=" +
-                              container.getName() + ",service=" +
-                              service.getName());
+                    container.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Context) {
-            String path = ((Context)container).getPath();
+            String path = ((Context) container).getPath();
             if (path.length() < 1) {
                 path = "/";
             }
@@ -1435,8 +1400,8 @@ public class MBeanUtils {
             Engine engine = (Engine) host.getParent();
             Service service = engine.getService();
             name = new ObjectName(domain + ":type=Realm,path=" + path +
-                              ",host=" + host.getName() + ",service=" +
-                              service.getName());
+                    ",host=" + host.getName() + ",service=" +
+                    service.getName());
         }
 
         return (name);
@@ -1449,18 +1414,17 @@ public class MBeanUtils {
      * <code>Role</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param role The Role to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param role   The Role to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Role role)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=Role,rolename=" +
-                              role.getRolename() + ",database=" +
-                              role.getUserDatabase().getId());
+                role.getRolename() + ",database=" +
+                role.getUserDatabase().getId());
         return (name);
 
     }
@@ -1472,12 +1436,11 @@ public class MBeanUtils {
      *
      * @param domain Domain in which this name is to be created
      * @param server The Server to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Server server)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=Server");
@@ -1490,18 +1453,17 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>Service</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain  Domain in which this name is to be created
      * @param service The Service to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Service service)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=Service,name=" +
-                              service.getName());
+                service.getName());
         return (name);
 
     }
@@ -1512,18 +1474,17 @@ public class MBeanUtils {
      * <code>User</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param user The User to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param user   The User to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               User user)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=User,username=" +
-                              user.getUsername() + ",database=" +
-                              user.getUserDatabase().getId());
+                user.getUsername() + ",database=" +
+                user.getUserDatabase().getId());
         return (name);
 
     }
@@ -1533,18 +1494,17 @@ public class MBeanUtils {
      * Create an <code>ObjectName</code> for this
      * <code>UserDatabase</code> object.
      *
-     * @param domain Domain in which this name is to be created
+     * @param domain       Domain in which this name is to be created
      * @param userDatabase The UserDatabase to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               UserDatabase userDatabase)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
         name = new ObjectName(domain + ":type=UserDatabase,database=" +
-                              userDatabase.getId());
+                userDatabase.getId());
         return (name);
 
     }
@@ -1555,40 +1515,39 @@ public class MBeanUtils {
      * <code>Valve</code> object.
      *
      * @param domain Domain in which this name is to be created
-     * @param valve The Valve to be named
-     *
-     * @exception MalformedObjectNameException if a name cannot be created
+     * @param valve  The Valve to be named
+     * @throws MalformedObjectNameException if a name cannot be created
      */
     public static ObjectName createObjectName(String domain,
                                               Valve valve)
-        throws MalformedObjectNameException {
+            throws MalformedObjectNameException {
 
         ObjectName name = null;
-        Container container = ((ValveBase)valve).getContainer();
+        Container container = ((ValveBase) valve).getContainer();
 
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             name = new ObjectName(domain + ":type=Valve,sequence=" +
-                                  valve.hashCode() + ",service=" +
-                                  service.getName());
+                    valve.hashCode() + ",service=" +
+                    service.getName());
         } else if (container instanceof Host) {
-            Service service = ((Engine)container.getParent()).getService();
+            Service service = ((Engine) container.getParent()).getService();
             name = new ObjectName(domain + ":type=Valve,sequence=" +
-                                  valve.hashCode() + ",host=" +
-                                  container.getName() + ",service=" +
-                                  service.getName() );
+                    valve.hashCode() + ",host=" +
+                    container.getName() + ",service=" +
+                    service.getName());
         } else if (container instanceof Context) {
-            String path = ((Context)container).getPath();
+            String path = ((Context) container).getPath();
             if (path.length() < 1) {
                 path = "/";
             }
             Host host = (Host) container.getParent();
             Service service = ((Engine) host.getParent()).getService();
             name = new ObjectName(domain + ":type=Valve,sequence=" +
-                                  valve.hashCode() + ",path=" +
-                                  path + ",host=" +
-                                  host.getName() + ",service=" +
-                                  service.getName());
+                    valve.hashCode() + ",path=" +
+                    path + ",host=" +
+                    host.getName() + ",service=" +
+                    service.getName());
         }
 
         return (name);
@@ -1603,7 +1562,7 @@ public class MBeanUtils {
         if (registry == null) {
             try {
                 URL url = ServerLifecycleListener.class.getResource
-                    ("/org/apache/catalina/mbeans/mbeans-descriptors.xml");
+                        ("/org/apache/catalina/mbeans/mbeans-descriptors.xml");
                 InputStream stream = url.openStream();
                 //                Registry.setDebug(1);
                 Registry.loadRegistry(stream);
@@ -1668,11 +1627,10 @@ public class MBeanUtils {
      * <code>Connector</code> object.
      *
      * @param connector The Connector to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Connector connector, Service service)
-        throws Exception {
+            throws Exception {
 
         connector.setService(service);
         String mname = createManagedName(connector);
@@ -1695,11 +1653,10 @@ public class MBeanUtils {
      * <code>Context</code> object.
      *
      * @param context The Context to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Context context)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(context);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1714,17 +1671,16 @@ public class MBeanUtils {
 
     }
 
-    
+
     /**
      * Deregister the MBean for this
      * <code>ContextEnvironment</code> object.
      *
      * @param environment The ContextEnvironment to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(ContextEnvironment environment)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(environment);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1738,18 +1694,17 @@ public class MBeanUtils {
         mserver.unregisterMBean(oname);
 
     }
-    
-    
+
+
     /**
      * Deregister the MBean for this
      * <code>ContextResource</code> object.
      *
      * @param resource The ContextResource to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(ContextResource resource)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resource);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1763,18 +1718,17 @@ public class MBeanUtils {
         mserver.unregisterMBean(oname);
 
     }
-     
-    
+
+
     /**
      * Deregister the MBean for this
      * <code>ContextResourceLink</code> object.
      *
      * @param resourceLink The ContextResourceLink to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(ContextResourceLink resourceLink)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resourceLink);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1787,19 +1741,18 @@ public class MBeanUtils {
         ObjectName oname = createObjectName(domain, resourceLink);
         mserver.unregisterMBean(oname);
 
-    }   
-    
-    
+    }
+
+
     /**
      * Deregister the MBean for this
      * <code>DefaultContext</code> object.
      *
      * @param context The DefaultContext to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(DefaultContext context)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(context);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1820,11 +1773,10 @@ public class MBeanUtils {
      * <code>Engine</code> object.
      *
      * @param engine The Engine to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Engine engine)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(engine);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1845,11 +1797,10 @@ public class MBeanUtils {
      * <code>Group</code> object.
      *
      * @param group The Group to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Group group)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(group);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1870,11 +1821,10 @@ public class MBeanUtils {
      * <code>Host</code> object.
      *
      * @param host The Host to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Host host)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(host);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1895,11 +1845,10 @@ public class MBeanUtils {
      * <code>Loader</code> object.
      *
      * @param loader The Loader to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Loader loader)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(loader);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1920,11 +1869,10 @@ public class MBeanUtils {
      * <code>Logger</code> object.
      *
      * @param logger The Logger to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Logger logger)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(logger);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1945,11 +1893,10 @@ public class MBeanUtils {
      * <code>Manager</code> object.
      *
      * @param manager The Manager to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Manager manager)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(manager);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1963,18 +1910,17 @@ public class MBeanUtils {
         mserver.unregisterMBean(oname);
 
     }
-    
-    
-   /**
+
+
+    /**
      * Deregister the MBean for this
      * <code>NamingResources</code> object.
      *
      * @param resources The NamingResources to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(NamingResources resources)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(resources);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -1988,18 +1934,17 @@ public class MBeanUtils {
         mserver.unregisterMBean(oname);
 
     }
-    
-    
+
+
     /**
      * Deregister the MBean for this
      * <code>Realm</code> object.
      *
      * @param realm The Realm to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Realm realm)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(realm);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2020,11 +1965,10 @@ public class MBeanUtils {
      * <code>Role</code> object.
      *
      * @param role The Role to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Role role)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(role);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2045,11 +1989,10 @@ public class MBeanUtils {
      * <code>Server</code> object.
      *
      * @param server The Server to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Server server)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(server);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2070,11 +2013,10 @@ public class MBeanUtils {
      * <code>Service</code> object.
      *
      * @param service The Service to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Service service)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(service);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2095,11 +2037,10 @@ public class MBeanUtils {
      * <code>User</code> object.
      *
      * @param user The User to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(User user)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(user);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2120,11 +2061,10 @@ public class MBeanUtils {
      * <code>UserDatabase</code> object.
      *
      * @param userDatabase The UserDatabase to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(UserDatabase userDatabase)
-        throws Exception {
+            throws Exception {
 
         String mname = createManagedName(userDatabase);
         ManagedBean managed = registry.findManagedBean(mname);
@@ -2145,13 +2085,12 @@ public class MBeanUtils {
      * <code>Valve</code> object.
      *
      * @param valve The Valve to be managed
-     *
-     * @exception Exception if an MBean cannot be deregistered
+     * @throws Exception if an MBean cannot be deregistered
      */
     public static void destroyMBean(Valve valve, Container container)
-        throws Exception {
+            throws Exception {
 
-        ((Contained)valve).setContainer(container);
+        ((Contained) valve).setContainer(container);
         String mname = createManagedName(valve);
         ManagedBean managed = registry.findManagedBean(mname);
         if (managed == null) {
@@ -2162,9 +2101,9 @@ public class MBeanUtils {
             domain = mserver.getDefaultDomain();
         ObjectName oname = createObjectName(domain, valve);
         try {
-            ((Contained)valve).setContainer(null);
+            ((Contained) valve).setContainer(null);
         } catch (Throwable t) {
-        ;
+            ;
         }
         mserver.unregisterMBean(oname);
 

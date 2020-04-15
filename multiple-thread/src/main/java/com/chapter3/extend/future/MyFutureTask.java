@@ -30,12 +30,12 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
 
     @Override
     public void run() {
-        if(!(0 == state) || !UNSAFE.compareAndSwapObject(this, threadShift, null, Thread.currentThread())) {
+        if (!(0 == state) || !UNSAFE.compareAndSwapObject(this, threadShift, null, Thread.currentThread())) {
             return;
         }
 
         try {
-            if(null != callable && 0 == state) {
+            if (null != callable && 0 == state) {
                 V result = callable.call();
                 set(result);
             }
@@ -62,6 +62,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
             finishCompletion();
         }
     }
+
     protected void setException(Throwable t) {
         if (UNSAFE.compareAndSwapInt(this, stateShift, 0, 1)) {
             result = t;
@@ -72,7 +73,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
 
     @Override
     public boolean cancel(boolean mayInterruptIfRunning) {
-        if(!(0 == state) || !(UNSAFE.compareAndSwapInt(this, stateShift, 0, (mayInterruptIfRunning? 5: 4)))) {
+        if (!(0 == state) || !(UNSAFE.compareAndSwapInt(this, stateShift, 0, (mayInterruptIfRunning ? 5 : 4)))) {
             return false;
         }
 
@@ -106,16 +107,16 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
     private V report(int s) throws ExecutionException {
         Object x = result;
         if (s == 2)
-            return (V)x;
+            return (V) x;
         if (s >= 4)
             throw new CancellationException();
-        throw new ExecutionException((Throwable)x);
+        throw new ExecutionException((Throwable) x);
     }
 
     @Override
     public V get() throws InterruptedException, ExecutionException {
         int s = state;
-        if(s <= 1) {
+        if (s <= 1) {
             s = awaitDone(false, 0L);
         }
         return report(s);
@@ -127,7 +128,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
         if (unit == null)
             throw new NullPointerException();
         int s = state;
-        if(s <= 1 &&
+        if (s <= 1 &&
                 (s = awaitDone(true, unit.toNanos(timeout))) <= 1) {
             throw new TimeoutException();
         }
@@ -139,7 +140,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
         final long deadline = timed ? System.nanoTime() + nanos : 0L;
         WaitNode q = null;
         boolean queued = false;
-        for (;;) {
+        for (; ; ) {
             if (Thread.interrupted()) {
                 removeWaiter(q);
                 throw new InterruptedException();
@@ -150,8 +151,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
                 if (q != null)
                     q.thread = null;
                 return s;
-            }
-            else if (s == 1) // cannot time out yet
+            } else if (s == 1) // cannot time out yet
                 Thread.yield();
             else if (q == null)
                 q = new WaitNode(); // 创建当前线程的waitNode，下次就可以入链表了
@@ -165,8 +165,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
                     return state;
                 }
                 LockSupport.parkNanos(this, nanos);
-            }
-            else
+            } else
                 LockSupport.park(this);
         }
     }
@@ -192,14 +191,17 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
     static final class WaitNode {
         volatile Thread thread;
         volatile WaitNode next;
-        WaitNode() { thread = Thread.currentThread(); }
+
+        WaitNode() {
+            thread = Thread.currentThread();
+        }
     }
 
     private void removeWaiter(WaitNode node) {
         if (node != null) {
             node.thread = null;
             retry:
-            for (;;) {          // restart on removeWaiter race
+            for (; ; ) {          // restart on removeWaiter race
                 for (WaitNode pred = null, q = waiters, s; q != null; q = s) {
                     s = q.next;
                     if (q.thread != null)
@@ -208,8 +210,7 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
                         pred.next = s;
                         if (pred.thread == null) // check for race
                             continue retry;
-                    }
-                    else if (!UNSAFE.compareAndSwapObject(this, waitersShift,
+                    } else if (!UNSAFE.compareAndSwapObject(this, waitersShift,
                             q, s))
                         continue retry;
                 }
@@ -221,9 +222,9 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
     // 释放waiters中的对象, 线程继续运行
     private void finishCompletion() {
         // assert state > COMPLETING;
-        for (WaitNode q; (q = waiters) != null;) {
+        for (WaitNode q; (q = waiters) != null; ) {
             if (UNSAFE.compareAndSwapObject(this, waitersShift, q, null)) {
-                for (;;) {
+                for (; ; ) {
                     Thread t = q.thread;
                     if (t != null) {
                         q.thread = null;
@@ -244,7 +245,8 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
         callable = null;        // to reduce footprint
     }
 
-    protected void done() { }
+    protected void done() {
+    }
 
 
     // Unsafe mechanics
@@ -252,18 +254,19 @@ public class MyFutureTask<V> implements RunnableFuture<V> {
     private static final long stateShift;
     private static final long threadShift;
     private static final long waitersShift;
+
     static {
         try {
             Field singleoneInstanceField = Unsafe.class.getDeclaredField("theUnsafe");
             singleoneInstanceField.setAccessible(true);
-            UNSAFE = (Unsafe)singleoneInstanceField.get(null);
+            UNSAFE = (Unsafe) singleoneInstanceField.get(null);
             // 下面的获取方式报安全错误
 //            UNSAFE = sun.misc.Unsafe.getUnsafe();
 
             Class<?> c = MyFutureTask.class;
-            stateShift =  UNSAFE.objectFieldOffset(c.getDeclaredField("state"));
-            threadShift =  UNSAFE.objectFieldOffset(c.getDeclaredField("thread"));
-            waitersShift =  UNSAFE.objectFieldOffset(c.getDeclaredField("waiters"));
+            stateShift = UNSAFE.objectFieldOffset(c.getDeclaredField("state"));
+            threadShift = UNSAFE.objectFieldOffset(c.getDeclaredField("thread"));
+            waitersShift = UNSAFE.objectFieldOffset(c.getDeclaredField("waiters"));
         } catch (Exception e) {
             throw new Error(e);
         }

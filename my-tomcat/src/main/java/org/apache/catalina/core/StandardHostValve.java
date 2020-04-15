@@ -69,6 +69,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Request;
@@ -91,7 +92,7 @@ import org.apache.catalina.valves.ValveBase;
  */
 
 final class StandardHostValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -101,14 +102,14 @@ final class StandardHostValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.StandardHostValve/1.0";
+            "org.apache.catalina.core.StandardHostValve/1.0";
 
 
     /**
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -132,20 +133,19 @@ final class StandardHostValve
      * based on the specified request URI.  If no matching Context can
      * be found, return an appropriate HTTP error.
      *
-     * @param request Request to be processed
-     * @param response Response to be produced
+     * @param request      Request to be processed
+     * @param response     Response to be produced
      * @param valveContext Valve context used to forward to the next Valve
-     *
-     * @exception IOException if an input/output error occurred
-     * @exception ServletException if a servlet error occurred
+     * @throws IOException      if an input/output error occurred
+     * @throws ServletException if a servlet error occurred
      */
     public void invoke(Request request, Response response,
                        ValveContext valveContext)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Validate the request and response object types
         if (!(request.getRequest() instanceof HttpServletRequest) ||
-            !(response.getResponse() instanceof HttpServletResponse)) {
+                !(response.getResponse() instanceof HttpServletResponse)) {
             return;     // NOTE - Not much else we can do generically
         }
 
@@ -154,14 +154,14 @@ final class StandardHostValve
         Context context = (Context) host.map(request, true);
         if (context == null) {
             ((HttpServletResponse) response.getResponse()).sendError
-                (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                 sm.getString("standardHost.noContext"));
+                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                            sm.getString("standardHost.noContext"));
             return;
         }
 
         // Bind the context CL to the current thread
         Thread.currentThread().setContextClassLoader
-            (context.getLoader().getClassLoader());
+                (context.getLoader().getClassLoader());
 
         // Update the session last access time for our session (if any)
         HttpServletRequest hreq = (HttpServletRequest) request.getRequest();

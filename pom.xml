@@ -1,6 +1,6 @@
 <?xml  version="1.0"  encoding="UTF-8"?>
-<project  xmlns="http://maven.apache.org/POM/4.0.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.chang</groupId>
@@ -96,6 +96,14 @@
                 <version>4.11</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.12</version>
+                <scope>provided</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -108,7 +116,9 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.6</version>
                     <configuration>
-                        <excludes><exclude>*.properties</exclude></excludes>
+                        <excludes>
+                            <exclude>*.properties</exclude>
+                        </excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -121,7 +131,7 @@
                         <stopKey>foo</stopKey>
                         <stopPort>${jetty.stopPort}</stopPort>
                         <connectors>
-                            <connector  implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                                 <port>${jetty.port}</port>
                                 <maxIdleTime>60000</maxIdleTime>
                             </connector>

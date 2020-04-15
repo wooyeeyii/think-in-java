@@ -81,8 +81,8 @@ import javax.management.Notification;
  */
 
 public final class CatalinaManager
-    extends NotificationBroadcasterSupport
-    implements CatalinaManagerMBean, MBeanRegistration {
+        extends NotificationBroadcasterSupport
+        implements CatalinaManagerMBean, MBeanRegistration {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -104,7 +104,7 @@ public final class CatalinaManager
 
 
     public ObjectName preRegister(MBeanServer server, ObjectName name)
-        throws Exception {
+            throws Exception {
         return new ObjectName(OBJECT_NAME);
     }
 
@@ -116,7 +116,7 @@ public final class CatalinaManager
 
 
     public void preDeregister()
-        throws Exception {
+            throws Exception {
     }
 
 
@@ -172,7 +172,7 @@ public final class CatalinaManager
      * Start the servlet container.
      */
     public void start()
-        throws Exception {
+            throws Exception {
 
         Notification notification = null;
 
@@ -184,30 +184,30 @@ public final class CatalinaManager
         // Notifying the MBEan server that we're starting
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Starting " + NAME, "State", "java.lang.Integer",
-             new Integer(STOPPED), new Integer(STARTING));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Starting " + NAME, "State", "java.lang.Integer",
+                        new Integer(STOPPED), new Integer(STARTING));
         sendNotification(notification);
 
         try {
 
-            String[] args = { "start" };
+            String[] args = {"start"};
             Bootstrap.main(args);
 
         } catch (Throwable t) {
             state = STOPPED;
             notification = new AttributeChangeNotification
-                (this, sequenceNumber++, System.currentTimeMillis(),
-                 "Stopped " + NAME, "State", "java.lang.Integer",
-                 new Integer(STARTING), new Integer(STOPPED));
+                    (this, sequenceNumber++, System.currentTimeMillis(),
+                            "Stopped " + NAME, "State", "java.lang.Integer",
+                            new Integer(STARTING), new Integer(STOPPED));
             sendNotification(notification);
         }
 
         state = STARTED;
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Started " + NAME, "State", "java.lang.Integer",
-             new Integer(STARTING), new Integer(STARTED));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Started " + NAME, "State", "java.lang.Integer",
+                        new Integer(STARTING), new Integer(STARTED));
         sendNotification(notification);
 
     }
@@ -226,14 +226,14 @@ public final class CatalinaManager
         state = STOPPING;
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Stopping " + NAME, "State", "java.lang.Integer",
-             new Integer(STARTED), new Integer(STOPPING));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Stopping " + NAME, "State", "java.lang.Integer",
+                        new Integer(STARTED), new Integer(STOPPING));
         sendNotification(notification);
 
         try {
 
-            String[] args = { "stop" };
+            String[] args = {"stop"};
             Bootstrap.main(args);
 
         } catch (Throwable t) {
@@ -246,9 +246,9 @@ public final class CatalinaManager
         state = STOPPED;
 
         notification = new AttributeChangeNotification
-            (this, sequenceNumber++, System.currentTimeMillis(),
-             "Stopped " + NAME, "State", "java.lang.Integer",
-             new Integer(STOPPING), new Integer(STOPPED));
+                (this, sequenceNumber++, System.currentTimeMillis(),
+                        "Stopped " + NAME, "State", "java.lang.Integer",
+                        new Integer(STOPPING), new Integer(STOPPED));
         sendNotification(notification);
 
     }

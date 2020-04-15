@@ -83,13 +83,13 @@ public interface CatalinaManagerMBean {
      * Status constants.
      */
     public static final String[] states =
-    {"Stopped", "Stopping", "Starting", "Started"};
+            {"Stopped", "Stopping", "Starting", "Started"};
 
 
-    public static final int STOPPED  = 0;
+    public static final int STOPPED = 0;
     public static final int STOPPING = 1;
     public static final int STARTING = 2;
-    public static final int STARTED  = 3;
+    public static final int STARTED = 3;
 
 
     /**
@@ -141,7 +141,7 @@ public interface CatalinaManagerMBean {
      * Start the servlet container.
      */
     public void start()
-        throws Exception;
+            throws Exception;
 
 
     /**

@@ -121,7 +121,7 @@ public abstract class ClusterSessionBase {
      * @return The senderId for this component
      */
     public String getSenderId() {
-        return(this.senderId);
+        return (this.senderId);
     }
 
     /**
@@ -139,7 +139,7 @@ public abstract class ClusterSessionBase {
      * @return The debug level
      */
     public int getDebug() {
-        return(this.debug);
+        return (this.debug);
     }
 
     /**
@@ -157,7 +157,7 @@ public abstract class ClusterSessionBase {
      * @return The Logger associated with this component.
      */
     public Logger getLogger() {
-        return(this.logger);
+        return (this.logger);
     }
 
     public abstract String getName();
@@ -170,9 +170,9 @@ public abstract class ClusterSessionBase {
     public void log(String message) {
         Logger logger = getLogger();
 
-        if(logger != null)
-            logger.log("[Cluster/"+getName()+"]: "+message);
+        if (logger != null)
+            logger.log("[Cluster/" + getName() + "]: " + message);
         else
-            System.out.println("[Cluster/"+getName()+"]: "+message);
+            System.out.println("[Cluster/" + getName() + "]: " + message);
     }
 }

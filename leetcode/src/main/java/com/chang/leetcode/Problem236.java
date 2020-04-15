@@ -42,7 +42,7 @@ public class Problem236 {
     }
 
     private void findPath(TreeNode node, TreeNode p, List<TreeNode> pl, List<TreeNode> res) {
-        if(null != res && res.size() > 0) {
+        if (null != res && res.size() > 0) {
             return;
         }
 
@@ -105,10 +105,10 @@ public class Problem236 {
     }
 
     public TreeNode lowestCommonAncestorExample(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || root == p || root == q)  return root;
+        if (root == null || root == p || root == q) return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if(left != null && right != null)   return root;
+        if (left != null && right != null) return root;
         return left != null ? left : right;
     }
 

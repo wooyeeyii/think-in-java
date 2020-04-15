@@ -70,6 +70,7 @@ import java.io.PrintWriter;
 import java.util.Locale;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;
+
 import org.apache.catalina.Response;
 
 
@@ -148,7 +149,7 @@ public class ResponseFacade implements ServletResponse {
 
 
     public ServletOutputStream getOutputStream()
-        throws IOException {
+            throws IOException {
 
         //        if (isFinished())
         //            throw new IllegalStateException
@@ -163,7 +164,7 @@ public class ResponseFacade implements ServletResponse {
 
 
     public PrintWriter getWriter()
-        throws IOException {
+            throws IOException {
 
         //        if (isFinished())
         //            throw new IllegalStateException
@@ -201,7 +202,7 @@ public class ResponseFacade implements ServletResponse {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         response.setBufferSize(size);
 
@@ -214,7 +215,7 @@ public class ResponseFacade implements ServletResponse {
 
 
     public void flushBuffer()
-        throws IOException {
+            throws IOException {
 
         if (isFinished())
             //            throw new IllegalStateException
@@ -232,7 +233,7 @@ public class ResponseFacade implements ServletResponse {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         response.resetBuffer();
 
@@ -248,7 +249,7 @@ public class ResponseFacade implements ServletResponse {
 
         if (isCommitted())
             throw new IllegalStateException
-                (/*sm.getString("responseBase.reset.ise")*/);
+                    (/*sm.getString("responseBase.reset.ise")*/);
 
         response.reset();
 

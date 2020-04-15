@@ -86,6 +86,7 @@ import javax.naming.NamingEnumeration;
 import javax.naming.directory.DirContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
 import org.apache.catalina.Authenticator;
 import org.apache.catalina.Connector;
 import org.apache.catalina.Container;
@@ -123,7 +124,7 @@ import org.xml.sax.SAXParseException;
  */
 
 public final class ContextConfig
-    implements LifecycleListener {
+        implements LifecycleListener {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -159,7 +160,7 @@ public final class ContextConfig
      * The string resources for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -246,7 +247,7 @@ public final class ContextConfig
         ServletContext servletContext = context.getServletContext();
         if (servletContext != null)
             stream = servletContext.getResourceAsStream
-                (Constants.ApplicationWebXml);
+                    (Constants.ApplicationWebXml);
         if (stream == null) {
             log(sm.getString("contextConfig.applicationMissing"));
             return;
@@ -256,7 +257,7 @@ public final class ContextConfig
         synchronized (webDigester) {
             try {
                 URL url =
-                    servletContext.getResource(Constants.ApplicationWebXml);
+                        servletContext.getResource(Constants.ApplicationWebXml);
 
                 InputSource is = new InputSource(url.toExternalForm());
                 is.setByteStream(stream);
@@ -270,8 +271,8 @@ public final class ContextConfig
             } catch (SAXParseException e) {
                 log(sm.getString("contextConfig.applicationParse"), e);
                 log(sm.getString("contextConfig.applicationPosition",
-                                 "" + e.getLineNumber(),
-                                 "" + e.getColumnNumber()));
+                        "" + e.getLineNumber(),
+                        "" + e.getColumnNumber()));
                 ok = false;
             } catch (Exception e) {
                 log(sm.getString("contextConfig.applicationParse"), e);
@@ -336,7 +337,7 @@ public final class ContextConfig
         if (authenticators == null) {
             try {
                 authenticators = ResourceBundle.getBundle
-                    ("org.apache.catalina.startup.Authenticators");
+                        ("org.apache.catalina.startup.Authenticators");
             } catch (MissingResourceException e) {
                 log(sm.getString("contextConfig.authenticatorResources"), e);
                 ok = false;
@@ -348,13 +349,13 @@ public final class ContextConfig
         String authenticatorName = null;
         try {
             authenticatorName =
-                authenticators.getString(loginConfig.getAuthMethod());
+                    authenticators.getString(loginConfig.getAuthMethod());
         } catch (MissingResourceException e) {
             authenticatorName = null;
         }
         if (authenticatorName == null) {
             log(sm.getString("contextConfig.authenticatorMissing",
-                             loginConfig.getAuthMethod()));
+                    loginConfig.getAuthMethod()));
             ok = false;
             return;
         }
@@ -369,12 +370,12 @@ public final class ContextConfig
                 if (pipeline != null) {
                     ((ContainerBase) context).addValve(authenticator);
                     log(sm.getString("contextConfig.authenticatorConfigured",
-                                     loginConfig.getAuthMethod()));
+                            loginConfig.getAuthMethod()));
                 }
             }
         } catch (Throwable t) {
             log(sm.getString("contextConfig.authenticatorInstantiate",
-                             authenticatorName), t);
+                    authenticatorName), t);
             ok = false;
         }
 
@@ -398,12 +399,12 @@ public final class ContextConfig
             container = container.getParent();
         }
         if (container instanceof Engine) {
-            Service service = ((Engine)container).getService();
+            Service service = ((Engine) container).getService();
             // The service can be null when Tomcat is run in embedded mode
             if (service == null) {
                 secure = true;
             } else {
-                Connector [] connectors = service.findConnectors();
+                Connector[] connectors = service.findConnectors();
                 for (int i = 0; i < connectors.length; i++) {
                     secure = connectors[i].getSecure();
                     if (secure) {
@@ -419,7 +420,7 @@ public final class ContextConfig
         // Validate that the JSSE classes are present
         try {
             Class clazz = this.getClass().getClassLoader().loadClass
-                ("javax.net.ssl.SSLSocket");
+                    ("javax.net.ssl.SSLSocket");
             if (clazz == null)
                 return;
         } catch (Throwable t) {
@@ -430,7 +431,7 @@ public final class ContextConfig
         Valve certificates = null;
         try {
             Class clazz =
-                Class.forName("org.apache.catalina.valves.CertificatesValve");
+                    Class.forName("org.apache.catalina.valves.CertificatesValve");
             certificates = (Valve) clazz.newInstance();
         } catch (Throwable t) {
             return;     // Probably JSSE classes not present
@@ -443,7 +444,7 @@ public final class ContextConfig
                 if (pipeline != null) {
                     ((ContainerBase) context).addValve(certificates);
                     log(sm.getString
-                        ("contextConfig.certificatesConfig.added"));
+                            ("contextConfig.certificatesConfig.added"));
                 }
             }
         } catch (Throwable t) {
@@ -466,10 +467,10 @@ public final class ContextConfig
         tldDigester.setValidating(true);
         url = ContextConfig.class.getResource(Constants.TldDtdResourcePath_11);
         tldDigester.register(Constants.TldDtdPublicId_11,
-                             url.toString());
+                url.toString());
         url = ContextConfig.class.getResource(Constants.TldDtdResourcePath_12);
         tldDigester.register(Constants.TldDtdPublicId_12,
-                             url.toString());
+                url.toString());
         tldDigester.addRuleSet(new TldRuleSet());
         return (tldDigester);
 
@@ -487,10 +488,10 @@ public final class ContextConfig
         webDigester.setValidating(true);
         url = ContextConfig.class.getResource(Constants.WebDtdResourcePath_22);
         webDigester.register(Constants.WebDtdPublicId_22,
-                             url.toString());
+                url.toString());
         url = ContextConfig.class.getResource(Constants.WebDtdResourcePath_23);
         webDigester.register(Constants.WebDtdPublicId_23,
-                             url.toString());
+                url.toString());
         webDigester.addRuleSet(new WebRuleSet());
         return (webDigester);
 
@@ -506,7 +507,7 @@ public final class ContextConfig
         File file = new File(Constants.DefaultWebXml);
         if (!file.isAbsolute())
             file = new File(System.getProperty("catalina.base"),
-                            Constants.DefaultWebXml);
+                    Constants.DefaultWebXml);
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(file.getCanonicalPath());
@@ -524,7 +525,7 @@ public final class ContextConfig
         synchronized (webDigester) {
             try {
                 InputSource is =
-                    new InputSource("file://" + file.getAbsolutePath());
+                        new InputSource("file://" + file.getAbsolutePath());
                 stream = new FileInputStream(file);
                 is.setByteStream(stream);
                 webDigester.setDebug(getDebug());
@@ -536,8 +537,8 @@ public final class ContextConfig
             } catch (SAXParseException e) {
                 log(sm.getString("contextConfig.defaultParse"), e);
                 log(sm.getString("contextConfig.defaultPosition",
-                                 "" + e.getLineNumber(),
-                                 "" + e.getColumnNumber()));
+                        "" + e.getLineNumber(),
+                        "" + e.getColumnNumber()));
                 ok = false;
             } catch (Exception e) {
                 log(sm.getString("contextConfig.defaultParse"), e);
@@ -570,7 +571,7 @@ public final class ContextConfig
             logger.log("ContextConfig[" + context.getName() + "]: " + message);
         else
             System.out.println("ContextConfig[" + context.getName() + "]: "
-                               + message);
+                    + message);
 
     }
 
@@ -578,7 +579,7 @@ public final class ContextConfig
     /**
      * Log a message on the Logger associated with our Context (if any)
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     private void log(String message, Throwable throwable) {
@@ -588,10 +589,10 @@ public final class ContextConfig
             logger = context.getLogger();
         if (logger != null)
             logger.log("ContextConfig[" + context.getName() + "] "
-                       + message, throwable);
+                    + message, throwable);
         else {
             System.out.println("ContextConfig[" + context.getName() + "]: "
-                               + message);
+                    + message);
             System.out.println("" + throwable);
             throwable.printStackTrace(System.out);
         }
@@ -611,13 +612,13 @@ public final class ContextConfig
 
         // Set properties based on DefaultContext
         Container container = context.getParent();
-        if( !context.getOverride() ) {
-            if( container instanceof Host ) {
-                ((Host)container).importDefaultContext(context);
+        if (!context.getOverride()) {
+            if (container instanceof Host) {
+                ((Host) container).importDefaultContext(context);
                 container = container.getParent();
             }
-            if( container instanceof Engine ) {
-                ((Engine)container).importDefaultContext(context);
+            if (container instanceof Engine) {
+                ((Engine) container).importDefaultContext(context);
             }
         }
 
@@ -696,10 +697,10 @@ public final class ContextConfig
 
         // Removing application parameters
         ApplicationParameter[] applicationParameters =
-            context.findApplicationParameters();
+                context.findApplicationParameters();
         for (i = 0; i < applicationParameters.length; i++) {
             context.removeApplicationParameter
-                (applicationParameters[i].getName());
+                    (applicationParameters[i].getName());
         }
 
         // Removing security constraints
@@ -840,7 +841,7 @@ public final class ContextConfig
      * Scan for and configure all tag library descriptors found in this
      * web application.
      *
-     * @exception Exception if a fatal input/output or parsing error occurs
+     * @throws Exception if a fatal input/output or parsing error occurs
      */
     private void tldScan() throws Exception {
 
@@ -867,8 +868,7 @@ public final class ContextConfig
      * event listeners that need to be registered.
      *
      * @param resourcePath Resource path of the JAR file to scan
-     *
-     * @exception Exception if an exception occurs while scanning this JAR
+     * @throws Exception if an exception occurs while scanning this JAR
      */
     private void tldScanJar(String resourcePath) throws Exception {
 
@@ -883,12 +883,12 @@ public final class ContextConfig
             URL url = context.getServletContext().getResource(resourcePath);
             if (url == null) {
                 throw new IllegalArgumentException
-                    (sm.getString("contextConfig.tldResourcePath",
-                                  resourcePath));
+                        (sm.getString("contextConfig.tldResourcePath",
+                                resourcePath));
             }
             url = new URL("jar:" + url.toString() + "!/");
             JarURLConnection conn =
-                (JarURLConnection) url.openConnection();
+                    (JarURLConnection) url.openConnection();
             conn.setUseCaches(false);
             jarFile = conn.getJarFile();
             Enumeration entries = jarFile.entries();
@@ -915,12 +915,12 @@ public final class ContextConfig
         } catch (Exception e) {
             if (name == null) {
                 throw new ServletException
-                    (sm.getString("contextConfig.tldJarException",
-                                  resourcePath), e);
+                        (sm.getString("contextConfig.tldJarException",
+                                resourcePath), e);
             } else {
                 throw new ServletException
-                    (sm.getString("contextConfig.tldEntryException",
-                                  name, resourcePath), e);
+                        (sm.getString("contextConfig.tldEntryException",
+                                name, resourcePath), e);
             }
         } finally {
             if (inputStream != null) {
@@ -932,12 +932,12 @@ public final class ContextConfig
                 inputStream = null;
             }
             if (jarFile != null) {
-            // FIXME - Closing the JAR file messes up the class loader???
-            //                try {
-            //                    jarFile.close();
-            //                } catch (Throwable t) {
-            //                    ;
-            //                }
+                // FIXME - Closing the JAR file messes up the class loader???
+                //                try {
+                //                    jarFile.close();
+                //                } catch (Throwable t) {
+                //                    ;
+                //                }
                 jarFile = null;
             }
         }
@@ -952,11 +952,10 @@ public final class ContextConfig
      * method returns.
      *
      * @param resourceStream InputStream containing a tag library descriptor
-     *
-     * @exception Exception if an exception occurs while scanning this TLD
+     * @throws Exception if an exception occurs while scanning this TLD
      */
     private void tldScanStream(InputStream resourceStream)
-        throws Exception {
+            throws Exception {
 
         synchronized (tldDigester) {
             tldDigester.clear();
@@ -972,8 +971,7 @@ public final class ContextConfig
      * any application event listeners found there.
      *
      * @param resourcePath Resource path being scanned
-     *
-     * @exception Exception if an exception occurs while scanning this TLD
+     * @throws Exception if an exception occurs while scanning this TLD
      */
     private void tldScanTld(String resourcePath) throws Exception {
 
@@ -984,19 +982,19 @@ public final class ContextConfig
         InputStream inputStream = null;
         try {
             inputStream =
-                context.getServletContext().getResourceAsStream(resourcePath);
+                    context.getServletContext().getResourceAsStream(resourcePath);
             if (inputStream == null) {
                 throw new IllegalArgumentException
-                    (sm.getString("contextConfig.tldResourcePath",
-                                  resourcePath));
+                        (sm.getString("contextConfig.tldResourcePath",
+                                resourcePath));
             }
             tldScanStream(inputStream);
             inputStream.close();
             inputStream = null;
         } catch (Exception e) {
             throw new ServletException
-                (sm.getString("contextConfig.tldFileException", resourcePath),
-                 e);
+                    (sm.getString("contextConfig.tldFileException", resourcePath),
+                            e);
         } finally {
             if (inputStream != null) {
                 try {
@@ -1018,8 +1016,8 @@ public final class ContextConfig
      * or to a JAR file that may contain tag library descriptors in its
      * <code>META-INF</code> subdirectory.
      *
-     * @exception IOException if an input/output error occurs while
-     *  accumulating the list of resource paths
+     * @throws IOException if an input/output error occurs while
+     *                     accumulating the list of resource paths
      */
     private Set tldScanResourcePaths() throws IOException {
 
@@ -1043,7 +1041,7 @@ public final class ContextConfig
             }
             if (debug >= 3) {
                 log("   Adding path '" + resourcePath +
-                    "' for URI '" + taglibs[i] + "'");
+                        "' for URI '" + taglibs[i] + "'");
             }
             resourcePaths.add(resourcePath);
         }
@@ -1114,7 +1112,7 @@ public final class ContextConfig
             String roles[] = constraints[i].findAuthRoles();
             for (int j = 0; j < roles.length; j++) {
                 if (!"*".equals(roles[j]) &&
-                    !context.findSecurityRole(roles[j])) {
+                        !context.findSecurityRole(roles[j])) {
                     log(sm.getString("contextConfig.role.auth", roles[j]));
                     context.addSecurityRole(roles[j]);
                 }

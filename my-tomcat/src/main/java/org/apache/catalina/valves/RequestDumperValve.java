@@ -71,6 +71,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.Logger;
@@ -94,7 +95,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class RequestDumperValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -104,14 +105,14 @@ public class RequestDumperValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.valves.RequestDumperValve/1.0";
+            "org.apache.catalina.valves.RequestDumperValve/1.0";
 
 
     /**
      * The StringManager for this package.
      */
     protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -134,30 +135,29 @@ public class RequestDumperValve
      * Log the interesting request parameters, invoke the next Valve in the
      * sequence, and log the interesting response parameters.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Skip logging for non-HTTP requests and responses
         if (!(request instanceof HttpRequest) ||
-            !(response instanceof HttpResponse)) {
+                !(response instanceof HttpResponse)) {
             context.invokeNext(request, response);
             return;
         }
         HttpRequest hrequest = (HttpRequest) request;
         HttpResponse hresponse = (HttpResponse) response;
         HttpServletRequest hreq =
-            (HttpServletRequest) hrequest.getRequest();
+                (HttpServletRequest) hrequest.getRequest();
         HttpServletResponse hres =
-            (HttpServletResponse) hresponse.getResponse();
+                (HttpServletResponse) hresponse.getResponse();
 
         // Log pre-service information
         log("REQUEST URI       =" + hreq.getRequestURI());
@@ -170,7 +170,7 @@ public class RequestDumperValve
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++)
                 log("            cookie=" + cookies[i].getName() + "=" +
-                    cookies[i].getValue());
+                        cookies[i].getValue());
         }
         Enumeration hnames = hreq.getHeaderNames();
         while (hnames.hasMoreElements()) {
@@ -221,8 +221,8 @@ public class RequestDumperValve
         Cookie rcookies[] = hresponse.getCookies();
         for (int i = 0; i < rcookies.length; i++) {
             log("            cookie=" + rcookies[i].getName() + "=" +
-                rcookies[i].getValue() + "; domain=" +
-                rcookies[i].getDomain() + "; path=" + rcookies[i].getPath());
+                    rcookies[i].getValue() + "; domain=" +
+                    rcookies[i].getDomain() + "; path=" + rcookies[i].getPath());
         }
         String rhnames[] = hresponse.getHeaderNames();
         for (int i = 0; i < rhnames.length; i++) {
@@ -274,7 +274,7 @@ public class RequestDumperValve
     /**
      * Log a message on the Logger associated with our Container (if any).
      *
-     * @param message Message to be logged
+     * @param message   Message to be logged
      * @param throwable Associated exception
      */
     protected void log(String message, Throwable throwable) {

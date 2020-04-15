@@ -66,6 +66,7 @@ package org.apache.catalina.core;
 
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.Mapper;
@@ -87,7 +88,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public final class StandardContextMapper
-    implements Mapper {
+        implements Mapper {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -109,7 +110,7 @@ public final class StandardContextMapper
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -129,15 +130,14 @@ public final class StandardContextMapper
      * Set the Container with which this Mapper is associated.
      *
      * @param container The newly associated Container
-     *
-     * @exception IllegalArgumentException if this Container is not
-     *  acceptable to this Mapper
+     * @throws IllegalArgumentException if this Container is not
+     *                                  acceptable to this Mapper
      */
     public void setContainer(Container container) {
 
         if (!(container instanceof StandardContext))
             throw new IllegalArgumentException
-                (sm.getString("httpContextMapper.container"));
+                    (sm.getString("httpContextMapper.container"));
         context = (StandardContext) container;
 
     }
@@ -174,10 +174,9 @@ public final class StandardContextMapper
      * identified, return <code>null</code> instead.
      *
      * @param request Request being processed
-     * @param update Update the Request to reflect the mapping selection?
-     *
-     * @exception IllegalArgumentException if the relative portion of the
-     *  path cannot be URL decoded
+     * @param update  Update the Request to reflect the mapping selection?
+     * @throws IllegalArgumentException if the relative portion of the
+     *                                  path cannot be URL decoded
      */
     public Container map(Request request, boolean update) {
 
@@ -190,15 +189,15 @@ public final class StandardContextMapper
 
         // Identify the context-relative URI to be mapped
         String contextPath =
-            ((HttpServletRequest) request.getRequest()).getContextPath();
+                ((HttpServletRequest) request.getRequest()).getContextPath();
         String requestURI = ((HttpRequest) request).getDecodedRequestURI();
         String relativeURI = requestURI.substring(contextPath.length());
 
 
         if (debug >= 1)
             context.log("Mapping contextPath='" + contextPath +
-                        "' with requestURI='" + requestURI +
-                        "' and relativeURI='" + relativeURI + "'");
+                    "' with requestURI='" + requestURI +
+                    "' and relativeURI='" + relativeURI + "'");
 
         // Apply the standard request URI mapping rules from the specification
         Wrapper wrapper = null;
@@ -279,9 +278,9 @@ public final class StandardContextMapper
         // Update the Request (if requested) and return this Wrapper
         if ((debug >= 1) && (wrapper != null))
             context.log(" Mapped to servlet '" + wrapper.getName() +
-                        "' with servlet path '" + servletPath +
-                        "' and path info '" + pathInfo +
-                        "' and update=" + update);
+                    "' with servlet path '" + servletPath +
+                    "' and path info '" + pathInfo +
+                    "' and update=" + update);
         if (update) {
             request.setWrapper(wrapper);
             ((HttpRequest) request).setServletPath(servletPath);

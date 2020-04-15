@@ -31,7 +31,7 @@ public class Problem16 {
     // 全部遍历，时间超时, 且有重复利用数字的嫌疑
     // 前面用过的数字就不再使用了
     private void nSumClosest(List<Integer> list, int left, int count) {
-        if(null == list && count != 0) {
+        if (null == list && count != 0) {
             return;
         }
         if (0 == count) {
@@ -43,7 +43,7 @@ public class Problem16 {
         for (int i = 0; i < list.size(); i++) {
             int n = list.get(i);
             List<Integer> subList = null;
-            if(i + 1 < list.size()) {
+            if (i + 1 < list.size()) {
                 subList = list.subList(i + 1, list.size());
             }
             nSumClosest(subList, left - n, count - 1);
@@ -54,6 +54,6 @@ public class Problem16 {
         Problem16 problem = new Problem16();
         int[] nums = new int[]{-1, 2, 1, -4};
         //System.out.println(2 == problem.threeSumClosest(nums, 1));
-        System.out.println(0 == problem.threeSumClosest(new int[] {0, 0, 0}, 1));
+        System.out.println(0 == problem.threeSumClosest(new int[]{0, 0, 0}, 1));
     }
 }

@@ -1,24 +1,24 @@
 /**
  * 139 Word Break
- *
- *Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
+ * <p>
+ * Given a non-empty string s and a dictionary wordDict containing a list of non-empty words,
  * determine if s can be segmented into a space-separated sequence of one or more dictionary words.
- *
+ * <p>
  * Note:
- *     The same word in the dictionary may be reused multiple times in the segmentation.
- *     You may assume the dictionary does not contain duplicate words.
- *
+ * The same word in the dictionary may be reused multiple times in the segmentation.
+ * You may assume the dictionary does not contain duplicate words.
+ * <p>
  * Example 1:
  * Input: s = "leetcode", wordDict = ["leet", "code"]
  * Output: true
  * Explanation: Return true because "leetcode" can be segmented as "leet code".
- *
+ * <p>
  * Example 2:
  * Input: s = "applepenapple", wordDict = ["apple", "pen"]
  * Output: true
  * Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
- *              Note that you are allowed to reuse a dictionary word.
- *
+ * Note that you are allowed to reuse a dictionary word.
+ * <p>
  * Example 3:
  * Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
  * Output: false
@@ -35,14 +35,14 @@ public class Problem139 {
     }
 
     public boolean wordBreak(String s, int start, List<String> wordDict) {
-        if(start == s.length()) {
+        if (start == s.length()) {
             return true;
         }
         System.out.println("########### " + start);
-        for(String str : wordDict) {
-            if(s.length() - start >= str.length() &&
+        for (String str : wordDict) {
+            if (s.length() - start >= str.length() &&
                     str.equals(s.substring(start, start + str.length()))) {
-                if(wordBreak(s, start + str.length(), wordDict)) {
+                if (wordBreak(s, start + str.length(), wordDict)) {
                     return true;
                 }
             }
@@ -59,11 +59,11 @@ public class Problem139 {
 //        System.out.println(problem.wordBreak("applepenapple", new ArrayList<>(Arrays.asList(dict2))));
 //        String[] dict3 = new String[] {"cats", "dog", "sand", "and", "cat"};
 //        System.out.println(!problem.wordBreak("catsandog", new ArrayList<>(Arrays.asList(dict3))));
-        String[] dict4 = new String[] {"a","aa","aaa","aaaa","aaaaa","aaaaaa",
-                "aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+        String[] dict4 = new String[]{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa",
+                "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"};
         System.out.println(!problem.wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new ArrayList<>(Arrays.asList(dict4))));
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new ArrayList<>(Arrays.asList(dict4))));
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {

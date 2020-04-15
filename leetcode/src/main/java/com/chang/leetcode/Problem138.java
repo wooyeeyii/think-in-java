@@ -28,16 +28,16 @@ public class Problem138 {
     public NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
         Map<NodeWithRandomPointer, NodeWithRandomPointer> nMap = new HashMap<>();
         NodeWithRandomPointer ori = head;
-        while(null != ori) {
+        while (null != ori) {
             NodeWithRandomPointer copy = new NodeWithRandomPointer(ori.val, null, null);
             nMap.put(ori, copy);
             ori = ori.next;
         }
 
         ori = head;
-        while(null != ori) {
+        while (null != ori) {
             nMap.get(ori).next = nMap.get(ori.next);
-            nMap.get(ori).random = (ori.random == null? null : nMap.get(ori.random));
+            nMap.get(ori).random = (ori.random == null ? null : nMap.get(ori.random));
             ori = ori.next;
         }
 
@@ -49,27 +49,27 @@ public class Problem138 {
      */
     public NodeWithRandomPointer copyRandomListUseConstantSpace(NodeWithRandomPointer head) {
         NodeWithRandomPointer ori = head;
-        while(null != ori) {
+        while (null != ori) {
             NodeWithRandomPointer copy = new NodeWithRandomPointer(ori.val, ori.next, null);
             ori.next = copy;
             ori = copy.next;
         }
 
         ori = head;
-        while(ori != null) {
-            if(ori.random != null) {
+        while (ori != null) {
+            if (ori.random != null) {
                 ori.next.random = ori.random.next;
             }
             ori = ori.next.next;
         }
 
         ori = head;
-        NodeWithRandomPointer newHead = (null == ori? null : ori.next);
-        while(ori != null) {
+        NodeWithRandomPointer newHead = (null == ori ? null : ori.next);
+        while (ori != null) {
             NodeWithRandomPointer tmp = ori.next;
             ori.next = tmp.next;
             ori = ori.next;
-            if(null != ori) {
+            if (null != ori) {
                 tmp.next = ori.next;
             }
         }
@@ -86,8 +86,6 @@ public class Problem138 {
         NodeWithRandomPointer res = problem.copyRandomListUseConstantSpace(null);
         System.out.println(res);
     }
-
-
 
 
 }

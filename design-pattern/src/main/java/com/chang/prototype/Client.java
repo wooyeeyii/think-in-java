@@ -1,17 +1,17 @@
 package com.chang.prototype;
 
 public class Client {
-	
-	//持有需要使用的原型接口对象
-	private Prototype prototype;
-	
-	//构造方法，传入需要使用的原型接口对象
-	public Client(Prototype prototype) {
-		this.prototype = prototype;
-	}
-	
-	public void operation(Prototype prototype) {
-		//需要创建原型接口的对象
-		Prototype copyPrototype = (Prototype) prototype.clone();
-	}
+
+    //锟斤拷锟斤拷锟斤拷要使锟矫碉拷原锟酵接口讹拷锟斤拷
+    private Prototype prototype;
+
+    //锟斤拷锟届方锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷要使锟矫碉拷原锟酵接口讹拷锟斤拷
+    public Client(Prototype prototype) {
+        this.prototype = prototype;
+    }
+
+    public void operation(Prototype prototype) {
+        //锟斤拷要锟斤拷锟斤拷原锟酵接口的讹拷锟斤拷
+        Prototype copyPrototype = (Prototype) prototype.clone();
+    }
 }

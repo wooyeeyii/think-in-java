@@ -69,6 +69,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.Request;
@@ -91,7 +92,7 @@ import org.apache.catalina.valves.ValveBase;
  */
 
 final class StandardContextValve
-    extends ValveBase {
+        extends ValveBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -101,14 +102,14 @@ final class StandardContextValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.core.StandardContextValve/1.0";
+            "org.apache.catalina.core.StandardContextValve/1.0";
 
 
     /**
      * The string manager for this package.
      */
     private static final StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     // ------------------------------------------------------------- Properties
@@ -132,20 +133,19 @@ final class StandardContextValve
      * based on the specified request URI.  If no matching Wrapper can
      * be found, return an appropriate HTTP error.
      *
-     * @param request Request to be processed
-     * @param response Response to be produced
+     * @param request      Request to be processed
+     * @param response     Response to be produced
      * @param valveContext Valve context used to forward to the next Valve
-     *
-     * @exception IOException if an input/output error occurred
-     * @exception ServletException if a servlet error occurred
+     * @throws IOException      if an input/output error occurred
+     * @throws ServletException if a servlet error occurred
      */
     public void invoke(Request request, Response response,
                        ValveContext valveContext)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         // Validate the request and response object types
         if (!(request.getRequest() instanceof HttpServletRequest) ||
-            !(response.getResponse() instanceof HttpServletResponse)) {
+                !(response.getResponse() instanceof HttpServletResponse)) {
             return;     // NOTE - Not much else we can do generically
         }
 
@@ -154,11 +154,11 @@ final class StandardContextValve
         String contextPath = hreq.getContextPath();
         String requestURI = ((HttpRequest) request).getDecodedRequestURI();
         String relativeURI =
-            requestURI.substring(contextPath.length()).toUpperCase();
+                requestURI.substring(contextPath.length()).toUpperCase();
         if (relativeURI.equals("/META-INF") ||
-            relativeURI.equals("/WEB-INF") ||
-            relativeURI.startsWith("/META-INF/") ||
-            relativeURI.startsWith("/WEB-INF/")) {
+                relativeURI.equals("/WEB-INF") ||
+                relativeURI.startsWith("/META-INF/") ||
+                relativeURI.startsWith("/WEB-INF/")) {
             notFound(requestURI, (HttpServletResponse) response.getResponse());
             return;
         }
@@ -170,8 +170,8 @@ final class StandardContextValve
         try {
             wrapper = (Wrapper) context.map(request, true);
         } catch (IllegalArgumentException e) {
-            badRequest(requestURI, 
-                       (HttpServletResponse) response.getResponse());
+            badRequest(requestURI,
+                    (HttpServletResponse) response.getResponse());
             return;
         }
         if (wrapper == null) {
@@ -197,7 +197,7 @@ final class StandardContextValve
      * than the context level.
      *
      * @param requestURI The request URI for the requested resource
-     * @param response The response we are creating
+     * @param response   The response we are creating
      */
     private void badRequest(String requestURI, HttpServletResponse response) {
 
@@ -218,7 +218,7 @@ final class StandardContextValve
      * than the context level.
      *
      * @param requestURI The request URI for the requested resource
-     * @param response The response we are creating
+     * @param response   The response we are creating
      */
     private void notFound(String requestURI, HttpServletResponse response) {
 

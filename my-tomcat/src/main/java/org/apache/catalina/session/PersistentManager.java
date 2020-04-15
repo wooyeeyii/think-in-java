@@ -71,12 +71,12 @@ package org.apache.catalina.session;
  *
  * <li>Persist sessions across restarts of the Container</li>
  * <li>Fault tolerance, keep sessions backed up on disk to allow
- *     recovery in the event of unplanned restarts.</li>
+ * recovery in the event of unplanned restarts.</li>
  * <li>Limit the number of active sessions kept in memory by
- *     swapping less active sessions out to disk.</li>
+ * swapping less active sessions out to disk.</li>
  *
- * @version $Revision: 1.10 $
  * @author Kief Morris (kief@kief.com)
+ * @version $Revision: 1.10 $
  */
 
 public final class PersistentManager extends PersistentManagerBase {
@@ -119,5 +119,5 @@ public final class PersistentManager extends PersistentManagerBase {
         return (name);
 
     }
- }
+}
 

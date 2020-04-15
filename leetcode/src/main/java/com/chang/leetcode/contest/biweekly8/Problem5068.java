@@ -31,7 +31,7 @@ public class Problem5068 {
                 List<IdxString> follows = map.get(idxString.last);
                 if (null != follows) {
                     follows.forEach(f -> {
-                        if(f.idx != idxString.idx) {
+                        if (f.idx != idxString.idx) {
                             set.add(idxString.sOri + f.follow);
                         }
                     });

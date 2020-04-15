@@ -23,12 +23,12 @@ public class Problem343 {
     public int integerBreak2(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 0;
-        for(int i = 1; i <=n; i++) {
+        for (int i = 1; i <= n; i++) {
             int max = i - 1;
-            for(int j = 2 ; j <= i / 2; j++) {
+            for (int j = 2; j <= i / 2; j++) {
                 int a = Math.max(j, dp[i]);
                 int b = Math.max((i - j), dp[i - j]);
-                if(a * b > max) {
+                if (a * b > max) {
                     max = a * b;
                 }
             }
@@ -45,14 +45,14 @@ public class Problem343 {
     }
 
     public int integerBreak(int n) {
-        if(n==2) return 1;
-        if(n==3) return 2;
+        if (n == 2) return 1;
+        if (n == 3) return 2;
         int product = 1;
-        while(n>4){
-            product*=3;
-            n-=3;
+        while (n > 4) {
+            product *= 3;
+            n -= 3;
         }
-        product*=n;
+        product *= n;
 
         return product;
     }

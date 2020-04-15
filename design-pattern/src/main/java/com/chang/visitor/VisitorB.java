@@ -8,6 +8,7 @@ public class VisitorB implements Visitor {
     public void visit(NodeA node) {
         System.out.println(node.operationA());
     }
+
     /**
      * 对应于NodeB的访问操作
      */

@@ -1,12 +1,12 @@
 /**
  * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
- *
+ * <p>
  * If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
- *
+ * <p>
  * The replacement must be in-place and use only constant extra memory.
- *
+ * <p>
  * Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
- *
+ * <p>
  * 1,2,3 → 1,3,2
  * 3,2,1 → 1,2,3
  * 1,1,5 → 1,5,1
@@ -19,16 +19,16 @@ public class Problem31 {
         int length = nums.length;
         int index = length - 1;
         boolean flag = false;
-        for(int i = length - 1; i > 0; i--) {
-            if(nums[i - 1] < nums[i]) {
+        for (int i = length - 1; i > 0; i--) {
+            if (nums[i - 1] < nums[i]) {
                 flag = true;
                 index = i;
                 break;
             }
         }
-        if(flag) {
+        if (flag) {
             int start = index;
-            while(index + 1 < length && nums[start - 1] < nums[index + 1]) {
+            while (index + 1 < length && nums[start - 1] < nums[index + 1]) {
                 index++;
             }
             swap(nums, start - 1, index);
@@ -45,7 +45,7 @@ public class Problem31 {
     }
 
     private void reverse(int[] nums, int m, int n) {
-        while(m < n) {
+        while (m < n) {
             swap(nums, m, n);
             m++;
             n--;

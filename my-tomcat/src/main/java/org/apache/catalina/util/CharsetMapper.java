@@ -72,7 +72,6 @@ import java.util.Locale;
 import java.util.Properties;
 
 
-
 /**
  * Utility class that attempts to map from a Locale to the corresponding
  * character set to be used for interpreting input text (or generating
@@ -95,7 +94,7 @@ public class CharsetMapper {
      * Default properties resource name.
      */
     public static final String DEFAULT_RESOURCE =
-      "/org/apache/catalina/util/CharsetMapperDefault.properties";
+            "/org/apache/catalina/util/CharsetMapperDefault.properties";
 
 
     // ---------------------------------------------------------- Constructors
@@ -115,15 +114,14 @@ public class CharsetMapper {
      * Construct a new CharsetMapper using the specified properties resource.
      *
      * @param name Name of a properties resource to be loaded
-     *
-     * @exception IllegalArgumentException if the specified properties
-     *  resource could not be loaded for any reason.
+     * @throws IllegalArgumentException if the specified properties
+     *                                  resource could not be loaded for any reason.
      */
     public CharsetMapper(String name) {
 
         try {
             InputStream stream =
-              this.getClass().getResourceAsStream(name);
+                    this.getClass().getResourceAsStream(name);
             map.load(stream);
             stream.close();
         } catch (Throwable t) {
@@ -142,8 +140,6 @@ public class CharsetMapper {
      * default properties resource.
      */
     private Properties map = new Properties();
-
-
 
 
     // ------------------------------------------------------- Public Methods

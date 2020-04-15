@@ -67,6 +67,7 @@ package org.apache.catalina.session;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
@@ -86,7 +87,7 @@ import org.apache.catalina.util.StringManager;
  */
 
 public abstract class StoreBase
-    implements Lifecycle, Runnable, Store {
+        implements Lifecycle, Runnable, Store {
 
     // ----------------------------------------------------- Instance Variables
 
@@ -156,21 +157,21 @@ public abstract class StoreBase
      * Return the info for this Store.
      */
     public String getInfo() {
-        return(info);
+        return (info);
     }
 
     /**
      * Return the thread name for this Store.
      */
     public String getThreadName() {
-        return(threadName);
+        return (threadName);
     }
 
     /**
      * Return the name for this Store, used for logging.
      */
     public String getStoreName() {
-        return(storeName);
+        return (storeName);
     }
 
     /**
@@ -186,7 +187,7 @@ public abstract class StoreBase
      * Return the debugging detail level for this Store.
      */
     public int getDebug() {
-        return(this.debug);
+        return (this.debug);
     }
 
 
@@ -199,15 +200,15 @@ public abstract class StoreBase
         int oldCheckInterval = this.checkInterval;
         this.checkInterval = checkInterval;
         support.firePropertyChange("checkInterval",
-                                   new Integer(oldCheckInterval),
-                                   new Integer(this.checkInterval));
+                new Integer(oldCheckInterval),
+                new Integer(this.checkInterval));
     }
 
     /**
      * Return the check interval (in seconds) for this Store.
      */
     public int getCheckInterval() {
-        return(this.checkInterval);
+        return (this.checkInterval);
     }
 
     /**
@@ -225,7 +226,7 @@ public abstract class StoreBase
      * Return the Manager with which the Store is associated.
      */
     public Manager getManager() {
-        return(this.manager);
+        return (this.manager);
     }
 
     // --------------------------------------------------------- Public Methods
@@ -241,7 +242,7 @@ public abstract class StoreBase
 
 
     /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
+     * Get the lifecycle listeners associated with this lifecycle. If this
      * Lifecycle has no listeners registered, a zero-length array is returned.
      */
     public LifecycleListener[] findLifecycleListeners() {
@@ -284,19 +285,18 @@ public abstract class StoreBase
      * Called by our background reaper thread to check if Sessions
      * saved in our store are subject of being expired. If so expire
      * the Session and remove it from the Store.
-     *
      */
     protected void processExpires() {
         long timeNow = System.currentTimeMillis();
         String[] keys = null;
 
-        if(!started)
+        if (!started)
             return;
 
         try {
             keys = keys();
         } catch (IOException e) {
-            log (e.toString());
+            log(e.toString());
             e.printStackTrace();
             return;
         }
@@ -310,9 +310,9 @@ public abstract class StoreBase
                 if (maxInactiveInterval < 0)
                     continue;
                 int timeIdle = // Truncate, do not round up
-                    (int) ((timeNow - session.getLastAccessedTime()) / 1000L);
+                        (int) ((timeNow - session.getLastAccessedTime()) / 1000L);
                 if (timeIdle >= maxInactiveInterval) {
-                    if ( ( (PersistentManagerBase) manager).isLoaded( keys[i] )) {
+                    if (((PersistentManagerBase) manager).isLoaded(keys[i])) {
                         // recycle old backup session
                         session.recycle();
                     } else {
@@ -322,10 +322,10 @@ public abstract class StoreBase
                     remove(session.getId());
                 }
             } catch (IOException e) {
-                log (e.toString());
+                log(e.toString());
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                log (e.toString());
+                log(e.toString());
                 e.printStackTrace();
             }
         }
@@ -344,14 +344,14 @@ public abstract class StoreBase
             logger = container.getLogger();
 
         if (logger != null) {
-            logger.log(getStoreName()+"[" + container.getName() + "]: "
-                       + message);
+            logger.log(getStoreName() + "[" + container.getName() + "]: "
+                    + message);
         } else {
             String containerName = null;
             if (container != null)
                 containerName = container.getName();
-            System.out.println(getStoreName()+"[" + containerName
-                               + "]: " + message);
+            System.out.println(getStoreName() + "[" + containerName
+                    + "]: " + message);
         }
     }
 
@@ -373,14 +373,14 @@ public abstract class StoreBase
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString(getStoreName()+".alreadyStarted"));
+                    (sm.getString(getStoreName() + ".alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
 
@@ -393,14 +393,14 @@ public abstract class StoreBase
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString(getStoreName()+".notStarted"));
+                    (sm.getString(getStoreName() + ".notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 

@@ -45,10 +45,10 @@ public class Problem29 {
         }
         return flag? (int)result : -(int)result;*/
 
-        result = flag? result : -result;
+        result = flag ? result : -result;
         if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
             result = Integer.MAX_VALUE;
         }
-        return (int)result;
+        return (int) result;
     }
 }

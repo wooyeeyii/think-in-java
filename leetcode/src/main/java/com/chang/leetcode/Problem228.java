@@ -54,7 +54,7 @@ public class Problem228 {
         System.out.println(ArrayToStringUtil.oneDimension(problem.summaryRanges(nums1)));
         System.out.println("#######################");
 
-        int[] nums2 = new int[]{0,2,3,4,6,8,9};
+        int[] nums2 = new int[]{0, 2, 3, 4, 6, 8, 9};
         System.out.println(ArrayToStringUtil.oneDimension(problem.summaryRanges(nums2)));
         System.out.println("#######################");
     }

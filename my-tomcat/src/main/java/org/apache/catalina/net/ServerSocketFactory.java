@@ -94,22 +94,21 @@ public interface ServerSocketFactory {
      * given to this factory.
      *
      * @param port the port to listen to
-     *
-     * @exception IOException                input/output or network error
-     * @exception KeyStoreException          error instantiating the
-     *                                       KeyStore from file (SSL only)
-     * @exception NoSuchAlgorithmException   KeyStore algorithm unsupported
-     *                                       by current provider (SSL only)
-     * @exception CertificateException       general certificate error (SSL only)
-     * @exception UnrecoverableKeyException  internal KeyStore problem with
-     *                                       the certificate (SSL only)
-     * @exception KeyManagementException     problem in the key management
-     *                                       layer (SSL only)
+     * @throws IOException               input/output or network error
+     * @throws KeyStoreException         error instantiating the
+     *                                   KeyStore from file (SSL only)
+     * @throws NoSuchAlgorithmException  KeyStore algorithm unsupported
+     *                                   by current provider (SSL only)
+     * @throws CertificateException      general certificate error (SSL only)
+     * @throws UnrecoverableKeyException internal KeyStore problem with
+     *                                   the certificate (SSL only)
+     * @throws KeyManagementException    problem in the key management
+     *                                   layer (SSL only)
      */
-    public ServerSocket createSocket (int port)
-    throws IOException, KeyStoreException, NoSuchAlgorithmException,
-           CertificateException, UnrecoverableKeyException,
-           KeyManagementException;
+    public ServerSocket createSocket(int port)
+            throws IOException, KeyStoreException, NoSuchAlgorithmException,
+            CertificateException, UnrecoverableKeyException,
+            KeyManagementException;
 
 
     /**
@@ -118,24 +117,23 @@ public interface ServerSocketFactory {
      * specified connection backlog.  The socket is configured with
      * the socket options (such as accept timeout) given to this factory.
      *
-     * @param port the port to listen to
+     * @param port    the port to listen to
      * @param backlog how many connections are queued
-     *
-     * @exception IOException                input/output or network error
-     * @exception KeyStoreException          error instantiating the
-     *                                       KeyStore from file (SSL only)
-     * @exception NoSuchAlgorithmException   KeyStore algorithm unsupported
-     *                                       by current provider (SSL only)
-     * @exception CertificateException       general certificate error (SSL only)
-     * @exception UnrecoverableKeyException  internal KeyStore problem with
-     *                                       the certificate (SSL only)
-     * @exception KeyManagementException     problem in the key management
-     *                                       layer (SSL only)
+     * @throws IOException               input/output or network error
+     * @throws KeyStoreException         error instantiating the
+     *                                   KeyStore from file (SSL only)
+     * @throws NoSuchAlgorithmException  KeyStore algorithm unsupported
+     *                                   by current provider (SSL only)
+     * @throws CertificateException      general certificate error (SSL only)
+     * @throws UnrecoverableKeyException internal KeyStore problem with
+     *                                   the certificate (SSL only)
+     * @throws KeyManagementException    problem in the key management
+     *                                   layer (SSL only)
      */
-    public ServerSocket createSocket (int port, int backlog)
-    throws IOException, KeyStoreException, NoSuchAlgorithmException,
-           CertificateException, UnrecoverableKeyException,
-           KeyManagementException;
+    public ServerSocket createSocket(int port, int backlog)
+            throws IOException, KeyStoreException, NoSuchAlgorithmException,
+            CertificateException, UnrecoverableKeyException,
+            KeyManagementException;
 
 
     /**
@@ -144,26 +142,25 @@ public interface ServerSocketFactory {
      * and uses the specified connection backlog.  The socket is configured
      * with the socket options (such as accept timeout) given to this factory.
      *
-     * @param port the port to listen to
-     * @param backlog how many connections are queued
+     * @param port      the port to listen to
+     * @param backlog   how many connections are queued
      * @param ifAddress the network interface address to use
-     *
-     * @exception IOException                input/output or network error
-     * @exception KeyStoreException          error instantiating the
-     *                                       KeyStore from file (SSL only)
-     * @exception NoSuchAlgorithmException   KeyStore algorithm unsupported
-     *                                       by current provider (SSL only)
-     * @exception CertificateException       general certificate error (SSL only)
-     * @exception UnrecoverableKeyException  internal KeyStore problem with
-     *                                       the certificate (SSL only)
-     * @exception KeyManagementException     problem in the key management
-     *                                       layer (SSL only)
+     * @throws IOException               input/output or network error
+     * @throws KeyStoreException         error instantiating the
+     *                                   KeyStore from file (SSL only)
+     * @throws NoSuchAlgorithmException  KeyStore algorithm unsupported
+     *                                   by current provider (SSL only)
+     * @throws CertificateException      general certificate error (SSL only)
+     * @throws UnrecoverableKeyException internal KeyStore problem with
+     *                                   the certificate (SSL only)
+     * @throws KeyManagementException    problem in the key management
+     *                                   layer (SSL only)
      */
-    public ServerSocket createSocket (int port, int backlog,
-                                      InetAddress ifAddress)
-    throws IOException, KeyStoreException, NoSuchAlgorithmException,
-           CertificateException, UnrecoverableKeyException,
-           KeyManagementException;
+    public ServerSocket createSocket(int port, int backlog,
+                                     InetAddress ifAddress)
+            throws IOException, KeyStoreException, NoSuchAlgorithmException,
+            CertificateException, UnrecoverableKeyException,
+            KeyManagementException;
 
 
 }

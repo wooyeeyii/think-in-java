@@ -1,17 +1,17 @@
 /**
  * 589. N-ary Tree Preorder Traversal
- *
- *  Given an n-ary tree, return the preorder traversal of its nodes' values.
+ * <p>
+ * Given an n-ary tree, return the preorder traversal of its nodes' values.
  * For example, given a 3-ary tree:
- *      1
- *    / | \
- *   3  2  4
- *  /\
+ * 1
+ * / | \
+ * 3  2  4
+ * /\
  * 5 6
  * Return its preorder traversal as: [1,3,5,6,2,4].
- *
+ * <p>
  * Note:
- *
+ * <p>
  * Recursive solution is trivial, could you do it iteratively?
  */
 package com.chang.leetcode.tree;
@@ -24,7 +24,7 @@ public class Problem590 {
     public List<Integer> postorderRec(Node root) {
         List<Integer> result = new ArrayList<>();
 
-        if(null == root) {
+        if (null == root) {
             return result;
         }
 
@@ -39,21 +39,21 @@ public class Problem590 {
     // iteratively
     public List<Integer> postorder(Node root) {
         List<Integer> result = new ArrayList<>();
-        if(null == root) {
+        if (null == root) {
             return result;
         }
 
         Stack<Node> stack = new Stack<>();
         stack.push(root);
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             Node node = stack.pop();
-            if(null == node.children || 0 == node.children.size()) {
+            if (null == node.children || 0 == node.children.size()) {
                 result.add(node.val);
             } else {
                 List<Node> children = node.children;
                 node.children = null;
                 stack.push(node);
-                for(int i = children.size() - 1; i >= 0; i--) {
+                for (int i = children.size() - 1; i >= 0; i--) {
                     stack.push(children.get(i));
                 }
             }
@@ -86,11 +86,14 @@ public class Problem590 {
         public int val;
         public List<Node> children;
 
-        public Node() {}
+        public Node() {
+        }
 
-        public Node(int _val,List<Node> _children) {
+        public Node(int _val, List<Node> _children) {
             val = _val;
             children = _children;
         }
-    };
+    }
+
+    ;
 }

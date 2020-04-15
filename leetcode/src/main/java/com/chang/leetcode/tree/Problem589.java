@@ -1,17 +1,17 @@
 /**
  * 589. N-ary Tree Preorder Traversal
- *
- *  Given an n-ary tree, return the preorder traversal of its nodes' values.
+ * <p>
+ * Given an n-ary tree, return the preorder traversal of its nodes' values.
  * For example, given a 3-ary tree:
- *      1
- *    / | \
- *   3  2  4
- *  /\
+ * 1
+ * / | \
+ * 3  2  4
+ * /\
  * 5 6
  * Return its preorder traversal as: [1,3,5,6,2,4].
- *
+ * <p>
  * Note:
- *
+ * <p>
  * Recursive solution is trivial, could you do it iteratively?
  */
 package com.chang.leetcode.tree;
@@ -27,7 +27,7 @@ public class Problem589 {
     public List<Integer> preorderRec(Node root) {
         List<Integer> result = new ArrayList<>();
 
-        if(null == root) {
+        if (null == root) {
             return result;
         }
 
@@ -42,16 +42,16 @@ public class Problem589 {
     // iteratively
     public List<Integer> preorder(Node root) {
         List<Integer> result = new ArrayList<>();
-        if(null == root) {
+        if (null == root) {
             return result;
         }
 
         Deque<Node> deque = new LinkedList<>();
         deque.addFirst(root);
-        while(!deque.isEmpty()) {
+        while (!deque.isEmpty()) {
             Node node = deque.pollFirst();
             result.add(node.val);
-            for(int i = node.children.size() - 1; i >= 0; i--) {
+            for (int i = node.children.size() - 1; i >= 0; i--) {
                 deque.addFirst(node.children.get(i));
             }
         }
@@ -63,11 +63,14 @@ public class Problem589 {
         public int val;
         public List<Node> children;
 
-        public Node() {}
+        public Node() {
+        }
 
-        public Node(int _val,List<Node> _children) {
+        public Node(int _val, List<Node> _children) {
             val = _val;
             children = _children;
         }
-    };
+    }
+
+    ;
 }

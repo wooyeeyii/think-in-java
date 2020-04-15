@@ -1,14 +1,14 @@
 package com.chang.command;
 
 public class Invoker {
-	//³ÖÓÐÃüÁî¶ÔÏó
-	private Command command = null;
-	
-	public Invoker(Command command) {
-		this.command = command;
-	}
-	
-	public void action() {
-		command.execute();
-	}
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Command command = null;
+
+    public Invoker(Command command) {
+        this.command = command;
+    }
+
+    public void action() {
+        command.execute();
+    }
 }

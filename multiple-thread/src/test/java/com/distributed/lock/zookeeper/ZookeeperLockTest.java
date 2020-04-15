@@ -32,7 +32,7 @@ public class ZookeeperLockTest {
                     if (lock != null) {
                         lock.unlock();
                     }
-                    if(curatorLock != null) {
+                    if (curatorLock != null) {
                         curatorLock.releaseLock();
                     }
                 }

@@ -3,45 +3,45 @@ package com.chang.prototype.example.sage;
 import java.io.IOException;
 
 /**
- * Ç³¿ËÂ¡ºÍÉî¿ËÂ¡
- * @author junjie.chang
+ * Ç³ï¿½ï¿½Â¡ï¿½ï¿½ï¿½ï¿½ï¿½Â¡
  *
+ * @author junjie.chang
  */
 public class TheGreatestSage {
-	
-	private Monkey monkey = new Monkey();
-	
-	public void change() {
-		//¿ËÂ¡´óÊ¥±¾×ð
-        Monkey copyMonkey = (Monkey)monkey.clone();
-        System.out.println("´óÊ¥±¾×ðµÄÉúÈÕÊÇ£º" + monkey.getBirthDate());
-        System.out.println("¿ËÂ¡µÄ´óÊ¥µÄÉúÈÕÊÇ£º" + copyMonkey.getBirthDate());
-        System.out.println("´óÊ¥±¾×ð¸ú¿ËÂ¡µÄ´óÊ¥ÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó " + (monkey == copyMonkey));
-        System.out.println("´óÊ¥±¾×ðµÄÉúÈÕ¶ÔÏó ¸ú ¿ËÂ¡µÄ´óÊ¥µÄÉúÈÕ¶ÔÏóÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó" + (monkey.getBirthDate() == copyMonkey.getBirthDate()));
-        System.out.println("´óÊ¥±¾×ð³ÖÓÐµÄ½ð¹¿°ô ¸ú ¿ËÂ¡µÄ´óÊ¥³ÖÓÐµÄ½ð¹¿°ôÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó£¿ " + (monkey.getStaff() == copyMonkey.getStaff()));
+
+    private Monkey monkey = new Monkey();
+
+    public void change() {
+        //ï¿½ï¿½Â¡ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½
+        Monkey copyMonkey = (Monkey) monkey.clone();
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + monkey.getBirthDate());
+        System.out.println("ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + copyMonkey.getBirthDate());
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + (monkey == copyMonkey));
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + (monkey.getBirthDate() == copyMonkey.getBirthDate()));
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ½ð¹¿°ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ÐµÄ½ð¹¿°ï¿½ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + (monkey.getStaff() == copyMonkey.getStaff()));
     }
-	
-	public void deepChange() {
-		Monkey copyMonkey = null;
-		try {
-			copyMonkey = (Monkey)monkey.deepClone();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println("´óÊ¥±¾×ðµÄÉúÈÕÊÇ£º" + monkey.getBirthDate());
-        System.out.println("¿ËÂ¡µÄ´óÊ¥µÄÉúÈÕÊÇ£º" + copyMonkey.getBirthDate());
-        System.out.println("´óÊ¥±¾×ð¸ú¿ËÂ¡µÄ´óÊ¥ÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó " + (monkey == copyMonkey));
-        System.out.println("´óÊ¥±¾×ðµÄÉúÈÕ¶ÔÏó ¸ú ¿ËÂ¡µÄ´óÊ¥µÄÉúÈÕ¶ÔÏóÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó" + (monkey.getBirthDate() == copyMonkey.getBirthDate()));
-        System.out.println("´óÊ¥±¾×ð³ÖÓÐµÄ½ð¹¿°ô ¸ú ¿ËÂ¡µÄ´óÊ¥³ÖÓÐµÄ½ð¹¿°ôÊÇ·ñÎªÍ¬Ò»¸ö¶ÔÏó£¿ " + (monkey.getStaff() == copyMonkey.getStaff()));
-	}
-	
-    
-    public static void main(String[]args){
+
+    public void deepChange() {
+        Monkey copyMonkey = null;
+        try {
+            copyMonkey = (Monkey) monkey.deepClone();
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + monkey.getBirthDate());
+        System.out.println("ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + copyMonkey.getBirthDate());
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + (monkey == copyMonkey));
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + (monkey.getBirthDate() == copyMonkey.getBirthDate()));
+        System.out.println("ï¿½ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ½ð¹¿°ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¡ï¿½Ä´ï¿½Ê¥ï¿½ï¿½ï¿½ÐµÄ½ð¹¿°ï¿½ï¿½Ç·ï¿½ÎªÍ¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + (monkey.getStaff() == copyMonkey.getStaff()));
+    }
+
+
+    public static void main(String[] args) {
         TheGreatestSage sage = new TheGreatestSage();
-        System.out.println("-----------------Ç³¿ËÂ¡-------------------");
+        System.out.println("-----------------Ç³ï¿½ï¿½Â¡-------------------");
         sage.change();
-        System.out.println("-----------------Éî¿ËÂ¡-------------------");
+        System.out.println("-----------------ï¿½ï¿½ï¿½Â¡-------------------");
         sage.deepChange();
     }
 }

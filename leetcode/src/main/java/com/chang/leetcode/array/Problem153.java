@@ -45,7 +45,7 @@ public class Problem153 {
         Problem153 problem = new Problem153();
         int[] array1 = new int[]{3, 4, 5, 1, 2};
         int[] array2 = new int[]{4, 5, 6, 7, 0, 1, 2};
-        int[] array3 = new int[] {0};
+        int[] array3 = new int[]{0};
         System.out.println(problem.findMin(array1));
         System.out.println(problem.findMin(array2));
         System.out.println(problem.findMin(array3));

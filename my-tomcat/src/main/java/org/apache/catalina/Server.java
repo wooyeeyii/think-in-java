@@ -113,11 +113,11 @@ public interface Server {
 
     /**
      * Set the global naming resources.
-     * 
+     *
      * @param namingResources The new global naming resources
      */
     public void setGlobalNamingResources
-        (NamingResources globalNamingResources);
+    (NamingResources globalNamingResources);
 
 
     /**
@@ -192,8 +192,8 @@ public interface Server {
      * Invoke a pre-startup initialization. This is used to allow connectors
      * to bind to restricted ports under Unix operating environments.
      *
-     * @exception LifecycleException If this server was already initialized.
+     * @throws LifecycleException If this server was already initialized.
      */
     public void initialize()
-    throws LifecycleException;
+            throws LifecycleException;
 }

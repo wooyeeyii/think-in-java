@@ -39,12 +39,12 @@ public class Problem2 {
         }
 
         ListNode leftNode = null;
-        if(null == l1 && null != l2) {
+        if (null == l1 && null != l2) {
             leftNode = l2;
-        } else if(null != l1 && null == l2) {
+        } else if (null != l1 && null == l2) {
             leftNode = l1;
         }
-        while(null != leftNode) {
+        while (null != leftNode) {
             ListNode node = new ListNode((leftNode.val + highBit) % 10);
             node.next = null;
             highBit = (leftNode.val + highBit) / 10;
@@ -52,7 +52,7 @@ public class Problem2 {
             tmp = node;
             leftNode = leftNode.next;
         }
-        if(0 != highBit) {
+        if (0 != highBit) {
             ListNode node = new ListNode(highBit);
             node.next = null;
             tmp.next = node;

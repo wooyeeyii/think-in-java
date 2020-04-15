@@ -101,9 +101,8 @@ public final class URL implements Serializable {
      * Create a URL object from the specified String representation.
      *
      * @param spec String representation of the URL
-     *
-     * @exception MalformedURLException if the string representation
-     *  cannot be parsed successfully
+     * @throws MalformedURLException if the string representation
+     *                               cannot be parsed successfully
      */
     public URL(String spec) throws MalformedURLException {
 
@@ -118,11 +117,10 @@ public final class URL implements Serializable {
      * <code>java.net.URL</code>.
      *
      * @param context URL against which the relative representation
-     *  is resolved
-     * @param spec String representation of the URL (usually relative)
-     *
-     * @exception MalformedURLException if the string representation
-     *  cannot be parsed successfully
+     *                is resolved
+     * @param spec    String representation of the URL (usually relative)
+     * @throws MalformedURLException if the string representation
+     *                               cannot be parsed successfully
      */
     public URL(URL context, String spec) throws MalformedURLException {
 
@@ -155,7 +153,7 @@ public final class URL implements Serializable {
 
             // Parse out the new protocol
             for (i = start; !aRef && (i < limit) &&
-                     ((c = spec.charAt(i)) != '/'); i++) {
+                    ((c = spec.charAt(i)) != '/'); i++) {
                 if (c == ':') {
                     String s = spec.substring(start, i).toLowerCase();
                     // Assume all protocols are valid
@@ -168,13 +166,13 @@ public final class URL implements Serializable {
             // Only use our context if the protocols match
             protocol = newProtocol;
             if ((context != null) && ((newProtocol == null) ||
-                 newProtocol.equalsIgnoreCase(context.getProtocol()))) {
+                    newProtocol.equalsIgnoreCase(context.getProtocol()))) {
                 // If the context is a hierarchical URL scheme and the spec
                 // contains a matching scheme then maintain backwards
                 // compatibility and treat it as if the spec didn't contain
                 // the scheme; see 5.2.3 of RFC2396
                 if ((context.getPath() != null) &&
-                    (context.getPath().startsWith("/")))
+                        (context.getPath().startsWith("/")))
                     newProtocol = null;
                 if (newProtocol == null) {
                     protocol = context.getProtocol();
@@ -216,22 +214,18 @@ public final class URL implements Serializable {
     }
 
 
-
-
-
     /**
      * Create a URL object from the specified components.  The default port
      * number for the specified protocol will be used.
      *
      * @param protocol Name of the protocol to use
-     * @param host Name of the host addressed by this protocol
-     * @param file Filename on the specified host
-     *
-     * @exception MalformedURLException is never thrown, but present for
-     *  compatible APIs
+     * @param host     Name of the host addressed by this protocol
+     * @param file     Filename on the specified host
+     * @throws MalformedURLException is never thrown, but present for
+     *                               compatible APIs
      */
     public URL(String protocol, String host, String file)
-        throws MalformedURLException {
+            throws MalformedURLException {
 
         this(protocol, host, -1, file);
 
@@ -245,15 +239,14 @@ public final class URL implements Serializable {
      * <code>java.net.URL</code>.
      *
      * @param protocol Name of the protocol to use
-     * @param host Name of the host addressed by this protocol
-     * @param port Port number, or -1 for the default port for this protocol
-     * @param file Filename on the specified host
-     *
-     * @exception MalformedURLException is never thrown, but present for
-     *  compatible APIs
+     * @param host     Name of the host addressed by this protocol
+     * @param port     Port number, or -1 for the default port for this protocol
+     * @param file     Filename on the specified host
+     * @throws MalformedURLException is never thrown, but present for
+     *                               compatible APIs
      */
     public URL(String protocol, String host, int port, String file)
-        throws MalformedURLException {
+            throws MalformedURLException {
 
         this.protocol = protocol;
         this.host = host;
@@ -464,8 +457,8 @@ public final class URL implements Serializable {
      * of <code>java.net.URL</code>, but is provided as a value added
      * service of this implementation.
      *
-     * @exception MalformedURLException if a normalization error occurs,
-     *  such as trying to move about the hierarchical root
+     * @throws MalformedURLException if a normalization error occurs,
+     *                               such as trying to move about the hierarchical root
      */
     public void normalize() throws MalformedURLException {
 
@@ -501,7 +494,7 @@ public final class URL implements Serializable {
             if (index < 0)
                 break;
             normalized = normalized.substring(0, index) +
-                normalized.substring(index + 1);
+                    normalized.substring(index + 1);
         }
 
         // Resolve occurrences of "/./" in the normalized path
@@ -510,7 +503,7 @@ public final class URL implements Serializable {
             if (index < 0)
                 break;
             normalized = normalized.substring(0, index) +
-                normalized.substring(index + 2);
+                    normalized.substring(index + 2);
         }
 
         // Resolve occurrences of "/../" in the normalized path
@@ -520,10 +513,10 @@ public final class URL implements Serializable {
                 break;
             if (index == 0)
                 throw new MalformedURLException
-                    ("Invalid relative URL reference");
+                        ("Invalid relative URL reference");
             int index2 = normalized.lastIndexOf('/', index - 1);
             normalized = normalized.substring(0, index2) +
-                normalized.substring(index + 3);
+                    normalized.substring(index + 3);
         }
 
         // Resolve occurrences of "/." at the end of the normalized path
@@ -536,7 +529,7 @@ public final class URL implements Serializable {
             int index2 = normalized.lastIndexOf('/', index - 1);
             if (index2 < 0)
                 throw new MalformedURLException
-                    ("Invalid relative URL reference");
+                        ("Invalid relative URL reference");
             normalized = normalized.substring(0, index2 + 1);
         }
 
@@ -638,7 +631,7 @@ public final class URL implements Serializable {
      * Compare to String values for equality, taking appropriate care if one
      * or both of the values are <code>null</code>.
      *
-     * @param first First string
+     * @param first  First string
      * @param second Second string
      */
     private boolean compare(String first, String second) {
@@ -667,16 +660,15 @@ public final class URL implements Serializable {
      * unit tests are implemented to guarantee correct behavior with no
      * regressions.</p>
      *
-     * @param spec String representation being parsed
+     * @param spec  String representation being parsed
      * @param start Starting offset, which will be just after the ':' (if
-     *  there is one) that determined the protocol name
+     *              there is one) that determined the protocol name
      * @param limit Ending position, which will be the position of the '#'
-     *  (if there is one) that delimited the anchor
-     *
-     * @exception MalformedURLException if a parsing error occurs
+     *              (if there is one) that delimited the anchor
+     * @throws MalformedURLException if a parsing error occurs
      */
     private void parse(String spec, int start, int limit)
-        throws MalformedURLException {
+            throws MalformedURLException {
 
         // Trim the query string (if any) off the tail end
         int question = spec.lastIndexOf('?', limit - 1);
@@ -699,20 +691,20 @@ public final class URL implements Serializable {
             }
             if (authority.length() > 0) {
                 int at = authority.indexOf('@');
-                if( at >= 0 ) {
-                    userInfo = authority.substring(0,at);
+                if (at >= 0) {
+                    userInfo = authority.substring(0, at);
                 }
-                int colon = authority.indexOf(':',at+1);
+                int colon = authority.indexOf(':', at + 1);
                 if (colon >= 0) {
                     try {
                         port =
-                            Integer.parseInt(authority.substring(colon + 1));
+                                Integer.parseInt(authority.substring(colon + 1));
                     } catch (NumberFormatException e) {
                         throw new MalformedURLException(e.toString());
                     }
-                    host = authority.substring(at+1, colon);
+                    host = authority.substring(at + 1, colon);
                 } else {
-                    host = authority.substring(at+1);
+                    host = authority.substring(at + 1);
                     port = -1;
                 }
             }
@@ -738,7 +730,7 @@ public final class URL implements Serializable {
         }
         if (!path.startsWith("/"))
             throw new MalformedURLException
-                ("Base path does not start with '/'");
+                    ("Base path does not start with '/'");
         if (!path.endsWith("/"))
             path += "/../";
         path += spec.substring(start, limit);

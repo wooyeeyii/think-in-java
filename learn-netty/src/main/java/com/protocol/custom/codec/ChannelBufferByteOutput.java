@@ -43,7 +43,6 @@ class ChannelBufferByteOutput implements ByteOutput {
 
     /**
      * Return the {@link ByteBuf} which contains the written content
-     *
      */
     ByteBuf getBuffer() {
         return buffer;

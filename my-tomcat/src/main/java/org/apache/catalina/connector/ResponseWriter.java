@@ -142,7 +142,6 @@ public class ResponseWriter extends PrintWriter {
     }
 
 
-
     /**
      * Print a long value.
      *
@@ -271,7 +270,6 @@ public class ResponseWriter extends PrintWriter {
     }
 
 
-
     /**
      * Print a long value and terminate the current line.
      *
@@ -340,7 +338,7 @@ public class ResponseWriter extends PrintWriter {
     /**
      * Write a portion of an array of characters.
      *
-     * @param ca The array from which to write
+     * @param ca  The array from which to write
      * @param off Starting offset
      * @param len Number of characters to write
      */
@@ -368,7 +366,7 @@ public class ResponseWriter extends PrintWriter {
     /**
      * Write a portion of a String.
      *
-     * @param s The String from which to write
+     * @param s   The String from which to write
      * @param off Starting offset
      * @param len Number of characters to write
      */

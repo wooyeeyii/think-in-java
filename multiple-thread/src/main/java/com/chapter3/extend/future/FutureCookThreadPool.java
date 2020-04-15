@@ -40,7 +40,8 @@ public class FutureCookThreadPool {
 
     private Future<String> purchaseCookToolsAsync() {
         Future<String> task = executorService.submit(() -> {
-            System.out.println("purchase cook tools.");try {
+            System.out.println("purchase cook tools.");
+            try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -69,8 +70,6 @@ public class FutureCookThreadPool {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

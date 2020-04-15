@@ -16,15 +16,14 @@ public class ThrowableTest {
     }
 
     private void process() {
-            System.out.println("process... Number: " + idx.incrementAndGet());
-            throw new RuntimeException("error");
+        System.out.println("process... Number: " + idx.incrementAndGet());
+        throw new RuntimeException("error");
     }
 
     public static void main(String[] args) {
         ThrowableTest throwableTest = new ThrowableTest();
         throwableTest.start();
     }
-
 
 
 }

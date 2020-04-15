@@ -215,27 +215,27 @@ public final class Tool {
             packed.add(new File(catalinaHome, "lib"));
             if (common) {
                 unpacked.add(new File(catalinaHome,
-                                      "common" + File.separator + "classes"));
+                        "common" + File.separator + "classes"));
                 packed.add(new File(catalinaHome,
-                                    "common" + File.separator + "lib"));
+                        "common" + File.separator + "lib"));
             }
             if (server) {
                 unpacked.add(new File(catalinaHome,
-                                      "server" + File.separator + "classes"));
+                        "server" + File.separator + "classes"));
                 packed.add(new File(catalinaHome,
-                                    "server" + File.separator + "lib"));
+                        "server" + File.separator + "lib"));
             }
             if (shared) {
                 unpacked.add(new File(catalinaHome,
-                                      "shared" + File.separator + "classes"));
+                        "shared" + File.separator + "classes"));
                 packed.add(new File(catalinaHome,
-                                    "shared" + File.separator + "lib"));
+                        "shared" + File.separator + "lib"));
             }
             classLoader =
-                ClassLoaderFactory.createClassLoader
-                ((File[]) unpacked.toArray(new File[0]),
-                 (File[]) packed.toArray(new File[0]),
-                 null);
+                    ClassLoaderFactory.createClassLoader
+                            ((File[]) unpacked.toArray(new File[0]),
+                                    (File[]) packed.toArray(new File[0]),
+                                    null);
         } catch (Throwable t) {
             log("Class loader creation threw exception", t);
             System.exit(1);
@@ -301,7 +301,7 @@ public final class Tool {
     /**
      * Log a debugging detail message with an exception.
      *
-     * @param message The message to be logged
+     * @param message   The message to be logged
      * @param exception The exception to be logged
      */
     private static void log(String message, Throwable exception) {

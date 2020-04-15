@@ -66,6 +66,7 @@ package org.apache.catalina.mbeans;
 import javax.management.MBeanException;
 import javax.management.MBeanServer;
 import javax.management.RuntimeOperationsException;
+
 import org.apache.commons.modeler.BaseModelMBean;
 import org.apache.commons.modeler.ManagedBean;
 import org.apache.commons.modeler.Registry;
@@ -89,13 +90,13 @@ public class RoleMBean extends BaseModelMBean {
      * Construct a <code>ModelMBean</code> with default
      * <code>ModelMBeanInfo</code> information.
      *
-     * @exception MBeanException if the initializer of an object
-     *  throws an exception
-     * @exception RuntimeOperationsException if an IllegalArgumentException
-     *  occurs
+     * @throws MBeanException             if the initializer of an object
+     *                                    throws an exception
+     * @throws RuntimeOperationsException if an IllegalArgumentException
+     *                                    occurs
      */
     public RoleMBean()
-        throws MBeanException, RuntimeOperationsException {
+            throws MBeanException, RuntimeOperationsException {
 
         super();
 
@@ -121,7 +122,7 @@ public class RoleMBean extends BaseModelMBean {
      * The <code>ManagedBean</code> information describing this MBean.
      */
     protected ManagedBean managed =
-        registry.findManagedBean("Role");
+            registry.findManagedBean("Role");
 
 
     // ------------------------------------------------------------- Attributes

@@ -24,10 +24,10 @@ public class SubReqServer {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.SO_BACKLOG, 100)
-                .handler(new LoggingHandler(LogLevel.INFO))
-                .childHandler(new ChildChanelHandler());
+                    .channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_BACKLOG, 100)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new ChildChanelHandler());
 
             // 绑定端口，同步等待成功
             ChannelFuture f = b.bind(port).sync();
@@ -45,7 +45,7 @@ public class SubReqServer {
         // ObjectDecoder类负责对实现Serializable的POJO对象进行解码.
         // weakCachingConcurrentResolver可创建线程安全的WeakReferenceMap对类加载器进行缓存。
         ClassResolver classResolver = ClassResolvers
-            .weakCachingConcurrentResolver(this.getClass().getClassLoader());
+                .weakCachingConcurrentResolver(this.getClass().getClassLoader());
         ObjectDecoder decoder = new ObjectDecoder(1024 * 1024, classResolver);
 
         @Override

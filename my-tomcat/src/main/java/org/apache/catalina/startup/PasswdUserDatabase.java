@@ -81,7 +81,7 @@ import java.util.Enumeration;
  */
 
 public final class PasswdUserDatabase
-    implements UserDatabase {
+        implements UserDatabase {
 
 
     // --------------------------------------------------------- Constructors

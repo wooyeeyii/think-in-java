@@ -192,9 +192,9 @@ public interface Connector {
      * Invoke a pre-startup initialization. This is used to allow connectors
      * to bind to restricted ports under Unix operating environments.
      *
-     * @exception LifecycleException If this server was already initialized.
+     * @throws LifecycleException If this server was already initialized.
      */
     public void initialize()
-    throws LifecycleException;
+            throws LifecycleException;
 
 }

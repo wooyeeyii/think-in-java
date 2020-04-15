@@ -7,14 +7,14 @@ import com.chang.factory.abstractfactory.IntelMainboard;
 
 public class IntelFactory implements AbstractFactory {
 
-	@Override
-	public ICpu createCpu() {
-		return new IntelCpu(755);
-	}
+    @Override
+    public ICpu createCpu() {
+        return new IntelCpu(755);
+    }
 
-	@Override
-	public IMainboard createMainboard() {
-		return new IntelMainboard(755);
-	}
+    @Override
+    public IMainboard createMainboard() {
+        return new IntelMainboard(755);
+    }
 
 }

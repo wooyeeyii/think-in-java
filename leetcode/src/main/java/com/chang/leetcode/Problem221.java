@@ -35,10 +35,10 @@ public class Problem221 {
         int size = 0;
         char[][] matrixExt = new char[rows + 1][cols + 1];
         List<List<Integer>> flag = new ArrayList<>();
-        for(int i = 0; i <= cols; i++) {
+        for (int i = 0; i <= cols; i++) {
             matrixExt[rows][i] = '0';
         }
-        for(int i = 0; i <= rows; i++) {
+        for (int i = 0; i <= rows; i++) {
             matrixExt[i][cols] = '0';
         }
         for (int i = 0; i < rows; i++) {
@@ -52,7 +52,7 @@ public class Problem221 {
                 }
             }
         }
-        while(flag.size() > 0) {
+        while (flag.size() > 0) {
             size++;
             List<List<Integer>> next = new ArrayList<List<Integer>>();
             flag.forEach(list -> {
@@ -106,19 +106,19 @@ public class Problem221 {
                     pos.add(i);
                     pos.add(j);
                     flag.add(pos);
-                    if(rows - 1 == i || cols - 1 == j) {
+                    if (rows - 1 == i || cols - 1 == j) {
                         matrix[i][j] = '0';
                     }
                 }
             }
         }
-        while(flag.size() > 0) {
+        while (flag.size() > 0) {
             size++;
             List<List<Integer>> next = new ArrayList<List<Integer>>();
             flag.forEach(list -> {
                 int m = list.get(0);
                 int n = list.get(1);
-                if(m < matrix.length - 1 && n < matrix[0].length - 1) {
+                if (m < matrix.length - 1 && n < matrix[0].length - 1) {
                     if ('0' == matrix[m + 1][n] || '0' == matrix[m][n + 1] || '0' == matrix[m + 1][n + 1]) {
                         matrix[m][n] = '0';
                     } else {

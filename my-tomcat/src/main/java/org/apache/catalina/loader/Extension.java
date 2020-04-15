@@ -374,15 +374,15 @@ public final class Extension {
         extension.setExtensionName(name);
 
         extension.setImplementationVendor
-            (attributes.getValue("Implementation-Vendor"));
+                (attributes.getValue("Implementation-Vendor"));
         extension.setImplementationVendorId
-            (attributes.getValue("Implementation-Vendor-Id"));
+                (attributes.getValue("Implementation-Vendor-Id"));
         extension.setImplementationVersion
-            (attributes.getValue("Implementation-Version"));
+                (attributes.getValue("Implementation-Version"));
         extension.setSpecificationVendor
-            (attributes.getValue("Specification-Vendor"));
+                (attributes.getValue("Specification-Vendor"));
         extension.setSpecificationVersion
-            (attributes.getValue("Specification-Version"));
+                (attributes.getValue("Specification-Version"));
 
         return (extension);
 
@@ -413,20 +413,20 @@ public final class Extension {
             names = names.substring(space + 1);
 
             String value =
-                attributes.getValue(name + "-Extension-Name");
+                    attributes.getValue(name + "-Extension-Name");
             if (value == null)
                 continue;
             Extension extension = new Extension();
             extension.setExtensionName(value);
 
             extension.setImplementationURL
-                (attributes.getValue(name + "-Implementation-URL"));
+                    (attributes.getValue(name + "-Implementation-URL"));
             extension.setImplementationVendorId
-                (attributes.getValue(name + "-Implementation-Vendor-Id"));
+                    (attributes.getValue(name + "-Implementation-Vendor-Id"));
             extension.setImplementationVersion
-                (attributes.getValue(name + "-Implementation-Version"));
+                    (attributes.getValue(name + "-Implementation-Version"));
             extension.setSpecificationVersion
-                (attributes.getValue(name + "-Specification-Version"));
+                    (attributes.getValue(name + "-Specification-Version"));
 
             results.add(extension);
 
@@ -441,13 +441,12 @@ public final class Extension {
      * Return <code>true</code> if the first version number is greater than
      * or equal to the second; otherwise return <code>false</code>.
      *
-     * @param first First version number (dotted decimal)
+     * @param first  First version number (dotted decimal)
      * @param second Second version number (dotted decimal)
-     *
-     * @exception NumberFormatException on a malformed version number
+     * @throws NumberFormatException on a malformed version number
      */
     private boolean isNewer(String first, String second)
-        throws NumberFormatException {
+            throws NumberFormatException {
 
         if ((first == null) || (second == null))
             return (false);

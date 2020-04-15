@@ -67,6 +67,7 @@ package org.apache.catalina.ssi;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+
 import org.apache.catalina.util.DateTool;
 import org.apache.catalina.util.Strftime;
 
@@ -82,39 +83,39 @@ public final class SSIFlastmod implements SSICommand {
      * @see SSICommand
      */
     public void process(SSIMediator ssiMediator,
-			String[] paramNames,
-			String[] paramValues,
-			PrintWriter writer) {
+                        String[] paramNames,
+                        String[] paramValues,
+                        PrintWriter writer) {
 
-	String configErrMsg = ssiMediator.getConfigErrMsg();
-	StringBuffer buf = new StringBuffer();
+        String configErrMsg = ssiMediator.getConfigErrMsg();
+        StringBuffer buf = new StringBuffer();
 
-        for(int i=0;i<paramNames.length;i++) {
-	    String paramName = paramNames[i];
-	    String paramValue = paramValues[i];
+        for (int i = 0; i < paramNames.length; i++) {
+            String paramName = paramNames[i];
+            String paramValue = paramValues[i];
 
-	    try {
-		if ( paramName.equalsIgnoreCase("file") ||
-		     paramName.equalsIgnoreCase("virtual") ) {
-		    boolean virtual = paramName.equalsIgnoreCase("virtual");
-		    long lastModified = ssiMediator.getFileLastModified( paramValue,  virtual );
-		    Date date = new Date( lastModified );
-		    String configTimeFmt = ssiMediator.getConfigTimeFmt();
-		    writer.write( formatDate(date, configTimeFmt ) );
-		} else {
-		    ssiMediator.log("#flastmod--Invalid attribute: " + paramName );
-		    writer.write( configErrMsg );
-		}	    
-	    } catch ( IOException e ) {
-		ssiMediator.log("#flastmod--Couldn't get last modified for file: " + paramValue, e );
-		writer.write( configErrMsg );
-	    }
-	}
+            try {
+                if (paramName.equalsIgnoreCase("file") ||
+                        paramName.equalsIgnoreCase("virtual")) {
+                    boolean virtual = paramName.equalsIgnoreCase("virtual");
+                    long lastModified = ssiMediator.getFileLastModified(paramValue, virtual);
+                    Date date = new Date(lastModified);
+                    String configTimeFmt = ssiMediator.getConfigTimeFmt();
+                    writer.write(formatDate(date, configTimeFmt));
+                } else {
+                    ssiMediator.log("#flastmod--Invalid attribute: " + paramName);
+                    writer.write(configErrMsg);
+                }
+            } catch (IOException e) {
+                ssiMediator.log("#flastmod--Couldn't get last modified for file: " + paramValue, e);
+                writer.write(configErrMsg);
+            }
+        }
     }
 
-    protected String formatDate( Date date, String configTimeFmt ) {
-	Strftime strftime = new Strftime( configTimeFmt, DateTool.LOCALE_US );
-	return strftime.format( date );
+    protected String formatDate(Date date, String configTimeFmt) {
+        Strftime strftime = new Strftime(configTimeFmt, DateTool.LOCALE_US);
+        return strftime.format(date);
     }
 }
 

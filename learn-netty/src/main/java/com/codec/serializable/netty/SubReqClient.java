@@ -21,8 +21,8 @@ public class SubReqClient {
         try {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
-                .option(ChannelOption.TCP_NODELAY, true)
-                .handler(new ChildChanelHandler());
+                    .option(ChannelOption.TCP_NODELAY, true)
+                    .handler(new ChildChanelHandler());
 
             // 发起异步连接操作
             ChannelFuture f = b.connect(host, port).sync();

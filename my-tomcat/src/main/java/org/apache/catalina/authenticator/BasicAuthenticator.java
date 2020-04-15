@@ -69,11 +69,11 @@ import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.deploy.LoginConfig;
 import org.apache.catalina.util.Base64;
-
 
 
 /**
@@ -86,7 +86,7 @@ import org.apache.catalina.util.Base64;
  */
 
 public class BasicAuthenticator
-    extends AuthenticatorBase {
+        extends AuthenticatorBase {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -102,7 +102,7 @@ public class BasicAuthenticator
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.authenticator.BasicAuthenticator/1.0";
+            "org.apache.catalina.authenticator.BasicAuthenticator/1.0";
 
 
     // ------------------------------------------------------------- Properties
@@ -127,21 +127,20 @@ public class BasicAuthenticator
      * constraint has been satisfied, or <code>false</code> if we have
      * created a response challenge already.
      *
-     * @param request Request we are processing
+     * @param request  Request we are processing
      * @param response Response we are creating
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     *
-     * @exception IOException if an input/output error occurs
+     * @param login    Login configuration describing how authentication
+     *                 should be performed
+     * @throws IOException if an input/output error occurs
      */
     public boolean authenticate(HttpRequest request,
                                 HttpResponse response,
                                 LoginConfig config)
-        throws IOException {
+            throws IOException {
 
         // Have we already authenticated someone?
         Principal principal =
-            ((HttpServletRequest) request.getRequest()).getUserPrincipal();
+                ((HttpServletRequest) request.getRequest()).getUserPrincipal();
         if (principal != null) {
             if (debug >= 1)
                 log("Already authenticated '" + principal.getName() + "'");
@@ -150,16 +149,16 @@ public class BasicAuthenticator
 
         // Validate any credentials already included with this request
         HttpServletRequest hreq =
-            (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpServletResponse hres =
-            (HttpServletResponse) response.getResponse();
+                (HttpServletResponse) response.getResponse();
         String authorization = request.getAuthorization();
         String username = parseUsername(authorization);
         String password = parsePassword(authorization);
         principal = context.getRealm().authenticate(username, password);
         if (principal != null) {
             register(request, response, principal, Constants.BASIC_METHOD,
-                     username, password);
+                    username, password);
             return (true);
         }
 
@@ -167,10 +166,10 @@ public class BasicAuthenticator
         String realmName = config.getRealmName();
         if (realmName == null)
             realmName = hreq.getServerName() + ":" + hreq.getServerPort();
-    //        if (debug >= 1)
-    //            log("Challenging for realm '" + realmName + "'");
+        //        if (debug >= 1)
+        //            log("Challenging for realm '" + realmName + "'");
         hres.setHeader("WWW-Authenticate",
-                       "Basic realm=\"" + realmName + "\"");
+                "Basic realm=\"" + realmName + "\"");
         hres.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         //      hres.flushBuffer();
         return (false);
@@ -197,7 +196,7 @@ public class BasicAuthenticator
 
         // Decode and parse the authorization credentials
         String unencoded =
-          new String(base64Helper.decode(authorization.getBytes()));
+                new String(base64Helper.decode(authorization.getBytes()));
         int colon = unencoded.indexOf(':');
         if (colon < 0)
             return (null);
@@ -224,7 +223,7 @@ public class BasicAuthenticator
 
         // Decode and parse the authorization credentials
         String unencoded =
-          new String(base64Helper.decode(authorization.getBytes()));
+                new String(base64Helper.decode(authorization.getBytes()));
         int colon = unencoded.indexOf(':');
         if (colon < 0)
             return (null);
@@ -233,7 +232,6 @@ public class BasicAuthenticator
         return (password);
 
     }
-
 
 
 }

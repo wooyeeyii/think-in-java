@@ -67,6 +67,7 @@ package org.apache.catalina.valves;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+
 import org.apache.catalina.Request;
 import org.apache.catalina.Response;
 import org.apache.catalina.ValveContext;
@@ -81,7 +82,7 @@ import org.apache.catalina.ValveContext;
  */
 
 public final class RemoteAddrValve
-    extends RequestFilterValve {
+        extends RequestFilterValve {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -91,7 +92,7 @@ public final class RemoteAddrValve
      * The descriptive information related to this implementation.
      */
     private static final String info =
-        "org.apache.catalina.valves.RemoteAddrValve/1.0";
+            "org.apache.catalina.valves.RemoteAddrValve/1.0";
 
 
     // ------------------------------------------------------------- Properties
@@ -116,17 +117,16 @@ public final class RemoteAddrValve
      * <code>process()</code> method to perform the actual filtering.
      * This method must be implemented by a concrete subclass.
      *
-     * @param request The servlet request to be processed
+     * @param request  The servlet request to be processed
      * @param response The servlet response to be created
-     * @param context The valve context used to invoke the next valve
-     *  in the current processing pipeline
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param context  The valve context used to invoke the next valve
+     *                 in the current processing pipeline
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public void invoke(Request request, Response response,
                        ValveContext context)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         process(request.getRequest().getRemoteAddr(),
                 request, response, context);

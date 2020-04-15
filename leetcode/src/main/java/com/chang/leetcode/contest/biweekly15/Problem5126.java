@@ -7,11 +7,11 @@ public class Problem5126 {
         int number = arr[0];
         int count = 1;
         int max = 1;
-        for(int i = 1; i < len; i++) {
-            if(arr[i] == arr[i - 1]) {
+        for (int i = 1; i < len; i++) {
+            if (arr[i] == arr[i - 1]) {
                 count++;
             } else {
-                if(count > max) {
+                if (count > max) {
                     max = count;
                     number = arr[i - 1];
                 }
@@ -19,7 +19,7 @@ public class Problem5126 {
             }
         }
 
-        if(arr.length > 1 && arr[len - 1] == arr[len - 2] && count > max) {
+        if (arr.length > 1 && arr[len - 1] == arr[len - 2] && count > max) {
             return arr[len - 1];
         }
 

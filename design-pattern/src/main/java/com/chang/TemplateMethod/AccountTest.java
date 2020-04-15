@@ -1,10 +1,10 @@
 package com.chang.TemplateMethod;
 
 public class AccountTest {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         Account account = new MoneyMarketAccount();
-        System.out.println("»õ±ÒÊÐ³¡ÕËºÅµÄÀûÏ¢Êý¶îÎª£º" + account.calculateInterest());
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ËºÅµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½" + account.calculateInterest());
         account = new CDAccount();
-        System.out.println("¶¨ÆÚÕËºÅµÄÀûÏ¢Êý¶îÎª£º" + account.calculateInterest());
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½" + account.calculateInterest());
     }
 }

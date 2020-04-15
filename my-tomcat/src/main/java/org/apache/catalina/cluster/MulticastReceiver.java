@@ -82,7 +82,7 @@ import java.util.Vector;
  */
 
 public final class MulticastReceiver
-    extends ClusterSessionBase implements ClusterReceiver {
+        extends ClusterSessionBase implements ClusterReceiver {
 
     // ----------------------------------------------------- Instance Variables
 
@@ -136,11 +136,11 @@ public final class MulticastReceiver
     /**
      * Create a new MulticastReceiver.
      *
-     * @param senderId The unique senderId
+     * @param senderId        The unique senderId
      * @param multicastSocket The MulticastSocket to use
      */
     MulticastReceiver(String senderId, MulticastSocket multicastSocket,
-                    InetAddress multicastAddress, int multicastPort) {
+                      InetAddress multicastAddress, int multicastPort) {
         this.multicastSocket = multicastSocket;
         this.senderId = senderId;
     }
@@ -152,7 +152,7 @@ public final class MulticastReceiver
      * @return The name of the implementation
      */
     public String getName() {
-        return(this.receiverName);
+        return (this.receiverName);
     }
 
     /**
@@ -171,7 +171,7 @@ public final class MulticastReceiver
      * @return The time in seconds this Cluster sleeps
      */
     public int getCheckInterval() {
-        return(this.checkInterval);
+        return (this.checkInterval);
     }
 
     /**
@@ -225,16 +225,16 @@ public final class MulticastReceiver
             multicastSocket.receive(recv);
             ips = new ByteArrayInputStream(buf, 0, buf.length);
             ois = new ObjectInputStream(ips);
-            ReplicationWrapper obj = (ReplicationWrapper)ois.readObject();
+            ReplicationWrapper obj = (ReplicationWrapper) ois.readObject();
 
-            if(obj.getSenderId().equals(this.senderId))
+            if (obj.getSenderId().equals(this.senderId))
                 stack.add(obj);
         } catch (IOException e) {
-            log("An error occurred when trying to replicate: "+
-                e.toString());
+            log("An error occurred when trying to replicate: " +
+                    e.toString());
         } catch (ClassNotFoundException e) {
-            log("An error occurred when trying to replicate: "+
-                e.toString());
+            log("An error occurred when trying to replicate: " +
+                    e.toString());
         }
     }
 
@@ -271,7 +271,7 @@ public final class MulticastReceiver
             return;
 
         threadDone = false;
-        threadName = threadName+"["+senderId+"]";
+        threadName = threadName + "[" + senderId + "]";
         thread = new Thread(this, threadName);
         thread.setDaemon(true);
         thread.start();

@@ -78,26 +78,26 @@ public final class SSIConfig implements SSICommand {
      * @see SSICommand
      */
     public void process(SSIMediator ssiMediator,
-			String[] paramNames, 
-			String[] paramValues,
-			PrintWriter writer ) {
+                        String[] paramNames,
+                        String[] paramValues,
+                        PrintWriter writer) {
 
-        for(int i=0;i<paramNames.length;i++) {
-	    String paramName = paramNames[i];
-	    String paramValue = paramValues[i];
+        for (int i = 0; i < paramNames.length; i++) {
+            String paramName = paramNames[i];
+            String paramValue = paramValues[i];
 
-            if ( paramName.equalsIgnoreCase("errmsg") ) {
-		ssiMediator.setConfigErrMsg( paramValue );
-            } else if ( paramName.equalsIgnoreCase("sizefmt") ) {
-		ssiMediator.setConfigSizeFmt( paramValue );
-            } else if ( paramName.equalsIgnoreCase("timefmt") ) {
-		ssiMediator.setConfigTimeFmt( paramValue );
-	    } else {
-		ssiMediator.log("#config--Invalid attribute: " + paramName );
-		//We need to fetch this value each time, since it may change during the loop
-		String configErrMsg = ssiMediator.getConfigErrMsg();
-		writer.write( configErrMsg );
-	    }
+            if (paramName.equalsIgnoreCase("errmsg")) {
+                ssiMediator.setConfigErrMsg(paramValue);
+            } else if (paramName.equalsIgnoreCase("sizefmt")) {
+                ssiMediator.setConfigSizeFmt(paramValue);
+            } else if (paramName.equalsIgnoreCase("timefmt")) {
+                ssiMediator.setConfigTimeFmt(paramValue);
+            } else {
+                ssiMediator.log("#config--Invalid attribute: " + paramName);
+                //We need to fetch this value each time, since it may change during the loop
+                String configErrMsg = ssiMediator.getConfigErrMsg();
+                writer.write(configErrMsg);
+            }
         }
     }
 }

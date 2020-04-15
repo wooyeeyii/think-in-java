@@ -10,7 +10,7 @@ import java.net.Socket;
 public class HttpServer1 {
 
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "my-tomcat" +
-            File.separator+ "webroot";
+            File.separator + "webroot";
 
     private static final String SHUTDOWN_COMMAND = "/SHUTDOWN";
 
@@ -31,7 +31,7 @@ public class HttpServer1 {
         }
 
         //loop waiting for a request
-        while(!shutdown) {
+        while (!shutdown) {
             Socket socket = null;
             InputStream inputStream = null;
             OutputStream outputStream = null;
@@ -51,7 +51,7 @@ public class HttpServer1 {
 
                 //check if this is a request for servlet or a static resource
                 // a request for a servlet begins with /servlet
-                if(request.getUri().startsWith("/servlet")) {
+                if (request.getUri().startsWith("/servlet")) {
                     ServletProcessor1 processor = new ServletProcessor1();
                     processor.process(request, response);
                 } else {

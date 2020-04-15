@@ -66,6 +66,7 @@ package org.apache.catalina;
 
 import java.beans.PropertyChangeListener;
 import javax.naming.directory.DirContext;
+
 import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.ContextEjb;
 import org.apache.catalina.deploy.ContextEnvironment;
@@ -210,8 +211,8 @@ public interface DefaultContext {
      * Return the naming resources associated with this web application.
      */
     public NamingResources getNamingResources();
-    
-    
+
+
     // ------------------------------------------------------ Public Properties
 
 
@@ -223,7 +224,7 @@ public interface DefaultContext {
 
     /**
      * Set the name of the default context.
-     * 
+     *
      * @param name The new name
      */
     public void setName(String name);
@@ -242,10 +243,9 @@ public interface DefaultContext {
      * Container by throwing an exception.
      *
      * @param container Container to which this Container is being added
-     *  as a child
-     *
-     * @exception IllegalArgumentException if this Container refuses to become
-     *  attached to the specified Container
+     *                  as a child
+     * @throws IllegalArgumentException if this Container refuses to become
+     *                                  attached to the specified Container
      */
     public void setParent(Container container);
 
@@ -307,12 +307,11 @@ public interface DefaultContext {
      * Add a new context initialization parameter, replacing any existing
      * value for the specified name.
      *
-     * @param name Name of the new parameter
+     * @param name  Name of the new parameter
      * @param value Value of the new  parameter
-     *
-     * @exception IllegalArgumentException if the name or value is missing,
-     *  or if this context initialization parameter has already been
-     *  registered
+     * @throws IllegalArgumentException if the name or value is missing,
+     *                                  or if this context initialization parameter has already been
+     *                                  registered
      */
     public void addParameter(String name, String value);
 
@@ -323,8 +322,8 @@ public interface DefaultContext {
      * @param listener The listener to add
      */
     public void addPropertyChangeListener(PropertyChangeListener listener);
-    
-    
+
+
     /**
      * Add a resource reference for this web application.
      *
@@ -559,8 +558,8 @@ public interface DefaultContext {
      * @param name Name of the parameter to remove
      */
     public void removeParameter(String name);
-    
-    
+
+
     /**
      * Remove a property change listener from this component.
      *

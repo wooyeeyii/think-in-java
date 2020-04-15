@@ -71,6 +71,7 @@ import javax.management.MBeanException;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.RuntimeOperationsException;
+
 import org.apache.catalina.Group;
 import org.apache.catalina.Role;
 import org.apache.catalina.User;
@@ -97,13 +98,13 @@ public class GroupMBean extends BaseModelMBean {
      * Construct a <code>ModelMBean</code> with default
      * <code>ModelMBeanInfo</code> information.
      *
-     * @exception MBeanException if the initializer of an object
-     *  throws an exception
-     * @exception RuntimeOperationsException if an IllegalArgumentException
-     *  occurs
+     * @throws MBeanException             if the initializer of an object
+     *                                    throws an exception
+     * @throws RuntimeOperationsException if an IllegalArgumentException
+     *                                    occurs
      */
     public GroupMBean()
-        throws MBeanException, RuntimeOperationsException {
+            throws MBeanException, RuntimeOperationsException {
 
         super();
 
@@ -129,7 +130,7 @@ public class GroupMBean extends BaseModelMBean {
      * The <code>ManagedBean</code> information describing this MBean.
      */
     protected ManagedBean managed =
-        registry.findManagedBean("Group");
+            registry.findManagedBean("Group");
 
 
     // ------------------------------------------------------------- Attributes
@@ -148,11 +149,11 @@ public class GroupMBean extends BaseModelMBean {
             try {
                 role = (Role) roles.next();
                 ObjectName oname =
-                    MBeanUtils.createObjectName(managed.getDomain(), role);
+                        MBeanUtils.createObjectName(managed.getDomain(), role);
                 results.add(oname.toString());
             } catch (MalformedObjectNameException e) {
                 throw new IllegalArgumentException
-                    ("Cannot create object name for role " + role);
+                        ("Cannot create object name for role " + role);
             }
         }
         return ((String[]) results.toArray(new String[results.size()]));
@@ -173,11 +174,11 @@ public class GroupMBean extends BaseModelMBean {
             try {
                 user = (User) users.next();
                 ObjectName oname =
-                    MBeanUtils.createObjectName(managed.getDomain(), user);
+                        MBeanUtils.createObjectName(managed.getDomain(), user);
                 results.add(oname.toString());
             } catch (MalformedObjectNameException e) {
                 throw new IllegalArgumentException
-                    ("Cannot create object name for user " + user);
+                        ("Cannot create object name for user " + user);
             }
         }
         return ((String[]) results.toArray(new String[results.size()]));
@@ -202,7 +203,7 @@ public class GroupMBean extends BaseModelMBean {
         Role role = group.getUserDatabase().findRole(rolename);
         if (role == null) {
             throw new IllegalArgumentException
-                ("Invalid role name '" + rolename + "'");
+                    ("Invalid role name '" + rolename + "'");
         }
         group.addRole(role);
 
@@ -223,7 +224,7 @@ public class GroupMBean extends BaseModelMBean {
         Role role = group.getUserDatabase().findRole(rolename);
         if (role == null) {
             throw new IllegalArgumentException
-                ("Invalid role name '" + rolename + "'");
+                    ("Invalid role name '" + rolename + "'");
         }
         group.removeRole(role);
 

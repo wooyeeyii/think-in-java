@@ -69,10 +69,9 @@ import java.util.Date;
 
 /**
  * Interface used by SSIMediator to talk to the 'outside world' ( usually a servlet )
- * 
+ *
  * @author Dan Sandberg
  * @version $Revision: 1.1 $, $Date: 2002/05/24 04:38:58 $
- *
  */
 public interface SSIExternalResolver {
     /**
@@ -80,33 +79,37 @@ public interface SSIExternalResolver {
      *
      * @param variableNames the collection to add to
      */
-    public void addVariableNames( Collection variableNames );
+    public void addVariableNames(Collection variableNames);
 
-    public String getVariableValue( String name );
+    public String getVariableValue(String name);
 
     /**
      * Set the named variable to the specified value.
-     *
+     * <p>
      * If value is null, then the variable will be removed ( ie.
      * a call to getVariableValue will return null )
      *
-     * @param name of the variable
+     * @param name  of the variable
      * @param value of the variable
      */
-    public void setVariableValue( String name, String value );
+    public void setVariableValue(String name, String value);
 
 
     /**
      * Returns the current date.
-     *
-     * This is useful for putting the SSI stuff in a regression test.  Since you can make the current date a 
+     * <p>
+     * This is useful for putting the SSI stuff in a regression test.  Since you can make the current date a
      * constant, it makes testing easier since the output won't change.
      *
      * @return the data
      */
     public Date getCurrentDate();
-    public long getFileSize( String path, boolean virtual ) throws IOException;
-    public long getFileLastModified( String path, boolean virtual ) throws IOException;
-    public String getFileText( String path, boolean virtual ) throws IOException;
-    public void log( String message, Throwable throwable );
+
+    public long getFileSize(String path, boolean virtual) throws IOException;
+
+    public long getFileLastModified(String path, boolean virtual) throws IOException;
+
+    public String getFileText(String path, boolean virtual) throws IOException;
+
+    public void log(String message, Throwable throwable);
 }

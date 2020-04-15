@@ -1,14 +1,14 @@
 /**
  * 24 Game
- *
+ * <p>
  * You have 4 cards each containing a number from 1 to 9.
  * You need to judge whether they could operated through *, /, +, -, (, ) to get the value of 24.
- *
+ * <p>
  * Example 1:
  * Input: [4, 1, 8, 7]
  * Output: True
  * Explanation: (8-4) * (7-1) = 24
- *
+ * <p>
  * Example 2:
  * Input: [1, 2, 1, 2]
  * Output: False
@@ -25,39 +25,39 @@ public class Problem679 {
 
     public boolean judgePoint24(int[] nums) {
         List<Double> list = new ArrayList<Double>();
-        for(int num : nums) {
-            list.add((double)num);
+        for (int num : nums) {
+            list.add((double) num);
         }
         return dfs(list);
     }
 
     private boolean dfs(List<Double> list) {
-        if(1 == list.size()) {
-            if(Math.abs(list.get(0) - 24.0) < eps) {
+        if (1 == list.size()) {
+            if (Math.abs(list.get(0) - 24.0) < eps) {
                 return true;
             }
             return false;
         }
 
-        for(int i = 0; i < list.size(); i++) {
-            for(int j = 0; j < i; j++) {
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < i; j++) {
                 double p1 = list.get(i);
                 double p2 = list.get(j);
                 List<Double> nextRound = new ArrayList<Double>();
                 nextRound.addAll(Arrays.asList(p1 + p2, p1 - p2, p2 - p1, p1 * p2));
-                if(Math.abs(p1 - eps) > 0) {
+                if (Math.abs(p1 - eps) > 0) {
                     nextRound.add(p2 / p1);
                 }
-                if(Math.abs(p2 - eps) > 0) {
+                if (Math.abs(p2 - eps) > 0) {
                     nextRound.add(p1 / p2);
                 }
 
                 //移除的顺序不要颠倒
                 list.remove(i);
                 list.remove(j);
-                for(Double n : nextRound) {
+                for (Double n : nextRound) {
                     list.add(n);
-                    if(dfs(list)) {
+                    if (dfs(list)) {
                         return true;
                     }
                     list.remove(list.size() - 1);

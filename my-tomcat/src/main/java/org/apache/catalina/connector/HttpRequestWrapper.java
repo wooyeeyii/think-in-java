@@ -68,6 +68,7 @@ package org.apache.catalina.connector;
 import java.security.Principal;
 import java.util.Locale;
 import javax.servlet.http.Cookie;
+
 import org.apache.catalina.HttpRequest;
 
 
@@ -83,8 +84,8 @@ import org.apache.catalina.HttpRequest;
  */
 
 public abstract class HttpRequestWrapper
-    extends RequestWrapper
-    implements HttpRequest {
+        extends RequestWrapper
+        implements HttpRequest {
 
 
     // ----------------------------------------------------------- Constructors
@@ -120,7 +121,7 @@ public abstract class HttpRequestWrapper
     /**
      * Add a Header to the set of Headers associated with this Request.
      *
-     * @param name The new header name
+     * @param name  The new header name
      * @param value The new header value
      */
     public void addHeader(String name, String value) {

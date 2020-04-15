@@ -1,26 +1,26 @@
 package com.chang.command.example.tvcontroller;
 
 public class Test {
-	
-	public static void main(String[] args) {
-		//½ÓÊÜÕß
-		ReceiverTV receiverTV = new ReceiverTV();
-		//´´½¨ÃüÁî¶ÔÏó
-		Command openTVCommand = new OpenTVCommand(receiverTV);
-		Command closeTVCommand = new CloseTVCommand(receiverTV);
-		Command changeChannelCommand = new ChangeChannelCommand(receiverTV);
-		//´´½¨ÇëÇóÕß¶ÔÏó
-		InvokerTVController invokerTVController = new InvokerTVController(openTVCommand, closeTVCommand, changeChannelCommand);
-		//²âÊÔ
-		invokerTVController.openTV();
-		invokerTVController.changeChannel();
-		invokerTVController.closeTV();
-		
-		System.out.println("----------------------------------");
-		MacroCommand macroCommand = new TVMacroCommand();
-		macroCommand.add(openTVCommand);
-		macroCommand.add(closeTVCommand);
-		macroCommand.execute();
-	}
+
+    public static void main(String[] args) {
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        ReceiverTV receiverTV = new ReceiverTV();
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        Command openTVCommand = new OpenTVCommand(receiverTV);
+        Command closeTVCommand = new CloseTVCommand(receiverTV);
+        Command changeChannelCommand = new ChangeChannelCommand(receiverTV);
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½
+        InvokerTVController invokerTVController = new InvokerTVController(openTVCommand, closeTVCommand, changeChannelCommand);
+        //ï¿½ï¿½ï¿½ï¿½
+        invokerTVController.openTV();
+        invokerTVController.changeChannel();
+        invokerTVController.closeTV();
+
+        System.out.println("----------------------------------");
+        MacroCommand macroCommand = new TVMacroCommand();
+        macroCommand.add(openTVCommand);
+        macroCommand.add(closeTVCommand);
+        macroCommand.execute();
+    }
 
 }

@@ -9,19 +9,19 @@ public class QuickFind implements UnionFind {
 
     @Override
     public void union(int p, int q) {
-        if(!map.containsKey(q)) {
+        if (!map.containsKey(q)) {
             map.put(q, -1);
         }
 
         int value = map.get(q).equals(-1) ? q : map.get(q);
-        if(!map.containsKey(p)) {
+        if (!map.containsKey(p)) {
             map.put(p, value);
         } else {
             Integer f = map.get(p).equals(-1) ? p : map.get(p);
             map.put(p, value);
-            for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                int entryValue = entry.getValue().equals(-1)? entry.getKey() : entry.getValue();
-                if(f.equals(entryValue)) {
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                int entryValue = entry.getValue().equals(-1) ? entry.getKey() : entry.getValue();
+                if (f.equals(entryValue)) {
                     map.put(entry.getKey(), value);
                 }
             }
@@ -30,7 +30,7 @@ public class QuickFind implements UnionFind {
 
     @Override
     public boolean connected(int p, int q) {
-        if(null == map.get(p) || null == map.get(q)) {
+        if (null == map.get(p) || null == map.get(q)) {
             return false;
         }
         int pValue = map.get(p).equals(-1) ? p : map.get(p);

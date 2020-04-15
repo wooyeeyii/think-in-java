@@ -17,7 +17,7 @@ public final class Globals {
      * if any.
      */
     public static final String CERTIFICATES_ATTR =
-        "javax.servlet.request.X509Certificate";
+            "javax.servlet.request.X509Certificate";
 
     /**
      * SSL Certificate Request Attributite.
@@ -30,7 +30,7 @@ public final class Globals {
      * java.lang.String).
      */
     public static final String CIPHER_SUITE_ATTR =
-        "javax.servlet.request.cipher_suite";
+            "javax.servlet.request.cipher_suite";
 
 
     /**
@@ -38,7 +38,7 @@ public final class Globals {
      * used for loading servlets (as an object of type java.lang.ClassLoader).
      */
     public static final String CLASS_LOADER_ATTR =
-        "org.apache.catalina.classloader";
+            "org.apache.catalina.classloader";
 
 
     /**
@@ -46,7 +46,7 @@ public final class Globals {
      * context can be used to manipulate static files.
      */
     public static final String RESOURCES_ATTR =
-        "org.apache.catalina.resources";
+            "org.apache.catalina.resources";
 
 
     /**
@@ -55,7 +55,7 @@ public final class Globals {
      * delimited with the appropriate path delimiter for this platform.
      */
     public static final String CLASS_PATH_ATTR =
-        "org.apache.catalina.jsp_classpath";
+            "org.apache.catalina.jsp_classpath";
 
 
     /**
@@ -63,7 +63,7 @@ public final class Globals {
      * on an included dispatcher request.
      */
     public static final String CONTEXT_PATH_ATTR =
-        "javax.servlet.include.context_path";
+            "javax.servlet.include.context_path";
 
 
     /**
@@ -71,7 +71,7 @@ public final class Globals {
      * (as an object of type Throwable) to an error page.
      */
     public static final String EXCEPTION_ATTR =
-        "javax.servlet.error.exception";
+            "javax.servlet.error.exception";
 
 
     /**
@@ -79,7 +79,7 @@ public final class Globals {
      * (as an object of type String) of the page on which an error occurred.
      */
     public static final String EXCEPTION_PAGE_ATTR =
-        "javax.servlet.error.request_uri";
+            "javax.servlet.error.request_uri";
 
 
     /**
@@ -87,7 +87,7 @@ public final class Globals {
      * (as an object of type Class) to an error page.
      */
     public static final String EXCEPTION_TYPE_ATTR =
-        "javax.servlet.error.exception_type";
+            "javax.servlet.error.exception_type";
 
 
     /**
@@ -95,7 +95,7 @@ public final class Globals {
      * (as an object of type STring) to an error page.
      */
     public static final String ERROR_MESSAGE_ATTR =
-        "javax.servlet.error.message";
+            "javax.servlet.error.message";
 
 
     /**
@@ -104,7 +104,7 @@ public final class Globals {
      * indirectly instead of through a servlet mapping.
      */
     public static final String INVOKED_ATTR =
-        "org.apache.catalina.INVOKED";
+            "org.apache.catalina.INVOKED";
 
 
     /**
@@ -113,7 +113,7 @@ public final class Globals {
      * if any.
      */
     public static final String JSP_FILE_ATTR =
-        "org.apache.catalina.jsp_file";
+            "org.apache.catalina.jsp_file";
 
 
     /**
@@ -121,7 +121,7 @@ public final class Globals {
      * this SSL connection (as an object of type java.lang.Integer).
      */
     public static final String KEY_SIZE_ATTR =
-        "javax.servlet.request.key_size";
+            "javax.servlet.request.key_size";
 
 
     /**
@@ -129,7 +129,7 @@ public final class Globals {
      * will be stored for privileged contexts (if enabled).
      */
     public static final String MBEAN_REGISTRY_ATTR =
-        "org.apache.catalina.Registry";
+            "org.apache.catalina.Registry";
 
 
     /**
@@ -137,7 +137,7 @@ public final class Globals {
      * for privileged contexts (if enabled).
      */
     public static final String MBEAN_SERVER_ATTR =
-        "org.apache.catalina.MBeanServer";
+            "org.apache.catalina.MBeanServer";
 
 
     /**
@@ -145,7 +145,7 @@ public final class Globals {
      * named dispatcher request.
      */
     public static final String NAMED_DISPATCHER_ATTR =
-        "org.apache.catalina.NAMED";
+            "org.apache.catalina.NAMED";
 
 
     /**
@@ -153,7 +153,7 @@ public final class Globals {
      * on an included dispatcher request.
      */
     public static final String PATH_INFO_ATTR =
-        "javax.servlet.include.path_info";
+            "javax.servlet.include.path_info";
 
 
     /**
@@ -161,7 +161,7 @@ public final class Globals {
      * on an included dispatcher request.
      */
     public static final String QUERY_STRING_ATTR =
-        "javax.servlet.include.query_string";
+            "javax.servlet.include.query_string";
 
 
     /**
@@ -169,7 +169,7 @@ public final class Globals {
      * on an included dispatcher request.
      */
     public static final String REQUEST_URI_ATTR =
-        "javax.servlet.include.request_uri";
+            "javax.servlet.include.request_uri";
 
 
     /**
@@ -177,7 +177,7 @@ public final class Globals {
      * an error page.
      */
     public static final String SERVLET_NAME_ATTR =
-        "javax.servlet.error.servlet_name";
+            "javax.servlet.error.servlet_name";
 
 
     /**
@@ -185,7 +185,7 @@ public final class Globals {
      * on an included dispatcher request.
      */
     public static final String SERVLET_PATH_ATTR =
-        "javax.servlet.include.servlet_path";
+            "javax.servlet.include.servlet_path";
 
 
     /**
@@ -207,7 +207,7 @@ public final class Globals {
      * (as an object of type Integer) to an error page.
      */
     public static final String STATUS_CODE_ATTR =
-        "javax.servlet.error.status_code";
+            "javax.servlet.error.status_code";
 
 
     /**
@@ -215,7 +215,7 @@ public final class Globals {
      * welcome files (as an object of type String[]) for this application.
      */
     public static final String WELCOME_FILES_ATTR =
-        "org.apache.catalina.WELCOME_FILES";
+            "org.apache.catalina.WELCOME_FILES";
 
 
     /**
@@ -224,7 +224,7 @@ public final class Globals {
      * within this web application.
      */
     public static final String WORK_DIR_ATTR =
-        "javax.servlet.context.tempdir";
+            "javax.servlet.context.tempdir";
 
 
 }

@@ -115,7 +115,7 @@ public class TimeClientNIO {
         ByteBuffer byteBuffer = ByteBuffer.allocate(bytes.length);
         byteBuffer.put(bytes);
         byteBuffer.flip();
-        while(byteBuffer.hasRemaining()) {
+        while (byteBuffer.hasRemaining()) {
             socketChannel.write(byteBuffer);
         }
         System.out.println("send to server success!");

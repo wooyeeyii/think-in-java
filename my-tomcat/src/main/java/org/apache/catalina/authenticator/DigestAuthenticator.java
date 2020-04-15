@@ -73,12 +73,12 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.HttpRequest;
 import org.apache.catalina.HttpResponse;
 import org.apache.catalina.Realm;
 import org.apache.catalina.deploy.LoginConfig;
 import org.apache.catalina.util.MD5Encoder;
-
 
 
 /**
@@ -91,7 +91,7 @@ import org.apache.catalina.util.MD5Encoder;
  */
 
 public class DigestAuthenticator
-    extends AuthenticatorBase {
+        extends AuthenticatorBase {
 
 
     // -------------------------------------------------------------- Constants
@@ -125,7 +125,7 @@ public class DigestAuthenticator
      * Descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.authenticator.DigestAuthenticator/1.0";
+            "org.apache.catalina.authenticator.DigestAuthenticator/1.0";
 
 
     // ----------------------------------------------------------- Constructors
@@ -202,37 +202,36 @@ public class DigestAuthenticator
      * constraint has been satisfied, or <code>false</code> if we have
      * created a response challenge already.
      *
-     * @param request Request we are processing
+     * @param request  Request we are processing
      * @param response Response we are creating
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     *
-     * @exception IOException if an input/output error occurs
+     * @param login    Login configuration describing how authentication
+     *                 should be performed
+     * @throws IOException if an input/output error occurs
      */
     public boolean authenticate(HttpRequest request,
                                 HttpResponse response,
                                 LoginConfig config)
-        throws IOException {
+            throws IOException {
 
         // Have we already authenticated someone?
         Principal principal =
-            ((HttpServletRequest) request.getRequest()).getUserPrincipal();
+                ((HttpServletRequest) request.getRequest()).getUserPrincipal();
         if (principal != null)
             return (true);
 
         // Validate any credentials already included with this request
         HttpServletRequest hreq =
-            (HttpServletRequest) request.getRequest();
+                (HttpServletRequest) request.getRequest();
         HttpServletResponse hres =
-            (HttpServletResponse) response.getResponse();
+                (HttpServletResponse) response.getResponse();
         String authorization = request.getAuthorization();
         if (authorization != null) {
             principal = findPrincipal(hreq, authorization, context.getRealm());
             if (principal != null) {
                 String username = parseUsername(authorization);
                 register(request, response, principal,
-                         Constants.DIGEST_METHOD,
-                         username, null);
+                        Constants.DIGEST_METHOD,
+                        username, null);
                 return (true);
             }
         }
@@ -260,11 +259,11 @@ public class DigestAuthenticator
      * from the specified Realm.  If there is no such Principal, return
      * <code>null</code>.
      *
-     * @param request HTTP servlet request
+     * @param request       HTTP servlet request
      * @param authorization Authorization credentials from this request
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     * @param realm Realm used to authenticate Principals
+     * @param login         Login configuration describing how authentication
+     *                      should be performed
+     * @param realm         Realm used to authenticate Principals
      */
     protected static Principal findPrincipal(HttpServletRequest request,
                                              String authorization,
@@ -280,7 +279,7 @@ public class DigestAuthenticator
 
 
         StringTokenizer commaTokenizer =
-            new StringTokenizer(authorization, ",");
+                new StringTokenizer(authorization, ",");
 
         String userName = null;
         String realmName = null;
@@ -299,9 +298,9 @@ public class DigestAuthenticator
             if (equalSign < 0)
                 return null;
             String currentTokenName =
-                currentToken.substring(0, equalSign).trim();
+                    currentToken.substring(0, equalSign).trim();
             String currentTokenValue =
-                currentToken.substring(equalSign + 1).trim();
+                    currentToken.substring(equalSign + 1).trim();
             if ("username".equals(currentTokenName))
                 userName = removeQuotes(currentTokenValue);
             if ("realm".equals(currentTokenName))
@@ -320,8 +319,8 @@ public class DigestAuthenticator
                 response = removeQuotes(currentTokenValue);
         }
 
-        if ( (userName == null) || (realmName == null) || (nOnce == null)
-             || (uri == null) || (response == null) )
+        if ((userName == null) || (realmName == null) || (nOnce == null)
+                || (uri == null) || (response == null))
             return null;
 
         // Second MD5 digest used to calculate the digest :
@@ -332,7 +331,7 @@ public class DigestAuthenticator
         String md5a2 = md5Encoder.encode(md5Helper.digest(a2.getBytes()));
 
         return (realm.authenticate(userName, response, nOnce, nc, cnonce, qop,
-                                   realmName, md5a2));
+                realmName, md5a2));
 
     }
 
@@ -354,7 +353,7 @@ public class DigestAuthenticator
         authorization = authorization.substring(7).trim();
 
         StringTokenizer commaTokenizer =
-            new StringTokenizer(authorization, ",");
+                new StringTokenizer(authorization, ",");
 
         while (commaTokenizer.hasMoreTokens()) {
             String currentToken = commaTokenizer.nextToken();
@@ -362,9 +361,9 @@ public class DigestAuthenticator
             if (equalSign < 0)
                 return null;
             String currentTokenName =
-                currentToken.substring(0, equalSign).trim();
+                    currentToken.substring(0, equalSign).trim();
             String currentTokenValue =
-                currentToken.substring(equalSign + 1).trim();
+                    currentToken.substring(equalSign + 1).trim();
             if ("username".equals(currentTokenName))
                 return (removeQuotes(currentTokenValue));
         }
@@ -398,7 +397,7 @@ public class DigestAuthenticator
         long currentTime = System.currentTimeMillis();
 
         String nOnceValue = request.getRemoteAddr() + ":" +
-            currentTime + ":" + key;
+                currentTime + ":" + key;
 
         byte[] buffer = md5Helper.digest(nOnceValue.getBytes());
         nOnceValue = md5Encoder.encode(buffer);
@@ -433,9 +432,9 @@ public class DigestAuthenticator
      *
      * @param request HTTP Servlet request
      * @param resonse HTTP Servlet response
-     * @param login Login configuration describing how authentication
-     *              should be performed
-     * @param nOnce nonce token
+     * @param login   Login configuration describing how authentication
+     *                should be performed
+     * @param nOnce   nonce token
      */
     protected void setAuthenticateHeader(HttpServletRequest request,
                                          HttpServletResponse response,
@@ -446,13 +445,13 @@ public class DigestAuthenticator
         String realmName = config.getRealmName();
         if (realmName == null)
             realmName = request.getServerName() + ":"
-                + request.getServerPort();
+                    + request.getServerPort();
 
         byte[] buffer = md5Helper.digest(nOnce.getBytes());
 
         String authenticateHeader = "Digest realm=\"" + realmName + "\", "
-            +  "qop=\"auth\", nonce=\"" + nOnce + "\", " + "opaque=\""
-            + md5Encoder.encode(buffer) + "\"";
+                + "qop=\"auth\", nonce=\"" + nOnce + "\", " + "opaque=\""
+                + md5Encoder.encode(buffer) + "\"";
         // System.out.println("Authenticate header value : "
         //                   + authenticateHeader);
         response.setHeader("WWW-Authenticate", authenticateHeader);
