@@ -12,12 +12,8 @@ import com.chang.common.TreeNode;
 public class Problem100 {
 
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (null == p && null == q) {
-            return true;
-        } else if (null == p && null != q) {
-            return false;
-        } else if (null != p && null == q) {
-            return false;
+        if (null == p || null == q) {
+            return p == q;
         } else {
             return p.val == q.val && (isSameTree(p.left, q.left)) && (isSameTree(p.right, q.right));
         }
