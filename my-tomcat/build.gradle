@@ -1,0 +1,14 @@
+
+archivesBaseName = 'my-tomcat'
+
+dependencies {
+    implementation "javax.servlet:servlet-api:2.3"
+    implementation "tomcat:tomcat-util:5.0.18"
+    implementation "tomcat:naming-factory:5.5.23"
+    implementation "commons-collections:commons-collections:3.2.1"
+    implementation "commons-beanutils:commons-beanutils:1.8.3"
+    implementation "commons-daemon:commons-daemon:1.0.15"
+    implementation "commons-modeler:commons-modeler:2.0.1"
+    implementation "jakarta-regexp:jakarta-regexp:1.4"
+    implementation "commons-digester:commons-digester:1.8"
+}

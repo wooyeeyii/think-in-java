@@ -1,0 +1,10 @@
+rootProject.name = 'think-in-java'
+
+include 'algorithms-coursea'
+include 'design-pattern'
+include 'exercise'
+include 'learn-netty'
+include 'leetcode'
+include 'multiple-thread'
+include 'my-tomcat'
+include 'test'

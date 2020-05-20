@@ -4,6 +4,10 @@ package com.chang.once;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +17,13 @@ import java.util.stream.Collectors;
 public class Once {
 
     public static void main(String[] args) {
-        C c = new C();
-        c.set__v(1L);
-        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(c, new SerializeConfig(true));
-        System.out.println(jsonObject.toJSONString());
     }
 
+    public static ZonedDateTime getZonedDateTimeFromLong(Long timestamp) {
+        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
+        return zdt;
+    }
 
 
 }

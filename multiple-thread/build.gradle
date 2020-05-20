@@ -1,0 +1,6 @@
+archivesBaseName = 'multiple-thread'
+
+dependencies {
+    implementation "org.apache.zookeeper:zookeeper"
+    implementation 'org.apache.curator:curator-recipes:4.3.0'
+}

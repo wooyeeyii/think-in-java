@@ -2,10 +2,7 @@ package com.chang.once;
 
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class AA {

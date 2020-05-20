@@ -3,7 +3,6 @@ package com.chang.jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Type;
 import java.sql.Types;
 import java.util.List;
 

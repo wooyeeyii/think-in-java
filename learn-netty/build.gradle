@@ -1,0 +1,9 @@
+
+archivesBaseName = 'learn-netty'
+
+dependencies {
+    implementation "io.netty:netty-all"
+    implementation "org.jboss.marshalling:jboss-marshalling"
+    implementation "org.jboss.marshalling:jboss-marshalling-serial"
+    implementation "org.jibx:jibx-tools"
+}

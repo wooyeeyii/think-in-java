@@ -1,0 +1,62 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.0.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/plugins-release/" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
+        classpath('io.franzbecker:gradle-lombok:4.0.0')
+    }
+}
+
+ext {
+    gradleScriptDir = "${rootProject.projectDir}/gradle"
+}
+
+allprojects {
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+    apply from: "${gradleScriptDir}/dependencies.gradle"
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    group = 'com.chang'
+
+    repositories {
+        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/plugins-release/" }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    }
+
+    configurations.all {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+
+        resolutionStrategy {
+            // prefer modules that are part of this build (multi-project or composite build) over external modules
+            preferProjectModules()
+            cacheChangingModulesFor 0, 'seconds'
+            cacheDynamicVersionsFor 0, 'seconds'
+        }
+    }
+}
+
