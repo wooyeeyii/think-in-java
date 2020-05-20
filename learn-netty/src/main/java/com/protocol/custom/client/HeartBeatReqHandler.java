@@ -3,15 +3,15 @@ package com.protocol.custom.client;
 import com.protocol.custom.MessageType;
 import com.protocol.custom.struct.Header;
 import com.protocol.custom.struct.NettyMessage;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class HeartBeatReqHandler extends ChannelHandlerAdapter {
+public class HeartBeatReqHandler extends ChannelInboundHandlerAdapter {
 
     private static final Log LOG = LogFactory.getLog(HeartBeatReqHandler.class);
 

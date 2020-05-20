@@ -1,21 +1,12 @@
-/**
- * Copyright (C), 2015-2018, XXX有限公司
- * FileName: RedisUtil
- * Author:   Administrator
- * Date:     2018/10/26 17:42
- * Description:
- * History:
- * <author>          <time>          <version>          <desc>
- * 作者姓名           修改时间           版本号              描述
- */
 package com.distributed.lock.redis;
 
 import com.distributed.lock.SerializeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import redis.clients.jedis.*;
-import redis.clients.jedis.BinaryClient.LIST_POSITION;
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.HashSet;
 import java.util.List;
@@ -621,26 +612,6 @@ public class RedisUtil {
     }
 
     /**
-     * <p>通过key在list指定的位置之前或者之后 添加字符串元素</p>
-     *
-     * @param key
-     * @param where LIST_POSITION枚举类型
-     * @param pivot list里面的value
-     * @param value 添加的value
-     * @return
-     */
-    public Long linsert(String key, LIST_POSITION where,
-                        String pivot, String value) {
-        Long res = null;
-        try {
-            res = cluster.linsert(key, where, pivot, value);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-        }
-        return res;
-    }
-
-    /**
      * <p>通过key设置list指定下标位置的value</p>
      * <p>如果下标超过list里面value的个数则报错</p>
      *
@@ -1116,18 +1087,6 @@ public class RedisUtil {
             LOGGER.error(e.getMessage());
         }
         return res;
-    }
-
-    /**
-     * 返还到连接池
-     *
-     * @param pool
-     * @param jedis
-     */
-    public static void returnResource(JedisPool pool, Jedis jedis) {
-        if (jedis != null) {
-            pool.returnResource(jedis);
-        }
     }
 
 }

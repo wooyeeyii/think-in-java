@@ -2,5 +2,9 @@ archivesBaseName = 'multiple-thread'
 
 dependencies {
     implementation "org.apache.zookeeper:zookeeper"
-    implementation 'org.apache.curator:curator-recipes:4.3.0'
+    implementation 'org.apache.curator:curator-recipes'
+    implementation 'com.lmax:disruptor'
+    implementation "redis.clients:jedis"
+    implementation "commons-logging:commons-logging"
+    implementation "org.apache.commons:commons-lang3"
 }

@@ -7,8 +7,7 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.util.CharsetUtil;
 import io.netty.util.internal.ThreadLocalRandom;
 
-public class ChineseProverbServerHandler extends
-        SimpleChannelInboundHandler<DatagramPacket> {
+public class ChineseProverbServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
     // 谚语列表
     private static final String[] DICTIONARY = {
@@ -27,7 +26,7 @@ public class ChineseProverbServerHandler extends
 
     // 注意接收参数类型：DatagramPacket
     @Override
-    public void messageReceived(ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
         // packet内容转换为字符串(利用ByteBuf的toString(Charset)方法)
         String req = packet.content().toString(CharsetUtil.UTF_8);
         System.out.println(req);

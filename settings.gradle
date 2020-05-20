@@ -1,6 +1,6 @@
 rootProject.name = 'think-in-java'
 
-include 'algorithms-coursea'
+include 'algorithms-in-coursea'
 include 'design-pattern'
 include 'exercise'
 include 'learn-netty'

@@ -3,12 +3,12 @@ package com.protocol.custom.server;
 import com.protocol.custom.MessageType;
 import com.protocol.custom.struct.Header;
 import com.protocol.custom.struct.NettyMessage;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class HeartBeatRespHandler extends ChannelHandlerAdapter {
+public class HeartBeatRespHandler extends ChannelInboundHandlerAdapter {
 
     private static final Log LOG = LogFactory.getLog(HeartBeatRespHandler.class);
 

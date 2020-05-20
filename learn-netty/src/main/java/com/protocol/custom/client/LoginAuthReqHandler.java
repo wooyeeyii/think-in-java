@@ -4,14 +4,14 @@ import com.protocol.custom.MessageType;
 import com.protocol.custom.struct.Header;
 import com.protocol.custom.struct.NettyMessage;
 import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelPipeline;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
-public class LoginAuthReqHandler extends ChannelHandlerAdapter {
+public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
 
     private static final Log LOG = LogFactory.getLog(LoginAuthReqHandler.class);
 
