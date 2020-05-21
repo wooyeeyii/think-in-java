@@ -1,2 +1,6 @@
 
 archivesBaseName = 'algorithms-in-coursea'
+
+dependencies {
+    testImplementation "junit:junit"
+}

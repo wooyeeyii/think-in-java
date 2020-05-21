@@ -2,5 +2,5 @@
 archivesBaseName = 'leetcode'
 
 dependencies {
-
+    testImplementation "junit:junit"
 }

@@ -16,4 +16,6 @@ dependencies {
     implementation "mysql:mysql-connector-java"
     implementation "org.apache.httpcomponents:httpclient"
     implementation "org.apache.kafka:kafka-clients"
+
+    testImplementation "junit:junit"
 }

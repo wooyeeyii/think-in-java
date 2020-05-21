@@ -8,7 +8,7 @@ public class RedisLockTest {
     @Test
     public void test1() {
         ThreadA threadA = new ThreadA();
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 10; i++) {
             Thread a = new Thread(threadA, "Thread-" + i);
             a.start();
         }
@@ -19,6 +19,6 @@ public class RedisLockTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals((Long) 200L, threadA.getValue());
+        Assert.assertEquals((Long) 10L, threadA.getValue());
     }
 }

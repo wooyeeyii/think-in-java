@@ -1,2 +1,6 @@
 
 archivesBaseName = 'exercise'
+
+dependencies {
+    testImplementation "junit:junit"
+}
