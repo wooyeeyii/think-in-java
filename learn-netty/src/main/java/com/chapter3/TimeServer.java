@@ -22,13 +22,15 @@ public class TimeServer {
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .childHandler(new ChildChanelHandler());
-            // 绑定端口，同步等待成功
+
+            // Bind and start to accept incoming connections.
             ChannelFuture f = b.bind(port).sync();
 
-            //等待服务器侦听端口关闭
+            // Wait until the server socket is closed.
+            // In this example, this does not happen, but you can do that to gracefully
+            // shut down your server.
             f.channel().closeFuture().sync();
         } finally {
-            //优雅退出， 释放线程池资源
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
@@ -36,7 +38,7 @@ public class TimeServer {
 
     private class ChildChanelHandler extends ChannelInitializer<SocketChannel> {
         @Override
-        protected void initChannel(SocketChannel socketChannel) throws Exception {
+        protected void initChannel(SocketChannel socketChannel) {
             socketChannel.pipeline().addLast(new TimeServerHandler());
         }
     }
@@ -47,7 +49,6 @@ public class TimeServer {
             try {
                 port = Integer.valueOf(args[0]);
             } catch (NumberFormatException e) {
-                //使用默认值
             }
         }
         new TimeServer().bind(port);

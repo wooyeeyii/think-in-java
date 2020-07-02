@@ -12,7 +12,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class TimeClient {
 
     public void connect(int port, String host) throws Exception {
-        // 配置客户端NIO线程组
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
@@ -25,13 +24,12 @@ public class TimeClient {
                         }
                     });
 
-            // 发起异步连接操作
+            // Start the client.
             ChannelFuture f = b.connect(host, port).sync();
 
-            // 等待客户端链路关闭
+            // Wait until the connection is closed.
             f.channel().closeFuture().sync();
         } finally {
-            // 退出， 释放NIO线程组
             group.shutdownGracefully();
         }
     }
@@ -44,7 +42,7 @@ public class TimeClient {
             } catch (NumberFormatException e) {
             }
         }
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = 0; i < 5; i++) {
             new TimeClient().connect(port, "127.0.0.1");
         }
     }
