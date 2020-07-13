@@ -40,7 +40,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Problem4 {
+public class Problem1505 {
 
     // TOO SLOW
     public String minInteger(String num, int k) {
@@ -73,7 +73,7 @@ public class Problem4 {
     }
 
     public static void main(String[] args) {
-        Problem4 problem = new Problem4();
+        Problem1505 problem = new Problem1505();
         System.out.println("1342".equals(problem.minInteger("4321", 4)));
         System.out.println("010".equals(problem.minInteger("100", 1)));
         System.out.println("36789".equals(problem.minInteger("36789", 1000)));
