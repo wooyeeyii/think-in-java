@@ -9,23 +9,28 @@ public class TestClass {
         /* 一、反射机制获取类的三种方法 */
         //法1: 类名.class
         Class<TestClassType> testTypeClass = TestClassType.class;
-        System.out.println("testTypeClass---" + testTypeClass);
-        System.out.println("");
+        System.out.println("result of .class:               " + testTypeClass);
+        System.out.println("###############################################");
+        System.out.println();
 
         //法2: Class.forName()
-        Class<?> testTypeForName = Class.forName("com.chang.reflection.TestClassType");   //packageName.ClassName, otherwise class can't be found
-        System.out.println("testForName---" + testTypeForName);
-        System.out.println("");
+        // using packageName.ClassName, otherwise class can't be found
+        Class<?> testTypeForName = Class.forName("com.chang.reflection.TestClassType");
+        System.out.println("result of Class.forName(\"XXX\"): " + testTypeForName);
+        System.out.println("###############################################");
+        System.out.println();
 
         //法3: Object.getClass()
         TestClassType testGetClass = new TestClassType();
         Class<? extends TestClassType> testTypeGetClass = testGetClass.getClass();
-        System.out.println("testTypeGetClass---" + testTypeGetClass);
-        System.out.println("");
+        System.out.println("result of .getClass():          " + testTypeGetClass);
+        System.out.println("###############################################");
+        System.out.println();
 
         /* 二、创建对象：获取类后我们来创建它的对象，利用newInstance： */
         Object obj = testTypeClass.newInstance();    //调用了TestClassType的无参数构造方法.
-        System.out.println("");
+        System.out.println("###############################################");
+        System.out.println();
 
         //a. 获取类中所有属性
         Field[] fs = testTypeClass.getDeclaredFields();  // 反射获取的类型.get...

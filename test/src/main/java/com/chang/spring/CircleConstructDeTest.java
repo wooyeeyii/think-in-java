@@ -10,4 +10,5 @@ public class CircleConstructDeTest {
         Test4 test4 = (Test4) bf.getBean("test4");
         test4.method();
     }
+
 }

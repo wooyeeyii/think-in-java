@@ -1,17 +1,13 @@
 package com.chang.once;
 
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Once {
 
     public static void main(String[] args) {
-        int a = (int) Math.pow(10, 5);
-        long b = (long) Math.pow(10, 5);
-        System.out.println(a * a);
-        System.out.println(b * b);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        System.out.println(dtf.format(ZonedDateTime.now()));
     }
 
 

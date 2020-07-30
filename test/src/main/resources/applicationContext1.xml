@@ -10,21 +10,21 @@
          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
-    <!--<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
     
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     
-	&lt;!&ndash; 打开Spring的Annotation支持 &ndash;&gt;
+	<!-- 打开Spring的Annotation支持 -->
 	<context:annotation-config />
-	&lt;!&ndash; 设定Spring 去哪些包中找Annotation &ndash;&gt;
-	<context:component-scan base-package="com.chang.spring" />-->
+	<!-- 设定Spring 去哪些包中找Annotation -->
+	<context:component-scan base-package="com.chang.spring" />
 
-    <bean id="test1" class="com.chang.spring.Test1">
-        <!--通过属性注入的方式注入Car的实例-->
+    <!--<bean id="test1" class="com.chang.spring.Test1">
+        &lt;!&ndash;通过属性注入的方式注入Car的实例&ndash;&gt;
         <property name="test2" ref="test2"></property>
     </bean>
     <bean id="test2" class="com.chang.spring.Test2">
         <property name="test1" ref="test1"></property>
-    </bean>
+    </bean>-->
 
 </beans>

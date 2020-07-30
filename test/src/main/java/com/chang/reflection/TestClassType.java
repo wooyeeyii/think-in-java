@@ -5,6 +5,10 @@ public class TestClassType {
     public int intpub = 0;
     private String strpri = "NIL";
     public String strpub = "NIL";
+    // 修改a的类型和初始化方式
+    public A a = new A();
+    public B b;
+    public static C c = new C();
 
     //构造函数
     public TestClassType() {
@@ -18,12 +22,13 @@ public class TestClassType {
 
     //静态的参数初始化
     static {
-        System.out.println("---静态的参数初始化---");
+        System.out.println("--- 静态的参数初始化 ---");
     }
 
     //非静态的参数初始化
     {
-        System.out.println("----非静态的参数初始化---");
+        System.out.println("--- 非静态的参数初始化 ---");
+        b = new B();
     }
 
     public void printValue() {
