@@ -18,6 +18,7 @@
             <!--定义一个共同的切点-->
             <aop:pointcut id="cutpoint" expression="execution(* com.chang.spring.Test3.method(..)) "/>
             <aop:before pointcut-ref="cutpoint" method="before"/>
+            <aop:after pointcut-ref="cutpoint" method="after"/>
         </aop:aspect>
     </aop:config>
 

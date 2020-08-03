@@ -36,7 +36,7 @@
  * 1 <= target.length <= 10^5
  * target[i] == '0' or target[i] == '1'
  */
-package com.chang.leetcode.contest.weekly199;
+package com.chang.leetcode.contest.weekly199.virtual;
 
 public class Problem1529 {
 

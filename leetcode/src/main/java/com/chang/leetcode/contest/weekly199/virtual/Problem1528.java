@@ -1,4 +1,4 @@
-package com.chang.leetcode.contest.weekly199;
+package com.chang.leetcode.contest.weekly199.virtual;
 
 public class Problem1528 {
 
