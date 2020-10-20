@@ -23,7 +23,7 @@
  * Note:
  * Bonus points if you could solve it both recursively and iteratively.
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 import com.chang.common.TreeNode;
 

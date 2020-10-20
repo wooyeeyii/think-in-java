@@ -1,7 +1,7 @@
 /**
  * 105. Construct Binary Tree from Preorder and Inorder Traversal
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 import com.chang.common.TreeNode;
 

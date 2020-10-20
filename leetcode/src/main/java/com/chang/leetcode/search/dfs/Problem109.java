@@ -3,7 +3,7 @@
  *
  *
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 import com.chang.common.ListNode;
 import com.chang.common.TreeNode;

@@ -39,7 +39,7 @@
  * A solution using O(n) space is pretty straight forward.
  * Could you devise a constant space solution?
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 import com.chang.common.TreeNode;
 

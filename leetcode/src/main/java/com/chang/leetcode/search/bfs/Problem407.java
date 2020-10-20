@@ -22,7 +22,7 @@
  * 1 <= m, n <= 110
  * 0 <= heightMap[i][j] <= 20000
  */
-package com.chang.leetcode.search.breadth.first;
+package com.chang.leetcode.search.bfs;
 
 import java.util.PriorityQueue;
 

@@ -5,7 +5,7 @@
  * <p>
  * Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 import com.chang.common.TreeNode;
 

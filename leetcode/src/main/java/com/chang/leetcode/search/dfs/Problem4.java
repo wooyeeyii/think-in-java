@@ -20,7 +20,7 @@
  * <p>
  * The median is (2 + 3)/2 = 2.5
  */
-package com.chang.leetcode.search.depth.first;
+package com.chang.leetcode.search.dfs;
 
 public class Problem4 {
 
