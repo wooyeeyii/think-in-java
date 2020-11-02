@@ -15,14 +15,14 @@ public class RunTest {
             PipedOutputStream out = new PipedOutputStream();
 
             in.connect(out);
-            //out.connect(in);
+            //out.connect(i new ThreadRead(readData, inputStream);
+            ////            threadRead.start();
+            ////            ThreadWrite threadWrite = new ThreadWrite(writeData, outputStream);
+            ////            threadWrite.start();
+            //
+            //            // 读线程
+            //            new Thread(() -> n);
 
-//            ThreadRead threadRead = new ThreadRead(readData, inputStream);
-//            threadRead.start();
-//            ThreadWrite threadWrite = new ThreadWrite(writeData, outputStream);
-//            threadWrite.start();
-
-            // 读线程
             new Thread(() -> {
                 try {
                     Thread.sleep(10);
