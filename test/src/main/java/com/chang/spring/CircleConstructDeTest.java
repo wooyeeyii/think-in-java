@@ -1,5 +1,6 @@
 package com.chang.spring;
 
+import com.chang.spring.bean.Test4;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

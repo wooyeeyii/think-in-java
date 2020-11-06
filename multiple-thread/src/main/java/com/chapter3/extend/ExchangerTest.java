@@ -45,7 +45,6 @@ public class ExchangerTest {
                 System.out.println("thread1: after exchange");
                 System.out.println(list);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -67,7 +66,6 @@ public class ExchangerTest {
                 System.out.println("thread2: after exchange");
                 System.out.println(list);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

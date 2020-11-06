@@ -1,11 +1,13 @@
-package com.chang.spring;
+package com.chang.spring.context;
 
+import com.chang.spring.bean.Test1;
+import com.chang.spring.bean.Test2;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
-public class BeanFactoryTest {
+public class XmlApplicationContextTest {
 
     public static void main(String[] args) {
         ApplicationContext bf = new ClassPathXmlApplicationContext("applicationContext1.xml");

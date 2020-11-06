@@ -65,7 +65,6 @@ public class CountDownLatchTest {
                 System.out.println(i + "-th of go wait()");
                 cdl.await();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println(i + "-th of go...");

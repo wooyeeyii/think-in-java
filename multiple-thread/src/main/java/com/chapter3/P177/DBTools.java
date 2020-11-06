@@ -14,7 +14,6 @@ public class DBTools {
             preIsA = false;
             notifyAll();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -29,7 +28,6 @@ public class DBTools {
             preIsA = true;
             notifyAll();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

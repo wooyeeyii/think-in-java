@@ -9,7 +9,6 @@ public class MyThread extends Thread {
                 this.wait();
             }
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

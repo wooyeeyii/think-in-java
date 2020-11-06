@@ -10,7 +10,6 @@ public class RunTest2 {
             Thread.sleep(1000);
             thread.suspend();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("main end.");

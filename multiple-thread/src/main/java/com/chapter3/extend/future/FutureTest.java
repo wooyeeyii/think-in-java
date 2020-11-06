@@ -28,10 +28,8 @@ public class FutureTest {
             System.out.println("get remote data...");
             System.out.println(data);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ExecutionException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -56,7 +54,6 @@ public class FutureTest {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return map;

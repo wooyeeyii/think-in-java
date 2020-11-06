@@ -10,8 +10,8 @@ thread BA has been suspend forever.
 thread2 start. but can not enter function printString().
 because function printString has been locked by thread. And suspend forever. 
 ```
-**分析**    
-&emsp;&emsp;当一个线程在调用同步方法时进入暂停状态，并不会释放锁，因此其他线程则只能等待该线程继续并执行完毕后才能继续执行。
+**分析**     
+当一个线程在调用同步方法时进入暂停状态，并不会释放锁，因此其他线程则只能等待该线程继续并执行完毕后才能继续执行。
 ***
 使用suspend还有一个更容易掉进的“坑”    
 RunTest2.java执行结果：

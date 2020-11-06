@@ -9,7 +9,6 @@ public class MyThread extends Thread {
         super.run();
         for (int i = 0; i < 500000; i++) {
             count += i;
-            //System.out.println("thread.isAlive():" + this.isAlive());;
         }
     }
 

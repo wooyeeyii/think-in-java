@@ -13,14 +13,12 @@ public class DeadThread implements Runnable {
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         if (userName.equals("a")) {
             synchronized (object1) {
                 System.out.println("userName = " + userName + ", run begin. got object1 lock.");
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
@@ -36,7 +34,6 @@ public class DeadThread implements Runnable {
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 

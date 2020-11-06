@@ -42,10 +42,8 @@ public class CyclicBarrierTest {
                 cb.await();
                 System.out.println(i + "-th go...");
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (BrokenBarrierException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 

@@ -17,13 +17,13 @@
 	<!-- 打开Spring的Annotation支持 -->
 	<context:annotation-config />
 	<!-- 设定Spring 去哪些包中找Annotation -->
-	<context:component-scan base-package="com.chang.spring" />
+	<context:component-scan base-package="com.chang.spring.bean" />
 
-    <!--<bean id="test1" class="com.chang.spring.Test1">
+    <!--<bean id="test1" class="com.chang.spring.bean.Test1">
         &lt;!&ndash;通过属性注入的方式注入Car的实例&ndash;&gt;
         <property name="test2" ref="test2"></property>
     </bean>
-    <bean id="test2" class="com.chang.spring.Test2">
+    <bean id="test2" class="com.chang.spring.bean.Test2">
         <property name="test1" ref="test1"></property>
     </bean>-->
 

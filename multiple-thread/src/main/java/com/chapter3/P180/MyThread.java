@@ -10,7 +10,6 @@ public class MyThread extends Thread {
             Thread.sleep(secondValue);
             System.out.println("MyThread sleep over. ");
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

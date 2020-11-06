@@ -6,7 +6,7 @@ public class RunTest3 {
         try {
             MyThread thread = new MyThread();
             thread.start();
-            Thread.sleep(10);
+            Thread.sleep(5);
             thread.interrupt();
             System.out.println("thread.isAlive():" + thread.isAlive());
             System.out.println("thread.interrupted(): " + thread.isInterrupted());

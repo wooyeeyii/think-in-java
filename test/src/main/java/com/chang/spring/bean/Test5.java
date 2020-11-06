@@ -1,4 +1,4 @@
-package com.chang.spring;
+package com.chang.spring.bean;
 
 public class Test5 {
 

@@ -1,4 +1,4 @@
-ext['spring-boot.version'] = '2.3.0.RELEASE'
+ext['spring-boot.version'] = '2.3.5.RELEASE'
 ext['spring-cloud.version'] = 'Hoxton.SR4'
 
 ext['zookeeper.version'] = '3.4.13'

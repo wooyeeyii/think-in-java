@@ -10,7 +10,6 @@ public static MyObject getInstance() {
          try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         myObject = new MyObject();
@@ -25,7 +24,6 @@ synchronized public static MyObject getInstance() {
          try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         myObject = new MyObject();
@@ -46,7 +44,6 @@ public static MyObject getInstance() {
          try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         myObject = new MyObject();
@@ -64,7 +61,6 @@ public static MyObject getInstance() {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             myObject = new MyObject();
@@ -88,7 +84,6 @@ public static MyObject getInstance() {
          try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         myObject = new MyObject();
@@ -104,7 +99,6 @@ public static MyObject getInstance() {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             //虽然部分代码被上锁
@@ -136,7 +130,6 @@ public class MyObject {
              try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             synchronized (MyObject.class) {

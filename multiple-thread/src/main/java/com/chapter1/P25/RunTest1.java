@@ -8,7 +8,7 @@ public class RunTest1 {
             thread.start();
             Thread.sleep(1000);
             thread.interrupt();
-            System.out.println("Thread.interrupted(): " + Thread.interrupted());    //当前线程的中断状态
+            System.out.println("Thread.interrupted(): " + Thread.interrupted());    //当前线程的中断状态, 判断完后会清理中断标志
             System.out.println("Thread.interrupted(): " + Thread.interrupted());
         } catch (InterruptedException e) {
             System.out.println("main catch");

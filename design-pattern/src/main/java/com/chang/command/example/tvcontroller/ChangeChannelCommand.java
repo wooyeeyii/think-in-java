@@ -10,7 +10,6 @@ public class ChangeChannelCommand implements Command {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
         receiverTV.changeChannel();
     }
 

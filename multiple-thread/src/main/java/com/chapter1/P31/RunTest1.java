@@ -11,7 +11,6 @@ public class RunTest1 {
             thread.interrupt();
             System.out.println("thread.isAlive():" + thread.isAlive());
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

@@ -8,7 +8,6 @@ public class MyThread extends Thread {
         try {
             this.stop();
         } catch (ThreadDeath e) {
-            // TODO Auto-generated catch block
             System.out.println("stop() 之后进入catch() 方法。");
             e.printStackTrace();
         }

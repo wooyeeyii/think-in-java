@@ -21,9 +21,9 @@ i = 5, threadName = Thread-3
 i = 4, threadName = Thread-2
 i = 2, threadName = Thread-5
 ```
-**分析**
+**分析**     
 &emsp;&emsp; 上面分析过了，i--的操作在进入println()之前发生，可能出现非线程安全问题.    
-**解决方法**
+**解决方法**    
 &emsp;&emsp;对MyThread的run方法使用synchronized关键字。
 ***
 

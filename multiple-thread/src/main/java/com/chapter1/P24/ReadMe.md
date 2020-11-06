@@ -1,6 +1,6 @@
 #### description
 example in this package:  停止线程    
-&emsp;&emsp;3中方法：    
+3种方法：    
 - 使用退出标志，使线程正常退出，也就是当run方法完成后线程终止
 - 使用stop方法强行终止线程，不可取
 - 使用interrupt方法终端线程    

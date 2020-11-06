@@ -26,7 +26,6 @@ public class TheGreatestSage {
         try {
             copyMonkey = (Monkey) monkey.deepClone();
         } catch (ClassNotFoundException | IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("��ʥ����������ǣ�" + monkey.getBirthDate());

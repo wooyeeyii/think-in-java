@@ -1,4 +1,4 @@
-package com.chang.spring;
+package com.chang.spring.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

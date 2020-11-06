@@ -21,7 +21,6 @@ public class CountOperation extends Thread {
             Thread.sleep(3000);
             System.out.println("thread sleep() over.");
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("this.getName(): " + this.getName());

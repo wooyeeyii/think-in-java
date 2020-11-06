@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="test4" class="com.chang.spring.Test4">
+    <bean id="test4" class="com.chang.spring.bean.Test4">
         <constructor-arg ref="test5"></constructor-arg>
     </bean>
-    <bean id="test5" class="com.chang.spring.Test5">
+    <bean id="test5" class="com.chang.spring.bean.Test5">
         <constructor-arg ref="test4"></constructor-arg>
     </bean>
 

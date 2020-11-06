@@ -21,14 +21,6 @@ java.lang.InterruptedException
 ```
 **分析**    
 &emsp;&emsp; 在MyThread.java的基础上，若中断，并非break，而是throw new InterruptedException();并在run()方法的最后直接捕捉这个异常。这样就能让抛出异常地方之后的代码都不执行。
-***
-RunTest3.java执行结果：
-```
-
-```
-**分析**    
-&emsp;&emsp; 
-***
 
 
 

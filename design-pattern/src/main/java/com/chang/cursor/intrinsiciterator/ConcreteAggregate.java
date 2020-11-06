@@ -14,7 +14,6 @@ public class ConcreteAggregate extends Aggregate {
 
     @Override
     public MyIterator createIterator() {
-        // TODO Auto-generated method stub
         return new ConcreteIterator();
     }
 
@@ -39,7 +38,6 @@ public class ConcreteAggregate extends Aggregate {
 
         @Override
         public void next() {
-            // TODO Auto-generated method stub
             if (index < size) {
                 index++;
             }
@@ -47,13 +45,11 @@ public class ConcreteAggregate extends Aggregate {
 
         @Override
         public boolean isDone() {
-            // TODO Auto-generated method stub
             return (index >= size);
         }
 
         @Override
         public Object currentItem() {
-            // TODO Auto-generated method stub
             return objArray[index];
         }
 

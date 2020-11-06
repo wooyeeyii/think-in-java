@@ -11,7 +11,6 @@ public class MyTask extends TimerTask {
         try {
             Thread.sleep(10000L);    //RunTest5.java使用
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

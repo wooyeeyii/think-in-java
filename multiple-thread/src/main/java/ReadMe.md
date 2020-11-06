@@ -10,7 +10,7 @@
 ##### 1.2.3 实例变量与线程安全
 ###### [不共享数据的情况](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P9)
 ###### [共享数据的情况](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P9)
-###### [非线程安全的环境的示例](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P12)
+###### [非线程安全的环境的示例](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P13)
 ###### [留意i--与System.out.println()的异常](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P15)
 #### 1.3 [currentThread()方法](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P17)
 #### 1.4 [isAlive()方法](https://github.com/wooyeeyii/think-in-java/tree/master/multiple-thread/src/main/java/com/chapter1/P17)

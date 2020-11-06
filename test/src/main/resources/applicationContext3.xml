@@ -9,14 +9,14 @@
          http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <bean id="test3" class="com.chang.spring.Test3">
+    <bean id="test3" class="com.chang.spring.bean.Test3">
     </bean>
 
     <bean id="adviceSample" class="com.chang.spring.AdviceSample"></bean>
     <aop:config>
         <aop:aspect id="advice" ref="adviceSample">
             <!--定义一个共同的切点-->
-            <aop:pointcut id="cutpoint" expression="execution(* com.chang.spring.Test3.method(..)) "/>
+            <aop:pointcut id="cutpoint" expression="execution(* com.chang.spring.bean.Test3.method(..)) "/>
             <aop:before pointcut-ref="cutpoint" method="before"/>
             <aop:after pointcut-ref="cutpoint" method="after"/>
         </aop:aspect>

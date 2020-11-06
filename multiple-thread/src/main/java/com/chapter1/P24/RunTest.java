@@ -4,8 +4,14 @@ public class RunTest {
 
     public static void main(String[] args) {
         try {
-            MyThread thread = new MyThread();
+            Thread thread = new Thread(() -> {
+                for (int i = 0; i <= 50000; i++) {
+                    System.out.println("i = " + i);
+                }
+            });
+
             thread.start();
+
             Thread.sleep(2000);
             thread.interrupt();
         } catch (InterruptedException e) {

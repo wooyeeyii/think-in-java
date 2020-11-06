@@ -36,7 +36,6 @@ public class Monkey implements Cloneable, Serializable {
         try {
             temp = (Monkey) super.clone();
         } catch (CloneNotSupportedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
