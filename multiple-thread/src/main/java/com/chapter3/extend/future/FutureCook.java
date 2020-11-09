@@ -7,7 +7,7 @@ public class FutureCook {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         long startTime = System.currentTimeMillis();
-        MyFutureTask<Chuju> task = new MyFutureTask(() -> {
+        FutureTask<Chuju> task = new FutureTask(() -> {
             System.out.println("第一步：下单");
             System.out.println("第一步：等待送货");
             Thread.sleep(5000);  // 模拟送货时间
