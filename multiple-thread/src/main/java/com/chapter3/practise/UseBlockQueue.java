@@ -1,7 +1,5 @@
 package com.chapter3.practise;
 
-import com.oracle.jrockit.jfr.Producer;
-
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
