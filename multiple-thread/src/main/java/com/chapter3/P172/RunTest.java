@@ -45,7 +45,7 @@ public class RunTest {
             new Thread(() -> {
                 try {
                     System.out.println("write :");
-                    for (int i = 0; i < 300; i++) {
+                    for (int i = 0; i < 60; i++) {
                         String outData = "" + (i + 1);
                         out.write(outData.getBytes());
                         System.out.print(outData);

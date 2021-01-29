@@ -14,40 +14,27 @@ import java.util.List;
 
 public class GoogleAuthenticator {
 
-    // taken from Google pam docs - we probably don't need to mess with these
     public static final int SECRET_SIZE = 10;
 
     public static final String SEED = "g8GjEvTbW5oVSV7avLBdwIHqGlUYNzKFI7izOF8GwLDVKs2m0QN7vxRs2im5MDaNCWGmcD2rvcZx";
 
     public static final String RANDOM_NUMBER_ALGORITHM = "SHA1PRNG";
 
-    int window_size = 3; // default 3 - max 17 (from google docs)最多可偏移的时间
+    int window_size = 3; // default 3 - max 17 (from google docs)
 
     public void setWindowSize(int s) {
         if (s >= 1 && s <= 17)
             window_size = s;
     }
 
-    /************************************
-     * 生成谷歌验证的二维码
-     ************************************/
-
-    public String genSecret(String name) {
-        String secret = generateSecretKey();
-        getQRBarcodeURL(name, "testhost", secret);
-        return secret;
-    }
-
-    public String generateSecretKey() {
-        SecureRandom sr = null;
+    public static String generateSecretKey() {
         try {
-            sr = SecureRandom.getInstance(RANDOM_NUMBER_ALGORITHM);
+            SecureRandom sr = SecureRandom.getInstance(RANDOM_NUMBER_ALGORITHM);
             sr.setSeed(Base64.decodeBase64(SEED));
             byte[] buffer = sr.generateSeed(SECRET_SIZE);
             Base32 codec = new Base32();
             byte[] bEncodedKey = codec.encode(buffer);
-            String encodedKey = new String(bEncodedKey);
-            return encodedKey;
+            return new String(bEncodedKey);
         } catch (NoSuchAlgorithmException e) {
             // should never occur... configuration error
         }
@@ -55,25 +42,28 @@ public class GoogleAuthenticator {
     }
 
     // 在页面上显示一个二维码，内容是一个URI地址（otpauth://totp/账号?secret=密钥）
-    public String getQRBarcodeURL(String user, String host, String secret) {
+    public static String getQRBarcodeURL(String user, String host, String secret) {
         String format = "https://www.google.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=otpauth://totp/%s@%s%%3Fsecret%%3D%s";
         String qrUrl = String.format(format, user, host, secret);
         System.out.println(qrUrl);
         return qrUrl;
     }
 
-    /************************************
-     * 验证输入的验证码是否正确
-     ************************************/
-
-    public Boolean authCode(String codes, String savedSecret) {
-        long code = Long.parseLong(codes);
-        long t = System.currentTimeMillis();
-        boolean r = checkCode(savedSecret, code, t);
-        return r;
+    public static String getQRBarcode(String user, String secret) {
+        String format = "otpauth://totp/%s?secret=%s&issuer=HashQuark";
+        return String.format(format, user, secret);
     }
 
-    public boolean checkCode(String secret, long code, long timeMsec) {
+    /**
+     * verif code
+     **/
+    public boolean verifyCode(String codes, String secret) {
+        long code = Long.parseLong(codes);
+        long t = System.currentTimeMillis();
+        return verifyCode(secret, code, t);
+    }
+
+    private boolean verifyCode(String secret, long code, long timeMsec) {
         Base32 codec = new Base32();
         byte[] decodedKey = codec.decode(secret);
         // convert unix msec time into a 30 second "window"
@@ -84,7 +74,7 @@ public class GoogleAuthenticator {
         for (int i = -window_size; i <= window_size; ++i) {
             long hash;
             try {
-                hash = genCode(decodedKey, t + i);
+                hash = generateCurrentCode(decodedKey, t + i);
             } catch (Exception e) {
                 // Yes, this is bad form - but
                 // the exceptions thrown would be rare and a static configuration problem
@@ -100,7 +90,7 @@ public class GoogleAuthenticator {
         return false;
     }
 
-    private static int genCode(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
+    private static int generateCurrentCode(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         byte[] data = new byte[8];
         long value = t;
         for (int i = 8; i-- > 0; value >>>= 8) {
@@ -124,29 +114,4 @@ public class GoogleAuthenticator {
         return (int) truncatedHash;
     }
 
-
-    public static void main(String[] args) {
-        GoogleAuthenticator ga = new GoogleAuthenticator();
-        ga.setWindowSize(4); // should give 5 * 30 seconds of grace...
-
-        /*********** 生成二维码 ************/
-//        String secret = ga.genSecret("testuser");//获取key
-//        System.out.println("secret : " + secret);
-
-        /*********** 验证码测试 ************/
-        String secret = "Y6L75PGY2NHBLL3B";
-        List<String> keyList = new ArrayList<>();
-        keyList.add("314673");
-        keyList.add("182385");
-        keyList.add("722599");
-        keyList.forEach(key -> {
-            Boolean authcode = ga.authCode(key, secret);//验证
-            if (authcode) {
-                System.out.println(key + ": true...........");
-            } else {
-                System.out.println(key + ": false...........");
-            }
-        });
-
-    }
 }

@@ -1,5 +1,4 @@
 
-// 无效错误配置，原因未知
 // The JDK 11 is deep into java modules and sun package must be loaded accordingly
 compileJava {
     options.compilerArgs += ["--add-exports=java.desktop/sun.font=ALL-UNNAMED"]
