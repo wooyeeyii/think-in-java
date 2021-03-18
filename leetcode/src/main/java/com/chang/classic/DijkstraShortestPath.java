@@ -1,6 +1,10 @@
 package com.chang.classic;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class DijkstraShortestPath {
 
@@ -17,6 +21,7 @@ public class DijkstraShortestPath {
         Map<Integer, List<int[]>> adjList = new HashMap<>();
         for (int[] edge : edges) {
             adjList.computeIfAbsent(edge[0], k -> new ArrayList<>()).add(new int[]{edge[1], edge[2]});
+            adjList.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(new int[]{edge[0], edge[2]});
         }
 
         Map<Integer, Integer> dist = new HashMap<>();
