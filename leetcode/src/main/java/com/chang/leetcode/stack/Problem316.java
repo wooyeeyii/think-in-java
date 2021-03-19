@@ -18,7 +18,7 @@
  * 1 <= s.length <= 10^4
  * s consists of lowercase English letters.
  */
-package com.chang.leetcode;
+package com.chang.leetcode.stack;
 
 import java.util.Stack;
 

@@ -1,18 +1,18 @@
-/**
+/*
  * 117. Populating Next Right Pointers in Each Node II
- * <p>
+ *
  * Given a binary tree
- * <p>
+ *
  * struct Node {
  * int val;
  * Node *left;
  * Node *right;
  * Node *next;
  * }
- * <p>
+ *
  * Populate each next pointer to point to its next right node.
  * If there is no next right node, the next pointer should be set to NULL.
- * <p>
+ *
  * Initially, all next pointers are set to NULL.
  */
 package com.chang.leetcode;

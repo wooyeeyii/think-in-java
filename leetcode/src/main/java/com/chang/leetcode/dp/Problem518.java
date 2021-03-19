@@ -1,9 +1,9 @@
-/**
+/*
  * 518. Coin Change 2
- * <p>
+ *
  * You are given coins of different denominations and a total amount of money. Write a function to compute the number of
  * combinations that make up that amount. You may assume that you have infinite number of each kind of coin.
- * <p>
+ *
  * Example 1:
  * Input: amount = 5, coins = [1, 2, 5]
  * Output: 4
@@ -12,16 +12,16 @@
  * 5=2+2+1
  * 5=2+1+1+1
  * 5=1+1+1+1+1
- * <p>
+ *
  * Example 2:
  * Input: amount = 3, coins = [2]
  * Output: 0
  * Explanation: the amount of 3 cannot be made up just with coins of 2.
- * <p>
+ *
  * Example 3:
  * Input: amount = 10, coins = [10]
  * Output: 1
- * <p>
+ *
  * Note:
  * You can assume that
  * 0 <= amount <= 5000
@@ -62,12 +62,12 @@ public class Problem518 {
         System.out.println(1 == problem.change(10, new int[]{10}));
     }
 
-    /**
+    /*
      * This is a classic knapsack problem. Honestly, I'm not good at knapsack problem, it's really tough for me.
-     * <p>
+     *
      * dp[i][j] : the number of combinations to make up amount j by using the first i types of coins
      * State transition:
-     * <p>
+     *
      * not using the ith coin, only using the first i-1 coins to make up amount j, then we have dp[i-1][j] ways.
      * using the ith coin, since we can use unlimited same coin, we need to know how many ways to make up amount j - coins[i-1]
      * by using first i coins(including ith), which is dp[i][j-coins[i-1]]
@@ -86,7 +86,7 @@ public class Problem518 {
         return dp[coins.length][amount];
     }
 
-    /**
+    /*
      * Now we can see that dp[i][j] only rely on dp[i-1][j] and dp[i][j-coins[i]], then we can optimize the space by only using one-dimension array.
      */
     public int changeImpro(int amount, int[] coins) {

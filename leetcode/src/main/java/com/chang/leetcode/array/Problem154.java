@@ -1,12 +1,12 @@
-/**
+/*
  * 154. Find Minimum in Rotated Sorted Array II
- * <p>
+ * 
  * same problem in 153, but there may be duplicate number in array.
- * <p>
+ * 
  * Example 1:
  * Input: [1,3,5]
  * Output: 1
- * <p>
+ * 
  * Example 2:
  * Input: [2,2,2,0,1]
  * Output: 0

@@ -1,4 +1,4 @@
-/**
+/*
  * 106. Construct Binary Tree from Inorder and Postorder Traversal
  */
 package com.chang.leetcode.search.dfs;

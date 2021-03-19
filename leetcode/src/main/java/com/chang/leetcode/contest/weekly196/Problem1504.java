@@ -1,4 +1,4 @@
-/**
+/*
  * 1504. Count Submatrices With All Ones
  *
  * Given a rows * columns matrix mat of ones and zeros, return how many submatrices have all ones.

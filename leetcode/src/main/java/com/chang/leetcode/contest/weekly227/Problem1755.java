@@ -1,4 +1,4 @@
-/**
+/*
  *
  */
 package com.chang.leetcode.contest.weekly227;

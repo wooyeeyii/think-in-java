@@ -1,6 +1,6 @@
-/**
+/*
  * 1274. Number of Ships in a Rectangle
- * <p>
+ * 
  * (This problem is an interactive problem.)
  * On the sea represented by a cartesian plane, each ship is located at an integer point,
  * and each integer point may contain at most 1 ship.
@@ -10,13 +10,13 @@
  * return the number of ships present in that rectangle.  It is guaranteed that there are at most 10 ships in that rectangle.
  * Submissions making more than 400 calls to hasShips will be judged Wrong Answer.
  * Also, any solutions that attempt to circumvent the judge will result in disqualification.
- * <p>
- * <p>
+ * 
+ * 
  * Input:
  * ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]
  * Output: 3
  * Explanation: From [0,0] to [4,4] we can count 3 ships within the range.
- * <p>
+ * 
  * Constraints:
  * On the input ships is only given to initialize the map internally. You must solve this problem "blindfolded". In other words, you must find the answer using the given hasShips API, without knowing the ships position.
  * 0 <= bottomLeft[0] <= topRight[0] <= 1000
@@ -96,7 +96,7 @@ public class Problem1274 {
         System.out.println(problem.countShips(sea, new int[]{4, 4}, new int[]{0, 0}));
     }
 
-    /**
+    /*
      * divide the current rectangle into 4 pieces in the middle.
      * Base case: when topRight == bottomLeft, meaning our rectangle reduces into a point in the map.
      * We return 1 if hasShips(topRight, bottomLeft)

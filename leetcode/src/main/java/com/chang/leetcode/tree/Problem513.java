@@ -1,8 +1,8 @@
-/**
+/*
  * 513. Find Bottom Left Tree Value
- * <p>
+ *
  * Given a binary tree, find the leftmost value in the last row of the tree.
- * <p>
+ *
  * Example 1:
  * Input:
  * 2
@@ -10,7 +10,7 @@
  * 1   3
  * Output:
  * 1
- * <p>
+ *
  * Example 2:
  * Input:
  * 1

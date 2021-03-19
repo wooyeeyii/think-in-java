@@ -1,4 +1,4 @@
-/**
+/*
  * 1626. Best Team With No Conflicts
  *
  * You are the manager of a basketball team. For the upcoming tournament, you want to choose the team with the highest overall score.

@@ -1,4 +1,4 @@
-/**
+/*
  * 1594. Maximum Non Negative Product in a Matrix
  *
  * You are given a rows x cols matrix grid. Initially, you are located at the top-left corner (0, 0),

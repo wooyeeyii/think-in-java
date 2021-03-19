@@ -1,4 +1,4 @@
-/**
+/*
  * 1752. Check if Array Is Sorted and Rotated
  *
  * Given an array nums, return true if the array was originally sorted in non-decreasing order,

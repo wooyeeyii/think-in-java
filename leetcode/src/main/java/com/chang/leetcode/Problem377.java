@@ -1,13 +1,13 @@
-/**
+/*
  * 377. Combination Sum IV
- * <p>
+ * 
  * Given an integer array with all positive numbers and no duplicates,
  * find the number of possible combinations that add up to a positive integer target.
- * <p>
+ * 
  * Example:
  * nums = [1, 2, 3]
  * target = 4
- * <p>
+ * 
  * The possible combination ways are:
  * (1, 1, 1, 1)
  * (1, 1, 2)
@@ -16,10 +16,10 @@
  * (2, 1, 1)
  * (2, 2)
  * (3, 1)
- * <p>
+ * 
  * Note that different sequences are counted as different combinations.
  * Therefore the output is 7.
- * <p>
+ * 
  * Follow up:
  * What if negative numbers are allowed in the given array?
  * How does it change the problem?
@@ -133,7 +133,7 @@ public class Problem377 {
     }
 
 
-    /**
+    /*
      * Time Limit Exceeded when deal with [2, 1, 3] 35
      */
     public int combinationSum4_Detail(int[] nums, int target) {

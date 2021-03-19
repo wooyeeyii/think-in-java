@@ -1,4 +1,4 @@
-/**
+/*
  * 1670. Design Front Middle Back Queue
  */
 package com.chang.leetcode.contest.biweekly40;

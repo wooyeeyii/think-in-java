@@ -1,16 +1,16 @@
-/**
+/*
  * 324. Wiggle Sort II
- * <p>
+ *
  * Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
- * <p>
+ *
  * Example 1:
  * Input: nums = [1, 5, 1, 1, 6, 4]
  * Output: One possible answer is [1, 4, 1, 5, 1, 6].
- * <p>
+ *
  * Example 2:
  * Input: nums = [1, 3, 2, 2, 3, 1]
  * Output: One possible answer is [2, 3, 1, 3, 1, 2].
- * <p>
+ *
  * Note:
  * You may assume all input has valid answer.
  */
@@ -78,7 +78,7 @@ public class Problem324 {
         System.out.println("#############");
     }
 
-    /**
+    /*
      * 先排序，从中间开始
      * 小于中间的数倒叙 依次插入到奇数位置上
      * 大于中间的数倒叙 依次插入到偶数的位置上

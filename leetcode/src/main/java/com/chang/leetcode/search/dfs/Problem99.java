@@ -1,28 +1,28 @@
-/**
+/*
  * 99. Recover Binary Search Tree
- * <p>
+ *
  * Two elements of a binary search tree (BST) are swapped by mistake.
  * Recover the tree without changing its structure.
- * <p>
+ *
  * Example 1:
  * Input: [1,3,null,null,2]
- * <p>
+ *
  * 1
  * /
  * 3
  * \
  * 2
  * Output: [3,1,null,null,2]
- * <p>
+ *
  * 3
  * /
  * 1
  * \
  * 2
- * <p>
+ *
  * Example 2:
  * Input: [3,1,4,null,null,2]
- * <p>
+ *
  * 3
  * / \
  * 1   4
@@ -34,7 +34,7 @@
  * 1   4
  * /
  * 3
- * <p>
+ *
  * Follow up:
  * A solution using O(n) space is pretty straight forward.
  * Could you devise a constant space solution?

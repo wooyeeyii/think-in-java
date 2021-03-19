@@ -1,4 +1,4 @@
-/**
+/*
  * 1483. Kth Ancestor of a Tree Node
  *
  * You are given a tree with n nodes numbered from 0 to n-1 in the form of a parent array where parent[i] is the parent of node i. The root of the tree is node 0.

@@ -5,11 +5,11 @@ example in this package: 线程的优先级
 ```
     /**
      * Changes the priority of this thread.
-     * <p>
+     * 
      * First the <code>checkAccess</code> method of this thread is called
      * with no arguments. This may result in throwing BA
      * <code>SecurityException</code>.
-     * <p>
+     * 
      * Otherwise, the priority of this thread is set to the smaller of
      * the specified <code>newPriority</code> and the maximum permitted
      * priority of the thread's thread group.

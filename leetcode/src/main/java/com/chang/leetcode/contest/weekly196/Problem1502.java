@@ -1,4 +1,4 @@
-/**
+/*
  * 1502. Can Make Arithmetic Progression From Sequence
  *
  * Given an array of numbers arr. A sequence of numbers is called an arithmetic progression

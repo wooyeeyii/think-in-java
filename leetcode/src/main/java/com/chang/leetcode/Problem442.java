@@ -1,12 +1,12 @@
-/**
+/*
  * 442. Find All Duplicates in an Array
- * <p>
+ *
  * Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array),
  * some elements appear twice and others appear once.
- * <p>
+ *
  * Find all the elements that appear twice in this array.
  * Could you do it without extra space and in O(n) runtime?
- * <p>
+ *
  * Example:
  * Input:
  * [4,3,2,7,8,2,3,1]
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Problem442 {
 
-    /**
+    /*
      * EXAMPLE
      * 下标，所以减一
      */

@@ -1,4 +1,4 @@
-/**
+/*
  * 与39不同的地方：
  * 每个数只能用一次，但给的数可能重复
  * 所有数为正数
@@ -11,7 +11,7 @@
  * [2, 6],
  * [1, 1, 6]
  * ]
- * <p>
+ *
  * Example 2:
  * Input: candidates = [2,5,2,1,2], target = 5,
  * A solution set is:
@@ -50,7 +50,7 @@ public class Problem40 {
         }
         for (int i = pos; i < candidates.length; i++) {
             if (used[i]) continue;
-            /**
+            /*
              * 下面这句判断的意思
              * 同样的数，若前面的一个没用过，则直接跳过
              * 也就是说，若是相同的数，只有前面的都用了，才轮到当前的数(大小和前面的一样)被使用
@@ -65,7 +65,7 @@ public class Problem40 {
         }
     }
 
-    /**
+    /*
      * 上面为初次代码，借鉴leetcode， 根本不需要used来做判断，因为
      * 首先，下次递归只是用后面的数，后面的都是没用过的
      * 其次，举例说明

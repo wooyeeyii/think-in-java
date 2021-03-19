@@ -1,20 +1,20 @@
-/**
+/*
  * 318. Maximum Product of Word Lengths
- * <p>
+ * 
  * Given a string array words, find the maximum value of length(word[i]) * length(word[j])
  * where the two words do not share common letters. You may assume that each word will contain
  * only lower case letters. If no such two words exist, return 0.
- * <p>
+ * 
  * Example 1:
  * Input: ["abcw","baz","foo","bar","xtfn","abcdef"]
  * Output: 16
  * Explanation: The two words can be "abcw", "xtfn".
- * <p>
+ * 
  * Example 2:
  * Input: ["a","ab","abc","d","cd","bcd","abcd"]
  * Output: 4
  * Explanation: The two words can be "ab", "cd".
- * <p>
+ * 
  * Example 3:
  * Input: ["a","aa","aaa","aaaa"]
  * Output: 0
@@ -27,7 +27,7 @@ import java.util.Set;
 
 public class Problem318 {
 
-    /**
+    /*
      * 核心思想，如何类比提高比较效率
      */
     public int maxProduct(String[] words) {

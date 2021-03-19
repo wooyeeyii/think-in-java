@@ -22,7 +22,7 @@ public class KMP {
         return j == ptn.length ? i - j : -1;
     }
 
-    /**
+    /*
      * 获取KMP算法中pattern字符串对应的next数组
      */
     protected int[] getNext(char[] p) {

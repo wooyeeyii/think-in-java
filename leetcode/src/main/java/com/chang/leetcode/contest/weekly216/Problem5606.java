@@ -1,4 +1,4 @@
-/**
+/*
  * 1663. Smallest String With A Given Numeric Value
  *
  * The numeric value of a lowercase character is defined as its position (1-indexed) in the alphabet,

@@ -1,15 +1,15 @@
-/**
+/*
  * 138. Copy List with Random Pointer
- * <p>
+ * 
  * A linked list is given such that each node contains an additional random pointer
  * which could point to any node in the list or null.
- * <p>
+ * 
  * Return a deep copy of the list.
- * <p>
+ * 
  * Example 1:
  * Input:
  * {"$id":"1","next":{"$id":"2","next":null,"random":{"$ref":"2"},"val":2},"random":{"$ref":"2"},"val":1}
- * <p>
+ * 
  * Explanation:
  * Node 1's value is 1, both of its next and random pointer points to Node 2.
  * Node 2's value is 2, its next pointer points to null and its random pointer points to itself.
@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class Problem138 {
 
-    /**
+    /*
      * 使用O(n)的时间，因利用HashMap的原因，O(n)的空间
      * 可以更进一步，使用O(1)的空间？
      */
@@ -44,7 +44,7 @@ public class Problem138 {
         return nMap.get(head);
     }
 
-    /**
+    /*
      * 使用O(1) space
      */
     public NodeWithRandomPointer copyRandomListUseConstantSpace(NodeWithRandomPointer head) {

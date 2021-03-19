@@ -1,20 +1,20 @@
-/**
+/*
  * 462. Minimum Moves to Equal Array Elements II
- * <p>
+ *
  * Given a non-empty integer array, find the minimum number of moves required to make all array elements equal,
  * where a move is incrementing a selected element by 1 or decrementing a selected element by 1.
- * <p>
+ *
  * You may assume the array's length is at most 10,000.
- * <p>
+ *
  * Example:
  * Input:
  * [1,2,3]
  * Output:
  * 2
- * <p>
+ *
  * Explanation:
  * Only two moves are needed (remember each move increments or decrements one element):
- * <p>
+ *
  * [1,2,3]  =>  [2,2,3]  =>  [2,2,2]
  */
 package com.chang.leetcode;

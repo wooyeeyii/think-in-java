@@ -1,6 +1,6 @@
-/**
+/*
  * Given a collection of distinct integers, return all possible permutations.
- * <p>
+ *
  * Example:
  * Input: [1,2,3]
  * Output:
@@ -51,7 +51,7 @@ public class Problem46 {
         return result;
     }
 
-    /**
+    /*
      * according to Problem47's idea
      * may have this solution
      */

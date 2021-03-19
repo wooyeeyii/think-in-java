@@ -1,4 +1,4 @@
-/**
+/*
  * 1519. Number of Nodes in the Sub-Tree With the Same Label
  *
  * Given a tree (i.e. a connected, undirected graph that has no cycles) consisting of n nodes numbered from 0 to n - 1 and exactly n - 1 edges.

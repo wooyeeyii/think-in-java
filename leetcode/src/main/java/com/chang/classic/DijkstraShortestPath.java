@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 public class DijkstraShortestPath {
 
-    /**
+    /*
      * Given a list of (source, target, weight) edge pairs, return the shortest distance from s to any
      * other nodes in the graph. Any unreachable node has a distance of Integer.MAX_VALUE.
      *

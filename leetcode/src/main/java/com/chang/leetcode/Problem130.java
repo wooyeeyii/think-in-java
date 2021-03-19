@@ -1,10 +1,10 @@
-/**
+/*
  * 130. Surrounded Regions
- * <p>
+ *
  * Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
- * <p>
+ *
  * A region is captured by flipping all 'O's into 'X's in that surrounded region.
- * <p>
+ *
  * Example:
  * X X X X
  * X O O X
@@ -15,9 +15,9 @@
  * X X X X
  * X X X X
  * X O X X
- * <p>
+ *
  * Explanation:
- * <p>
+ *
  * Surrounded regions shouldn’t be on the border, which means that any 'O' on the border
  * of the board are not flipped to 'X'. Any 'O' that is not on the border and
  * it is not connected to an 'O' on the border will be flipped to 'X'. Two cells

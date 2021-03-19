@@ -1,10 +1,10 @@
-/**
+/*
  * 378. Kth Smallest Element in a Sorted Matrix
- * <p>
+ *
  * Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
- * <p>
+ *
  * Note that it is the kth smallest element in the sorted order, not the kth distinct element.
- * <p>
+ *
  * Example:
  * matrix = [
  * [ 1,  5,  9],
@@ -13,7 +13,7 @@
  * ],
  * k = 8,
  * return 13.
- * <p>
+ *
  * Note:
  * You may assume k is always valid, 1 ≤ k ≤ n2.
  */

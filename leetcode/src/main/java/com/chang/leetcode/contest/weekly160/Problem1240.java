@@ -1,8 +1,8 @@
-/**
+/*
  * 1240. Tiling a Rectangle with the Fewest Squares
- * <p>
+ * 
  * Given a rectangle of size n x m, find the minimum number of integer-sided squares that tile the rectangle.
- * <p>
+ * 
  * https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/
  */
 package com.chang.leetcode.contest.weekly160;
@@ -28,7 +28,7 @@ public class Problem1240 {
         System.out.println(6 == problem2.tilingRectangle(11, 13));
     }
 
-    /**
+    /*
      * The basic idea is to fill the entire block from the bottom up, fill in the bottom unfilled squares first, and select a different possible size square to fill it.
      * We maintain a height array (skyline) while dfs.
      *  This skyline is the identity of the state.

@@ -1,4 +1,4 @@
-/**
+/*
  * 1498. Number of Subsequences That Satisfy the Given Sum Condition
  *
  * Given an array of integers nums and an integer target.

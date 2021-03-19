@@ -91,10 +91,10 @@ public class Problem43 {
         return sb.toString();
     }
 
-    /**
+    /*
      * Is there any possibility that pos[p1] will be greater than 10?
      * e.g., mul = 81 and pos[p2] = 9, pos[p1] = 8, then pos[p1] will become 17
-     * <p>
+     *
      * I guess you don't need to worry about that if you have pos[p1] = 17
      * since this 17 will only be there temporarily. The way we iterate j is from right to left,
      * so every time we move to the j on the left, p1 will become p2,

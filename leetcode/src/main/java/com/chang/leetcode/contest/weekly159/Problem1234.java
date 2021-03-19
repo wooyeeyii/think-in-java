@@ -1,34 +1,34 @@
-/**
+/*
  * 1234. Replace the Substring for Balanced String
- * <p>
+ *
  * You are given a string containing only 4 kinds of characters 'Q', 'W', 'E' and 'R'.
- * <p>
+ *
  * A string is said to be balanced if each of its characters appears n/4 times where n is the length of the string.
- * <p>
+ *
  * Return the minimum length of the substring that can be replaced with any other string of the same length to make the original string s balanced.
- * <p>
+ *
  * Return 0 if the string is already balanced.
- * <p>
+ *
  * Example 1:
  * Input: s = "QWER"
  * Output: 0
  * Explanation: s is already balanced.
- * <p>
+ *
  * Example 2:
  * Input: s = "QQWE"
  * Output: 1
  * Explanation: We need to replace a 'Q' to 'R', so that "RQWE" (or "QRWE") is balanced.
- * <p>
+ *
  * Example 3:
  * Input: s = "QQQW"
  * Output: 2
  * Explanation: We can replace the first "QQ" to "ER".
- * <p>
+ *
  * Example 4:
  * Input: s = "QQQQ"
  * Output: 3
  * Explanation: We can replace the last 3 'Q' to make s = "QWER".
- * <p>
+ *
  * Constraints:
  * 1 <= s.length <= 10^5
  * s.length is a multiple of 4
@@ -93,24 +93,24 @@ public class Problem1234 {
         System.out.println(5 == problem.balancedString("WWWEQRQEWWQQQWQQQWEWEEWRRRRRWWQE"));
     }
 
-    /**
+    /*
      * Intuition
      * We want a minimum length of substring,
      * which leads us to the solution of sliding window.
      * Specilly this time we don't care the count od elements inside the window,
      * we want to know the count outside the window.
-     * <p>
+     *
      * Explanation
      * One pass the all frequency of "QWER".
      * Then slide the windon in the string s.
-     * <p>
+     *
      * Imagine that we erase all character inside the window,
      * as we can modyfy it whatever we want,
      * and it will always increase the count outside the window.
-     * <p>
+     *
      * So we can make the whole string balanced,
      * as long as max(count[Q],count[W],count[E],count[R]) <= n / 4.
-     * <p>
+     *
      * Complexity:
      * Time O(N), one pass for counting, one pass for sliding window
      * Space O(1)

@@ -1,8 +1,8 @@
-/**
+/*
  * 1256. Encode Number
- * <p>
+ *
  * Given a non-negative integer num, Return its encoding string.
- * <p>
+ *
  * The encoding is done by converting the integer to a string using a secret function that you should deduce from the following table:
  * f(0) = ""
  * f(1) = "0"
@@ -12,17 +12,17 @@
  * f(5) = "10"
  * f(6) = "11"
  * f(7) = "000"
- * <p>
+ *
  * Example 1:
  * Input: num = 23
  * Output: "1000"
- * <p>
+ *
  * Example 2:
  * Input: num = 107
  * Output: "101100"
- * <p>
+ *
  * Constraints:
- * <p>
+ *
  * 0 <= num <= 10^9
  */
 package com.chang.leetcode.contest.biweekly13;
@@ -73,7 +73,7 @@ public class Problem1256 {
 
     }
 
-    /**
+    /*
      * Solution 1: Recursion idea
      * The following sequence can be built up form the ealier result.
      * So I search index of the prefix part
@@ -88,7 +88,7 @@ public class Problem1256 {
         return n > 0 ? encodeExample1((n - 1) / 2) + "10".charAt(n % 2) : "";
     }
 
-    /**
+    /*
      * Solution 2: Binary of n + 1
      * Assume g(n) = "1" + f(n)
      * we can find:

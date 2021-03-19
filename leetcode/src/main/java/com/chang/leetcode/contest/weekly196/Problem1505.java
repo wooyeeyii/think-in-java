@@ -1,4 +1,4 @@
-/**
+/*
  * 1505. Minimum Possible Integer After at Most K Adjacent Swaps On Digits
  *
  * Given a string num representing the digits of a very large integer and an integer k.

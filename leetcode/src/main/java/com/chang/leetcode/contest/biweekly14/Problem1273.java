@@ -1,24 +1,24 @@
-/**
+/*
  * 1273. Delete Tree Nodes
- * <p>
+ *
  * A tree rooted at node 0 is given as follows:
- * <p>
+ *
  * The number of nodes is nodes;
  * The value of the i-th node is value[i];
  * The parent of the i-th node is parent[i].
  * Remove every subtree whose sum of values of nodes is zero.
- * <p>
+ *
  * After doing so, return the number of nodes remaining in the tree.
- * <p>
+ *
  * 0(1)
  * 1(-1)                    2(4)
  * 3(0)               4(-2)  5(-1)  6(-1)
- * <p>
+ *
  * Example 1:
  * Input: nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]
  * Output: 2
  * Constraints:
- * <p>
+ *
  * 1 <= nodes <= 10^4
  * -10^5 <= value[i] <= 10^5
  * parent.length == nodes
@@ -66,7 +66,7 @@ public class Problem1273 {
         System.out.println(problem.deleteTreeNodesExample(7, new int[]{-1, 0, 0, 1, 2, 2, 2}, new int[]{1, -2, 4, 0, -2, -1, -1}));
     }
 
-    /**
+    /*
      * Build up the mapping of parent and its children.
      * Recursively find the sum and the count of subtree.@param n
      * Time O(N), Space O(N)

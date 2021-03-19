@@ -6,7 +6,8 @@ public class ConcreteColleagueB extends Colleague {
         super(mediator);
     }
 
-    /**
+
+    /*
      * 示意方法，执行某些操作
      */
     public void operation() {

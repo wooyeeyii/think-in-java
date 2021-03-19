@@ -1,4 +1,4 @@
-/**
+/*
  * 1488. Avoid Flood in The City
  *
  * Your country has an infinite number of lakes. Initially, all the lakes are empty, but when it rains over the nth lake,

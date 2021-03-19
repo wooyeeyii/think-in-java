@@ -1,4 +1,4 @@
-/**
+/*
  * 1576. Replace All ?'s to Avoid Consecutive Repeating Characters
  *
  * Given a string s containing only lower case English letters and the '?' character, convert all the '?' characters

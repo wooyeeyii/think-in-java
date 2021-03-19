@@ -1,4 +1,4 @@
-/**
+/*
  * 1631. Path With Minimum Effort
  *
  * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows x columns,

@@ -1,4 +1,4 @@
-/**
+/*
  * 1668. Maximum Repeating Substring
  *
  * For a string sequence, a string word is k-repeating if word concatenated k times is a substring of sequence.

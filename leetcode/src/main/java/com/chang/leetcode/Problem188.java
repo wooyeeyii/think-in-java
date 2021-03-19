@@ -1,23 +1,23 @@
-/**
+/*
  * Best Time to Buy and Sell Stock IV
- * <p>
+ * 
  * Say you have an array for which the ith element is the price of a given stock on day i.
  * Design an algorithm to find the maximum profit. You may complete at most k transactions.
- * <p>
+ * 
  * Note:
  * You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
- * <p>
+ * 
  * Example 1:
  * Input: [2,4,1], k = 2
  * Output: 2
  * Explanation: Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.
- * <p>
+ * 
  * Example 2:
  * Input: [3,2,6,5,0,3], k = 2
  * Output: 7
  * Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4.
  * Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
- * <p>
+ * 
  * solution link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/135704/Detail-explanation-of-DP-solution
  */
 package com.chang.leetcode;
@@ -26,11 +26,11 @@ import java.util.Arrays;
 
 public class Problem188 {
 
-    /**
+    /*
      * It's not difficult to get the DP recursive formula:
      * dp[k, i] = max(dp[k, i-1], prices[i] - prices[j] + dp[k-1, j-1]), j=[0..i-1]
      * For k transactions, on i-th day,
-     * <p>
+     * 
      * Time complexity is O(kn^2), space complexity is O(kn).
      */
     public int maxProfit(int k, int[] prices) {
@@ -47,9 +47,9 @@ public class Problem188 {
         return dp[k][prices.length - 1];
     }
 
-    /**
+    /*
      * In the above code, min is repeated calculated. It can be easily improved as:
-     * <p>
+     * 
      * Time complexity is O(kn), space complexity is O(kn).
      */
     public int maxProfitDpImpro1(int k, int[] prices) {
@@ -65,7 +65,7 @@ public class Problem188 {
         return dp[k][prices.length - 1];
     }
 
-    /**
+    /*
      * If we slight swap the two 'for' loops:
      */
     public int maxProfitDpImpro2(int k, int[] prices) {
@@ -82,11 +82,11 @@ public class Problem188 {
         return dp[k][prices.length - 1];
     }
 
-    /**
+    /*
      * We need to save min for each transaction, so there are k 'min'.
      * We can find the second dimension (variable i) is only dependent on the previous one (i-1), so we can compact this dimension.
      * (We can choose the first dimension (variable k) as well since it is also only dependent on its previous one k-1, but can't compact both.)
-     * <p>
+     * 
      * So time complexity is O(kn), space complexity becomes O(k).
      */
     public int maxProfitDpImpro3(int k, int[] prices) {
@@ -126,7 +126,7 @@ public class Problem188 {
             return result;
         }
 
-        /** sub-problem:
+        /* sub-problem:
          * dp[i][j] represents max profit of first j + 1 prices by making i transactions
          *
          * base case:

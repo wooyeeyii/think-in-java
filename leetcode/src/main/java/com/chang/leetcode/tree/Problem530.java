@@ -1,10 +1,10 @@
-/**
+/*
  * Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
- * <p>
+ *
  * Example:
- * <p>
+ *
  * Input:
- * <p>
+ *
  * 1
  * \
  * 3
@@ -12,11 +12,11 @@
  * 2
  * Output:
  * 1
- * <p>
+ *
  * Explanation:
  * The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).
- * <p>
- * <p>
+ *
+ *
  * Note: There are at least two nodes in this BST.
  */
 package com.chang.leetcode.tree;

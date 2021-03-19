@@ -27,7 +27,7 @@ public class LoginAuthRespHandler extends ChannelInboundHandlerAdapter {
     /**
      * Calls {@link ChannelHandlerContext#fireChannelRead(Object)} to forward to
      * the next {@link ChannelHandler} in the {@link ChannelPipeline}.
-     * <p>
+     *
      * Sub-classes may override this method to change behavior.
      */
     @Override

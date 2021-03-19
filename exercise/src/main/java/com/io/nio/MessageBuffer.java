@@ -4,8 +4,8 @@ package com.io.nio;
  * A shared buffer which can contain many messages inside. A message gets a section of the buffer to use. If the
  * message outgrows the section in size, the message requests a larger section and the message is copied to that
  * larger section. The smaller section is then freed again.
- * <p>
- * <p>
+ * 
+ * 
  * Created by jjenkov on 18-10-2015.
  */
 public class MessageBuffer {

@@ -1,6 +1,7 @@
 package com.chang.leetcode.contest.weekly150;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Problem1163 {
 
@@ -55,7 +56,7 @@ public class Problem1163 {
         BigDecimal mx = BigDecimal.ZERO, pre = BigDecimal.ZERO;
         int idx = 0, n = S.length();
         for (int i = n - 1; i >= 0; --i) {
-            BigDecimal cur = pre.divide(new BigDecimal("26"), len, BigDecimal.ROUND_HALF_DOWN).add(new BigDecimal(S.charAt(i) - 'a'));
+            BigDecimal cur = pre.divide(new BigDecimal("26"), len, RoundingMode.HALF_DOWN).add(new BigDecimal(S.charAt(i) - 'a'));
             if (cur.compareTo(mx) > 0) {
                 mx = cur;
                 idx = i;

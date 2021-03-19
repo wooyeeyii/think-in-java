@@ -1,4 +1,4 @@
-/**
+/*
  * 1520. Maximum Number of Non-Overlapping Substrings
  *
  * Given a string s of lowercase letters, you need to find the maximum number of non-empty substrings of s that meet the following conditions:

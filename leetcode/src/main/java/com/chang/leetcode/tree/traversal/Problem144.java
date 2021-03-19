@@ -1,8 +1,8 @@
-/**
+/*
  * 144 Binary Tree Preorder Traversal
- * <p>
+ * 
  * Given a binary tree, return the preorder traversal of its nodes' values.
- * <p>
+ * 
  * Example:
  * Input: [1,null,2,3]
  * 1
@@ -10,9 +10,9 @@
  * 2
  * /
  * 3
- * <p>
+ * 
  * Output: [1,2,3]
- * <p>
+ * 
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  */
 package com.chang.leetcode.tree.traversal;

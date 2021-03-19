@@ -1,33 +1,33 @@
-/**
+/*
  * 474. Ones and Zeroes
- * <p>
+ *
  * In the computer world, use restricted resource you have to generate dpimum benefit is what we always want to pursue.
- * <p>
+ *
  * For now, suppose you are a dominator of m 0s and n 1s respectively. On the other hand, there is an array with strings consisting of only 0s and 1s.
- * <p>
+ *
  * Now your task is to find the dpimum number of strings that you can form with given m 0s and n 1s. Each 0 and 1 can be used at most once.
- * <p>
+ *
  * Note:
- * <p>
+ *
  * The given numbers of 0s and 1s will both not exceed 100
  * The size of given string array won't exceed 600.
- * <p>
- * <p>
- * <p>
+ *
+ *
+ *
  * Example 1:
- * <p>
+ *
  * Input: Array = {"10", "0001", "111001", "1", "0"}, m = 5, n = 3
  * Output: 4
- * <p>
+ *
  * Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”
- * <p>
- * <p>
- * <p>
+ *
+ *
+ *
  * Example 2:
- * <p>
+ *
  * Input: Array = {"10", "0", "1"}, m = 1, n = 1
  * Output: 2
- * <p>
+ *
  * Explanation: You could form "10", but then you'd have nothing left. Better form "0" and "1".
  */
 package com.chang.leetcode;
@@ -36,7 +36,7 @@ public class Problem474 {
 
     // example dp alg
 
-    /**
+    /*
      * o better understand, DP[][] can be rewrite as DP[][][],
      * e.g. DP[0][i][j] = 0 means when the string array is empty, we can not form any string.
      * Then we put the first element of strs in our pool, and we can write

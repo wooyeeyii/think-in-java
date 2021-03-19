@@ -1,8 +1,8 @@
-/**
+/*
  * 77. Combinations
- * <p>
+ *
  * Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
- * <p>
+ *
  * Example:
  * Input: n = 4, k = 2
  * Output:
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Problem77 {
-    /**
+    /*
      * 递推公式
      * [n,k] = [n-1,k-2]和n的组合 + [n-1,k]
      */
@@ -46,7 +46,7 @@ public class Problem77 {
         return result;
     }
 
-    /**
+    /*
      * Backtracking Solution 回溯算法
      */
     public List<List<Integer>> combineExample(int n, int k) {

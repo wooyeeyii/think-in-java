@@ -1,8 +1,8 @@
-/**
+/*
  * Given a collection of numbers that might contain duplicates, return all possible unique permutations.
- * <p>
+ *
  * Example:
- * <p>
+ *
  * Input: [1,1,2]
  * Output:
  * [
@@ -88,7 +88,7 @@ public class Problem47 {
     }
 
 
-    /**
+    /*
      * method which have the most votes in discuss of leetcode
      **/
     public List<List<Integer>> permuteUniqueSample(int[] nums) {

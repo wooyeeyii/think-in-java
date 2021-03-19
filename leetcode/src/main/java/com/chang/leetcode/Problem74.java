@@ -1,13 +1,13 @@
-/**
+/*
  * 74. Search a 2D Matrix
- * <p>
+ * 
  * Write an efficient algorithm that searches for a value in an m x n matrix.
  * This matrix has the following properties:
- * <p>
+ * 
  * Integers in each row are sorted from left to right.
  * The first integer of each row is greater than the last integer of
  * the previous row.
- * <p>
+ * 
  * Example 1:
  * Input:
  * matrix = [
@@ -17,7 +17,7 @@
  * ]
  * target = 3
  * Output: true
- * <p>
+ * 
  * Example 2:
  * Input:
  * matrix = [

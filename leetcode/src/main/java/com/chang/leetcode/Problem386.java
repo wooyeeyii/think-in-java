@@ -1,10 +1,10 @@
-/**
+/*
  * 386. Lexicographical Numbers
- * <p>
+ *
  * Given an integer n, return 1 - n in lexicographical order.
- * <p>
+ *
  * For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
- * <p>
+ *
  * Please optimize your algorithm to use less time and space.
  * The input size may be as large as 5,000,000.
  */
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Problem386 {
 
-    /**
+    /*
      * Example
      *
      * The idea is pretty simple. If we look at the order we can find out
@@ -48,7 +48,7 @@ public class Problem386 {
         }
     }
 
-    /**
+    /*
      *
      */
     public List<Integer> lexicalOrder_2(int n) {

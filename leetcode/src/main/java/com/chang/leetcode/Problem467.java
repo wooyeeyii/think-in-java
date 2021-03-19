@@ -1,24 +1,24 @@
-/**
+/*
  * 467. Unique Substrings in Wraparound String
- * <p>
+ * 
  * Consider the string s to be the infinite wraparound string of "abcdefghijklmnopqrstuvwxyz",
  * so s will look like this: "...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd....".
- * <p>
+ * 
  * Now we have another string p. Your job is to find out how many unique non-empty substrings of p are present in s.
  * In particular, your input is the string p and you need to output the number of different non-empty substrings of p in the string s.
- * <p>
+ * 
  * Note: p consists of only lowercase English letters and the size of p might be over 10000.
- * <p>
+ * 
  * Example 1:
  * Input: "a"
  * Output: 1
  * Explanation: Only the substring "a" of string "a" is in the string s.
- * <p>
+ * 
  * Example 2:
  * Input: "cac"
  * Output: 2
  * Explanation: There are two substrings "a", "c" of string "cac" in the string s.
- * <p>
+ * 
  * Example 3:
  * Input: "zab"
  * Output: 6
@@ -28,7 +28,7 @@ package com.chang.leetcode;
 
 public class Problem467 {
 
-    /**
+    /*
      * After failed with pure math solution and time out with DFS solution, I finally realized that this is a DP problem...
      * The idea is, if we know the max number of unique substrings in p ends with 'a', 'b', ..., 'z',
      * then the summary of them is the answer. Why is that?

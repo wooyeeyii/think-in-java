@@ -1,4 +1,4 @@
-/**
+/*
  * 1582. Special Positions in a Binary Matrix
  *
  * Given a rows x cols matrix mat, where mat[i][j] is either 0 or 1, return the number of special positions in mat.

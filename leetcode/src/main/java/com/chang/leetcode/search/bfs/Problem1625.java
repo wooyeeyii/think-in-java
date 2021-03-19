@@ -1,4 +1,4 @@
-/**
+/*
  * 1625. Lexicographically Smallest String After Applying Operations
  *
  * You are given a string s of even length consisting of digits from 0 to 9, and two integers a and b.

@@ -1,16 +1,16 @@
-/**
+/*
  * 179. Largest Number
- * <p>
+ *
  * Given a list of non negative integers, arrange them such that they form the largest number.
- * <p>
+ *
  * Example 1:
  * Input: [10,2]
  * Output: "210"
- * <p>
+ *
  * Example 2:
  * Input: [3,30,34,5,9]
  * Output: "9534330"
- * <p>
+ *
  * Note: The result may be very large, so you need to return a string instead of an integer.
  */
 package com.chang.leetcode;

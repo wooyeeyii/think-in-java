@@ -1,4 +1,4 @@
-/**
+/*
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet obj = new RandomizedSet();
  * boolean param_1 = obj.insert(val);
@@ -18,7 +18,7 @@ public class Problem380 {
     private Map<Integer, Integer> map = null;
     java.util.Random rand = new java.util.Random();
 
-    /**
+    /*
      * Initialize your data structure here.
      */
     public Problem380() {
@@ -26,7 +26,7 @@ public class Problem380 {
         map = new HashMap<Integer, Integer>();
     }
 
-    /**
+    /*
      * Inserts a value to the set. Returns true if the set did not already contain the specified element.
      */
     public boolean insert(int val) {
@@ -38,7 +38,7 @@ public class Problem380 {
         return true;
     }
 
-    /**
+    /*
      * Removes a value from the set. Returns true if the set contained the specified element.
      */
     public boolean remove(int val) {
@@ -56,7 +56,7 @@ public class Problem380 {
         return true;
     }
 
-    /**
+    /*
      * Get a random element from the set.
      */
     public int getRandom() {

@@ -1,4 +1,4 @@
-/**
+/*
  * 1624. Largest Substring Between Two Equal Characters
  *
  * Given a string s, return the length of the longest substring between two equal characters,

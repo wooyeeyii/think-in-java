@@ -3,7 +3,7 @@ package com.io.nio;
 /**
  * Same as QueueFillCount, except that QueueFlip uses a flip flag to keep track of when the internal writePos has
  * "overflowed" (meaning it goes back to 0). Other than that, the two implementations are very similar in functionality.
- * <p>
+ * 
  * One additional difference is that QueueFlip has an available() method, where this is a public variable in
  * QueueFillCount.
  */

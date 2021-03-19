@@ -1,4 +1,4 @@
-/**
+/*
  * 1531. String Compression II
  *
  * Run-length encoding is a string compression method that works by replacing consecutive identical characters

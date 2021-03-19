@@ -1,4 +1,4 @@
-/**
+/*
  * 1753. Maximum Score From Removing Stones
  *
  * You are playing a solitaire game with three piles of stones of sizes a​​​​​​, b,​​​​​​ and c​​​​​​ respectively.

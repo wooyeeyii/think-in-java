@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Problem187 {
 
-    /**
+    /*
      * 法1
      *
      * @param s
@@ -34,7 +34,7 @@ public class Problem187 {
         return res;
     }
 
-    /**
+    /*
      * 法2
      */
     public List<String> findRepeatedDnaSequences(String s) {
