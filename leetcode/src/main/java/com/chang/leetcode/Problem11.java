@@ -13,7 +13,7 @@
  * Input: [1,8,6,2,5,4,8,3,7]
  * Output: 49
  */
-package com.chang;
+package com.chang.leetcode;
 
 public class Problem11 {
 

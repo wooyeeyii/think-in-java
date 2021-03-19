@@ -1,6 +1,6 @@
 package com.chang.leetcode;
 
-public class problem37 {
+public class Problem37 {
     public void solveSudoku(char[][] board) {
         if (board == null || board.length == 0)
             return;

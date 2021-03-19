@@ -1,4 +1,4 @@
-/**
+/*
  * 1648. Sell Diminishing-Valued Colored Balls
  *
  * You have an inventory of different colored balls, and there is a customer that wants orders balls of any color.
@@ -41,6 +41,8 @@
 package com.chang.leetcode.search.binary;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Problem1648 {
@@ -89,17 +91,17 @@ public class Problem1648 {
             // If the number for [next + 1, cur] less than orders, add them ALL.
             if ((cur - next) * count <= orders) {
                 // Add all the sum, and don't forget cast!
-                long num = (1L * (next + 1 + cur) * (cur - next) * count / 2) % mod;
+                long num = ((long) (next + 1 + cur) * (cur - next) * count / 2) % mod;
                 res = (res + num) % mod;
                 orders -= (cur - next) * count;
             } else {
                 // If the number for [next + 1, cur] greater than orders, only add partially.
                 // Calculate the new next where the add stops.
                 next = cur - orders / count;
-                long num = (1L * (next + 1 + cur) * (cur - next) * count / 2) % mod;
+                long num = ((long) (next + 1 + cur) * (cur - next) * count / 2) % mod;
                 res = (res + num) % mod;
                 // For the last number to add (new next), and don't forget cast! I forget here in contest!
-                res = (res + 1L * next * (orders % count)) % mod;
+                res = (res + (long) next * (orders % count)) % mod;
                 orders = 0;
             }
 
@@ -109,4 +111,11 @@ public class Problem1648 {
         return (int) res;
     }
 
+    public static void main(String[] args) {
+        Problem1648 problem = new Problem1648();
+        System.out.print(problem.maxProfit(new int[]{2, 5}, 4));
+        System.out.print(problem.maxProfit(new int[]{3, 5}, 6));
+        System.out.print(problem.maxProfit(new int[]{2, 8, 4, 10, 6}, 20));
+        System.out.print(problem.maxProfit(new int[]{1000000000}, 1000000000));
+    }
 }

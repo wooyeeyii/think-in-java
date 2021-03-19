@@ -18,7 +18,7 @@
  * The input array size is in the range of [1, 20000].
  * n is a non-negative integer which won't exceed the input array size.
  */
-package com.chang;
+package com.chang.leetcode;
 
 public class Problem605 {
 

@@ -17,7 +17,7 @@
  */
 package com.chang.leetcode.dp;
 
-public class problem664 {
+public class Problem664 {
 
     /*
      * The problem wants us to find the number of ways to do something without giving specific steps like how to achieve it.

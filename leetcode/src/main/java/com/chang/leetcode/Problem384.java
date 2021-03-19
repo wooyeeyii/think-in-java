@@ -24,12 +24,12 @@ package com.chang.leetcode;
 import java.util.Arrays;
 import java.util.Random;
 
-public class problem384 {
+public class Problem384 {
 
     private int[] nums;
     private Random random;
 
-    public problem384(int[] nums) {
+    public Problem384(int[] nums) {
         this.nums = nums;
         random = new Random();
     }
