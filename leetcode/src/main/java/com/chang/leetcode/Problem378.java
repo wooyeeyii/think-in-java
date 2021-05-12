@@ -19,9 +19,7 @@
  */
 package com.chang.leetcode;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Problem378 {
 
