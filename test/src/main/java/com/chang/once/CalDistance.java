@@ -2,34 +2,83 @@ package com.chang.once;
 
 public class CalDistance {
 
-    public static void problem(double topH, double downH, double topV, double downV, double dif) {
-        double angleA = Math.atan(topV / (downH - topH));
-        System.out.println("angle A: " + angleA);
-        double gap = downH - topH;
-        double c = topV / Math.sin(angleA);
-        double d = (topV + downV) / Math.sin(angleA);
+    public static void problem(double topL, double topR, double downL, double downR, double topV, double downV, double dif, int total) {
+        double top = topL + topR;
+        double down = downL + downR;
+        double angleA = Math.atan(topV / (downL - topL));
+//        System.out.println("angle A: " + angleA);
+
+        /* *****************************************
+         *  left -> right
+         ******************************************/
+        System.out.println("从左往右排:");
+        // 最长斜边
+        double longestHypotenuse = (topV + downV) / Math.sin(angleA);
+        // 空缺三角形的底边
         double e = downV / Math.tan(angleA);
-        for (int i = 0; e > dif * i; i++) {
-            double f = (e - dif * i) / Math.cos(angleA);
-            System.out.println(d - f);
+        int cnt = 0;
+        for (; e > dif * cnt && cnt < total; cnt++) {
+            double f = (e - dif * cnt) / Math.cos(angleA);
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - f);
         }
-        System.out.println("max: " + d);
 
-        double angleB = Math.atan(topV / 1200D);
-        System.out.println("angle B: " + angleB);
+        while (cnt < total && cnt * dif <= top) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse);
+            cnt++;
+        }
+
+        double angleB = Math.atan(topV / (downR - topR));
         double angleC = Math.PI - angleA - angleB;
-        double m = 100D / Math.sin(angleC) * Math.sin(angleB);
-        System.out.println("m: " + m);
-        System.out.println(d - m);
-        System.out.println(d - 3 * m);
-        System.out.println(d - 5 * m);
-        System.out.println(d - 7 * m);
+        double m = 1D / Math.sin(angleC) * Math.sin(angleB);
+        double extra = dif * cnt - top;
+        while (cnt < total) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - m * extra);
+            extra += dif;
+            cnt++;
+        }
 
-        double n =  1 / Math.tan(angleA) + Math.tan(angleB);
-        System.out.println("up 1 each reduce: " + n);
-        System.out.println(1650D + 1450D);
-        for (int i = 0; i < 5; i++) {
-            System.out.println(1650D + 1450D - 50 * n - i * 200 * n);
+        /* *****************************************
+         *  right -> left
+         ******************************************/
+        System.out.println();
+        System.out.println("从右往左排:");
+        cnt = 0;
+        longestHypotenuse = (topV + downV) / Math.sin(angleB);
+        // 空缺三角形的底边
+        e = downV / Math.tan(angleB);
+        for (; e > dif * cnt && cnt < total; cnt++) {
+            double f = (e - dif * cnt) / Math.cos(angleA);
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - f);
+        }
+
+        while (cnt < total && cnt * dif <= top) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse);
+            cnt++;
+        }
+
+        extra = cnt * dif - downV;
+        while (cnt < total) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - m * extra);
+            extra += dif;
+            cnt++;
+        }
+
+
+        /* *****************************************
+         *  bottom -> up
+         ******************************************/
+        System.out.println();
+        System.out.println("从下往上排:");
+        cnt = 0;
+        double n = 1 / Math.tan(angleA) + 1 / Math.tan(angleB);
+        while (cnt < total && cnt * dif <= downV) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, down);
+            cnt++;
+        }
+
+        while(cnt < total) {
+            System.out.printf("第%d根长度 = %f \n", cnt + 1, down - n * (cnt * dif - downV));
+            cnt++;
         }
     }
 
@@ -38,7 +87,7 @@ public class CalDistance {
 //        System.out.println(Math.toDegrees(Math.asin(0.5D)));
 //        System.out.println(Math.sin(Math.toRadians(30D)));
 //        CalDistance.problem(450D, 1650D, 2050D, 1150D, 200D);
-        CalDistance.problem(450D, 1450D, 2050D, 1150D, 200D);
+        CalDistance.problem(750D, 450D, 1850D, 1450D, 1950D, 1150D, 200D, 7);
     }
 
 }
