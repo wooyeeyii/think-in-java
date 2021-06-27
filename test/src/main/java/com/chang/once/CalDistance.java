@@ -6,7 +6,7 @@ public class CalDistance {
         double top = topL + topR;
         double down = downL + downR;
         double angleA = Math.atan(topV / (downL - topL));
-//        System.out.println("angle A: " + angleA);
+        System.out.println("angle A: " + angleA * 180 / Math.PI);
 
         /* *****************************************
          *  left -> right
@@ -47,7 +47,7 @@ public class CalDistance {
         // 空缺三角形的底边
         e = downV / Math.tan(angleB);
         for (; e > dif * cnt && cnt < total; cnt++) {
-            double f = (e - dif * cnt) / Math.cos(angleA);
+            double f = (e - dif * cnt) / Math.cos(angleB);
             System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - f);
         }
 
@@ -56,7 +56,8 @@ public class CalDistance {
             cnt++;
         }
 
-        extra = cnt * dif - downV;
+        m = 1D / Math.sin(angleC) * Math.sin(angleA);
+        extra = cnt * dif - top;
         while (cnt < total) {
             System.out.printf("第%d根长度 = %f \n", cnt + 1, longestHypotenuse - m * extra);
             extra += dif;
@@ -76,7 +77,7 @@ public class CalDistance {
             cnt++;
         }
 
-        while(cnt < total) {
+        while (cnt < total) {
             System.out.printf("第%d根长度 = %f \n", cnt + 1, down - n * (cnt * dif - downV));
             cnt++;
         }
@@ -87,7 +88,6 @@ public class CalDistance {
 //        System.out.println(Math.toDegrees(Math.asin(0.5D)));
 //        System.out.println(Math.sin(Math.toRadians(30D)));
 //        CalDistance.problem(450D, 1650D, 2050D, 1150D, 200D);
-        CalDistance.problem(750D, 450D, 1850D, 1450D, 1950D, 1150D, 200D, 7);
+        CalDistance.problem(450D, 750D, 1450D, 2250D, 2100D, 1150D, 200D, 7);
     }
-
 }
