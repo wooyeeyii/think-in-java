@@ -88,6 +88,6 @@ public class CalDistance {
 //        System.out.println(Math.toDegrees(Math.asin(0.5D)));
 //        System.out.println(Math.sin(Math.toRadians(30D)));
 //        CalDistance.problem(450D, 1650D, 2050D, 1150D, 200D);
-        CalDistance.problem(450D, 750D, 1450D, 2250D, 2100D, 1150D, 200D, 7);
+        CalDistance.problem(450D, 450D, 1650D, 1450D, 1950D, 1050D, 200D, 7);
     }
 }
